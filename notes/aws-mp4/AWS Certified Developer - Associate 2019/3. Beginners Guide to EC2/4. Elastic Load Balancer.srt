@@ -1,0 +1,459 @@
+1
+00:00:00,200 --> 00:00:06,630
+OK hello cloggers and welcome to this lecture this lecture before we get started on route 53 and creating
+
+2
+00:00:06,630 --> 00:00:11,260
+our own domain name we are going to need to create an elastic load balance or as a part of that.
+
+3
+00:00:11,260 --> 00:00:14,840
+And I just wanted to go through the theory of elastic Loide balances.
+
+4
+00:00:14,910 --> 00:00:17,930
+So what is an elastic load balance or what's the load balance.
+
+5
+00:00:17,940 --> 00:00:24,480
+Well the hint is in the name of load balance or simply helps us balance our load across multiple different
+
+6
+00:00:24,480 --> 00:00:25,570
+servers.
+
+7
+00:00:25,620 --> 00:00:30,720
+So let's say you've got a whole bunch of web servers and you want to equally balance the load between
+
+8
+00:00:30,720 --> 00:00:31,200
+them.
+
+9
+00:00:31,200 --> 00:00:37,740
+You deploy a load balance and then using various types of technology it will help you balance the load
+
+10
+00:00:37,740 --> 00:00:41,590
+across those web servers so no one web server will get overwhelmed.
+
+11
+00:00:41,590 --> 00:00:44,230
+And so hopefully your application won't crash.
+
+12
+00:00:44,250 --> 00:00:47,640
+So that's all a load balance is now with us.
+
+13
+00:00:47,640 --> 00:00:53,730
+There's three different types of balances with our application load balances in our application load
+
+14
+00:00:53,730 --> 00:00:55,720
+Belon so operates at the OS.
+
+15
+00:00:55,740 --> 00:01:01,200
+I like 7 so if you're not familiar with the OS side Lia's just go ahead and type it into Google and
+
+16
+00:01:01,200 --> 00:01:03,150
+click on the Wikipedia article.
+
+17
+00:01:03,180 --> 00:01:07,270
+It basically will go and explain all the different layers of computing.
+
+18
+00:01:07,270 --> 00:01:12,900
+So application load balances can actually make very clever decisions they can actually go all the way
+
+19
+00:01:12,900 --> 00:01:18,840
+down to the application layer and they can load balance based off that so they could if it could see
+
+20
+00:01:18,840 --> 00:01:22,580
+that packets are destined for let's say sales at a cloud.
+
+21
+00:01:22,590 --> 00:01:29,370
+Gary It would then send those packets directly to the sales web servers or application servers if it
+
+22
+00:01:29,370 --> 00:01:33,870
+was a different subdomain could go to a completely different subdomain.
+
+23
+00:01:33,870 --> 00:01:36,720
+It can also look at whether or not someone's making a purchase.
+
+24
+00:01:36,720 --> 00:01:41,070
+Maybe that would go to a whole bunch of different application servers.
+
+25
+00:01:41,070 --> 00:01:46,950
+My point being is that application load balances can see all the way up to the application layer and
+
+26
+00:01:46,950 --> 00:01:52,440
+they can make very clever routing or routing decisions based on that you know information.
+
+27
+00:01:52,590 --> 00:01:54,420
+We then have our network Loide balances.
+
+28
+00:01:54,420 --> 00:02:00,330
+This operates at layer for this is where you basically want to super fast performance and super fast
+
+29
+00:02:00,340 --> 00:02:01,450
+speed.
+
+30
+00:02:01,450 --> 00:02:07,590
+It is basically AWOS as most expensive load balance but it is what you would use in production especially
+
+31
+00:02:07,590 --> 00:02:12,570
+if latency is an issue you want to use network load balances and then we have our classic load balances
+
+32
+00:02:12,570 --> 00:02:17,700
+in our classic load balances pretty much you know they don't recommend them.
+
+33
+00:02:18,000 --> 00:02:20,220
+But it is there for legacy purposes.
+
+34
+00:02:20,220 --> 00:02:26,530
+Interestingly the developer associate exam actually tests you mostly on classic low balances even though
+
+35
+00:02:26,640 --> 00:02:32,670
+AWOS themselves are pushing you to either use application load balances or network load balances.
+
+36
+00:02:32,670 --> 00:02:36,670
+So we will have a quick look at a classic load balances as well.
+
+37
+00:02:36,780 --> 00:02:41,080
+But in the next lecture what we're going to go ahead and create is an application load balance.
+
+38
+00:02:41,270 --> 00:02:45,590
+So let's start with application load balances and they're best suited for load balancing of Hastey to
+
+39
+00:02:45,590 --> 00:02:51,630
+be and Hastey to be traffic they operate at least 7 an hour application of where they are intelligent
+
+40
+00:02:52,080 --> 00:02:58,670
+and you can create advents requests routing sending specified requests to specific web servers.
+
+41
+00:02:58,680 --> 00:03:05,580
+So here we've got a Tesla Model X. let's say something let's say that you know we have an application
+
+42
+00:03:05,580 --> 00:03:13,980
+inside our model X. We could send all that model X traffic to a specific set of web servers that are
+
+43
+00:03:13,980 --> 00:03:19,560
+only designed for Model X and then if we had a Tesla Model S or we had a Model 3 for example we could
+
+44
+00:03:19,830 --> 00:03:26,580
+get our application load balances to send them to completely different instances depending on the you
+
+45
+00:03:26,580 --> 00:03:28,120
+know depending on the packets.
+
+46
+00:03:28,170 --> 00:03:34,020
+Basically the application load balance could be configured so it could figure out what type of car was
+
+47
+00:03:34,020 --> 00:03:35,640
+being sending the request.
+
+48
+00:03:35,670 --> 00:03:42,090
+And then it could send that to a group of web service that is designed specifically to respond to traffic
+
+49
+00:03:42,510 --> 00:03:43,770
+for that car.
+
+50
+00:03:43,950 --> 00:03:50,490
+We then have our network load balances so network load balance is best suited for load balancing of
+
+51
+00:03:50,490 --> 00:03:54,000
+TCAP traffic where extreme performance is required.
+
+52
+00:03:54,000 --> 00:03:55,390
+And again I love Teslas.
+
+53
+00:03:55,410 --> 00:03:56,930
+Here is a Tesla Roadster.
+
+54
+00:03:56,940 --> 00:04:03,510
+It is going to be capable of doing a zero to 60 miles an hour in under two seconds.
+
+55
+00:04:03,630 --> 00:04:09,290
+Think of extreme performance that is going to be one of the basically the fastest production ever made.
+
+56
+00:04:09,310 --> 00:04:15,720
+So operation operating at the connection level low for network load balance is capable of handling millions
+
+57
+00:04:15,720 --> 00:04:20,220
+of requests per second while maintaining ultra low latencies.
+
+58
+00:04:20,220 --> 00:04:26,160
+So use a network load balance for an extreme performance but do bear in mind it is going to be the most
+
+59
+00:04:26,460 --> 00:04:29,770
+costly load balance of the three different load balances.
+
+60
+00:04:29,940 --> 00:04:31,610
+And so think of extreme performance.
+
+61
+00:04:31,610 --> 00:04:32,980
+Think of a Tesla Roadster.
+
+62
+00:04:33,130 --> 00:04:38,030
+You can get extreme performance out of them but they are the most expensive Teslas that you can buy.
+
+63
+00:04:38,160 --> 00:04:41,080
+The classic load balances have Cattaro.
+
+64
+00:04:41,320 --> 00:04:47,900
+So a classic load balance the legacy stick load balances you can load balance Hastey to be and HTP require
+
+65
+00:04:48,180 --> 00:04:54,720
+applications using a 7 specific features such as the x4 would add 4 and sticky sessions but you can
+
+66
+00:04:54,720 --> 00:04:57,120
+also use strict lay a for load balancing.
+
+67
+00:04:57,120 --> 00:05:02,510
+For applications that rely purely on the TZP protocol so you can either do essentially you either do
+
+68
+00:05:02,750 --> 00:05:08,140
+a seven oleo for using the classic load balance but last seven it's not anywhere near as intelligent
+
+69
+00:05:08,140 --> 00:05:09,770
+as an application load balancer.
+
+70
+00:05:09,910 --> 00:05:16,300
+It is literally just using the exported four and sticky sessions will come to explode four in one more
+
+71
+00:05:16,300 --> 00:05:16,750
+slide.
+
+72
+00:05:16,750 --> 00:05:20,420
+But before we do that I just want to talk about load balance errors.
+
+73
+00:05:20,530 --> 00:05:21,750
+So the classic load balance.
+
+74
+00:05:21,790 --> 00:05:27,670
+If your application stops responding the elastic load balance or Costic load balancer responds with
+
+75
+00:05:27,670 --> 00:05:29,360
+a 5 0 for error.
+
+76
+00:05:29,380 --> 00:05:32,010
+And this means that the application is having issues.
+
+77
+00:05:32,170 --> 00:05:35,130
+And this could either be at the web server layer or the database layer.
+
+78
+00:05:35,140 --> 00:05:39,310
+But basically it's not the load balancer itself that's having the issue.
+
+79
+00:05:39,400 --> 00:05:41,390
+It's something below the load balance.
+
+80
+00:05:41,530 --> 00:05:43,430
+It's just not getting a response.
+
+81
+00:05:43,540 --> 00:05:47,960
+And that means you need to troubleshoot either the web server or the database layer.
+
+82
+00:05:47,980 --> 00:05:53,890
+You need to basically identify where the application is filing and scale it up or out where possible
+
+83
+00:05:53,890 --> 00:05:58,750
+so that if you get a 5 for era it's basically a gateway timeout error.
+
+84
+00:05:59,020 --> 00:06:01,830
+Moving on to x4 did fall so it's good to use the here.
+
+85
+00:06:01,840 --> 00:06:08,390
+This is the public IP address I've just made one up and $24 one to talk to 3 2 3 1.
+
+86
+00:06:08,400 --> 00:06:14,740
+They then do it DNS requests and they hit our load balance load balance so take that request and it
+
+87
+00:06:14,740 --> 00:06:22,570
+will use the private IP address or $10.00 0.23 and it will then send that on to our A.C. to instance.
+
+88
+00:06:22,570 --> 00:06:27,940
+Now AC to instance will only see that private IP address see 10.0 $0.00 2 3.
+
+89
+00:06:27,940 --> 00:06:33,220
+Now this can cause problems because you probably want to know where in the world you use it is where
+
+90
+00:06:33,220 --> 00:06:35,250
+they're coming from et cetera.
+
+91
+00:06:35,380 --> 00:06:42,280
+So how can you get the IP for public address when you're lastic load balance is sending you the private
+
+92
+00:06:42,280 --> 00:06:43,010
+address.
+
+93
+00:06:43,020 --> 00:06:44,100
+Well really easy.
+
+94
+00:06:44,110 --> 00:06:50,050
+You just gotta go and look for it in the Axford forehead and you'll be able to see the public ip address
+
+95
+00:06:50,080 --> 00:06:53,680
+this are 1 2 4 1 2 3 2 3 1.
+
+96
+00:06:53,680 --> 00:06:56,120
+So just remember that going into your exam.
+
+97
+00:06:56,140 --> 00:06:58,310
+So speaking of exam tips.
+
+98
+00:06:58,480 --> 00:07:01,750
+So basically just remember that there's three different types of load balances.
+
+99
+00:07:01,750 --> 00:07:06,420
+You've got your application load balances your network load balances and your classic load balances.
+
+100
+00:07:06,550 --> 00:07:11,150
+Remember that a 5 or 4 ERA means that the Gateway has timed out.
+
+101
+00:07:11,320 --> 00:07:16,100
+And this means that the application is not responding within the Idle Timeout period.
+
+102
+00:07:16,090 --> 00:07:18,450
+So how do you do what how do you troubleshoot this.
+
+103
+00:07:18,460 --> 00:07:21,880
+Well go ahead and troubleshoot the application is the web server down.
+
+104
+00:07:21,910 --> 00:07:24,080
+Or is the database server down.
+
+105
+00:07:24,150 --> 00:07:25,290
+Do you need to scale out.
+
+106
+00:07:25,290 --> 00:07:26,850
+You need to scale up etc..
+
+107
+00:07:27,040 --> 00:07:33,070
+And if you need the IP for address of your end user using classic load balancers then you just need
+
+108
+00:07:33,070 --> 00:07:38,560
+to use the Axford forehead up so that is load balance in a nut shell.
+
+109
+00:07:38,590 --> 00:07:42,520
+Remember these tips going into your exam and you'll do fine in the next election.
+
+110
+00:07:42,520 --> 00:07:47,150
+What we're going to do is we're going to register a domain name using route 53.
+
+111
+00:07:47,190 --> 00:07:52,000
+They're going to point to that domain name to an application load balancer which will have some E.C
+
+112
+00:07:52,000 --> 00:07:57,610
+to instances inside it and then hopefully we'll be able to resolve our May name all the way down to
+
+113
+00:07:57,610 --> 00:07:58,740
+our easy to instant.
+
+114
+00:07:58,740 --> 00:08:00,970
+So if you've got the time please join me in the next lecture.
+
+115
+00:08:00,970 --> 00:08:01,360
+Thank you.

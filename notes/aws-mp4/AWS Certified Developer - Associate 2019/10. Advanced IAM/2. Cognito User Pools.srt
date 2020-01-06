@@ -1,0 +1,143 @@
+1
+00:00:01,250 --> 00:00:07,520
+Hello Clockers and welcome to this lecture and this lecture is all about cognito you suppose.
+
+2
+00:00:07,680 --> 00:00:10,290
+So let's get started.
+
+3
+00:00:10,290 --> 00:00:11,260
+So what are you.
+
+4
+00:00:11,270 --> 00:00:12,150
+Applause.
+
+5
+00:00:12,360 --> 00:00:18,720
+Well these are directory's which are used to manage sign up and sign in functionality for mobile and
+
+6
+00:00:18,720 --> 00:00:20,350
+web applications.
+
+7
+00:00:21,900 --> 00:00:29,610
+Users can sign in directly to the user pool or in directly for an identity provider like Facebook Amazon
+
+8
+00:00:29,670 --> 00:00:39,450
+or Google and Kokanee type acts as an identity broker between the ID provider and AWOS successful authentication
+
+9
+00:00:39,660 --> 00:00:48,780
+generates a number of Jason web tokens known as J.W. ttys and there's also this notion of identity pools
+
+10
+00:00:49,230 --> 00:00:55,920
+and identity PPO's enable you to create unique identities for your users and authenticate them with
+
+11
+00:00:56,010 --> 00:01:03,840
+identity providers and with an identity you can obtain temporary limited privilege AWOS credentials
+
+12
+00:01:04,170 --> 00:01:07,530
+to access other AWOS services.
+
+13
+00:01:07,530 --> 00:01:09,620
+So let's take a look at an example.
+
+14
+00:01:09,690 --> 00:01:11,170
+We call our user here.
+
+15
+00:01:11,650 --> 00:01:18,720
+And the first thing she does is she looks in via Facebook and receives her JWT tokens.
+
+16
+00:01:18,870 --> 00:01:25,680
+Then the cognito identity pool exchange is the JWT token for AWOS credentials.
+
+17
+00:01:25,680 --> 00:01:33,330
+And these are temporary credentials which she can then use to access AWOS resources and cognito handles
+
+18
+00:01:33,360 --> 00:01:34,860
+all this for you.
+
+19
+00:01:34,860 --> 00:01:38,000
+You don't have to write any special code for your application.
+
+20
+00:01:38,040 --> 00:01:46,630
+It manages receiving the JWT tokens from Facebook and the exchange of those tokens for AWOS credentials.
+
+21
+00:01:48,540 --> 00:01:55,370
+Cognito also tracks the association between user identity and the various different devices they sign
+
+22
+00:01:55,370 --> 00:02:01,590
+in from and in order to provide a seamless user experience for application.
+
+23
+00:02:01,700 --> 00:02:08,720
+Cognito uses a technology called Push synchronization to push updates and synchronize user data across
+
+24
+00:02:08,810 --> 00:02:17,960
+multiple devices Amerson S.A. or simple notification service is used to send a silent push notification
+
+25
+00:02:17,990 --> 00:02:22,300
+to all the devices associated with a given user identity.
+
+26
+00:02:22,480 --> 00:02:27,260
+Whenever data is stored in the cloud changes.
+
+27
+00:02:27,610 --> 00:02:36,530
+So what are the exam tips for cognito remember cognito use is use up polls to manage users sign up and
+
+28
+00:02:36,530 --> 00:02:40,330
+sign in either directly or via a web identity providers.
+
+29
+00:02:40,430 --> 00:02:44,060
+Think Facebook Amazon and Google.
+
+30
+00:02:44,060 --> 00:02:51,630
+It also acts as an identity broker handling all interaction with the web by dead sea providers and it
+
+31
+00:02:51,670 --> 00:03:00,020
+uses push synchronization with Asinus to send a silent push notification of use of data updates to multiple
+
+32
+00:03:00,020 --> 00:03:04,340
+device types associated with the same user ID.
+
+33
+00:03:04,670 --> 00:03:06,460
+So that is the end of this lecture.
+
+34
+00:03:06,710 --> 00:03:09,100
+If you have any questions please let me know.
+
+35
+00:03:09,260 --> 00:03:11,860
+If not feel free to move on to the next lecture.
+
+36
+00:03:12,000 --> 00:03:12,230
+Thankee.

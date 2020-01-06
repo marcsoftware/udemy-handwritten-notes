@@ -1,0 +1,491 @@
+1
+00:00:00,450 --> 00:00:00,970
+Okay.
+
+2
+00:00:00,990 --> 00:00:03,220
+Hello clunkers and welcome to this lecture.
+
+3
+00:00:03,240 --> 00:00:05,930
+This lecture we're going to look at step function.
+
+4
+00:00:05,940 --> 00:00:08,070
+So what are step functions.
+
+5
+00:00:08,070 --> 00:00:13,260
+Well they basically allow you to visualize and test your surplus applications and they provide a graphical
+
+6
+00:00:13,260 --> 00:00:18,970
+console to arrange and visualize the components of your applications as a series of steps.
+
+7
+00:00:18,990 --> 00:00:23,880
+And this makes it easy to build and run multi-step applications step functions automatically trigger
+
+8
+00:00:23,910 --> 00:00:26,750
+and track each step and retry is when there are errors.
+
+9
+00:00:26,760 --> 00:00:30,300
+Your application executes in order and as expected.
+
+10
+00:00:30,300 --> 00:00:32,660
+Step functions logs the state of each step.
+
+11
+00:00:32,660 --> 00:00:37,570
+So when things do go wrong you can go in and diagnose and debug problems quickly.
+
+12
+00:00:37,590 --> 00:00:39,270
+There's various ways you can use it.
+
+13
+00:00:39,300 --> 00:00:40,710
+You can have sequential steps.
+
+14
+00:00:40,710 --> 00:00:45,630
+This might be where you upload a RAW file and then the next step is to go through and delete that raw
+
+15
+00:00:45,630 --> 00:00:46,300
+file.
+
+16
+00:00:46,320 --> 00:00:52,310
+You can be wondering why you do that but that could be one step or you could have a branches of steps.
+
+17
+00:00:52,320 --> 00:00:57,870
+So let's say you go in and your user selects an image converter and they want to convert that RAW file
+
+18
+00:00:57,870 --> 00:01:00,680
+to a JPEG or that RAW file to appear.
+
+19
+00:01:01,020 --> 00:01:08,460
+Or perhaps as an unsupported type if they do convert it to JPA or to PMG that will then load into a
+
+20
+00:01:08,460 --> 00:01:12,720
+dynamo DP database and then that's the end of your function.
+
+21
+00:01:12,720 --> 00:01:18,210
+So this is a basically a branching functions there's difference like a tree branch alias different choices
+
+22
+00:01:18,210 --> 00:01:19,130
+that you can do.
+
+23
+00:01:19,210 --> 00:01:24,380
+And then of course we've got parallel steps perhaps somebody uploads a photo to an S3 bucket that triggers
+
+24
+00:01:24,380 --> 00:01:30,480
+a lambda function and then actually goes and triggers three lambda functions one lambda function extracts
+
+25
+00:01:30,480 --> 00:01:35,970
+the metadata one lambda function resizing the image and one lambda function runs some facial recognition
+
+26
+00:01:35,970 --> 00:01:41,310
+to try and figure out who it is and then all those lambda functions store that information in your dynamo
+
+27
+00:01:41,310 --> 00:01:42,700
+DB database.
+
+28
+00:01:42,810 --> 00:01:48,090
+Now literally for the exam you just need to know what step functions in is what I'm going to do now
+
+29
+00:01:48,090 --> 00:01:50,270
+is just quickly give you a demo of it.
+
+30
+00:01:50,270 --> 00:01:52,110
+It's probably the easiest way to learn.
+
+31
+00:01:52,350 --> 00:01:54,000
+And then we will move on.
+
+32
+00:01:54,000 --> 00:01:55,890
+So let's go into the obvious console.
+
+33
+00:01:56,580 --> 00:01:56,890
+Okay.
+
+34
+00:01:56,910 --> 00:02:02,300
+So here I am in the adobe us console and to get to step functions we just go down to services.
+
+35
+00:02:02,400 --> 00:02:05,120
+Now it isn't under lambda which is under compute.
+
+36
+00:02:05,130 --> 00:02:09,390
+It's actually down here and it's under application integration.
+
+37
+00:02:09,390 --> 00:02:11,640
+You'll be able to see it here step functions.
+
+38
+00:02:11,940 --> 00:02:13,700
+So go ahead and click on that.
+
+39
+00:02:13,800 --> 00:02:19,020
+If you scroll down it will tell you a little bit about how it works the way step functions works is
+
+40
+00:02:19,020 --> 00:02:24,090
+you're using Jason based Amazon states language so it is its own language.
+
+41
+00:02:24,090 --> 00:02:28,440
+Again don't worry you won't need to learn the language in order to pass the sort of by developer associate
+
+42
+00:02:28,440 --> 00:02:33,120
+exam you would need to learn it when using step functions however.
+
+43
+00:02:33,130 --> 00:02:37,080
+So if you are going to go in a new step functions in production you're going to have to go ahead and
+
+44
+00:02:37,080 --> 00:02:38,070
+learn the language.
+
+45
+00:02:38,070 --> 00:02:39,750
+Very very simple to get started though.
+
+46
+00:02:39,870 --> 00:02:46,320
+Just go up here and get started automatically it will drop you into this run a hello world example if
+
+47
+00:02:46,320 --> 00:02:52,150
+we just go back to state machines you'll be able to see and here we can create our state machines.
+
+48
+00:02:52,260 --> 00:02:58,140
+So go ahead and hit create a state machine and we're going to do some sample projects and I'm going
+
+49
+00:02:58,140 --> 00:03:03,480
+to choose one that's a little bit more complicated which is the job polar and this is going to manage
+
+50
+00:03:03,480 --> 00:03:06,840
+an asynchronous job using a service polling loop.
+
+51
+00:03:06,840 --> 00:03:12,630
+So it's a combination of NWS lambda and AWOL batch if you click on there and scroll down you'll be able
+
+52
+00:03:12,630 --> 00:03:20,190
+to see the Jason in here the Amazon states Language ESL is what it's abbreviated to you can see it's
+
+53
+00:03:20,190 --> 00:03:21,720
+pretty straight forward.
+
+54
+00:03:21,730 --> 00:03:27,240
+So in here we've got our start and then we've got our different states.
+
+55
+00:03:27,240 --> 00:03:33,420
+So we've got our submit job state we've then got our wait x second state we've got our get job status
+
+56
+00:03:33,770 --> 00:03:39,350
+and as you go ahead and complete this it actually draws out this little graph for you as well.
+
+57
+00:03:39,360 --> 00:03:43,210
+So it's a really good way of visualizing it literally everything as default.
+
+58
+00:03:43,410 --> 00:03:47,910
+So what this actually does is we've got our start here we're going to submit a job we're going to wait
+
+59
+00:03:47,910 --> 00:03:53,390
+for 60 seconds we're then going to check the job status and see whether or not it's complete.
+
+60
+00:03:53,550 --> 00:03:56,060
+If it's not complete we've got our max attempts here.
+
+61
+00:03:56,060 --> 00:03:59,520
+So essentially it's going to go through and just check again and again.
+
+62
+00:03:59,520 --> 00:04:04,860
+And then if it's still not complete the job's going to be failed but if the job is completed then we're
+
+63
+00:04:04,860 --> 00:04:09,450
+going to do this get the final job status and then the whole thing ends.
+
+64
+00:04:09,450 --> 00:04:11,470
+So that's all essentially it does.
+
+65
+00:04:11,490 --> 00:04:17,040
+Again you don't need to understand the language in here in order to pass a certified developer associate
+
+66
+00:04:17,040 --> 00:04:22,770
+exam but you would need to learn your Amazon states language if you were to go on and use this in production.
+
+67
+00:04:22,800 --> 00:04:27,990
+So let's go ahead and head next in here we're going to go ahead and hit deploy resources and this is
+
+68
+00:04:27,990 --> 00:04:33,690
+basically just creating a NWS cloud formation stack and it's going to go out and deploy a couple of
+
+69
+00:04:33,690 --> 00:04:37,190
+lambda functions and set this environment all up for you.
+
+70
+00:04:37,200 --> 00:04:39,210
+Now this can take up to 10 minutes.
+
+71
+00:04:39,220 --> 00:04:42,590
+So I'm just gonna pause a video and wait for this to come live.
+
+72
+00:04:42,660 --> 00:04:47,250
+OK so it has now finished my cloud formation template has now finished you can see our wait time of
+
+73
+00:04:47,250 --> 00:04:48,780
+sixty seconds in here.
+
+74
+00:04:48,930 --> 00:04:51,270
+This is basically a new execution.
+
+75
+00:04:51,270 --> 00:04:56,730
+So we're going to go ahead and execute this if you want to do this multiple times you will need to copy
+
+76
+00:04:56,730 --> 00:05:01,230
+and paste this and save it somewhere else you might want to save it a text editor.
+
+77
+00:05:01,460 --> 00:05:08,170
+So I'm just going to call this my test execution and I'm just going to open this in a new browser tab
+
+78
+00:05:08,220 --> 00:05:14,370
+so I don't lose this code so I'm gonna go ahead and hit start execution that will now start my execution.
+
+79
+00:05:14,370 --> 00:05:19,740
+You'll be booked you'll be able to watch it in real time here in our visual flow and you can zoom in
+
+80
+00:05:19,770 --> 00:05:21,130
+zoom out et cetera.
+
+81
+00:05:21,140 --> 00:05:25,370
+So right now it's at the start submit job that has now successfully gone.
+
+82
+00:05:25,380 --> 00:05:31,320
+So my lambda function has now successfully submitted my job to actually go to services and go over to
+
+83
+00:05:31,320 --> 00:05:32,020
+batch.
+
+84
+00:05:32,070 --> 00:05:33,710
+I'm gonna open this up in a new tab.
+
+85
+00:05:33,720 --> 00:05:35,370
+We have to be pretty quick to catch it.
+
+86
+00:05:35,400 --> 00:05:38,690
+But if you click on jobs now I've already missed it.
+
+87
+00:05:38,730 --> 00:05:44,490
+You could see it in the dashboard anyway so it's in a job queue and it is currently running.
+
+88
+00:05:44,490 --> 00:05:46,620
+It hasn't failed or succeeded yet.
+
+89
+00:05:46,770 --> 00:05:52,260
+I'm actually back in my step functions we can see that it is waiting for the full 60 seconds so it is
+
+90
+00:05:52,260 --> 00:05:54,750
+in progress and then we're going to go through.
+
+91
+00:05:54,850 --> 00:05:56,420
+It's now just gotten the job status.
+
+92
+00:05:56,430 --> 00:06:02,280
+The job has now completed and now we're going to get the final job status and figure out whether or
+
+93
+00:06:02,280 --> 00:06:05,460
+not this has failed or has it passed.
+
+94
+00:06:05,460 --> 00:06:06,560
+So it's still in progress.
+
+95
+00:06:06,570 --> 00:06:12,360
+Just going to zoom out a bit so you can see it and just going to pause the video and wait for this to
+
+96
+00:06:12,360 --> 00:06:12,770
+update.
+
+97
+00:06:13,500 --> 00:06:14,280
+And there we go.
+
+98
+00:06:14,280 --> 00:06:20,430
+It has now succeeded so we can see that's all greens and we can actually go down here and have a look
+
+99
+00:06:20,430 --> 00:06:24,960
+at our execution event history so we can see that it's gone through.
+
+100
+00:06:24,960 --> 00:06:26,700
+The task has started.
+
+101
+00:06:26,700 --> 00:06:32,340
+We've got our lambda functions with then weighted with them triggered more lambda functions things all
+
+102
+00:06:32,340 --> 00:06:35,960
+logs log to club watch logs et cetera et cetera et cetera.
+
+103
+00:06:36,090 --> 00:06:37,350
+So that is it.
+
+104
+00:06:37,350 --> 00:06:38,670
+Four step functions.
+
+105
+00:06:38,760 --> 00:06:40,550
+I'll just quickly show you how to delete it.
+
+106
+00:06:40,580 --> 00:06:44,620
+So if you go in you can actually go into lambda and have a look at the functions that it's generated.
+
+107
+00:06:44,700 --> 00:06:46,560
+These step functions here.
+
+108
+00:06:46,560 --> 00:06:47,660
+There's two of them.
+
+109
+00:06:47,970 --> 00:06:49,640
+But let's go back over to.
+
+110
+00:06:49,650 --> 00:06:54,590
+We need to go up is cloud formation and inside cloud formation will be able to see this template.
+
+111
+00:06:54,610 --> 00:07:00,840
+So step functions go ahead and go to actions and just delete the stack that will then delete all the
+
+112
+00:07:01,140 --> 00:07:05,250
+associated resources and they will now clean up your w s environment.
+
+113
+00:07:05,760 --> 00:07:07,750
+So what are my exam tips.
+
+114
+00:07:07,770 --> 00:07:09,930
+So really you just need to know what step functions are.
+
+115
+00:07:09,970 --> 00:07:13,440
+They're a great way to visualize your service application.
+
+116
+00:07:13,530 --> 00:07:18,270
+Step functions automatically triggers and tracks each step and step functions logs.
+
+117
+00:07:18,270 --> 00:07:22,280
+The state of each step so if something goes wrong you can track what went wrong and where.
+
+118
+00:07:22,320 --> 00:07:25,060
+You literally just need to know what step functions are.
+
+119
+00:07:25,080 --> 00:07:27,690
+It's probably worth one or two questions in your exam.
+
+120
+00:07:27,840 --> 00:07:29,130
+So that is it for this lecture goes.
+
+121
+00:07:29,130 --> 00:07:30,750
+If you have any questions please let me know.
+
+122
+00:07:30,840 --> 00:07:32,570
+If not feel free to move onto the next lecture.
+
+123
+00:07:32,570 --> 00:07:32,940
+Thank you.

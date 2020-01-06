@@ -1,0 +1,1199 @@
+1
+00:00:00,490 --> 00:00:06,170
+OK hello cloggers and welcome to this lecture lecture we're going to look at E.C too.
+
+2
+00:00:06,180 --> 00:00:11,600
+And this is an introduction so we're calling in to one or one and we're going to introduce what E.S.
+
+3
+00:00:11,610 --> 00:00:12,790
+to actually is.
+
+4
+00:00:12,790 --> 00:00:13,730
+So what is it.
+
+5
+00:00:13,740 --> 00:00:16,070
+Well it's elastic Compute Cloud.
+
+6
+00:00:16,080 --> 00:00:21,370
+That's what it stands for so it's ECAC and it's abbreviated to e c.
+
+7
+00:00:21,510 --> 00:00:26,600
+And it's basically a web service that provides resizable compute capacity in the cloud.
+
+8
+00:00:26,610 --> 00:00:32,730
+So it's just virtual machines in the cloud and it reduces the time required to obtain and news servers
+
+9
+00:00:33,160 --> 00:00:38,360
+to minutes rather than in the old days when you needed a new survey you had to put in a purchase order
+
+10
+00:00:38,370 --> 00:00:44,940
+you had to go and rack and stack and all the cabling and it could take anywhere from 10 days to a month
+
+11
+00:00:44,940 --> 00:00:46,130
+to get your servers.
+
+12
+00:00:46,240 --> 00:00:51,990
+When we came along it was a massive game changer because suddenly you could provision virtual machines
+
+13
+00:00:52,050 --> 00:00:56,350
+in the cloud within minutes and it completely changed the industry.
+
+14
+00:00:56,460 --> 00:00:58,110
+And Amazon basically led that.
+
+15
+00:00:58,110 --> 00:00:59,980
+So that's what E.C 2 is.
+
+16
+00:01:00,000 --> 00:01:05,460
+You can also scale your capacity both up and down you know changing your instance types and will go
+
+17
+00:01:05,460 --> 00:01:11,640
+through that in a lab and you also are able to scale the capacity out so you can add more and more instances
+
+18
+00:01:11,640 --> 00:01:14,100
+behind let's say an elastic load balance.
+
+19
+00:01:14,370 --> 00:01:19,740
+So easy two has changed the economics of cloud computing and it basically allows you to pay for the
+
+20
+00:01:19,920 --> 00:01:26,460
+capacity that you actually use rather than previously when you wanted to go out and buy physical servers.
+
+21
+00:01:26,520 --> 00:01:31,980
+You would actually go and the provisions you'd look for a server that you'd be able to grow into.
+
+22
+00:01:31,980 --> 00:01:37,590
+So you would maybe get a server that had a lot more C-p capacity and more capacity than you actually
+
+23
+00:01:37,590 --> 00:01:38,930
+need it right now.
+
+24
+00:01:39,000 --> 00:01:42,550
+But of course you are going to buy the server over a five year term.
+
+25
+00:01:42,750 --> 00:01:47,880
+You had to plan for five years you know in advance and so people would spend a lot of capital upfront
+
+26
+00:01:48,240 --> 00:01:51,150
+and they wouldn't necessarily get the good return on investment.
+
+27
+00:01:51,150 --> 00:01:57,450
+So easy two has changed that now so that you can literally just pay for the capacity as you use as you
+
+28
+00:01:57,450 --> 00:02:04,140
+use it and depending on the different billing methods you pay you know by the hour even by the second.
+
+29
+00:02:04,140 --> 00:02:08,330
+So it has been a complete game changer in cloud economics.
+
+30
+00:02:08,760 --> 00:02:15,060
+So now that we know what to is and we understand how the economics of cloud computing has changed let's
+
+31
+00:02:15,060 --> 00:02:17,560
+look at the different pricing options.
+
+32
+00:02:17,560 --> 00:02:23,280
+So we'll start with on demand and on demand allows you to pay a fixed rate by the hour or even by the
+
+33
+00:02:23,280 --> 00:02:29,190
+second with no commitment and depending on whether it's an hourly rate or a per second rate depends
+
+34
+00:02:29,190 --> 00:02:30,780
+on the two instances.
+
+35
+00:02:30,780 --> 00:02:33,920
+So it depends if it's Linux or Windows Linux instances.
+
+36
+00:02:33,930 --> 00:02:39,540
+By the second whereas Windows instances currently by the hour I would expect that to change very very
+
+37
+00:02:39,540 --> 00:02:40,410
+soon though.
+
+38
+00:02:40,470 --> 00:02:45,990
+Moving on we've got reserved instances and this is where you make a reservation with Amazon you basically
+
+39
+00:02:46,050 --> 00:02:50,920
+entering into a contract and these contracts can be one or three years in length.
+
+40
+00:02:51,000 --> 00:02:55,740
+But because you are entering in a contract and you may be paying a certain amount up front all of it
+
+41
+00:02:55,740 --> 00:02:56,420
+up front.
+
+42
+00:02:56,580 --> 00:03:01,980
+It gives you a significant discount on the hourly charge for an instance and we'll look at different
+
+43
+00:03:01,980 --> 00:03:04,410
+use cases for that in a couple of slides.
+
+44
+00:03:04,560 --> 00:03:05,510
+We then have spot.
+
+45
+00:03:05,520 --> 00:03:11,400
+And this basically enables you to bid a price and you can choose whatever price that you want for instance
+
+46
+00:03:11,400 --> 00:03:12,180
+capacity.
+
+47
+00:03:12,300 --> 00:03:17,310
+And then it gives you a huge amount of savings provided you can actually get that price and the spot
+
+48
+00:03:17,370 --> 00:03:23,550
+price moves around all the time and again we'll have a look at some different use cases for it.
+
+49
+00:03:23,550 --> 00:03:29,310
+Basically think of it like the stock market is where you want to go and purchase a share let's say the
+
+50
+00:03:29,310 --> 00:03:33,670
+shares at $100 and you're and they want to purchase that when it drops down to $90.
+
+51
+00:03:33,730 --> 00:03:38,310
+You basically do a bid when that unit price drops to 90.
+
+52
+00:03:38,310 --> 00:03:44,190
+You then buy that share and then you could force a sale once it goes over 100 or something like that
+
+53
+00:03:44,200 --> 00:03:46,350
+so it just moves around all the time.
+
+54
+00:03:46,350 --> 00:03:52,150
+And then finally we have dedicated hosts and these physical to serve as that dedicated for your use
+
+55
+00:03:52,540 --> 00:03:58,510
+and they can help you reduce costs by allowing you to use your existing server balance software licenses
+
+56
+00:03:58,510 --> 00:04:02,460
+so can be really good for things like VM or for Oracle.
+
+57
+00:04:02,490 --> 00:04:08,430
+Maybe some sequel servers depending on the you know different licenses you can actually bring your licenses
+
+58
+00:04:08,490 --> 00:04:11,450
+over to AWOS and use dedicated hosts.
+
+59
+00:04:11,640 --> 00:04:17,280
+So let's look at different use cases for the four different pricing models to start with on demand.
+
+60
+00:04:17,280 --> 00:04:22,740
+And this is basically perfect for users that want the low cost and flexibility of AC too without any
+
+61
+00:04:22,830 --> 00:04:25,390
+upfront payments or long term commitments.
+
+62
+00:04:25,590 --> 00:04:31,950
+It's also good for applications with short term or spiky or unpredictable workloads that cannot be interrupted
+
+63
+00:04:32,280 --> 00:04:38,130
+and applications that are being developed or tested on Amazon to for the first time and basically throughout
+
+64
+00:04:38,130 --> 00:04:42,510
+the rest of this course we're going to be using on demand instance on demand is great for learning because
+
+65
+00:04:42,510 --> 00:04:45,690
+you can go in provision an instance go into what it is you want to do.
+
+66
+00:04:45,690 --> 00:04:50,130
+Maybe it's moving some abs volumes around or something which will come to an a bit.
+
+67
+00:04:50,130 --> 00:04:54,570
+And then once you're done you can go in and terminate it and you're only paying either by the second
+
+68
+00:04:54,570 --> 00:04:57,310
+or by the hour depending on the instance.
+
+69
+00:04:57,540 --> 00:05:02,190
+Moving on to reserved instances this is you know useful for applications.
+
+70
+00:05:02,210 --> 00:05:04,610
+Steady State or very predictable usage.
+
+71
+00:05:04,610 --> 00:05:08,680
+So these might be your you know your web web servers for example.
+
+72
+00:05:08,680 --> 00:05:14,390
+So applications that require a reserved capacity and users can make upfront payments to reduce the total
+
+73
+00:05:14,390 --> 00:05:16,400
+computing costs even further.
+
+74
+00:05:16,460 --> 00:05:21,860
+And the way it works essentially is that if you pay for it all up front and you you know do a three
+
+75
+00:05:21,860 --> 00:05:26,720
+year contract that's when you're going to get your maximum discount whereas if you only pay a little
+
+76
+00:05:26,720 --> 00:05:30,960
+bit upfront and go for a one year contract you're not going to get as big a discount as if you paid
+
+77
+00:05:30,980 --> 00:05:33,850
+at all upfront for three years.
+
+78
+00:05:34,070 --> 00:05:41,420
+And the standard reserved instances can be basically be up to 75 percent off the on demand costs so
+
+79
+00:05:41,420 --> 00:05:45,950
+again that would be if you are paying everything upfront for three years and then you get these things
+
+80
+00:05:45,950 --> 00:05:53,330
+called convertible reserved instances and these basically have the capability to change the attributes
+
+81
+00:05:53,390 --> 00:05:59,870
+of the reserved instances so long as the exchange results in the creation of reserved instances of equal
+
+82
+00:05:59,900 --> 00:06:00,840
+or greater value.
+
+83
+00:06:00,840 --> 00:06:06,410
+So you can basically change your reservations and look through the different instance types but essentially
+
+84
+00:06:06,400 --> 00:06:12,660
+it means you could go from a very intensive instance over to a very memory intensive instance.
+
+85
+00:06:12,730 --> 00:06:15,980
+You see you're not locked into a particular instance type.
+
+86
+00:06:15,980 --> 00:06:21,370
+And again we're going to cover the instance type is coming up in a few slides and then you'd finally
+
+87
+00:06:21,380 --> 00:06:27,440
+have shed jeweled reserved instances and these are available to launch within a specific time window
+
+88
+00:06:27,440 --> 00:06:32,960
+that you reserve and this option allows you to match your capacity reservation to predictable reoccurring
+
+89
+00:06:33,030 --> 00:06:36,580
+Shatru that only requires a fraction of a day week or a month.
+
+90
+00:06:36,740 --> 00:06:42,260
+So maybe you have a month and so the end of every month every Friday at the end of the month than you
+
+91
+00:06:42,260 --> 00:06:45,280
+need you know some reserved instances for that.
+
+92
+00:06:45,500 --> 00:06:50,320
+But after that Friday is over you can scale it back rather than using on demand.
+
+93
+00:06:50,330 --> 00:06:54,200
+You can now actually use shed or reserved instances as well.
+
+94
+00:06:54,380 --> 00:07:01,250
+And then we have spot instances or spot instances or applications that have flexible start and end times
+
+95
+00:07:01,250 --> 00:07:05,490
+and applications that are only feasible at very low compute prices.
+
+96
+00:07:05,540 --> 00:07:12,620
+So a lot of genomics companies you know people who are in the sort of genome field or big pharmaceutical
+
+97
+00:07:12,620 --> 00:07:20,600
+companies or you know chemical companies use this you know spot instances to do huge amounts of computing
+
+98
+00:07:20,600 --> 00:07:25,520
+and they will do this at like 4:00 a.m. on a Sunday morning and that will save them an awful lot of
+
+99
+00:07:25,520 --> 00:07:31,610
+money compared to using the same compute capacity you know from a nine to five during the week.
+
+100
+00:07:31,610 --> 00:07:34,310
+So there's there's heaps of white papers and studies on that.
+
+101
+00:07:34,340 --> 00:07:40,730
+If you go over to Amazon's Web site and have a look when you go into a spot pricing you can read examples
+
+102
+00:07:40,730 --> 00:07:42,030
+of exactly that.
+
+103
+00:07:42,060 --> 00:07:49,030
+So spot instances great for users with an urgent need for large amounts of additional computing capacity.
+
+104
+00:07:49,250 --> 00:07:54,990
+Moving on to dedicated hosts to this is useful for regulatory requirements that may not support multitenant
+
+105
+00:07:55,010 --> 00:07:56,300
+virtualization.
+
+106
+00:07:56,440 --> 00:08:00,210
+So you might still you know your country might say that.
+
+107
+00:08:00,470 --> 00:08:05,000
+You know if you work in the health field for example you're not allowed to use multitenant virtualization
+
+108
+00:08:05,000 --> 00:08:10,270
+because you could be potentially exposing your data to somebody else.
+
+109
+00:08:10,520 --> 00:08:15,560
+You know they do ring fence that now but a lot of let you know you know what it's like the legislation
+
+110
+00:08:15,560 --> 00:08:17,400
+never keeps up with technology.
+
+111
+00:08:17,540 --> 00:08:24,170
+It's great for licensing which does not support multi-tenancy or cloud deployments and it can be purchased
+
+112
+00:08:24,200 --> 00:08:30,590
+on demand so you pay at an hourly rate and it can be purchased as a reservation up to 70 percent off
+
+113
+00:08:30,650 --> 00:08:34,010
+the on demand price so that is dedicated Herse.
+
+114
+00:08:34,010 --> 00:08:40,850
+So I've looked at all the different pricing models let's move on to the instance type So here are all
+
+115
+00:08:40,850 --> 00:08:42,790
+the different instance types.
+
+116
+00:08:42,920 --> 00:08:46,690
+I know what you're thinking how am I going to memorize this.
+
+117
+00:08:46,700 --> 00:08:53,570
+Well you don't actually need to memorize it going into any of the associate exams where it does come
+
+118
+00:08:53,600 --> 00:08:58,500
+become useful is at the professional level and to be honest actually insists ops administrator associate
+
+119
+00:08:58,520 --> 00:09:03,260
+you do need to know the different instance types because they will try and trick you and they'll create
+
+120
+00:09:03,290 --> 00:09:05,230
+instance types that don't exist.
+
+121
+00:09:05,420 --> 00:09:08,210
+So it's quickly run through the different instance type.
+
+122
+00:09:08,210 --> 00:09:14,450
+So we've got an F1 which is a field programmable gate array and the use case for this is genomic research
+
+123
+00:09:14,490 --> 00:09:18,160
+of financial analytics real time video processing big data.
+
+124
+00:09:18,170 --> 00:09:24,860
+Moving on we've got i3 which is high speed storage so that's for things like non-sequel databases data
+
+125
+00:09:24,860 --> 00:09:26,330
+warehousing et cetera.
+
+126
+00:09:26,390 --> 00:09:28,640
+Get out G-3 is such a graphic intensive.
+
+127
+00:09:28,650 --> 00:09:32,260
+This is video encoding 3D application streaming et cetera.
+
+128
+00:09:32,270 --> 00:09:38,300
+We've got our hated ones which is high throughput so so be things like you that reduce workloads distributed
+
+129
+00:09:38,300 --> 00:09:43,180
+file systems such as DFS map our FS et cetera.
+
+130
+00:09:43,280 --> 00:09:49,160
+So anything that you're using you know huge workloads and you need high disk throughput for them got
+
+131
+00:09:49,160 --> 00:09:52,780
+Tator to take two is what we're going to be using for the rest of this course.
+
+132
+00:09:52,790 --> 00:09:57,030
+So this is the lowest cost general purpose computing that's available.
+
+133
+00:09:57,050 --> 00:10:03,320
+So this will be like web servers and small database get out date which is dense storage so these are
+
+134
+00:10:03,330 --> 00:10:09,600
+things like file servers data warehousing had do with got our files which is memory optimized memory
+
+135
+00:10:09,600 --> 00:10:11,000
+intensive applications.
+
+136
+00:10:11,000 --> 00:10:14,410
+The way I remember that is Ram full with.
+
+137
+00:10:14,430 --> 00:10:20,290
+Then got M5 which is general purpose so this is for things like application servers save files which
+
+138
+00:10:20,400 --> 00:10:21,930
+compute optimized.
+
+139
+00:10:21,930 --> 00:10:26,460
+So C.P. intensive apps and database servers pay 3s.
+
+140
+00:10:26,460 --> 00:10:30,330
+These graphics or general purpose GP use.
+
+141
+00:10:30,330 --> 00:10:35,540
+So we use these for things like machine learning or even bitcoin mining if you wanted to do that.
+
+142
+00:10:35,700 --> 00:10:41,010
+And then we've got our X ones which a memory optimized and these are like huge amounts of neurons so
+
+143
+00:10:41,010 --> 00:10:44,330
+these are things like SAP HANA Apache SPARC cetera.
+
+144
+00:10:44,400 --> 00:10:49,270
+Now with the families you know when you're watching this one might become an EF 2.
+
+145
+00:10:49,360 --> 00:10:55,650
+That just means it's a new generation or i3 might change to I4 Yaniv actually really going to be tested
+
+146
+00:10:55,650 --> 00:10:55,940
+on that.
+
+147
+00:10:55,940 --> 00:11:00,370
+What's important to remember is the two letters not the numbers going into your exam.
+
+148
+00:11:00,450 --> 00:11:04,200
+So that leads to the question how are we going to remember all those letters.
+
+149
+00:11:04,200 --> 00:11:06,640
+I'll tell you how we did it in 2078.
+
+150
+00:11:06,660 --> 00:11:08,190
+So we have this duck.
+
+151
+00:11:08,370 --> 00:11:13,440
+It's sort of like a Scrooge McDuck and I call him Dr. mkt gift picks so he's clearly a doctor because
+
+152
+00:11:13,440 --> 00:11:16,650
+he's got glasses he's Scottish because he's wearing a kilt.
+
+153
+00:11:16,650 --> 00:11:22,530
+So you got the muck and then what he likes to do is walk around and hand out pictures of Scotland so
+
+154
+00:11:22,530 --> 00:11:24,210
+he's gifting Paix.
+
+155
+00:11:24,210 --> 00:11:26,150
+So Doctor gift picks.
+
+156
+00:11:26,220 --> 00:11:27,810
+Now this worked really really well.
+
+157
+00:11:27,930 --> 00:11:29,540
+Lots of people remembered it.
+
+158
+00:11:29,700 --> 00:11:35,100
+And you know if you type it into google lots of blogs come up about it and then Amazon released a new
+
+159
+00:11:35,100 --> 00:11:38,850
+instance type to reinvent in 2017.
+
+160
+00:11:39,030 --> 00:11:41,310
+And that was the high density instance type.
+
+161
+00:11:41,310 --> 00:11:43,420
+So it's broken up my mnemonic.
+
+162
+00:11:43,470 --> 00:11:49,290
+So we've got another one for 28:18 So I'm a huge fan of fight club it's one of my favorite movies of
+
+163
+00:11:49,290 --> 00:11:50,280
+all time.
+
+164
+00:11:50,370 --> 00:11:54,080
+So we've got Edward Norton from Fight Club we've got Doc Dimmick gift pick software.
+
+165
+00:11:54,090 --> 00:11:54,760
+Right.
+
+166
+00:11:54,780 --> 00:11:57,530
+And this is how I remembered them now which is fight.
+
+167
+00:11:57,580 --> 00:11:59,710
+Dr. McPeek so right.
+
+168
+00:11:59,730 --> 00:12:02,580
+Dr. MC pace that was the best I could come up with.
+
+169
+00:12:02,580 --> 00:12:08,190
+So I want you just to imagine Edward Norton fighting a Scottish duck who likes to hand out pictures
+
+170
+00:12:08,190 --> 00:12:09,220
+of his homeland.
+
+171
+00:12:09,270 --> 00:12:15,570
+If you remember a fight a doctor picks you'll be able to remember every single instance type and that
+
+172
+00:12:15,570 --> 00:12:17,100
+can be incredibly useful.
+
+173
+00:12:17,100 --> 00:12:22,610
+Certainly if you go into the solutions architect professional exam as well as the soap's administrator
+
+174
+00:12:22,610 --> 00:12:28,620
+or associate as well as any of the specialty exams because you know what a valid instance types and
+
+175
+00:12:28,620 --> 00:12:33,900
+whatnot and Amazon you know in some of the exam questions we'll just make up letters and you're like
+
+176
+00:12:33,900 --> 00:12:37,570
+well that's not a valid instance type so that answer is clearly wrong.
+
+177
+00:12:37,590 --> 00:12:43,810
+So fight Dr. McK pics so just remember Edward non-fighting a Scottish duck and it should work for you
+
+178
+00:12:43,890 --> 00:12:47,260
+and hopefully Amazon won't release any more instance types this year.
+
+179
+00:12:47,280 --> 00:12:51,180
+But who knows if they do all have to come up with another crazy pneumonic.
+
+180
+00:12:51,240 --> 00:12:52,950
+So we've talked about Acey to you now.
+
+181
+00:12:53,040 --> 00:12:56,060
+What it is basically a virtual machine in the cloud.
+
+182
+00:12:56,100 --> 00:13:02,340
+We've also explored that there are different instance types so you have ones REM ones VCP new ones for
+
+183
+00:13:02,340 --> 00:13:03,740
+graphics et cetera.
+
+184
+00:13:03,760 --> 00:13:06,720
+Last thing you need to know is what is abs.
+
+185
+00:13:06,750 --> 00:13:12,280
+And if you think of two as of virtual server in the cloud ABS is a virtual disk.
+
+186
+00:13:12,300 --> 00:13:13,450
+That's all it is.
+
+187
+00:13:13,470 --> 00:13:18,990
+Abs stents far less stick block storage and allows you to create storage volumes and attach them to
+
+188
+00:13:19,380 --> 00:13:24,420
+two instances and once attached you create a false system on top of these volumes and you can run a
+
+189
+00:13:24,420 --> 00:13:30,390
+database so you can install applications or you could store files on that cetera and you just use it
+
+190
+00:13:30,420 --> 00:13:33,210
+any way that you would use a block device.
+
+191
+00:13:33,210 --> 00:13:39,630
+So as volume's placed in a specific availabilities zones where that automatically replicated to protect
+
+192
+00:13:39,630 --> 00:13:41,580
+you from the failure of a single component.
+
+193
+00:13:41,580 --> 00:13:45,480
+So an ABS volume doesn't exist on just one physical disk.
+
+194
+00:13:45,540 --> 00:13:51,440
+It's actually spread across an availability zone so individual disk actually dies you abs volume will
+
+195
+00:13:51,450 --> 00:13:52,490
+be fine.
+
+196
+00:13:52,500 --> 00:13:58,350
+So I want you to think of it as just a disk in the cloud that you attached to your AC to instances.
+
+197
+00:13:58,350 --> 00:14:04,140
+Now the the ABS volume that is attached to your easy to incidents where Windows or Linux is installed
+
+198
+00:14:04,170 --> 00:14:06,270
+is called the root device volume.
+
+199
+00:14:06,450 --> 00:14:09,060
+And then you can have other volumes on top of it.
+
+200
+00:14:09,060 --> 00:14:10,700
+So if you think about Windows.
+
+201
+00:14:10,890 --> 00:14:14,750
+Windows is typically installed on your C drive but then you can have additional disks.
+
+202
+00:14:14,760 --> 00:14:20,230
+You can have a D drive an E drive an F drive etc. so you can do that in the cloud as well.
+
+203
+00:14:20,250 --> 00:14:22,990
+So abs volumes come in different types.
+
+204
+00:14:23,010 --> 00:14:25,900
+The most popular is general purpose SSD.
+
+205
+00:14:26,010 --> 00:14:32,370
+This is sometimes referred to as GP 2 and that basically balances you know its general purpose.
+
+206
+00:14:32,370 --> 00:14:39,450
+It balances both price and performance and you get a ratio of three IOPS per gig with up to 10000 IOPS
+
+207
+00:14:39,480 --> 00:14:46,020
+and the ability to burst up to 3000 IOPS for extended periods of time for volumes at three thousand
+
+208
+00:14:46,020 --> 00:14:49,280
+three hundred thirty four gigabytes and above.
+
+209
+00:14:49,290 --> 00:14:55,890
+So if you see an exam question and it's saying that you know you've got less than less than 10000 IOPS
+
+210
+00:14:56,430 --> 00:15:02,670
+you probably want GP to because it gives you the you know performance as well as best price.
+
+211
+00:15:02,830 --> 00:15:06,610
+We then have provisioned the IOPS and this is again another SSD drive.
+
+212
+00:15:06,610 --> 00:15:14,020
+This is a very high performance applications so things like you know intensive applications relational
+
+213
+00:15:14,020 --> 00:15:21,040
+databases no Sakal databases basically anything way you need extreme performance and you basically would
+
+214
+00:15:21,040 --> 00:15:24,360
+use this if you need more than 10000 IOPS.
+
+215
+00:15:24,370 --> 00:15:29,860
+So if you have an exam question and it's talking about you've got a really big no sequel database and
+
+216
+00:15:29,860 --> 00:15:33,150
+it's going to use a lot of IOPS you probably want to go for provisions.
+
+217
+00:15:33,180 --> 00:15:41,110
+IOPS SSD as opposed to using general purpose and you can provision up to 20000 IOPS per volume.
+
+218
+00:15:41,170 --> 00:15:41,770
+Moving on.
+
+219
+00:15:41,770 --> 00:15:42,520
+So we've cut it off.
+
+220
+00:15:42,520 --> 00:15:49,540
+SS day SSD drives before we before we had SS desribes we had magnetic storage volumes so these are the
+
+221
+00:15:49,540 --> 00:15:51,040
+magnetic disks.
+
+222
+00:15:51,070 --> 00:15:54,510
+So we've got throughput optimized this is known as estée one.
+
+223
+00:15:54,550 --> 00:15:59,820
+This is used for big data data warehouses load processing et cetera.
+
+224
+00:15:59,830 --> 00:16:05,710
+It's important to realize that throughput optimize hard disk drives cannot be a boot volume so they
+
+225
+00:16:05,740 --> 00:16:10,960
+have to be additional volume so that example that I use befool the root device volume to boot volume.
+
+226
+00:16:10,960 --> 00:16:16,200
+So if you go to a Windows server it's typically going to be on your C drive.
+
+227
+00:16:16,420 --> 00:16:21,380
+This throughput optimized disk could not be Yosi drive it could only be your day drive.
+
+228
+00:16:21,400 --> 00:16:25,330
+In other words it has to be an additional volume comp b a boot volume.
+
+229
+00:16:25,330 --> 00:16:27,890
+We didn't have cold hard disk drive.
+
+230
+00:16:27,910 --> 00:16:29,540
+This is known as SE1.
+
+231
+00:16:29,560 --> 00:16:35,470
+This is the lowest cost storage infrequently access workloads so typical use case might be a file server
+
+232
+00:16:36,030 --> 00:16:38,020
+and it cannot be a boot volume either.
+
+233
+00:16:38,050 --> 00:16:41,300
+So you can boot from normal magnetic stand.
+
+234
+00:16:41,320 --> 00:16:46,270
+So this is the lowest cost per gigabyte of all abs volume types that is bootable.
+
+235
+00:16:46,270 --> 00:16:49,490
+So this is the only magnetic volleyer that is bootable.
+
+236
+00:16:49,570 --> 00:16:50,940
+This is legacy.
+
+237
+00:16:51,160 --> 00:16:56,850
+You know it previous generation Amazon don't even include it in their comparison tables anymore.
+
+238
+00:16:56,860 --> 00:16:58,840
+But you can definitely still use it.
+
+239
+00:16:59,080 --> 00:17:06,190
+And magnetic volumes are basically ideal for workloads where data is accessed infrequently or what using
+
+240
+00:17:06,190 --> 00:17:08,930
+applications where the lowest storage cost is important.
+
+241
+00:17:08,930 --> 00:17:13,150
+So you might want to use your test and dev environments and use it on magnetic while you get it all
+
+242
+00:17:13,150 --> 00:17:17,040
+set up and then move over to SSD.
+
+243
+00:17:17,120 --> 00:17:20,020
+You know general purpose SSD or provision to IOPS.
+
+244
+00:17:20,260 --> 00:17:22,860
+So you are at the end of this lecture.
+
+245
+00:17:22,870 --> 00:17:24,480
+Hopefully you have learnt a lot.
+
+246
+00:17:24,480 --> 00:17:25,730
+So what of my exam tips.
+
+247
+00:17:25,730 --> 00:17:28,110
+Well let's start with the four different pricing models.
+
+248
+00:17:28,120 --> 00:17:33,700
+Remember what on demand is it allows you to pay a fixed rate by the hour or by the second with no commitment.
+
+249
+00:17:33,700 --> 00:17:35,320
+You then have reserved capacity.
+
+250
+00:17:35,320 --> 00:17:41,080
+This allows you to get a huge discount on the hourly charge but you have to enter a contract of one
+
+251
+00:17:41,110 --> 00:17:42,400
+or three years.
+
+252
+00:17:42,400 --> 00:17:47,140
+The longer the contract and the more you pay upfront the greater the discount so to get your maximum
+
+253
+00:17:47,140 --> 00:17:49,080
+discount you need a three year contract.
+
+254
+00:17:49,120 --> 00:17:54,550
+You need to pay for it all up front and then have spot the spot price moves around all the time.
+
+255
+00:17:54,550 --> 00:18:02,650
+So let's say I bid at $100 and suddenly the spot price goes up you know to let's say the spot price
+
+256
+00:18:02,650 --> 00:18:03,730
+comes down to 90.
+
+257
+00:18:03,760 --> 00:18:11,020
+OK so previsions my service and then let's say the spot price goes all the way back up to 150.
+
+258
+00:18:11,080 --> 00:18:13,180
+Those instances would then be terminated.
+
+259
+00:18:13,180 --> 00:18:18,420
+So you're only going to pay for what you bid on and a hundred dollars is just an arbitrary number.
+
+260
+00:18:18,460 --> 00:18:21,350
+Sure it's charged by the unit by the hour.
+
+261
+00:18:21,350 --> 00:18:23,940
+Etc. but I'm just using it as an example.
+
+262
+00:18:24,130 --> 00:18:29,280
+Then have dedicated hosts so we've got physical to servers with dedicated hosts.
+
+263
+00:18:29,290 --> 00:18:35,140
+And these are really useful for things like regulatory requirements perhaps you can't go in under the
+
+264
+00:18:35,140 --> 00:18:38,710
+legislation you can't do multitenant in a virtualization.
+
+265
+00:18:38,710 --> 00:18:44,170
+Or it could be existing software licenses or VM ware or a code or something like that where you're being
+
+266
+00:18:44,170 --> 00:18:50,920
+restricted and you have to use dedicated hosts and just coming back the instance if a spot instance
+
+267
+00:18:51,010 --> 00:18:51,840
+is terminated.
+
+268
+00:18:51,850 --> 00:18:56,350
+So lets say you bid 100 bucks and it goes and you see you know it's provisioned and suddenly it goes
+
+269
+00:18:56,350 --> 00:18:57,650
+up to 110.
+
+270
+00:18:57,820 --> 00:19:03,550
+So when that happens your instances are going to be terminated but you're not going to be charged for
+
+271
+00:19:03,550 --> 00:19:05,780
+a partial hour of usage.
+
+272
+00:19:05,860 --> 00:19:08,720
+So you basically don't need to pay for that hour.
+
+273
+00:19:08,820 --> 00:19:11,170
+In the hour in which it is terminated.
+
+274
+00:19:11,170 --> 00:19:17,320
+However if you terminate the instances yourselves then you be charged for the complete hour in which
+
+275
+00:19:17,320 --> 00:19:21,810
+the instance has run so bear that in mind that's a very popular exam question.
+
+276
+00:19:21,830 --> 00:19:25,800
+And so you go into the exam remembering out you monica so fight.
+
+277
+00:19:25,930 --> 00:19:27,510
+Dr. Meck pics.
+
+278
+00:19:27,520 --> 00:19:28,210
+So here we go.
+
+279
+00:19:28,200 --> 00:19:35,080
+Edward Norton fighting our doc likes to hand out pictures of his homeland in Scotland that will allow
+
+280
+00:19:35,080 --> 00:19:39,400
+you to remember every single instance types and that can be extremely valuable.
+
+281
+00:19:39,400 --> 00:19:46,540
+Certainly if you go on to any professional specialty exams and then also remember our different you
+
+282
+00:19:46,540 --> 00:19:51,190
+know abs volume types that we just cut it off so we had General Purpose SSD.
+
+283
+00:19:51,340 --> 00:19:53,140
+We have provision to IOPS SSD.
+
+284
+00:19:53,140 --> 00:19:58,000
+So typically you're looking at anything over 10000 IOPS you want to go to provision to IOPS anything
+
+285
+00:19:58,000 --> 00:20:03,450
+below you want to use purposelessness day and then and magnetic we have the throughput optimize hard
+
+286
+00:20:03,450 --> 00:20:04,060
+disk drive.
+
+287
+00:20:04,060 --> 00:20:09,990
+So this is where you've got large amounts of throughput so things like big data with then got our code
+
+288
+00:20:09,990 --> 00:20:10,900
+hard disk drive.
+
+289
+00:20:10,920 --> 00:20:14,480
+So this is where we don't have a lot of demand.
+
+290
+00:20:14,540 --> 00:20:16,680
+And we just want to have the very low cost.
+
+291
+00:20:16,980 --> 00:20:22,620
+So we would use cold hard disk drive and you know use case for that would be follow servers and then
+
+292
+00:20:22,620 --> 00:20:27,210
+we have magnetic and magnetic is the only one that we can actually use as a root device volume or a
+
+293
+00:20:27,210 --> 00:20:28,390
+bootable volume.
+
+294
+00:20:28,560 --> 00:20:34,290
+And this is previous generation so bear that in mind that is it for this electric guys we've learned
+
+295
+00:20:34,350 --> 00:20:35,330
+an awful lot.
+
+296
+00:20:35,520 --> 00:20:38,580
+Let's go ahead and get started with AC too.
+
+297
+00:20:38,580 --> 00:20:40,380
+We're going to go in and get our hands dirty.
+
+298
+00:20:40,380 --> 00:20:43,160
+We're going to go provision our first easy to instance.
+
+299
+00:20:43,170 --> 00:20:45,080
+So if you've got the time please join me in the next lecture.
+
+300
+00:20:45,090 --> 00:20:45,580
+Thank you.

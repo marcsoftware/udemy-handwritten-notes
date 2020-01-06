@@ -1,0 +1,319 @@
+1
+00:00:00,480 --> 00:00:05,640
+Hello loggers and welcome to this lecture and this lecture is all about canisters shards.
+
+2
+00:00:05,670 --> 00:00:08,910
+Relative to consumers.
+
+3
+00:00:08,910 --> 00:00:14,850
+So this is going to be just a quick recap on cornices to begin with and hopefully you remember that
+
+4
+00:00:14,950 --> 00:00:22,260
+he says is a service which allows you to collect and process and analyze real time streaming data.
+
+5
+00:00:22,890 --> 00:00:30,360
+So for example that could be unstructured data like click stream data video or audio data application
+
+6
+00:00:30,360 --> 00:00:31,920
+logs etc..
+
+7
+00:00:32,010 --> 00:00:40,080
+And if you remember a consistent stream is made up of a set of multiple shots and each shard is a sequence
+
+8
+00:00:40,080 --> 00:00:47,400
+of data records each with their own unique sequence number and the data capacity of your stream is the
+
+9
+00:00:47,400 --> 00:00:56,430
+sum total of the capacity of all of its shots and each shard gives you five read transactions per second
+
+10
+00:00:56,820 --> 00:01:06,150
+up to a maximum of two megabytes per second and you also get 1000 right records per second up to a maximum
+
+11
+00:01:06,150 --> 00:01:08,460
+of one megabyte per second.
+
+12
+00:01:08,460 --> 00:01:15,450
+So as your data rate goes up as it increases then you will also need to increase the number of shards
+
+13
+00:01:15,570 --> 00:01:18,060
+to handle the increase in your data.
+
+14
+00:01:18,090 --> 00:01:22,250
+And when we increase the number of shards that is known as reshooting.
+
+15
+00:01:22,830 --> 00:01:25,020
+But what about the consumers.
+
+16
+00:01:25,100 --> 00:01:31,170
+And when we say consumers it really means the easy two instances which are consuming data from your
+
+17
+00:01:31,170 --> 00:01:37,440
+stream and on the consumer you've got the consistent client library and the carnitas client library
+
+18
+00:01:37,500 --> 00:01:40,890
+tracks the number of shards that exist in your stream.
+
+19
+00:01:40,890 --> 00:01:47,920
+And it also discovers when you shards are added so you increase the number of shots from four to six.
+
+20
+00:01:47,970 --> 00:01:53,000
+It's the closest client library which is going to detect that and respond accordingly.
+
+21
+00:01:53,100 --> 00:02:00,090
+So the genesis client library ensures that for every shard there is a record processor and it's the
+
+22
+00:02:00,090 --> 00:02:06,300
+record processors which actually process the data which is being streamed on your niece's stream and
+
+23
+00:02:06,300 --> 00:02:13,470
+the client library manages the number of record processors relative to the number of shards and consumers.
+
+24
+00:02:13,470 --> 00:02:20,610
+So if you only have one consumer instance then the carnitas client library is going to create all of
+
+25
+00:02:20,610 --> 00:02:24,390
+the record processors on that single consumer instance.
+
+26
+00:02:24,390 --> 00:02:30,870
+However if you have two or more consumer instances it's going to load balance across all of those consumer
+
+27
+00:02:30,900 --> 00:02:37,080
+instances and it will create an equal number of record processors on each instance.
+
+28
+00:02:37,080 --> 00:02:43,320
+So for example if you have two consumer instances it's going to load balance across those two and it
+
+29
+00:02:43,320 --> 00:02:48,000
+will create half the processors on one instance and half on the other.
+
+30
+00:02:48,210 --> 00:02:53,350
+But let's have a look at the diagram again and hopefully it will make a lot more sense.
+
+31
+00:02:53,370 --> 00:03:01,020
+So in this example we have one this data stream and we've got four shards in the stream and then the
+
+32
+00:03:01,020 --> 00:03:07,560
+right hand side you've got one consumer instances and that one consumer instance is processing all four
+
+33
+00:03:07,560 --> 00:03:13,530
+shards of the stream and therefore you have four record processors which are running on that single
+
+34
+00:03:13,530 --> 00:03:14,960
+consumer.
+
+35
+00:03:15,450 --> 00:03:18,840
+But what happens if we add another consumer instance.
+
+36
+00:03:18,840 --> 00:03:21,980
+So I say we add another one for fail over purposes.
+
+37
+00:03:22,140 --> 00:03:28,200
+So we've got two consumers and they're still processing four shards within a single canister stream
+
+38
+00:03:28,920 --> 00:03:33,800
+and you've got the easiest client libraries running on each of the consumer instances.
+
+39
+00:03:33,960 --> 00:03:40,050
+And you have to record processors running on each consumer and the easiest client library will handle
+
+40
+00:03:40,050 --> 00:03:44,100
+the load balancing of the load between the two consumers.
+
+41
+00:03:44,100 --> 00:03:46,970
+But what about scaling out the consumers.
+
+42
+00:03:47,310 --> 00:03:52,560
+Well with a can assist client library generally you should ensure that the number of instances does
+
+43
+00:03:52,560 --> 00:03:59,700
+not exceed the number of shots except of course for failure or standby purposes and you never need to
+
+44
+00:03:59,700 --> 00:04:06,530
+use multiple instances to handle the processing load of one Shahed and if you remember the processing
+
+45
+00:04:06,530 --> 00:04:13,460
+load of one shard it's only up to a maximum of two megabytes of reader transactions per second and one
+
+46
+00:04:13,520 --> 00:04:15,920
+megabyte of right transactions per second.
+
+47
+00:04:16,040 --> 00:04:22,070
+So you definitely are not going to need to have more than one easy to instance to process that small
+
+48
+00:04:22,070 --> 00:04:29,860
+amount of load per shard and of course one worker or one consumer can definitely process multiple shots
+
+49
+00:04:30,190 --> 00:04:36,530
+as we've seen in this diagram here where we have two consumers and each of them are processing two shots
+
+50
+00:04:36,550 --> 00:04:43,960
+each so it's definitely fine if the number of shots exceeds the number of instances and do not think
+
+51
+00:04:43,960 --> 00:04:49,030
+that just because you Rashaad and you add more shots to your canvases stream that that means that you
+
+52
+00:04:49,030 --> 00:04:52,860
+should add more instances because it definitely does not mean that.
+
+53
+00:04:53,080 --> 00:05:00,010
+And instead you should use CPO utilization as the factor that should drive the quantity of consumer
+
+54
+00:05:00,010 --> 00:05:01,370
+instances you have.
+
+55
+00:05:01,570 --> 00:05:07,330
+Definitely not the number of shots in your canisters stream and of course the best practice would be
+
+56
+00:05:07,330 --> 00:05:15,110
+to use an auto scaling group and base your scaling decisions on CPE load of your consumers.
+
+57
+00:05:15,420 --> 00:05:21,180
+So let's take another look at the diagram and this diagram just shows you what happens if we reshot.
+
+58
+00:05:21,240 --> 00:05:28,200
+So we started off with four shots in our stream and we've reshot it and there's now a total of six shots
+
+59
+00:05:28,230 --> 00:05:35,300
+in our canisters stream and we've still got two easy two instances which are the consumers.
+
+60
+00:05:35,370 --> 00:05:40,730
+So we want to load balance between those equally and we've increased the number of record processes.
+
+61
+00:05:40,800 --> 00:05:43,170
+So three on each of our consumers.
+
+62
+00:05:43,170 --> 00:05:48,000
+And of course that is all handled automatically by the Kansas client library.
+
+63
+00:05:48,000 --> 00:05:50,110
+You don't have to do anything yourself.
+
+64
+00:05:50,310 --> 00:05:55,260
+So let's move onto our exam tips for Kansas shards and fill the exam.
+
+65
+00:05:55,260 --> 00:06:00,180
+You do not need to know exactly how to set this up or anything like that you don't need to know it at
+
+66
+00:06:00,180 --> 00:06:01,800
+a low level detail.
+
+67
+00:06:01,800 --> 00:06:07,500
+You just really need to be aware that on your consumer instances it's the easiest client library that's
+
+68
+00:06:07,500 --> 00:06:14,520
+doing all of this work of managing the number of record processors and the easiest client library creates
+
+69
+00:06:14,580 --> 00:06:19,170
+a record processor for each shard which is being consumed by your instance.
+
+70
+00:06:19,260 --> 00:06:24,810
+And if you increase the number of shards so you reshot on your stream the easiest client library is
+
+71
+00:06:24,810 --> 00:06:30,390
+going to add more record processors on your consumers and it will split them equally between the number
+
+72
+00:06:30,390 --> 00:06:38,880
+of consumers that you have and then finally always use CPR utilization as the driver for increasing
+
+73
+00:06:38,910 --> 00:06:41,730
+the number of consumer instances you have.
+
+74
+00:06:41,730 --> 00:06:46,350
+Don't think that just because you'll be shopping you should increase the number of consumer instances.
+
+75
+00:06:46,470 --> 00:06:53,220
+And for best practice use and auto scanning group and based those automatic scaling decisions on CPR
+
+76
+00:06:53,220 --> 00:06:55,120
+you load on your consumers.
+
+77
+00:06:55,200 --> 00:06:59,780
+So that is everything that you should need to know about Canisius shards for the exam.
+
+78
+00:06:59,970 --> 00:07:02,610
+If you have any questions please do let me know.
+
+79
+00:07:02,610 --> 00:07:05,420
+If not feel free to move on to the next lecture.
+
+80
+00:07:05,440 --> 00:07:05,930
+Thank you.

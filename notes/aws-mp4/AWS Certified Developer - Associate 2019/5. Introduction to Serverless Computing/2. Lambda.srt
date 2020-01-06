@@ -1,0 +1,707 @@
+1
+00:00:00,770 --> 00:00:06,420
+OK bloggers and welcome to this lecture lecture we're going to be looking at Lambda.
+
+2
+00:00:06,450 --> 00:00:11,280
+So this is going to be a theory lecture in the next lecture we're going to look at API gateway which
+
+3
+00:00:11,280 --> 00:00:12,860
+is also a theory lecture.
+
+4
+00:00:12,860 --> 00:00:16,830
+And then what we're going to go ahead and do is we're going to go and create our first Services Web
+
+5
+00:00:16,830 --> 00:00:21,810
+site which will just show our names so that we'll be using lambda an API gateway.
+
+6
+00:00:21,960 --> 00:00:25,230
+We'll then go on to create a far more sort of complicated web site.
+
+7
+00:00:25,230 --> 00:00:32,820
+This will be a civil list Web site that uses a combination of three uses lammed it uses API gateway
+
+8
+00:00:32,850 --> 00:00:39,630
+uses dynamo D.B and it uses the poly service and that lecture will basically enable you to take your
+
+9
+00:00:39,630 --> 00:00:44,610
+notes any notes you've taken throughout this course you'll be able to put it into this Web site and
+
+10
+00:00:44,610 --> 00:00:50,520
+it will generate those notes into a voice using the police service and then you'll be able to listen
+
+11
+00:00:50,520 --> 00:00:51,510
+to your notes on the girls.
+
+12
+00:00:51,510 --> 00:00:57,030
+You could download them to your phone and you could hear your notes read out to you as you know travel
+
+13
+00:00:57,240 --> 00:01:02,280
+so help you study and then what we're going to do to top it all off is we're going to take those notes
+
+14
+00:01:02,340 --> 00:01:07,530
+and we're going to create an extra skill that will actually go and reach old notes out to us so it is
+
+15
+00:01:07,530 --> 00:01:09,420
+going to be extremely hands on.
+
+16
+00:01:09,440 --> 00:01:14,340
+You're going to learn an awful lot about survivalists as well as about lammed and as well as about API
+
+17
+00:01:14,350 --> 00:01:15,080
+gateway.
+
+18
+00:01:15,150 --> 00:01:19,590
+I would say this though if you are having trouble with lammed or an API gateway in this lecture in the
+
+19
+00:01:19,590 --> 00:01:24,570
+next lecture definitely still what should go ahead and build out all these Web sites get some hands
+
+20
+00:01:24,570 --> 00:01:30,960
+on experience and then come back and watch Lamda and API gateway again and then you'll definitely be
+
+21
+00:01:30,960 --> 00:01:33,410
+able to grasp the concepts a lot better.
+
+22
+00:01:33,600 --> 00:01:35,070
+So let's go ahead and get started.
+
+23
+00:01:35,070 --> 00:01:36,350
+What is LAMDA.
+
+24
+00:01:36,480 --> 00:01:42,450
+Well before we get started with what is Lam to think about what is going on right now when you're watching
+
+25
+00:01:42,450 --> 00:01:47,650
+this video how do you think this information is being you know relate to you.
+
+26
+00:01:47,820 --> 00:01:55,410
+Well first of all we host everything most of it almost everything on AWOS we do use some GCP services
+
+27
+00:01:55,410 --> 00:01:57,990
+as well but we're mostly on AWOS.
+
+28
+00:01:58,080 --> 00:02:03,870
+So all of our videos and the video files that you're watching right now are stored in S3 and we actually
+
+29
+00:02:03,870 --> 00:02:06,330
+use cloud front as LCD and provide.
+
+30
+00:02:06,570 --> 00:02:13,110
+So these videos are stored actually in U.S. aist 1 and that's where most of our S-3 buckets are.
+
+31
+00:02:13,110 --> 00:02:18,850
+So these videos are stored inside a data center and in your data centers you have your hardware.
+
+32
+00:02:18,860 --> 00:02:20,790
+So you have things like sands.
+
+33
+00:02:20,910 --> 00:02:28,440
+You have your servers you have your switches you're routers your firewalls your load balances et cetera
+
+34
+00:02:28,440 --> 00:02:33,110
+et cetera and all of those devices are using assembly code or protocols.
+
+35
+00:02:33,120 --> 00:02:38,310
+And I don't know if you've ever written anything in assembly it's like pretty much a nightmare.
+
+36
+00:02:38,310 --> 00:02:43,680
+So what most almost all developers do is they learn high level languages these are the languages such
+
+37
+00:02:43,680 --> 00:02:48,050
+as go or no JSL Python etc..
+
+38
+00:02:48,270 --> 00:02:55,020
+And in order to use these languages you know we basically have operating systems so we have windows
+
+39
+00:02:55,020 --> 00:03:01,620
+we have Linux we have OS X et cetera and we are actually as you're watching this now you're probably
+
+40
+00:03:01,620 --> 00:03:05,750
+watching this in crime hopefully not in Internet Explorer.
+
+41
+00:03:06,030 --> 00:03:09,200
+And that is running inside your operating system.
+
+42
+00:03:09,210 --> 00:03:15,410
+And when you go into the AWOS console you're actually your browser is interacting with the AWOS API.
+
+43
+00:03:15,750 --> 00:03:19,230
+And the final layer of extraction is lammed.
+
+44
+00:03:19,230 --> 00:03:26,400
+So whenever you're using our site you're actually making API calls to a API gateway which is triggering
+
+45
+00:03:26,400 --> 00:03:32,640
+a whole bunch of lambda functions in the background so lambda is almost like the ultimate AABs abstraction
+
+46
+00:03:32,640 --> 00:03:35,700
+layer as least it's the latest abstraction layer.
+
+47
+00:03:35,880 --> 00:03:39,600
+And the cool thing about lambda is that you don't have to worry about data centers.
+
+48
+00:03:39,600 --> 00:03:43,260
+You don't have to worry about hardware you don't have to worry about assembly Kodo protocols or any
+
+49
+00:03:43,260 --> 00:03:49,020
+high level level languages you don't have to worry about you know running the operating systems.
+
+50
+00:03:49,020 --> 00:03:54,920
+You don't have to worry about the actual application layer or even to some extent the API.
+
+51
+00:03:55,080 --> 00:04:00,570
+All you have to worry about is your code AWOS take care of everything else for you.
+
+52
+00:04:00,840 --> 00:04:05,070
+So that's what lambda is and if that doesn't make a lot of sense don't worry who you're going to get
+
+53
+00:04:05,070 --> 00:04:07,040
+a lot of hands on experience with lambda.
+
+54
+00:04:07,410 --> 00:04:13,200
+And we will like it come back and watch this lecture and we'll hopefully make a lot more sense.
+
+55
+00:04:13,200 --> 00:04:14,200
+So what is LAMDA.
+
+56
+00:04:14,220 --> 00:04:19,230
+Well basically it's compute service where you can upload your code and create a lambda function and
+
+57
+00:04:19,260 --> 00:04:24,350
+AWOS lambda takes care of the provisioning and management of the servers that you use to run your code
+
+58
+00:04:24,360 --> 00:04:29,760
+so you don't have to worry about operating systems patching scaling etc. and you can use lambda in the
+
+59
+00:04:29,760 --> 00:04:35,970
+following ways you can use it as an event driven compute service where AWOS lambda runs your code in
+
+60
+00:04:35,970 --> 00:04:41,670
+response to events and these events could be anything could be changes to your data in S3 or it could
+
+61
+00:04:41,670 --> 00:04:45,280
+be a change to your data in a dynamite db table etc..
+
+62
+00:04:45,300 --> 00:04:49,630
+These code triggers will have a look at those and a lot more detail as we go on.
+
+63
+00:04:49,830 --> 00:04:56,160
+And you can also use it as a compute service to run your code in response to TZP request using Amazon
+
+64
+00:04:56,160 --> 00:05:02,640
+API gateway or Amazon API calls using the A.W. SDK case and this is what we do it a plugger.
+
+65
+00:05:02,670 --> 00:05:08,100
+This is exactly what we're going to be doing in later lectures are we going to use that to compute services
+
+66
+00:05:08,110 --> 00:05:14,030
+going to response respond to HTP requests using Amazon's API gateway.
+
+67
+00:05:14,350 --> 00:05:19,030
+So let's have a look at our user we've got our user Let's pretend this is you and you want to create
+
+68
+00:05:19,090 --> 00:05:26,140
+a name and see what you do is you store that main in S3 and that then triggers a lambda function and
+
+69
+00:05:26,170 --> 00:05:32,800
+that lambda function will basically take your picture and take the text that you sent to the service
+
+70
+00:05:33,070 --> 00:05:35,630
+and it will put the text over the name saying Y.
+
+71
+00:05:35,740 --> 00:05:41,830
+And that will then trigger another lambda function which would then return the information back to use.
+
+72
+00:05:41,830 --> 00:05:43,540
+This is the complete main.
+
+73
+00:05:43,570 --> 00:05:47,050
+So this is a typical Maime Web site and so sort of a service.
+
+74
+00:05:47,080 --> 00:05:52,300
+Well not the typical site but disappears Servilius main web sites so that would be what the architecture
+
+75
+00:05:52,300 --> 00:05:52,920
+looks like.
+
+76
+00:05:53,170 --> 00:05:59,050
+And perhaps it then triggers another lambda function which then takes the name that's in that S3 bucket
+
+77
+00:05:59,350 --> 00:06:03,880
+and it replicates it across to some other S3 buckets elsewhere in the world.
+
+78
+00:06:03,880 --> 00:06:06,020
+So you've got some redundancy.
+
+79
+00:06:06,190 --> 00:06:12,760
+So the lambda functions can trigger other lambda functions putting things up inside S-3 can trigger
+
+80
+00:06:12,760 --> 00:06:15,080
+lambda function et cetera et cetera et cetera.
+
+81
+00:06:15,280 --> 00:06:17,300
+So that's at a very high level.
+
+82
+00:06:17,590 --> 00:06:23,110
+The other way Lamda works is if you are sitting here and you're watching of course and you're making
+
+83
+00:06:23,110 --> 00:06:30,730
+HTP request that's going and hitting API gateway API gateway is then taking that information and passing
+
+84
+00:06:30,730 --> 00:06:37,290
+it to lambda lambda then responds and processes that information sends back to API gateway which sends
+
+85
+00:06:37,290 --> 00:06:38,260
+it back to the user.
+
+86
+00:06:38,260 --> 00:06:44,590
+So that's the second way in which we use lammed and you can actually do this in massive sort of parallel
+
+87
+00:06:44,590 --> 00:06:50,170
+so you can have too many requests that will trigger two separate lambda functions and when I say separate
+
+88
+00:06:50,620 --> 00:06:55,040
+the actual code is the same but the function is being triggered in parallel.
+
+89
+00:06:55,040 --> 00:06:59,230
+So you're going to have one function responding to one request and one function responding to another
+
+90
+00:06:59,230 --> 00:07:04,290
+request it's going back through API gateway and it's sending it back to the user.
+
+91
+00:07:04,450 --> 00:07:07,270
+So what languages does is supported by Alamdar.
+
+92
+00:07:07,300 --> 00:07:12,670
+Well we have a whole bunch of high level languages we've got no yes we've got Java we've got Python
+
+93
+00:07:12,730 --> 00:07:14,880
+we've got safe shop and we've got go.
+
+94
+00:07:15,040 --> 00:07:20,710
+It is important to remember those going into your exams to memorize those and I'm sure they will add
+
+95
+00:07:20,710 --> 00:07:22,580
+more and more languages later.
+
+96
+00:07:22,780 --> 00:07:28,270
+So how is Lamda price what's priced on the number of requests and the first one million requests free
+
+97
+00:07:28,390 --> 00:07:29,940
+and yes you did read that right.
+
+98
+00:07:29,950 --> 00:07:34,730
+The first one million requests free and that's on a per month basis.
+
+99
+00:07:35,020 --> 00:07:41,410
+Now when at a club girl we actually only just started incurring a lammed bill at the beginning of this
+
+100
+00:07:41,410 --> 00:07:41,630
+year.
+
+101
+00:07:41,650 --> 00:07:49,900
+We were able to build our entire business using AWOS Lamda inside free tier and it was only the beginning
+
+102
+00:07:49,900 --> 00:07:53,270
+of this year that we started getting over a million requests per month.
+
+103
+00:07:53,380 --> 00:08:00,680
+So that gives you an idea as to you know how cheap is Duras and even now I think how below is well under
+
+104
+00:08:00,680 --> 00:08:06,700
+a dollar that's just Lamda don't want to pay for other things so it is very very cheap.
+
+105
+00:08:06,940 --> 00:08:09,250
+It's also priced on the duration.
+
+106
+00:08:09,270 --> 00:08:12,170
+And sorry is 20 cents per one minute request softer.
+
+107
+00:08:12,220 --> 00:08:13,650
+It's also priced on duration.
+
+108
+00:08:13,660 --> 00:08:19,270
+It's calculated from the time that your code begins executing until it returns or otherwise terminates
+
+109
+00:08:19,270 --> 00:08:24,790
+rounded up to the nearest 100 milliseconds and the price depends on the amount of memory that you allocate
+
+110
+00:08:24,790 --> 00:08:25,930
+to your function.
+
+111
+00:08:26,050 --> 00:08:27,940
+And we're going to go have a look at that.
+
+112
+00:08:27,940 --> 00:08:32,410
+So why is Lamda call and forget the cheesy sort of image that was the best thing I could find.
+
+113
+00:08:32,410 --> 00:08:33,910
+That looked cool.
+
+114
+00:08:33,950 --> 00:08:35,770
+Well lambdas cool cause there's no service.
+
+115
+00:08:35,770 --> 00:08:40,990
+You don't have to manage any servers you don't need System Administrators you don't need network administrators
+
+116
+00:08:40,990 --> 00:08:42,580
+or database administrators.
+
+117
+00:08:42,760 --> 00:08:46,110
+You know you're literally your code just executes automatically.
+
+118
+00:08:46,150 --> 00:08:51,850
+You don't have to worry about scaling automatically Asare scaling manually.
+
+119
+00:08:51,850 --> 00:08:53,600
+You don't have to worry about orders Skaven groups.
+
+120
+00:08:53,620 --> 00:08:57,090
+It just scales continuously as the solutions architect.
+
+121
+00:08:57,090 --> 00:08:59,870
+Things that used to sort of keep me up at night.
+
+122
+00:09:00,070 --> 00:09:05,110
+You know whenever we're going to have a massive sort of event for one of my customers whether or not
+
+123
+00:09:05,110 --> 00:09:10,830
+the infrastructure would scale or would do with or an old fall over Lamda doesn't fall over its scales
+
+124
+00:09:10,870 --> 00:09:16,270
+automatically unless there is an outage and there has been some Lamda outages it can be frustrating
+
+125
+00:09:16,600 --> 00:09:19,740
+for some reason the outages always seem to occur in USA U.S. East one.
+
+126
+00:09:19,780 --> 00:09:24,760
+I have no idea why we actually put all that production stuff in one but every time there's a Lamda outage
+
+127
+00:09:24,760 --> 00:09:27,060
+the a club site goes down.
+
+128
+00:09:27,070 --> 00:09:28,900
+Fortunately it's not very common.
+
+129
+00:09:28,900 --> 00:09:34,370
+Probably a once in a year and two once in every 18 months and lambda super super cheap.
+
+130
+00:09:34,450 --> 00:09:38,440
+Like I said you know we were able to build our entire business in free here.
+
+131
+00:09:38,620 --> 00:09:42,220
+And even now I think how Lamda bill is under a dollar a month.
+
+132
+00:09:42,310 --> 00:09:46,680
+So it is extremely cheap and that's why lammed is super cool.
+
+133
+00:09:46,870 --> 00:09:52,330
+And one thing to bear in mind is that every time you use an Amazon echo when you talking to Alexa and
+
+134
+00:09:52,330 --> 00:09:58,630
+she responds you are talking to Lamda that is basically taking your voice turning it into techs running
+
+135
+00:09:58,630 --> 00:10:04,470
+it through the it's called the natural language understanding and it basically turns your voice into
+
+136
+00:10:04,470 --> 00:10:10,290
+text and passes that text back to Lamda and Alamdar then decides how to respond.
+
+137
+00:10:10,290 --> 00:10:16,860
+So when you using alecks are you speaking to Lamda us speaking to the cloud and we're going to build
+
+138
+00:10:16,860 --> 00:10:20,650
+Aaron Alexis skill in a few lectures coming up.
+
+139
+00:10:20,850 --> 00:10:23,170
+So what are my exam tips for LAMDA.
+
+140
+00:10:23,190 --> 00:10:30,030
+Well remember that lammed scales out not up automatically so it will scale out so you can have millions
+
+141
+00:10:30,030 --> 00:10:33,360
+of functions running in parallel at the same time.
+
+142
+00:10:33,450 --> 00:10:39,480
+But if you run out of memory you need to update the you know the amount of memory that that lambda function
+
+143
+00:10:39,480 --> 00:10:43,620
+uses and will show you how to do that later on lambda functions are independent.
+
+144
+00:10:43,620 --> 00:10:46,500
+So one event equals one function.
+
+145
+00:10:46,680 --> 00:10:47,890
+Lambda is Servilius.
+
+146
+00:10:47,910 --> 00:10:53,190
+Also remember that it's compute service sometimes that can come up some say which of the following is
+
+147
+00:10:53,190 --> 00:10:56,150
+a compute service will Lambros the compute service.
+
+148
+00:10:56,250 --> 00:10:58,870
+What servers services are service.
+
+149
+00:10:58,890 --> 00:11:01,960
+So things like Lamda things like API gateway things like.
+
+150
+00:11:01,980 --> 00:11:06,770
+Three things like Dynamo D-B et cetera and things like.
+
+151
+00:11:06,890 --> 00:11:09,570
+Yes definitely not Servilius.
+
+152
+00:11:09,750 --> 00:11:13,030
+You can get Servilius Aurora just to further complicate things.
+
+153
+00:11:13,050 --> 00:11:15,110
+But we'll talk about that a little bit later.
+
+154
+00:11:15,210 --> 00:11:23,300
+But almost all of our D.S. is is as you know uses servers and things like AC to obviously a service
+
+155
+00:11:23,310 --> 00:11:28,480
+because it is a physical server and then lambda functions can trigger other ledum functions.
+
+156
+00:11:28,560 --> 00:11:31,160
+And one event can equal any number of functions.
+
+157
+00:11:31,160 --> 00:11:36,900
+I just put a variable called X if functions trigger other functions so I could have one event which
+
+158
+00:11:36,960 --> 00:11:41,730
+triggers a lambda function which then triggers three other lambda functions which each in turn and they
+
+159
+00:11:42,090 --> 00:11:44,390
+trigger three other lambda functions et cetera.
+
+160
+00:11:44,390 --> 00:11:47,220
+So you can fan out lambda as well.
+
+161
+00:11:47,220 --> 00:11:52,770
+Do you remember that architectures can get extremely complicated and it can be starting to get very
+
+162
+00:11:52,770 --> 00:11:54,660
+difficult to debug.
+
+163
+00:11:54,900 --> 00:11:58,920
+That's where we use AWOS X-ray to debug what it is that's happening.
+
+164
+00:11:58,920 --> 00:12:04,950
+So if you're asked to debug lambda which service you should use you're going to use AWOS X-ray and then
+
+165
+00:12:04,950 --> 00:12:10,230
+remember that lambda can do things globally so you can use it to back up and S-3 bucket to other S-3
+
+166
+00:12:10,230 --> 00:12:13,660
+buckets etc. it's not stuck in one region.
+
+167
+00:12:13,770 --> 00:12:16,440
+You can use it all across the AWOS ecosystem.
+
+168
+00:12:16,560 --> 00:12:18,810
+And then finally no Ulam to triggers.
+
+169
+00:12:18,850 --> 00:12:21,450
+And again we're going to see this in the console a lot.
+
+170
+00:12:21,450 --> 00:12:27,220
+You should remember as many lambda triggers as you can because this can be a very popular exam question.
+
+171
+00:12:27,420 --> 00:12:27,990
+Well that is it.
+
+172
+00:12:27,990 --> 00:12:31,950
+But this lecture guys if it does seem a little bit complicated don't worry we're going to get our hands
+
+173
+00:12:31,950 --> 00:12:32,370
+dirty.
+
+174
+00:12:32,370 --> 00:12:37,230
+I would suggest coming back and watching this as well as the next lecture on API gateway.
+
+175
+00:12:37,230 --> 00:12:41,640
+Once you've got all your experience and then it will make a lot more sense if you've got the time please
+
+176
+00:12:41,640 --> 00:12:44,000
+join me in the next lecture to cover off API gateway.
+
+177
+00:12:44,050 --> 00:12:44,480
+Thank you.

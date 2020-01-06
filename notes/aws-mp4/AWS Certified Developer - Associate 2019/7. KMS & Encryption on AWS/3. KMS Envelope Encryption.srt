@@ -1,0 +1,119 @@
+1
+00:00:00,600 --> 00:00:07,340
+OK hilar cloggers and welcome to this very short theoretical lecture on what envelope encryption is
+
+2
+00:00:07,360 --> 00:00:09,590
+a Kamis envelope encryption.
+
+3
+00:00:09,900 --> 00:00:17,670
+So envelope encryption is simply the process of encrypting your envelope case your envelope K is essentially
+
+4
+00:00:17,670 --> 00:00:25,340
+your key that you use to encrypt your data and what the AWOS camis you know system does is we basically
+
+5
+00:00:25,340 --> 00:00:31,710
+we take what's called our masticate or our customer master key we use this to encrypt our envelope key
+
+6
+00:00:32,010 --> 00:00:36,060
+and our envelope key is what's used to encrypt our data.
+
+7
+00:00:36,090 --> 00:00:37,200
+So that is all it is.
+
+8
+00:00:37,200 --> 00:00:42,710
+It's basically encrypting a K we're basically encrypting the key that encrypts our data.
+
+9
+00:00:42,720 --> 00:00:47,340
+So that is all envelope case or sometimes is a cold day to case.
+
+10
+00:00:47,430 --> 00:00:51,350
+So when we go into our decryption with AWOS we have our data.
+
+11
+00:00:51,420 --> 00:00:52,370
+This is encrypted.
+
+12
+00:00:52,380 --> 00:00:54,110
+So this is our envelope.
+
+13
+00:00:54,390 --> 00:00:59,200
+And in order to encrypt that we take the kamis service and we use our masticate.
+
+14
+00:00:59,220 --> 00:01:04,640
+And we do an encryption algorithm and we use that to decrypt our data.
+
+15
+00:01:04,830 --> 00:01:10,520
+And we turn that data into basically plain text and then we take out plain text data.
+
+16
+00:01:10,740 --> 00:01:13,270
+And we use that to decrypt our data.
+
+17
+00:01:13,290 --> 00:01:15,330
+So that is literally all it is.
+
+18
+00:01:15,330 --> 00:01:20,980
+So what do my exam tips will just remember that the customer masticate is used to decrypt the data.
+
+19
+00:01:21,030 --> 00:01:27,300
+Which is sometimes referred to as our envelope K and then our envelope K is used to decrypt the data.
+
+20
+00:01:27,300 --> 00:01:32,850
+That is all you need to know and understand for camps for the developer associate.
+
+21
+00:01:32,850 --> 00:01:39,270
+Now if you are interested as we go through it in an awful lot of data go as well as cloud HSM and the
+
+22
+00:01:39,270 --> 00:01:45,750
+security specialty and it is actually quite fascinating stuff especially using cloud HSM because cloud
+
+23
+00:01:46,020 --> 00:01:53,250
+Hudood security modules up until just last year actually were very expensive to get any hands on experience
+
+24
+00:01:53,250 --> 00:02:00,670
+with and even using AWOS Hunwick security modules up until last year you still had to pay $5000 a month.
+
+25
+00:02:00,670 --> 00:02:03,540
+So if your student wasn't very easy to get experience.
+
+26
+00:02:03,540 --> 00:02:08,490
+Great thing is Amazon's changed that pricing model now and you can get hands on experience with hardware
+
+27
+00:02:08,490 --> 00:02:14,200
+security modules using cloud HSM and you just pay by the hour.
+
+28
+00:02:14,280 --> 00:02:15,480
+So do check that out.
+
+29
+00:02:15,480 --> 00:02:17,620
+It is in the security specialty.
+
+30
+00:02:17,730 --> 00:02:23,020
+So let's go on to the camp summary lecture and then you're done with the kamis section of the course.

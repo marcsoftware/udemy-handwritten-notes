@@ -1,0 +1,115 @@
+1
+00:00:01,120 --> 00:00:07,990
+Hello Clockers and welcome to this lecture and this lecture is called Coe's commit one by one and it's
+
+2
+00:00:07,990 --> 00:00:15,070
+just a really quick theoretical lecture just just to give you an overview of code commit before we go
+
+3
+00:00:15,070 --> 00:00:18,330
+into the lab which is coming up after this lecture.
+
+4
+00:00:18,460 --> 00:00:20,590
+So let's get started.
+
+5
+00:00:21,460 --> 00:00:23,410
+So what is code commit.
+
+6
+00:00:23,680 --> 00:00:31,390
+Well code commit is a fully managed source control service and it enables companies to host SECU and
+
+7
+00:00:31,390 --> 00:00:34,980
+highly scalable private repositories.
+
+8
+00:00:35,410 --> 00:00:42,870
+So if you're not familiar with it it's an industry standard open source distributed source control system
+
+9
+00:00:44,230 --> 00:00:47,540
+and it's a central repository for all your code.
+
+10
+00:00:47,650 --> 00:00:56,440
+So that could be pineries images libraries scripts any artifacts that are used within your application
+
+11
+00:00:57,610 --> 00:01:04,880
+and it allows you to actually manage updates from multiple sources so multiple teams multiple uses.
+
+12
+00:01:05,080 --> 00:01:07,420
+And it also enables collaboration
+
+13
+00:01:09,850 --> 00:01:17,440
+so when users want to interact with code commits they create a copy known as a branch of the master
+
+14
+00:01:17,440 --> 00:01:25,340
+code repository and they can update this copy independently without impacting any other uses.
+
+15
+00:01:25,990 --> 00:01:33,660
+So that means everyone can work on the codebase in parallel save to code changes which are ready to
+
+16
+00:01:33,660 --> 00:01:42,540
+be applied into a repository are known as a commit and when the updated code located in a branch is
+
+17
+00:01:42,540 --> 00:01:50,100
+ready to be added into the master repository the branch is then merged into the master repository.
+
+18
+00:01:52,220 --> 00:01:57,440
+And I ws code commit provides all the functionality of get.
+
+19
+00:01:57,590 --> 00:02:04,240
+You can use it on your local machine to interact with your code can repo so you can run all the normal
+
+20
+00:02:04,240 --> 00:02:15,110
+commands like get at get commit get to push etc. and your data is encrypted in transit and in rest.
+
+21
+00:02:15,220 --> 00:02:22,840
+So when you connect to code commit you do it via either a shitty piece S-sh
+
+22
+00:02:27,580 --> 00:02:30,150
+And that's really all you need to know for code commit.
+
+23
+00:02:30,160 --> 00:02:36,660
+So let's just move on to our exam tips.
+
+24
+00:02:36,700 --> 00:02:42,310
+So the main things you need to know is based on get is a centralized repo for all your code.
+
+25
+00:02:42,310 --> 00:02:49,330
+Pineries images and libraries it chucks and manages your code changes version history and it manages
+
+26
+00:02:49,420 --> 00:02:54,340
+updates from multiple sources and enables collaboration.
+
+27
+00:02:54,340 --> 00:02:56,720
+So that is the end of this lecture.
+
+28
+00:02:57,250 --> 00:03:02,760
+And if you want to get your hands dirty using code commit Please join me in the next lecture.
+
+29
+00:03:02,830 --> 00:03:03,360
+Thank ye.

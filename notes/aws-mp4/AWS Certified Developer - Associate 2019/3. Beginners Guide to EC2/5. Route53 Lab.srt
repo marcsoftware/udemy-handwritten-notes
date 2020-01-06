@@ -1,0 +1,691 @@
+1
+00:00:00,840 --> 00:00:06,720
+OK hello cloggers and welcome to this lecture this lecture we're going to look at route 53 and it is
+
+2
+00:00:06,730 --> 00:00:09,370
+the legacy you will need to log into the AWOS.
+
+3
+00:00:09,380 --> 00:00:14,930
+But before we do that let's have a brief overview of what route 53 actually is.
+
+4
+00:00:14,930 --> 00:00:22,250
+So Rick 53 is Amazon's DNS service and allows you to map you don't main names to things like AC to instances
+
+5
+00:00:22,580 --> 00:00:25,260
+to load balances which would cover off a bit later.
+
+6
+00:00:25,340 --> 00:00:28,880
+And two as three buckets which will also cover off a bit lighter.
+
+7
+00:00:28,910 --> 00:00:31,670
+So Rick 53 essentially allows you to buy a domain name.
+
+8
+00:00:31,670 --> 00:00:37,790
+We could buy say hello pluggers dot com and then we'd be able to connect that domain name to three different
+
+9
+00:00:37,910 --> 00:00:42,260
+end so either AC to auto load balances or to S3.
+
+10
+00:00:42,440 --> 00:00:45,220
+So let's go and look into the AWOS console.
+
+11
+00:00:45,470 --> 00:00:53,160
+OK so here I am in the console going to go to services and I'm going to go down to network so down his.
+
+12
+00:00:53,180 --> 00:00:58,070
+And here it is on the network and content delivery route 53 or route 53.
+
+13
+00:00:58,070 --> 00:00:59,470
+How you want to say it.
+
+14
+00:00:59,570 --> 00:01:06,380
+So what we want to do is go ahead and get started now and we're going to go ahead and create a hosted
+
+15
+00:01:06,380 --> 00:01:12,410
+zine and we don't have any hosted zones what we might want to do first before we create this hosted
+
+16
+00:01:12,410 --> 00:01:14,830
+zone is to go and register a domain.
+
+17
+00:01:14,840 --> 00:01:19,120
+So we go in and register a domain and click on registered domain.
+
+18
+00:01:19,120 --> 00:01:21,310
+So now you need to choose a domain name.
+
+19
+00:01:21,320 --> 00:01:25,540
+Now Dotcom's are about $12 you can get something cheaper.
+
+20
+00:01:25,820 --> 00:01:29,720
+Let's have a look at what the cheapest one is or a $9 one.
+
+21
+00:01:29,780 --> 00:01:31,550
+It's entirely up to what you want to buy.
+
+22
+00:01:31,550 --> 00:01:35,580
+You can say there's so many different top level domains now.
+
+23
+00:01:36,110 --> 00:01:38,330
+Here's one for $8 may do UK.
+
+24
+00:01:38,510 --> 00:01:40,510
+So I'm going to just go ahead and buy a dot com.
+
+25
+00:01:40,520 --> 00:01:45,630
+You can choose whatever it is you want and then you can just type in here we can do Hellery cloud Gere's
+
+26
+00:01:45,640 --> 00:01:47,070
+I'm pretty sure that is taken.
+
+27
+00:01:47,090 --> 00:01:53,040
+Pretty sure I bought it from some but you know in another course maybe it would do.
+
+28
+00:01:53,090 --> 00:01:55,590
+I'm a cloud.
+
+29
+00:01:56,120 --> 00:01:56,780
+Dot com.
+
+30
+00:01:56,780 --> 00:01:58,550
+Let's see if that's available.
+
+31
+00:01:58,910 --> 00:01:59,960
+Yes it is available.
+
+32
+00:01:59,960 --> 00:02:04,430
+We're going to go ahead and add it to my cart then I'm going to go down and hit continue.
+
+33
+00:02:04,640 --> 00:02:07,480
+Now we have to fill in all this registrant information.
+
+34
+00:02:07,500 --> 00:02:09,650
+So I'm going to go ahead and do that.
+
+35
+00:02:09,710 --> 00:02:12,190
+You can do this yourself.
+
+36
+00:02:12,270 --> 00:02:15,050
+And once that's done I'm going to go ahead and hit submit.
+
+37
+00:02:15,380 --> 00:02:17,790
+OK so I have gone ahead and filled that out.
+
+38
+00:02:17,810 --> 00:02:20,350
+I just need to agree to the terms and conditions.
+
+39
+00:02:20,360 --> 00:02:26,480
+It's going to send me an e-mail to the registrant e-mail address just to check that I actually ynot
+
+40
+00:02:27,170 --> 00:02:32,150
+and you won't be able to get past the screen until you've verified that e-mail case you've just gone
+
+41
+00:02:32,150 --> 00:02:35,840
+ahead and verified that e-mail is just refreshed the status here.
+
+42
+00:02:35,870 --> 00:02:38,460
+And we can say that has been registered.
+
+43
+00:02:38,480 --> 00:02:44,240
+Now we're going to go ahead and hit complete purchase and that has now purchased my domains.
+
+44
+00:02:44,300 --> 00:02:47,970
+So it says thank you for registering your domain to route 53.
+
+45
+00:02:48,050 --> 00:02:49,070
+I'm a coward Gary.
+
+46
+00:02:49,130 --> 00:02:50,080
+Dot com.
+
+47
+00:02:50,300 --> 00:02:51,050
+What's next.
+
+48
+00:02:51,050 --> 00:02:54,440
+Domain registration might take up to three days to complete.
+
+49
+00:02:54,470 --> 00:02:56,720
+We'll send an e-mail to the registrant contact.
+
+50
+00:02:56,720 --> 00:03:02,320
+Once the domain is successfully registered so you just click on go to domain's and you say that this
+
+51
+00:03:02,330 --> 00:03:05,030
+status is domain registration in progress.
+
+52
+00:03:05,030 --> 00:03:06,560
+Now it doesn't normally take three days.
+
+53
+00:03:06,560 --> 00:03:09,010
+It depends what top level domain name that you use.
+
+54
+00:03:09,020 --> 00:03:13,330
+I'm just going to pause the video and wait for this domain name to become available.
+
+55
+00:03:13,430 --> 00:03:15,920
+OK so this is now available for disclosure.
+
+56
+00:03:15,920 --> 00:03:19,610
+It was a long weekend over the you know over the last few days.
+
+57
+00:03:19,640 --> 00:03:23,840
+So this is a few days later but you should be able to register it.
+
+58
+00:03:23,870 --> 00:03:27,200
+You know within a few hours it really just penciled the top level domain.
+
+59
+00:03:27,380 --> 00:03:33,290
+So we get it back over to our dashboard and we click on hosted zones you'll be able to see your domain
+
+60
+00:03:33,320 --> 00:03:34,000
+inheres.
+
+61
+00:03:34,040 --> 00:03:36,800
+So I'm a cloud Gouri dot com.
+
+62
+00:03:36,800 --> 00:03:41,280
+Now what we can do is we can go ahead and go to our record sets.
+
+63
+00:03:41,360 --> 00:03:47,890
+And this is where we create our DNS records so if we go back over we can create things like our a a
+
+64
+00:03:47,930 --> 00:03:53,690
+record and a record is essentially if you think of an old school telephone book you used to look up
+
+65
+00:03:54,230 --> 00:03:57,970
+Mr. Smith in the telephone book and you get a phone number.
+
+66
+00:03:58,070 --> 00:04:01,370
+Essentially when you're creating an error code it's exactly the same thing.
+
+67
+00:04:01,370 --> 00:04:04,350
+What we're doing is we're saying where I'm a cowgirl.
+
+68
+00:04:04,370 --> 00:04:06,680
+Dot Com is going to guard.
+
+69
+00:04:06,830 --> 00:04:12,380
+So if we just click on create a record set you'll be able to see the different types of records in here.
+
+70
+00:04:12,380 --> 00:04:17,420
+So we've got a record See name records of MX records Triple-A records et cetera.
+
+71
+00:04:17,420 --> 00:04:20,850
+So a record would point to an IP address.
+
+72
+00:04:21,090 --> 00:04:27,490
+A triple-A record of quadruple a record would point to an IP B-6 address et cetera et cetera.
+
+73
+00:04:27,680 --> 00:04:32,660
+So what we're going to do is we're going to create a address and we're going to use what's called the
+
+74
+00:04:32,660 --> 00:04:33,800
+naked domain name.
+
+75
+00:04:33,800 --> 00:04:38,410
+So what do we mean by naked domain name where we simply just mean I'm a cow.
+
+76
+00:04:38,510 --> 00:04:42,910
+Dot com rather than w w w dot I'm a cloud Gouri dot com.
+
+77
+00:04:43,070 --> 00:04:47,190
+And this is sometimes also referred to as the zone apex record.
+
+78
+00:04:47,210 --> 00:04:50,120
+Now in order to do this we have to use an alias.
+
+79
+00:04:50,270 --> 00:04:56,040
+I'd be interested what an alias is just hold your mouse over it says specify whether you want this record
+
+80
+00:04:56,040 --> 00:05:03,730
+set to be an alias for an AWOS or resorts an alias it is similar in some ways to a C name record set.
+
+81
+00:05:03,730 --> 00:05:09,920
+Well one of the differences is that you create an alias for the zone apex we create this for the naked
+
+82
+00:05:09,920 --> 00:05:18,560
+domain name and this it basically is only supported by a and quadrupole a record so IPV for IPV six
+
+83
+00:05:19,280 --> 00:05:23,840
+addresses so what we're going to do is in here we're going to click in here and we've got our different
+
+84
+00:05:23,840 --> 00:05:30,230
+targets so you can have an alias target for an S-3 Web site for an elastic load balance the application
+
+85
+00:05:30,230 --> 00:05:36,200
+load balance elastic load balance a classic load balance the elastic load balance and network load balance.
+
+86
+00:05:36,380 --> 00:05:40,660
+The cloud front distributions for lastic beanstalk environments etc..
+
+87
+00:05:40,760 --> 00:05:45,020
+So what we're going to do is we're going to have to go and create a load balancer.
+
+88
+00:05:45,470 --> 00:05:50,270
+And then what we're going to do is put out two instance behind that load balance and then we'll come
+
+89
+00:05:50,270 --> 00:05:57,830
+back here and basically create the DNS name so that when people go to out my name they'll be able to
+
+90
+00:05:57,830 --> 00:05:59,420
+see a little Web site.
+
+91
+00:05:59,420 --> 00:06:03,540
+So let's go back over two services are going to go over to see too.
+
+92
+00:06:03,590 --> 00:06:09,290
+We should still have our little E.S. to instance up and running that we created earlier.
+
+93
+00:06:09,290 --> 00:06:11,860
+I have no idea why but for some reason I'm in Oregon.
+
+94
+00:06:12,050 --> 00:06:17,990
+A little bit confusing so if you do not see for instance just check where you should be should be back
+
+95
+00:06:17,990 --> 00:06:20,990
+in northern Virginia and yet I can see my instance there.
+
+96
+00:06:21,170 --> 00:06:27,020
+And then what you want to do in order to create a load balance is if you go down to load balancing you
+
+97
+00:06:27,020 --> 00:06:34,250
+see it right here and just create a go to load balances and click on that link and you'll see that right
+
+98
+00:06:34,250 --> 00:06:36,250
+now we don't have any load balances in this region.
+
+99
+00:06:36,260 --> 00:06:38,210
+So go ahead and create a load balance.
+
+100
+00:06:38,210 --> 00:06:43,520
+So there's three different types of load balance as we have application load balances network load balances
+
+101
+00:06:43,570 --> 00:06:45,360
+and classic load balances.
+
+102
+00:06:45,560 --> 00:06:51,430
+Now application load balance is when you need to be you know basically using web applications for the
+
+103
+00:06:51,540 --> 00:06:52,650
+page.
+
+104
+00:06:52,850 --> 00:06:55,600
+And this operates at the request level network.
+
+105
+00:06:55,610 --> 00:07:00,830
+Lloyd balancers you would use when you need Oktar high performance and static IP addresses for your
+
+106
+00:07:00,830 --> 00:07:01,550
+application.
+
+107
+00:07:01,550 --> 00:07:06,050
+So we're going to go ahead and create an application load balance so in here you might want to give
+
+108
+00:07:06,050 --> 00:07:10,140
+it a name so I'm going to call up my base application load balance.
+
+109
+00:07:10,160 --> 00:07:13,840
+It's going to be Internet facing it's going to be using IP before.
+
+110
+00:07:14,000 --> 00:07:19,490
+So in here we have our listeners now listeners simply what to port our application load balance is going
+
+111
+00:07:19,490 --> 00:07:24,500
+to listen on Sohaib GDP is on port 80 and if you wanted to do to the best you can do it as well which
+
+112
+00:07:24,500 --> 00:07:31,220
+will be on port 443 just zoomed out my screen a little bit if you don't want to use SSL you can delete
+
+113
+00:07:31,220 --> 00:07:31,470
+that.
+
+114
+00:07:31,470 --> 00:07:35,090
+I'm going to take it off for now so I don't want to listen on SSL.
+
+115
+00:07:35,270 --> 00:07:37,040
+And here we have our availability zone.
+
+116
+00:07:37,040 --> 00:07:40,990
+So where do we want our application load balance to be based.
+
+117
+00:07:41,050 --> 00:07:44,780
+We're going to select all availabilities zones to get the maximum redundancy.
+
+118
+00:07:44,780 --> 00:07:48,080
+And next I'm going to go ahead and configure my security groups.
+
+119
+00:07:48,180 --> 00:07:51,790
+So it's going to give us this warning saying that it's not using a secure listener.
+
+120
+00:07:51,790 --> 00:07:53,910
+In other words we're not using AHCCCS.
+
+121
+00:07:54,230 --> 00:07:54,800
+That's fine.
+
+122
+00:07:54,800 --> 00:07:55,770
+Hit next.
+
+123
+00:07:55,880 --> 00:08:01,100
+And then we're going to assign a security groups let's assign the one that we created in the last election.
+
+124
+00:08:01,100 --> 00:08:07,930
+So I'm going to assign our my web DMZ and I'm going to go ahead and hit next to configure our routing.
+
+125
+00:08:08,050 --> 00:08:13,610
+So we're basically setting up Route requests to the targets in this target group so you can have a whole
+
+126
+00:08:13,610 --> 00:08:18,440
+bunch of different targets and you can route requests you know intelligently.
+
+127
+00:08:18,440 --> 00:08:19,490
+It's entirely up to you.
+
+128
+00:08:19,490 --> 00:08:25,790
+Might have like you know web servers in one routing group you might have application servers and another
+
+129
+00:08:25,790 --> 00:08:29,290
+you might have my Secord database service and another et cetera.
+
+130
+00:08:29,340 --> 00:08:31,910
+So going to create a new target group.
+
+131
+00:08:32,000 --> 00:08:39,470
+Nicole is my Webbs is great and we're going to do it on port NHT to pay on port 80.
+
+132
+00:08:39,470 --> 00:08:44,630
+The target type is simply whether or not the target's going to be registered using your instance IDs
+
+133
+00:08:44,660 --> 00:08:49,810
+the actual I.D. of the two incidents or using private IP addresses.
+
+134
+00:08:49,820 --> 00:08:52,590
+I'm going to use instance IDs as the default value.
+
+135
+00:08:52,760 --> 00:08:54,060
+And here we have our health check.
+
+136
+00:08:54,060 --> 00:08:59,160
+So what is it going to look for when it goes and you know does a health check.
+
+137
+00:08:59,190 --> 00:09:04,060
+So we're going to type in here though little web page that we created index dot.
+
+138
+00:09:04,080 --> 00:09:08,990
+Tim ELB I'll leave everything else as default and we're going to go in and register our targets.
+
+139
+00:09:09,020 --> 00:09:11,010
+So I'm going to add this to de-registered.
+
+140
+00:09:11,010 --> 00:09:11,810
+Great.
+
+141
+00:09:11,960 --> 00:09:17,720
+And then I'm going to go ahead and hit review and I'm going to go ahead and hit create now the health
+
+142
+00:09:17,720 --> 00:09:22,400
+check will take a little while to bring this load balance in to service is healthy.
+
+143
+00:09:22,640 --> 00:09:26,320
+So what I'm going to do is I'm just going to I'm going to take a while to provision.
+
+144
+00:09:26,390 --> 00:09:30,980
+So I'm going to pause the video and wait for this elastic load sorry application load balance to come
+
+145
+00:09:31,040 --> 00:09:32,220
+up online.
+
+146
+00:09:32,420 --> 00:09:37,340
+OK so that should hopefully be set up let's just hit refresh and we can now see the state has changed
+
+147
+00:09:37,340 --> 00:09:38,600
+to active.
+
+148
+00:09:38,600 --> 00:09:44,570
+We actually go into the target groups we should be able to see if that what targets are healthy so we
+
+149
+00:09:44,570 --> 00:09:50,260
+can see here we've got a registered target his our instance I.D. and that status is healthy.
+
+150
+00:09:50,300 --> 00:09:52,600
+So it has found that indexed not hiked yemo.
+
+151
+00:09:52,850 --> 00:09:56,190
+And so the very last thing we need to do is we need to go over to services.
+
+152
+00:09:56,200 --> 00:10:02,630
+We're going to go back to route 53 which is under network content and delivery and we're going to click
+
+153
+00:10:02,630 --> 00:10:08,770
+on there and what we're going to do is we're going to point our DNS to our application load balance.
+
+154
+00:10:08,780 --> 00:10:10,970
+So click in here and we'll go.
+
+155
+00:10:11,030 --> 00:10:15,320
+Just click on the link and you can see in here this is our host at Xyron So we're going to create a
+
+156
+00:10:15,320 --> 00:10:20,820
+record set and we're going to do an alias record and in here we'll be able to see the target.
+
+157
+00:10:20,810 --> 00:10:23,370
+So here it is my baby.
+
+158
+00:10:23,540 --> 00:10:29,630
+I'm going to click in there and I'm going to leave everything else as default and go ahead and hit create.
+
+159
+00:10:29,640 --> 00:10:34,030
+And so now what we're going to do is to open up a new tab and we're going to go to I'm a cloud guru
+
+160
+00:10:34,040 --> 00:10:34,810
+dot com.
+
+161
+00:10:34,940 --> 00:10:37,420
+OK so here we are I'm just going to open up.
+
+162
+00:10:37,430 --> 00:10:46,250
+Yeah I'm going to type I'm a cloud girl or dot com and if we minimize though we go says hello cloud
+
+163
+00:10:46,260 --> 00:10:46,580
+girl.
+
+164
+00:10:46,580 --> 00:10:53,630
+So we have now created a working Web site it's behind an application load balancer which is spread across
+
+165
+00:10:53,630 --> 00:10:55,050
+multiple availability zones.
+
+166
+00:10:55,070 --> 00:11:00,590
+And then when we go to resolve the name I'm a cloud Gouri that's basically sending traffic to our application
+
+167
+00:11:00,590 --> 00:11:04,490
+load balance which is sending traffic to our e c to instance.
+
+168
+00:11:04,490 --> 00:11:07,420
+So that is it for this electrolyze hopefully you've learnt a lot.
+
+169
+00:11:07,520 --> 00:11:11,540
+The next lecture what we're going to do is we're going to look into our easy to instance and we're going
+
+170
+00:11:11,540 --> 00:11:18,320
+to show you how to set up a user so that they can access S-3 using the command line and it's very important
+
+171
+00:11:18,320 --> 00:11:19,800
+to understand how to do that.
+
+172
+00:11:19,910 --> 00:11:23,290
+Going into your exam so if you've got the time please join me in the next lecture.
+
+173
+00:11:23,300 --> 00:11:23,800
+Thank you.

@@ -1,0 +1,995 @@
+1
+00:00:00,340 --> 00:00:02,520
+Hello loggers and welcome to this lecture.
+
+2
+00:00:02,520 --> 00:00:07,110
+This is one of my favorite lectures and in this lecture we're gonna go ahead and create our own Alexis
+
+3
+00:00:07,260 --> 00:00:08,000
+skill.
+
+4
+00:00:08,020 --> 00:00:13,950
+Well we're going to use the AWB as polished service to go in and basically transcribe our notes into
+
+5
+00:00:13,950 --> 00:00:15,240
+MP 3 files.
+
+6
+00:00:15,330 --> 00:00:20,250
+We're going to host these empty three files in S. three and then we're going to use Alexa to stream
+
+7
+00:00:20,280 --> 00:00:24,780
+our MP three files and we'll be using the service application repository.
+
+8
+00:00:24,780 --> 00:00:26,430
+Now this is all very hands on.
+
+9
+00:00:26,490 --> 00:00:30,810
+So it's going to teach you how to use the service application repository and how easy it is to build
+
+10
+00:00:30,810 --> 00:00:34,160
+out Alexis skills so hopefully have an awful lot of fun.
+
+11
+00:00:34,320 --> 00:00:38,420
+Before we go on to the lecture let's just have a look at how Alexa works.
+
+12
+00:00:38,430 --> 00:00:40,090
+So this is an Amazon Echo.
+
+13
+00:00:40,110 --> 00:00:45,630
+Amazon Echo is the name of the hardware for Alexa and essentially you just go in and you say to your
+
+14
+00:00:45,630 --> 00:00:53,450
+echo Alexa turn on welcome home or Alexa turn on my chill music or Alexa turn on the TV et cetera.
+
+15
+00:00:53,490 --> 00:00:59,220
+Now in terms of the way it works I'd like to use the example of an iPhone and an iPhone as the hardware.
+
+16
+00:00:59,220 --> 00:01:01,110
+Siri is the voice service.
+
+17
+00:01:01,200 --> 00:01:06,980
+So with your Amazon Echo that is the actual physical hardware and Alexa is the voice service.
+
+18
+00:01:07,010 --> 00:01:08,850
+So that is the way it works.
+
+19
+00:01:08,850 --> 00:01:15,120
+So sometimes people use echo and Alexa interchangeably but technically speaking Echo is the hardware
+
+20
+00:01:15,150 --> 00:01:21,450
+and Amazon Alexa is the voice service and you can also change the hardware up so you can use Raspberry
+
+21
+00:01:21,450 --> 00:01:24,570
+Pi as you can use here at Amazon Echo.
+
+22
+00:01:24,600 --> 00:01:31,590
+You can use Amazon Fire TV we've got echo dots we've got echo shows and basically the hardware is becoming
+
+23
+00:01:31,590 --> 00:01:37,740
+more and more prevalent so you can have multiple different devices but they're all using the same voice
+
+24
+00:01:37,740 --> 00:01:45,030
+service they're all sending information to the aid of U.S. cloud and NWS uses automatic speech recognition
+
+25
+00:01:45,060 --> 00:01:49,770
+and natural lung language understanding to translate what you're saying in to text.
+
+26
+00:01:49,770 --> 00:01:56,130
+So it's doing a text to speak translation and essentially what this is then going on is to do is to
+
+27
+00:01:56,130 --> 00:02:01,740
+go on and trigger a lambda function so literally every single time you use the Amazon Echo in your home
+
+28
+00:02:01,800 --> 00:02:06,420
+you are speaking directly to lambda and lambda is talking back to you.
+
+29
+00:02:06,840 --> 00:02:11,810
+So in terms of how we actually go and build out our skills we always start with Lambda.
+
+30
+00:02:11,820 --> 00:02:17,040
+So we go in and create our lambda function so going to be using the surplus application repository.
+
+31
+00:02:17,040 --> 00:02:20,100
+And sometimes this is referred to as the skills service.
+
+32
+00:02:20,100 --> 00:02:23,850
+So this is one half of our of creating our skill.
+
+33
+00:02:23,850 --> 00:02:27,990
+Then we have to go in and configure the skill interface and this is where we can figure things like
+
+34
+00:02:27,990 --> 00:02:32,430
+invocation names intent schemas slot types utterances et cetera.
+
+35
+00:02:32,490 --> 00:02:37,260
+Now we're only going to do this once and it's beyond the scope of this course in order to learn how
+
+36
+00:02:37,260 --> 00:02:37,970
+to do all this.
+
+37
+00:02:38,270 --> 00:02:43,260
+And we do have some Alexa courses on the a cloud guru platform and we will have a certification course
+
+38
+00:02:43,260 --> 00:02:48,090
+coming out on the a cloud platform because there is a new Alexa specialty cert.
+
+39
+00:02:48,450 --> 00:02:51,690
+So let's go ahead and get started and log into the adobe s console.
+
+40
+00:02:51,690 --> 00:02:51,890
+Okay.
+
+41
+00:02:51,900 --> 00:02:54,120
+So here we are in the adobe asset management console.
+
+42
+00:02:54,120 --> 00:02:58,130
+The first thing we want to do is just go ahead and create an S3 Buckets.
+
+43
+00:02:58,170 --> 00:02:59,730
+So we're gonna go ahead and create a bucket.
+
+44
+00:02:59,760 --> 00:03:01,620
+I'm going to call it a cloud guru.
+
+45
+00:03:01,780 --> 00:03:07,730
+Polly 2019 something like that and I'm gonna go ahead and hit create and that already exists.
+
+46
+00:03:07,740 --> 00:03:09,020
+So call it a cloud guru.
+
+47
+00:03:09,030 --> 00:03:13,760
+Polly assets 2019 and go ahead and hit create.
+
+48
+00:03:13,950 --> 00:03:19,110
+And that has now created my bucket in here I'm going to click in here I'm gonna go edit my public access
+
+49
+00:03:19,110 --> 00:03:19,550
+settings.
+
+50
+00:03:19,560 --> 00:03:21,660
+So we do want to make this bucket public.
+
+51
+00:03:21,750 --> 00:03:27,270
+So I'm gonna go ahead and just type confirm and then we're gonna go and give it a bucket policy making
+
+52
+00:03:27,300 --> 00:03:28,860
+everything inside it public.
+
+53
+00:03:29,010 --> 00:03:34,080
+So it's click in here go to our permissions and go to our bucket policy and this will be available in
+
+54
+00:03:34,080 --> 00:03:35,570
+the resources section of the course.
+
+55
+00:03:35,580 --> 00:03:40,230
+Just go ahead and copy that into your clipboard and then we're gonna paste it in here and then we're
+
+56
+00:03:40,230 --> 00:03:42,560
+just going to change the resource a r n.
+
+57
+00:03:42,600 --> 00:03:45,110
+And we're gonna grab our R and from here.
+
+58
+00:03:45,240 --> 00:03:51,510
+So just copy that into your clipboard and then go over to here and paste it in and go ahead and hit
+
+59
+00:03:51,510 --> 00:03:57,330
+save straight away you'll be able to see that the UI has changed saying hey everything in this bucket
+
+60
+00:03:57,360 --> 00:03:58,490
+is now public.
+
+61
+00:03:58,650 --> 00:04:04,320
+So going to use this bucket to store our MP three files and we're going to basically take some notes
+
+62
+00:04:04,380 --> 00:04:08,370
+and then generate MP three files using the poly service.
+
+63
+00:04:08,370 --> 00:04:10,370
+So go ahead and copy that into your clipboard.
+
+64
+00:04:10,370 --> 00:04:12,570
+This is the R N for the bucket.
+
+65
+00:04:12,570 --> 00:04:13,940
+Actually you just need the bucket name.
+
+66
+00:04:13,940 --> 00:04:18,150
+I don't think you need the IRS and so just copy the bucket name into your clipboard.
+
+67
+00:04:18,540 --> 00:04:23,190
+And then what we're gonna do I'm gonna go over to services and we're going to go down and find the poly
+
+68
+00:04:23,190 --> 00:04:29,370
+service so the poly service can be found on a machine learning and you'll see Amazon poly in here and
+
+69
+00:04:29,370 --> 00:04:31,020
+in here we can go and listen to this.
+
+70
+00:04:31,020 --> 00:04:38,050
+Now I don't know if you're gonna be able to hear this but I will read any text you typed here and put
+
+71
+00:04:38,360 --> 00:04:40,210
+in any text and will play it out.
+
+72
+00:04:40,400 --> 00:04:41,960
+So I'm going to because I'm Australian.
+
+73
+00:04:41,970 --> 00:04:46,430
+I'm gonna go over to Australia and I like Russell so I'm going to put Russell in here and then what
+
+74
+00:04:46,430 --> 00:04:48,790
+I want you to do is just paste some notes in here.
+
+75
+00:04:48,970 --> 00:04:51,650
+Among the easy to landing page you can write your own notes.
+
+76
+00:04:51,650 --> 00:04:55,850
+I'm just gonna copy this into my clipboard and go back over here in a paste this in here.
+
+77
+00:04:56,660 --> 00:05:01,810
+So we've basically is just saying Amazon's elastic compute cloud easy to as a web service that provides
+
+78
+00:05:01,820 --> 00:05:06,020
+I'm not going to read the whole thing too and then what I'm going to do is going to go down and clicked
+
+79
+00:05:06,080 --> 00:05:15,560
+synthesize to S S3 and in here I'm gonna type in my bucket name so it's a cloud guru Polly assets 2019
+
+80
+00:05:15,800 --> 00:05:21,170
+and I'm just going to maximise this and I'm gonna go ahead and hit synthesize and so that has now created
+
+81
+00:05:21,200 --> 00:05:28,640
+a task to synthesize this text into an MP 3 file and if we go down to our S3 synthesis tasks you'll
+
+82
+00:05:28,640 --> 00:05:33,800
+be able to see here that one is scheduled and this is one that I did earlier and that has had has now
+
+83
+00:05:33,800 --> 00:05:34,510
+completed.
+
+84
+00:05:35,030 --> 00:05:38,750
+So it does take a little bit of time can take a couple of minutes if you just hit refresh.
+
+85
+00:05:38,800 --> 00:05:43,490
+They actually took only a few seconds so that has now completed the task.
+
+86
+00:05:43,490 --> 00:05:50,270
+If we go back over to S3 we'll be able to see that MP 3 file which is sitting in our public bucket and
+
+87
+00:05:50,270 --> 00:05:51,620
+there it is there.
+
+88
+00:05:51,620 --> 00:05:56,510
+Now what we want to do is create an Alexis skill that will start playing these MP three files so you'll
+
+89
+00:05:56,510 --> 00:06:02,900
+be basically be able to say hey Alexa open study buddy or something like that and then it will read
+
+90
+00:06:02,900 --> 00:06:05,050
+you out a random AWP as fact.
+
+91
+00:06:05,060 --> 00:06:06,970
+So help you be able to study.
+
+92
+00:06:07,460 --> 00:06:11,780
+So let's go over to services and what we're gonna do is we're gonna go over to lambda and we're gonna
+
+93
+00:06:11,780 --> 00:06:14,040
+go and create a lambda function.
+
+94
+00:06:14,150 --> 00:06:16,810
+Now I would do this in Northern Virginia if I was you.
+
+95
+00:06:16,810 --> 00:06:22,540
+You need to do this in a region where the Alexa's triggers are enabled and they're only in certain regions
+
+96
+00:06:22,540 --> 00:06:23,940
+or around the world.
+
+97
+00:06:23,990 --> 00:06:26,590
+I think it's definitely Northern Virginia and Ireland.
+
+98
+00:06:26,660 --> 00:06:32,210
+I think there's one in Sydney but basically you need to do it in a region where the Alexa trigger is
+
+99
+00:06:32,210 --> 00:06:33,050
+enabled.
+
+100
+00:06:33,050 --> 00:06:34,640
+So I'm gonna do this in Northern Virginia.
+
+101
+00:06:34,640 --> 00:06:36,650
+I'm gonna go ahead and create my function.
+
+102
+00:06:36,650 --> 00:06:42,320
+Now you could go over to blueprints and type in Alexa but if you do that you'll see that they all say
+
+103
+00:06:42,350 --> 00:06:47,690
+please use the Alexa skills no James fax skill from the service application repository and just says
+
+104
+00:06:47,690 --> 00:06:50,040
+that for most of these skills.
+
+105
+00:06:50,150 --> 00:06:55,130
+So let's use the service application repository and these are basically service applications published
+
+106
+00:06:55,130 --> 00:06:59,920
+by AWB as well as Adobe as partners and other developers and you can just use them for free.
+
+107
+00:06:59,930 --> 00:07:02,830
+You don't need to know how to go ahead and program.
+
+108
+00:07:02,840 --> 00:07:03,860
+You can see this today.
+
+109
+00:07:03,860 --> 00:07:06,320
+Right now there's 434.
+
+110
+00:07:06,320 --> 00:07:09,790
+And what we're gonna do is we're gonna use the Alexa skills kit.
+
+111
+00:07:09,800 --> 00:07:11,300
+No J.S. fax skills.
+
+112
+00:07:11,300 --> 00:07:12,830
+We're gonna select this one.
+
+113
+00:07:13,250 --> 00:07:17,460
+And then what we're going to do is we're going to just leave everything as default.
+
+114
+00:07:17,650 --> 00:07:21,310
+And here we've got our permissions we don't need to really do anything here.
+
+115
+00:07:21,440 --> 00:07:28,310
+So we're just gonna go ahead and hit deploy and this will deploy our Alexis skill to lambda and then
+
+116
+00:07:28,340 --> 00:07:34,560
+that's it really what we need is the HRN and then we can go ahead and connect this up to the developer
+
+117
+00:07:34,610 --> 00:07:36,260
+dot Amazon.com.
+
+118
+00:07:36,310 --> 00:07:40,390
+So in here you can see your applications being deployed you go ahead and click on lambda.
+
+119
+00:07:40,400 --> 00:07:45,890
+Right now I've got zero lambda functions I would if I go back and just go back into lambda or you could
+
+120
+00:07:45,890 --> 00:07:52,040
+just refresh a page eventually you'll see that the service has been deployed and then we go that has
+
+121
+00:07:52,040 --> 00:07:57,320
+now been deployed and this is basically I think it's probably using cloud formation to deploy this out.
+
+122
+00:07:57,320 --> 00:08:02,210
+So let's go ahead and click in here and we'll be able to see our functions and you can see that we've
+
+123
+00:08:02,210 --> 00:08:07,940
+got the Alexis skills kit as a trigger so that's because this region supports the Alexis skills kit
+
+124
+00:08:08,000 --> 00:08:13,280
+as a trigger we scroll down to our IDC we'll be able to see our code.
+
+125
+00:08:13,400 --> 00:08:15,030
+Now you can go in and customize this.
+
+126
+00:08:15,050 --> 00:08:18,890
+Essentially this is the message that's going to read out.
+
+127
+00:08:18,890 --> 00:08:22,640
+So it's here's your fact and then it will this is your help message.
+
+128
+00:08:22,640 --> 00:08:26,620
+So if you get stuck it will say hey you can tell me a space fact et cetera et cetera.
+
+129
+00:08:26,660 --> 00:08:27,700
+This is a reprint.
+
+130
+00:08:27,720 --> 00:08:33,780
+So basically if you invoke the skill and then you just stay silent or say hey what can I help you with.
+
+131
+00:08:33,830 --> 00:08:36,440
+And then when you say stop it or say goodbye.
+
+132
+00:08:36,560 --> 00:08:37,880
+And these are your facts here.
+
+133
+00:08:37,880 --> 00:08:43,610
+So it's randomly going to choose one of these lines and it is completely random and you can add more.
+
+134
+00:08:43,640 --> 00:08:45,520
+Just make sure that you use these.
+
+135
+00:08:45,680 --> 00:08:47,600
+You basically use this exact format.
+
+136
+00:08:47,630 --> 00:08:52,860
+You can go in here and go copy and then you just add it to the very bottom.
+
+137
+00:08:53,020 --> 00:08:59,330
+You go paste and then let's just add my name as a random fact and we actually use this for all kinds
+
+138
+00:08:59,330 --> 00:09:02,580
+of purposes like if we have a raffle we just put people's names in.
+
+139
+00:09:02,580 --> 00:09:07,410
+So in fact in AWB this week we have competitions at the end of every week.
+
+140
+00:09:07,670 --> 00:09:12,050
+And basically if you answer a really hard question on our Facebook page you could win guru of the week
+
+141
+00:09:12,410 --> 00:09:18,440
+guru of the week is where you get a free sticker hand side card and T-shirt out to you on the post and
+
+142
+00:09:18,440 --> 00:09:23,930
+then you're in the draw to win a free ticket to reinvent and at the when we do the draw for reinvent
+
+143
+00:09:23,960 --> 00:09:29,600
+we use this exact skill and we just put every single person's name in here as different line.
+
+144
+00:09:29,720 --> 00:09:31,740
+And then we ask Alexa to pick one.
+
+145
+00:09:31,760 --> 00:09:34,130
+And that's how we draw the winner to reinvent.
+
+146
+00:09:34,130 --> 00:09:36,000
+So it is complete random.
+
+147
+00:09:36,000 --> 00:09:38,490
+So we use this skill personally as well.
+
+148
+00:09:38,730 --> 00:09:40,080
+So that is it.
+
+149
+00:09:40,080 --> 00:09:41,730
+I'm just gonna go ahead and hit save.
+
+150
+00:09:41,970 --> 00:09:43,880
+And so that has now saved our skill.
+
+151
+00:09:44,460 --> 00:09:47,670
+And the only thing you really need to take note of is our HRN.
+
+152
+00:09:47,670 --> 00:09:48,930
+We're going to need that.
+
+153
+00:09:49,260 --> 00:09:55,350
+So you just hit that icon and you're gonna need that to be able to create your skill so need you to
+
+154
+00:09:55,350 --> 00:09:57,960
+go over to developer dot Amazon dot com.
+
+155
+00:09:57,960 --> 00:09:59,790
+Now just sign up for a developer account.
+
+156
+00:09:59,910 --> 00:10:06,060
+If you do have an Alexa device make sure you use the same email that is registered to your Alexa device
+
+157
+00:10:06,090 --> 00:10:11,700
+because then you'll be able to literally use the skills straight away to go over to develop it at Amazon.com.
+
+158
+00:10:11,730 --> 00:10:14,450
+OK so I've signed into developer dot Amazon.com.
+
+159
+00:10:14,460 --> 00:10:16,610
+I'm gonna go ahead and hit on Amazon Alexa.
+
+160
+00:10:16,990 --> 00:10:19,550
+I got to click up here and go over to my skills.
+
+161
+00:10:19,560 --> 00:10:23,610
+I'm gonna go into my Alexa console and I'm gonna go go ahead and create a skill.
+
+162
+00:10:23,760 --> 00:10:29,100
+And what's really cool is we can get this skill a name so call it my study buddy something like that.
+
+163
+00:10:29,100 --> 00:10:35,550
+My study buddy the default language if you are in the UK or Australia or wherever.
+
+164
+00:10:35,550 --> 00:10:40,010
+Make sure you change this to match the default language on your Alexa device.
+
+165
+00:10:40,170 --> 00:10:45,720
+So if you are using the Australian one or the UK one change it if you want to keep everything simple.
+
+166
+00:10:45,720 --> 00:10:48,000
+Change your Alexa over to us.
+
+167
+00:10:48,150 --> 00:10:49,400
+English US.
+
+168
+00:10:49,440 --> 00:10:50,820
+I'm gonna leave this as default.
+
+169
+00:10:50,820 --> 00:10:57,990
+My Lexa is on English us and then we're just going to do custom and self hosted so that's already selected
+
+170
+00:10:58,170 --> 00:11:03,630
+so all you need to do is click up here and go create skill that will then go ahead and create our skill
+
+171
+00:11:03,960 --> 00:11:08,730
+and what's really cool is you can choose a template and we've already used the service application repository
+
+172
+00:11:08,730 --> 00:11:11,480
+for a fact skill and in here we just need to click on this.
+
+173
+00:11:11,520 --> 00:11:12,420
+That's it.
+
+174
+00:11:12,420 --> 00:11:13,590
+Go ahead and hit choose.
+
+175
+00:11:13,590 --> 00:11:15,990
+It is seriously that simple in here.
+
+176
+00:11:15,990 --> 00:11:18,190
+This is the Alexa development console.
+
+177
+00:11:18,210 --> 00:11:23,880
+Again if you want to learn more about this we do have an entire course on Alexa in here we've got the
+
+178
+00:11:23,880 --> 00:11:24,720
+invocation.
+
+179
+00:11:24,810 --> 00:11:28,110
+So what's the invocation name right now says space facts.
+
+180
+00:11:28,110 --> 00:11:32,730
+I'm gonna call a cloud layer less to cloud facts something like that.
+
+181
+00:11:32,730 --> 00:11:34,080
+That might be easy.
+
+182
+00:11:34,350 --> 00:11:39,120
+And then we're gonna go down and we're going to go ahead and save our model before we build our model.
+
+183
+00:11:39,120 --> 00:11:42,860
+The only other thing we need to do is go to our end point and inhere.
+
+184
+00:11:42,870 --> 00:11:50,820
+This is where we give our our skill the R in the lambda a R N so just pasted in there.
+
+185
+00:11:51,660 --> 00:11:55,740
+And so this is basically pointing our skill to our lambda function.
+
+186
+00:11:55,740 --> 00:12:01,410
+Once you've done that hits save endpoints then go back over to your get new fact intent.
+
+187
+00:12:01,410 --> 00:12:05,310
+You don't need to add anything in here but these are your sample utterances.
+
+188
+00:12:05,310 --> 00:12:11,370
+So you say hey Alexa ask cloud facts a fact or a space fact we might want to change this to a cloud
+
+189
+00:12:11,370 --> 00:12:11,760
+factor.
+
+190
+00:12:11,760 --> 00:12:18,740
+In fact let's add that in a cloud fact and gonna hit plus and that adds it to our utterances.
+
+191
+00:12:18,750 --> 00:12:23,550
+So an utterance is just a way of saying something is going to go ahead and save our model and then we're
+
+192
+00:12:23,550 --> 00:12:25,500
+gonna go ahead and build our model.
+
+193
+00:12:25,500 --> 00:12:27,880
+Now the build will take a little bit of time.
+
+194
+00:12:27,900 --> 00:12:31,620
+I'm just gonna pause the video because it takes a couple of minutes but as soon as it's built you will
+
+195
+00:12:31,620 --> 00:12:36,420
+see a little notification down here saying that it's done and you can see down here that the build is
+
+196
+00:12:36,420 --> 00:12:37,770
+now successful.
+
+197
+00:12:37,820 --> 00:12:39,620
+I could go over to test.
+
+198
+00:12:39,630 --> 00:12:45,030
+I should be able to test this and we're just going to turn the test on to development and that will
+
+199
+00:12:45,030 --> 00:12:50,480
+allow us to test and then what we can do is say open cloud facts.
+
+200
+00:12:50,500 --> 00:12:52,000
+I think it's cloud fact.
+
+201
+00:12:52,000 --> 00:12:52,740
+Let's have a look.
+
+202
+00:12:53,370 --> 00:12:54,250
+Here's your fact.
+
+203
+00:12:54,450 --> 00:12:58,380
+Jupiter has the shortest day of all the planet so it is definitely working.
+
+204
+00:12:58,380 --> 00:13:02,370
+And over here you can see this is the input and then this is the output.
+
+205
+00:13:02,370 --> 00:13:04,650
+This is our lambda function talking back to us.
+
+206
+00:13:04,680 --> 00:13:11,660
+And you can see that it has speak so sort of like h t Mellon that it's actually called SSA SS AML which
+
+207
+00:13:11,680 --> 00:13:14,990
+stands for synthesis speech markup language so to speak.
+
+208
+00:13:15,000 --> 00:13:15,870
+Here's your fact.
+
+209
+00:13:15,870 --> 00:13:20,670
+Jupiter has the shortest day of all the planets and it got that from our lambda function.
+
+210
+00:13:20,670 --> 00:13:27,060
+If we go back over here what we can do is we can just go through and delete all these other facts.
+
+211
+00:13:27,120 --> 00:13:30,350
+So if I just go in and delete that so I've only got one fact.
+
+212
+00:13:30,360 --> 00:13:37,620
+Now if I hit save and then I go back over to my developer console sorry it's over here and I say let's
+
+213
+00:13:38,040 --> 00:13:42,960
+open cloud fact again and should just read out my now.
+
+214
+00:13:43,120 --> 00:13:43,750
+Word.
+
+215
+00:13:44,010 --> 00:13:45,850
+Now we go it just read out my name.
+
+216
+00:13:45,900 --> 00:13:53,100
+So the last thing we want to do is we want to essentially point our fact to our S3 Buckets to our MP
+
+217
+00:13:53,100 --> 00:13:59,530
+3 file that Polly just generated so to do that let's go over to services and we'll go over to S3 and
+
+218
+00:13:59,550 --> 00:14:01,340
+then all you want to do is click on the bucket.
+
+219
+00:14:01,350 --> 00:14:02,360
+So a cloud guru.
+
+220
+00:14:02,360 --> 00:14:05,700
+Polly assets click in here and just grab this.
+
+221
+00:14:05,700 --> 00:14:08,450
+You are allowed to copy that into your clipboard.
+
+222
+00:14:08,640 --> 00:14:14,590
+Then we want to go back over to our lambda function and we're just gonna go in here and we're going
+
+223
+00:14:14,590 --> 00:14:16,080
+to add one little edit.
+
+224
+00:14:16,590 --> 00:14:21,150
+So in here if we scroll all the way down just scroll up so it's easy to see.
+
+225
+00:14:21,300 --> 00:14:24,450
+We've got we've got our data in here.
+
+226
+00:14:24,450 --> 00:14:31,190
+So instead of saying Ryan Kronenberg let's go ahead and paste our link in here now to make it talk.
+
+227
+00:14:31,320 --> 00:14:33,380
+You can see there's an example here.
+
+228
+00:14:33,480 --> 00:14:36,170
+So it's audio see and then the link.
+
+229
+00:14:36,200 --> 00:14:41,270
+This is a super useful reference guide to doing stuff with Alexis I'm gonna leave this in the resources
+
+230
+00:14:41,270 --> 00:14:42,690
+section of the course.
+
+231
+00:14:42,830 --> 00:14:50,440
+I've got our Euro in here or we now need to do is go audio and then source then equals and we're gonna
+
+232
+00:14:50,480 --> 00:14:58,560
+do our double quotations and then a forward slash sorry backslash and then we go all the way to the
+
+233
+00:14:58,560 --> 00:15:05,070
+end and then another backslash and then end quotations and then forward slash and then close it out.
+
+234
+00:15:05,070 --> 00:15:10,070
+And so then we're gonna go ahead and hit save and that is now save let's go ahead and test this.
+
+235
+00:15:10,110 --> 00:15:17,370
+So if we go over to here we can go in and just say open cloud fact and hit enter.
+
+236
+00:15:17,970 --> 00:15:21,620
+And that's there we go.
+
+237
+00:15:21,630 --> 00:15:24,520
+Russell's reading it out in a Australian accent.
+
+238
+00:15:24,520 --> 00:15:30,490
+I'm just going to mute it but it is now playing our facts so you can go and use police service to output
+
+239
+00:15:30,520 --> 00:15:37,750
+all your notes to your S3 bucket and then you can basically so long as you map back the empty threes
+
+240
+00:15:37,750 --> 00:15:44,950
+here as it as a individually New Line your Alexis skill then read this out to you and to open this up
+
+241
+00:15:45,430 --> 00:15:51,080
+in your developer account or you need to do is use the invocations you just need to say Alexa open cloud
+
+242
+00:15:51,080 --> 00:15:51,600
+fact.
+
+243
+00:15:51,910 --> 00:15:53,830
+So that is it for this lecture everyone.
+
+244
+00:15:53,830 --> 00:15:55,300
+I hope you had an awful lot of fun.
+
+245
+00:15:55,300 --> 00:16:00,460
+Like I said on the cloud guru platform we have heaps of different videos to show you how to build all
+
+246
+00:16:00,460 --> 00:16:04,900
+kinds of different Alexis skills so make sure you check it out in the next lecture early on to go ahead
+
+247
+00:16:04,960 --> 00:16:06,940
+and have a look at Adobe a step function.
+
+248
+00:16:06,940 --> 00:16:09,150
+So if you've got the time please join me in the next lecture.
+
+249
+00:16:09,160 --> 00:16:09,540
+Thank you.

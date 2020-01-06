@@ -1,0 +1,243 @@
+1
+00:00:00,250 --> 00:00:00,930
+OK.
+
+2
+00:00:00,930 --> 00:00:02,910
+Heller cloggers and welcome to this lecture.
+
+3
+00:00:02,910 --> 00:00:06,020
+This is the very last lecture before our summary lecture.
+
+4
+00:00:06,030 --> 00:00:11,700
+And we're going to cover off advents API gateway so we covered it off at a very sort of basic level.
+
+5
+00:00:11,700 --> 00:00:16,540
+There's a few more things you need to know about API Gateway before you go in and do your exams.
+
+6
+00:00:16,650 --> 00:00:22,970
+The very first one is that you can import API so you can use the API gateway import feature.
+
+7
+00:00:23,130 --> 00:00:30,990
+And basically you can import swagga to definition files and so you can either create a new API by submitting
+
+8
+00:00:30,990 --> 00:00:34,200
+a request that includes a swagga definition in the payload.
+
+9
+00:00:34,220 --> 00:00:40,770
+And in point configuration where you can update an existing API by using a put request that contains
+
+10
+00:00:40,820 --> 00:00:47,730
+a swagga definition file in the payload and you can update an API by overwriting it with a new definition
+
+11
+00:00:47,730 --> 00:00:50,960
+or merge a definition with an existing API.
+
+12
+00:00:51,150 --> 00:00:56,160
+And then you just specify the options using a mode query parameter in the request you Aro Let's have
+
+13
+00:00:56,160 --> 00:00:58,770
+a look at how he did this in the ABS console.
+
+14
+00:00:59,220 --> 00:00:59,460
+OK.
+
+15
+00:00:59,460 --> 00:01:06,180
+So here I am in the U.S. So just go over to services we want API gateway which is going to be and network
+
+16
+00:01:06,240 --> 00:01:07,650
+and content delivery.
+
+17
+00:01:07,950 --> 00:01:13,800
+And then if we want to go ahead and create a new API just create API and you can see here that we can
+
+18
+00:01:13,920 --> 00:01:19,380
+import from a swag of files so you could open up your swagga phone paste it in here or you can go ahead
+
+19
+00:01:19,380 --> 00:01:24,570
+and select it and then you basically just go forward and configure it as usual.
+
+20
+00:01:24,570 --> 00:01:27,150
+So if you do have a Swagel file go ahead and try that.
+
+21
+00:01:27,180 --> 00:01:28,390
+Most important thing too.
+
+22
+00:01:28,440 --> 00:01:31,320
+I'm not going to go through it in a lot of detail.
+
+23
+00:01:31,320 --> 00:01:36,750
+Most important thing going into your exam is just to remember that you can import existing API is using
+
+24
+00:01:36,750 --> 00:01:38,210
+swagga files.
+
+25
+00:01:38,250 --> 00:01:44,040
+Moving on to API rustlings So Amazon do throstle API gateway and they throttle it two different ways
+
+26
+00:01:44,130 --> 00:01:51,270
+so you can basically the API gateway limits the steady state requests limit to 10000 requests per second
+
+27
+00:01:51,300 --> 00:01:51,800
+or up.
+
+28
+00:01:51,810 --> 00:01:52,500
+Yes.
+
+29
+00:01:52,530 --> 00:01:57,730
+So you can only have 10000 requests per second on your API gateway.
+
+30
+00:01:57,810 --> 00:02:01,850
+The maximum number of concurrent requests is 5 0 0 0 0 requests.
+
+31
+00:02:01,860 --> 00:02:04,100
+And this is across all API is with it.
+
+32
+00:02:04,110 --> 00:02:06,020
+An AWOS account.
+
+33
+00:02:06,090 --> 00:02:13,980
+So you don't need to do 10000 over 1 second or 5000 concurrent requests so at the very same time I mean
+
+34
+00:02:13,980 --> 00:02:19,500
+if you go over the 10000 requests per second or 5000 concurrent requests then you're going to receive
+
+35
+00:02:19,530 --> 00:02:23,770
+a 8:56 to many requests for a response.
+
+36
+00:02:23,990 --> 00:02:25,850
+And so let's have a look at some examples.
+
+37
+00:02:25,850 --> 00:02:32,640
+So in example one we've got 10000 requests in one second but it's spread over the period evenly so 10
+
+38
+00:02:32,640 --> 00:02:38,160
+requests every millisecond an API Gateway will process all these requests without dropping any because
+
+39
+00:02:38,160 --> 00:02:44,310
+you are allowed ten thousand in one second if the caller sends 10000 requests in the first millisecond
+
+40
+00:02:44,790 --> 00:02:50,940
+API gateway is only going to serve 5000 that because you can only have 5000 concurrent requests if a
+
+41
+00:02:50,940 --> 00:02:55,510
+colos submits 5000 requests in the first millisecond and then evenly spread.
+
+42
+00:02:55,560 --> 00:03:02,910
+Another 5000 requests through the remaining 999 milliseconds then API Gateway will process all of the
+
+43
+00:03:02,910 --> 00:03:07,410
+10000 requests in the one second period without returning a 8:56.
+
+44
+00:03:07,410 --> 00:03:12,980
+So just remember 5000 concurrent requests or 10000 requests per second.
+
+45
+00:03:13,170 --> 00:03:20,200
+And then finally you can use API gateway as a soap web service passed through us if you do have a older
+
+46
+00:03:20,220 --> 00:03:26,430
+soap box now sort of API that you've created maybe with your legacy company.
+
+47
+00:03:26,430 --> 00:03:30,850
+You can definitely configure API gateway to communicate with that service.
+
+48
+00:03:31,050 --> 00:03:35,340
+The steps on how to do it there's a blog here I'll put it in the link below.
+
+49
+00:03:35,370 --> 00:03:38,160
+Again it's beyond the scope that this course you just need to understand.
+
+50
+00:03:38,180 --> 00:03:43,920
+The exam that yes it is possible and if you want to find out how to do it go check out that blog.
+
+51
+00:03:43,920 --> 00:03:45,060
+So what are my exam tips.
+
+52
+00:03:45,060 --> 00:03:51,840
+Well like I just said import API is using swagga to definition files API gateway can be throttled and
+
+53
+00:03:51,840 --> 00:03:58,030
+your default limits ten thousand requests for a second or 5000 concurrently and you can configure the
+
+54
+00:03:58,130 --> 00:04:04,020
+gateway as a soap web service passed three by the way if you want to lift those throttling limits you
+
+55
+00:04:04,020 --> 00:04:06,990
+can do that inside API gateway as well.
+
+56
+00:04:07,170 --> 00:04:11,560
+But you're obviously going to incur further charges so just be aware of that.
+
+57
+00:04:11,580 --> 00:04:15,980
+So that is it for the whole theory and Lap's for this section of the course in the very next lecture
+
+58
+00:04:15,980 --> 00:04:18,190
+we're just going to cover up everything we've learnt.
+
+59
+00:04:18,210 --> 00:04:19,420
+And then you're ready to move on.
+
+60
+00:04:19,420 --> 00:04:21,360
+So if you've got the time please join me in the next picture.
+
+61
+00:04:21,390 --> 00:04:21,840
+Thank you.

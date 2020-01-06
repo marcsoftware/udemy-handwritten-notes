@@ -1,0 +1,491 @@
+1
+00:00:01,660 --> 00:00:07,830
+Hello Clockers and welcome to this lecture and this lecture is going to be a lap and we are going to
+
+2
+00:00:07,860 --> 00:00:14,700
+be configuring a company to use a pool and we're going to take a look at the built in sign up and sign
+
+3
+00:00:14,700 --> 00:00:22,140
+in functionality provided by cognito which allows you to manage your users who need to sign into your
+
+4
+00:00:22,140 --> 00:00:25,770
+web applications and your mobile applications.
+
+5
+00:00:25,830 --> 00:00:30,510
+So if you've got time please join me in the U.S. consul.
+
+6
+00:00:30,540 --> 00:00:38,730
+So here I am in the AWOS consul and you'll find cognito and security identity and compliance.
+
+7
+00:00:38,730 --> 00:00:45,070
+So just click on cognito click on manage user polls and create a usable.
+
+8
+00:00:45,390 --> 00:00:50,170
+So the first thing we need to do is give it a name and I'm just going to call it test poll.
+
+9
+00:00:50,350 --> 00:00:56,660
+Click on review the votes and we can just keep to all of the defaults that you see here.
+
+10
+00:00:56,940 --> 00:01:01,590
+And there's various things that you can change and you can configure for yourself things like the password
+
+11
+00:01:01,590 --> 00:01:08,230
+length the policy you can enable multi-factor authentication but we can stick with the defaults.
+
+12
+00:01:08,330 --> 00:01:11,050
+I'm going to go ahead and click Create pool.
+
+13
+00:01:11,100 --> 00:01:13,000
+So that has been created successfully.
+
+14
+00:01:14,030 --> 00:01:22,200
+And I'm just going to scroll down to app clients and click on Add app client and the app client is what
+
+15
+00:01:22,200 --> 00:01:25,290
+we used to call the various IPs on our behalf.
+
+16
+00:01:25,290 --> 00:01:32,640
+For example the API to register a new user or to sign in a user so click on Add app client and we need
+
+17
+00:01:32,640 --> 00:01:34,080
+to give it a name.
+
+18
+00:01:34,080 --> 00:01:38,480
+I'm just going to call it my test client.
+
+19
+00:01:38,640 --> 00:01:40,860
+And once again just stick to the default.
+
+20
+00:01:40,860 --> 00:01:44,110
+So you should have generate secret selected.
+
+21
+00:01:44,430 --> 00:01:48,930
+So just click on Create a plant and now we need to configure the app.
+
+22
+00:01:48,960 --> 00:01:55,000
+So just click on uptalk settings and we need to enable an identity provider for all application.
+
+23
+00:01:55,120 --> 00:02:01,180
+And so just select Kokanee toat use a poll and then next thing we need to do is we need to configure
+
+24
+00:02:01,180 --> 00:02:07,680
+a Colback you Oreilles and a Colback QOL is really is just going to be the you RL that your users are
+
+25
+00:02:07,680 --> 00:02:13,820
+going to be redirected to after they have successfully signed in or signed up just for this demo.
+
+26
+00:02:13,830 --> 00:02:19,380
+We're going to use HTP s Fulwood slash example dot com.
+
+27
+00:02:19,440 --> 00:02:24,030
+So it's just going to be a dummy Web site but in reality if you have your own web application you could
+
+28
+00:02:24,030 --> 00:02:27,400
+use whichever Web site you want your users to land on.
+
+29
+00:02:27,420 --> 00:02:32,540
+Once they have signed into the application we don't need to configure us you around.
+
+30
+00:02:32,550 --> 00:02:34,300
+So I'm just going to leave that blank now.
+
+31
+00:02:35,240 --> 00:02:41,510
+And then under the oath to section I'm going to select the first two options.
+
+32
+00:02:41,600 --> 00:02:47,930
+So authorization code grants so that it's going to configure cognito to give you back an authorization
+
+33
+00:02:47,930 --> 00:02:54,450
+code which you can provide back to your to your backend authorization process and the implicit Graun
+
+34
+00:02:54,760 --> 00:02:57,350
+but just gives you the JWT token.
+
+35
+00:02:57,530 --> 00:03:03,400
+So that means when we go to test the configuration we'll be able to view that JWT token and under a
+
+36
+00:03:03,400 --> 00:03:04,190
+cloud.
+
+37
+00:03:04,340 --> 00:03:06,480
+Scope's I'm just going to select everything.
+
+38
+00:03:06,560 --> 00:03:10,340
+So the phone an e-mail that is just for user verification.
+
+39
+00:03:10,340 --> 00:03:15,770
+So when you first sign it sign up they'll send you an email just to get you to verify your e-mail is
+
+40
+00:03:15,770 --> 00:03:16,850
+correct.
+
+41
+00:03:17,060 --> 00:03:19,770
+And then we're going to select these three as well.
+
+42
+00:03:20,150 --> 00:03:27,140
+And if you're not familiar with o'th it is simply an open standard authentication framework and by selecting
+
+43
+00:03:27,170 --> 00:03:32,930
+all of these old scopes this is just going to grant access to the cognito API.
+
+44
+00:03:33,110 --> 00:03:37,040
+So all of the API operations like the sign in and sign up.
+
+45
+00:03:37,040 --> 00:03:42,940
+And also it's going to give us access to the JWT token that cognito will return.
+
+46
+00:03:43,100 --> 00:03:46,420
+You can learn more about the water flows and scopes.
+
+47
+00:03:46,430 --> 00:03:49,890
+If you click on this link here just open up in a new tab.
+
+48
+00:03:50,150 --> 00:03:55,040
+And it just takes you straight to the computer documentation so you can read all about that at your
+
+49
+00:03:55,040 --> 00:03:55,470
+leisure.
+
+50
+00:03:55,480 --> 00:03:59,290
+But it is out of sight for the exam you do not need to learn it for the exam.
+
+51
+00:03:59,450 --> 00:04:06,560
+So I'm just going to go ahead and click save changes then head over to domain name and we need to create
+
+52
+00:04:06,560 --> 00:04:11,220
+a domain prefix for Amazon company type domain and you can just make one up.
+
+53
+00:04:11,240 --> 00:04:13,410
+I'm just going to call it ICG test.
+
+54
+00:04:13,460 --> 00:04:19,210
+Click on check availability and if it's available then we can go ahead and site changes.
+
+55
+00:04:19,310 --> 00:04:25,130
+And this just applies this domain prefix to the cognito domain that it's creating for you.
+
+56
+00:04:25,310 --> 00:04:31,220
+And then the last thing I'm going to do is you customization so you can customize cognito or the look
+
+57
+00:04:31,310 --> 00:04:36,140
+and feel of the sign in and sign up page as you want so you can add a logo.
+
+58
+00:04:36,140 --> 00:04:43,740
+You can customize the labels the input fields text descriptions Banas et cetera et cetera.
+
+59
+00:04:43,820 --> 00:04:47,440
+So I'm just going to add a logo to all sign up page.
+
+60
+00:04:47,450 --> 00:04:50,420
+I'm just going to add the cloud good logo.
+
+61
+00:04:50,600 --> 00:04:56,200
+Select that file keep everything else as the default and click save.
+
+62
+00:04:56,210 --> 00:04:59,600
+So now we have configured everything we need for cognito.
+
+63
+00:04:59,750 --> 00:05:06,800
+So cognito is going to create a built in sign up and sign in page based on our configuration.
+
+64
+00:05:06,800 --> 00:05:09,950
+So let's test it and see if it's working.
+
+65
+00:05:09,950 --> 00:05:17,500
+So the first thing I'm going to do is go to app integration grab my cognito to my name.
+
+66
+00:05:17,500 --> 00:05:21,810
+Copy that to a new tab and just paste that.
+
+67
+00:05:21,820 --> 00:05:27,240
+But we need to add a few additional parameters as well in order to test this properly.
+
+68
+00:05:27,250 --> 00:05:38,750
+So I'm just going to type in slash in question mark and then response underscore type it ECOs token
+
+69
+00:05:38,840 --> 00:05:43,160
+because you want it to respond with a token then ampersand.
+
+70
+00:05:44,610 --> 00:05:54,140
+And clients underscore already equals they're going to come back to cognito go to my client settings
+
+71
+00:05:54,530 --> 00:05:56,840
+grepped my ID and don't worry.
+
+72
+00:05:56,870 --> 00:06:02,540
+There's quite a lot to type into the browser here but that will all be provided in the resources section
+
+73
+00:06:02,600 --> 00:06:03,620
+of the course.
+
+74
+00:06:04,400 --> 00:06:13,110
+The next thing we need to do is ampersand and redirect underscore you or I ECOs.
+
+75
+00:06:13,340 --> 00:06:19,470
+I'm just going to copy and paste it from my client's settings to make sure I spell it exactly the same.
+
+76
+00:06:19,490 --> 00:06:24,560
+You want to make sure this is really the same because if you accidently type it differently it's not
+
+77
+00:06:24,560 --> 00:06:25,490
+going to work.
+
+78
+00:06:25,700 --> 00:06:30,050
+And then I'm going to hit enter on if that's worked correctly for you.
+
+79
+00:06:30,050 --> 00:06:31,410
+This is what you should see.
+
+80
+00:06:31,630 --> 00:06:38,720
+And this is the sign up and sign in page that cognito has created for us and it's all completely in.
+
+81
+00:06:38,720 --> 00:06:41,210
+We don't have to write any of the code for this.
+
+82
+00:06:41,210 --> 00:06:45,290
+It's just all based on the options that we configured within all user poll.
+
+83
+00:06:45,320 --> 00:06:50,250
+And when we set up our app client so we don't have any users yet in on user poll.
+
+84
+00:06:50,270 --> 00:06:52,370
+So we need to create a new use us.
+
+85
+00:06:52,400 --> 00:06:58,910
+I'm just going to create a new account and I'm going to call it fe at my email address in Crais a password
+
+86
+00:06:59,330 --> 00:07:05,300
+and you'll see it's making sure that we adhere to the password policy then hit sign up and because we
+
+87
+00:07:05,540 --> 00:07:09,120
+were selected to send a verification code by email.
+
+88
+00:07:09,240 --> 00:07:14,300
+So it's going to send a verification code to the email address that I've used to sign up with.
+
+89
+00:07:14,300 --> 00:07:16,690
+So I'm just going to go and check my e-mail now.
+
+90
+00:07:16,760 --> 00:07:20,040
+And there's my e-mail with my verification codes just going to keep it up.
+
+91
+00:07:20,060 --> 00:07:25,580
+Come back to my site in page paste in the verification code and click confirm account.
+
+92
+00:07:25,730 --> 00:07:30,790
+So there we are we've signed in and it's taken me to the test domain the example to mine.
+
+93
+00:07:30,980 --> 00:07:37,040
+And if you look at the top of your browser you'll see the I.D. tokens are the JWT token that cognito
+
+94
+00:07:37,040 --> 00:07:39,590
+has generated for you.
+
+95
+00:07:39,590 --> 00:07:45,740
+Now if we go back to our use the pools go into users and groups hit refresh.
+
+96
+00:07:45,740 --> 00:07:51,440
+You should see the user that we just created and we think Kokanee you can also set up groups as well.
+
+97
+00:07:51,440 --> 00:07:56,960
+So you can go and you can create a group and you can also select an identity access management role
+
+98
+00:07:56,990 --> 00:07:57,410
+as well.
+
+99
+00:07:57,410 --> 00:08:04,160
+So for example you could select a role to give access to S-3 create that group and then you could actually
+
+100
+00:08:04,220 --> 00:08:05,180
+add users in.
+
+101
+00:08:05,180 --> 00:08:09,150
+So you can add your company to users into that group.
+
+102
+00:08:11,940 --> 00:08:17,550
+So you can actually build out groups of users within your cognito directory and you can assign them
+
+103
+00:08:17,600 --> 00:08:23,130
+an identity access management role associated with a specific cognito group.
+
+104
+00:08:23,130 --> 00:08:29,910
+So these roles can then be used to access AWOS services like files in S-3 dynamite Eby tables that kind
+
+105
+00:08:29,910 --> 00:08:30,540
+of thing.
+
+106
+00:08:30,570 --> 00:08:36,210
+And if we move down to Federation and click on identity providers you'll find the different identity
+
+107
+00:08:36,210 --> 00:08:40,320
+providers the cognito confederate with on your behalf as well.
+
+108
+00:08:40,500 --> 00:08:47,430
+So you've got Facebook Google Amazon Sammul which refers to any small compliant directories that could
+
+109
+00:08:47,430 --> 00:08:53,670
+be active directory for example and also open ID and configuring all of this is really beyond the scope
+
+110
+00:08:53,730 --> 00:08:54,630
+of the exam.
+
+111
+00:08:54,630 --> 00:08:58,590
+The main thing you really need to know is what is cognito a high level.
+
+112
+00:08:58,590 --> 00:09:04,760
+So just remember it allows you to manage user identity for your mobile and web applications integrates
+
+113
+00:09:04,770 --> 00:09:08,480
+with Facebook Google Amazon and other identity providers.
+
+114
+00:09:08,610 --> 00:09:14,110
+And is the recommended approach for users sign up and sign in for mobile applications.
+
+115
+00:09:14,190 --> 00:09:15,860
+So that is the end of this lab.
+
+116
+00:09:15,900 --> 00:09:21,530
+If you'd like to delete all of your cognito sets up the first thing you need to do is delete your domain.
+
+117
+00:09:21,540 --> 00:09:23,820
+So just go ahead and delete that domain.
+
+118
+00:09:23,880 --> 00:09:28,320
+And then once you've done that it will allow you to go to general settings and then you can delete your
+
+119
+00:09:28,320 --> 00:09:29,520
+pool as well.
+
+120
+00:09:29,520 --> 00:09:30,730
+So that's the end of this lecture.
+
+121
+00:09:30,750 --> 00:09:32,840
+If you have any questions please let me know.
+
+122
+00:09:33,000 --> 00:09:35,120
+If not feel free to move on to the next lecture.
+
+123
+00:09:35,130 --> 00:09:35,690
+Thank ye.

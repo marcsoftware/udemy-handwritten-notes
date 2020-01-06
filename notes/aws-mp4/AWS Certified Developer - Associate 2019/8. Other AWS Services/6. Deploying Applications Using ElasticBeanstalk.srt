@@ -1,0 +1,275 @@
+1
+00:00:00,750 --> 00:00:05,970
+OK hello cloggers and welcome to this lecture this lecture we're going to look at how we can deploy
+
+2
+00:00:06,030 --> 00:00:08,830
+applications with elastic beanstalk.
+
+3
+00:00:09,030 --> 00:00:12,790
+So I've created two very very simple web sites.
+
+4
+00:00:12,960 --> 00:00:14,920
+We've got version one and version two.
+
+5
+00:00:14,920 --> 00:00:20,580
+You'll be able to download version one in this sleb and in the next lab you'll be able to download version
+
+6
+00:00:20,580 --> 00:00:22,390
+to it's in the resources section.
+
+7
+00:00:22,600 --> 00:00:24,870
+So do you go ahead and download that.
+
+8
+00:00:24,870 --> 00:00:31,590
+Basically it's an index dot page pay photo and a photo of a shirt that we have called AWOS this week
+
+9
+00:00:31,590 --> 00:00:37,060
+which is a show we run every single week to keep you updated with AWOS it's on our YouTube channel.
+
+10
+00:00:37,320 --> 00:00:43,940
+So what we're going to do is we're going to deploy this app in a PH P Apache stack using elastic beanstalk.
+
+11
+00:00:43,940 --> 00:00:46,890
+So once you've downloaded it just keep it as a zip file.
+
+12
+00:00:46,890 --> 00:00:51,100
+You don't need to unzip it unless you want to have a look at the files and then you need to log into
+
+13
+00:00:51,150 --> 00:00:52,660
+the AWOS console.
+
+14
+00:00:52,950 --> 00:00:59,020
+OK so here I am in the console consul going to go over to services elastic beanstalk sits under a computer
+
+15
+00:00:59,070 --> 00:01:05,430
+you can see it here and cloud formation actually sits under management tools cloud formation as a way
+
+16
+00:01:05,430 --> 00:01:11,070
+of scripting your infrastructure whereas elastic beanstalk is a way of provisioning your environments
+
+17
+00:01:11,070 --> 00:01:12,970
+using a Cooey effectively.
+
+18
+00:01:12,990 --> 00:01:17,190
+So we're going to click on elastic Bhain Stolk and you'll see this splash screen if you haven't used
+
+19
+00:01:17,190 --> 00:01:17,810
+it before.
+
+20
+00:01:17,820 --> 00:01:20,230
+I'm currently in the Northern Virginia region.
+
+21
+00:01:20,230 --> 00:01:26,180
+I'm going to go ahead and get started and I'm going to call this application name let's call it hello
+
+22
+00:01:26,220 --> 00:01:27,970
+cloud gears.
+
+23
+00:01:28,200 --> 00:01:33,960
+Now the platform I'm going to choose ph pay and then I'm going to instead of using a sample application
+
+24
+00:01:33,960 --> 00:01:39,360
+I'm going to upload my code to I'm just going to click upload and then it says source code origin local
+
+25
+00:01:39,360 --> 00:01:45,550
+file choose file and you can see my two files in here we've got version one and version 2.
+
+26
+00:01:45,550 --> 00:01:47,640
+I'm going to use version 1 for this.
+
+27
+00:01:47,660 --> 00:01:51,990
+Gonna go ahead and hit open then I'm just going to go over here and hit upload.
+
+28
+00:01:51,990 --> 00:01:57,750
+That is now uploading it is actually uploading it to and S-3 bucket which it's going to create and then
+
+29
+00:01:57,750 --> 00:02:00,760
+I'm going to go ahead and hit create application.
+
+30
+00:02:00,990 --> 00:02:03,030
+So this can take a little bit of time.
+
+31
+00:02:03,030 --> 00:02:06,980
+It can take about basically five or six minutes.
+
+32
+00:02:07,090 --> 00:02:12,120
+So I'm just going to pause the video and wait for my lastic beanstalk environment to come online.
+
+33
+00:02:12,120 --> 00:02:16,480
+A case that took about four minutes you can see here it says successfully launched environment.
+
+34
+00:02:16,480 --> 00:02:18,810
+Hello cloud gurus EMV.
+
+35
+00:02:18,840 --> 00:02:22,190
+So if I could go and click on applications I'll be able to see it in here.
+
+36
+00:02:22,200 --> 00:02:23,300
+Hello cloggers.
+
+37
+00:02:23,340 --> 00:02:24,350
+Ian Vink.
+
+38
+00:02:24,390 --> 00:02:28,580
+And then if I click in here I'll be able to see that it's up and running.
+
+39
+00:02:28,770 --> 00:02:31,830
+And hopefully if I click this link we should get a live web site.
+
+40
+00:02:31,860 --> 00:02:33,650
+And here we go hello cloggers.
+
+41
+00:02:33,660 --> 00:02:35,300
+This is version 1.
+
+42
+00:02:35,370 --> 00:02:35,840
+Ms.
+
+43
+00:02:35,840 --> 00:02:40,350
+Fey doing AWOS this week so deep Lyn's is now general availability.
+
+44
+00:02:40,350 --> 00:02:44,940
+We actually just ordered one into the office so expect some courses on that soon.
+
+45
+00:02:45,030 --> 00:02:49,560
+And if you actually click on the link you'll be able to see our YouTube channel and you'll be able to
+
+46
+00:02:49,560 --> 00:02:54,630
+subscribe I would recommend subscribing because it's the easiest way to keep up to date with AWOS every
+
+47
+00:02:54,630 --> 00:02:58,160
+week you can see that the videos are between two to three minutes long.
+
+48
+00:02:58,170 --> 00:03:00,330
+So very easy to watch on your way to work.
+
+49
+00:03:00,330 --> 00:03:06,350
+So back in the AWOS console I'm back in my elastic store environment in here we've got our configuration
+
+50
+00:03:06,360 --> 00:03:09,520
+so this is how we go and configure our environment.
+
+51
+00:03:09,540 --> 00:03:12,150
+Right now we're just using a T1 micro.
+
+52
+00:03:12,180 --> 00:03:13,730
+It's a very basic instance.
+
+53
+00:03:13,770 --> 00:03:19,710
+We could go in here and add additional instances going here and can figure out load balances in here
+
+54
+00:03:19,710 --> 00:03:21,660
+we've got our deployment policies.
+
+55
+00:03:21,660 --> 00:03:25,030
+How do we do updates to our Web site.
+
+56
+00:03:25,080 --> 00:03:29,610
+And we're going to cover that off in a lot of detail in the next lecture because that is basically the
+
+57
+00:03:29,610 --> 00:03:33,080
+main thing you're going to be tested on going into your developers so shit.
+
+58
+00:03:33,100 --> 00:03:35,800
+Exam on elastic Bane's still.
+
+59
+00:03:36,000 --> 00:03:41,790
+Over here we have our logos health monitoring alarms managed updates manage updates basically where
+
+60
+00:03:41,790 --> 00:03:49,560
+you can configure updates to your operating system updates to let's say page Fe or two you know Apache
+
+61
+00:03:49,560 --> 00:03:51,420
+or something like that.
+
+62
+00:03:51,630 --> 00:03:54,860
+And you do this during it to find predefined configuration window.
+
+63
+00:03:54,860 --> 00:04:00,550
+So might be at 3 a.m. every Sunday in town here with events and tags as well.
+
+64
+00:04:00,570 --> 00:04:02,170
+So let's go back to what dashboard.
+
+65
+00:04:02,340 --> 00:04:04,200
+I am going to end the lecture here.
+
+66
+00:04:04,200 --> 00:04:09,210
+We are going to go ahead and learn all about updates like I said that that is pretty much the most important
+
+67
+00:04:09,210 --> 00:04:11,970
+thing to know going into the developer associate exam.
+
+68
+00:04:12,090 --> 00:04:14,230
+So if you've got the time please join me in the next lecture.
+
+69
+00:04:14,280 --> 00:04:14,630
+Thank you.

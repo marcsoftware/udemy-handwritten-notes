@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+
+<html>
+<script type="text/javascript">
+
+    function goGuide(){
+        document.getElementById('output_guide').value='';
+         var input=document.getElementById('input').value;
+
+        //input=input.replace(/[\ \t]+/g," ");//turn multiple-spaces into one-space
+
+         //input=input.replace(/\ [\ ]+/g,"{MARKED}");
+         input=input.split("\n");
+
+        for(var i=0;i<input.length;i++){
+            parseGuide(input[i]);
+        }
+
+
+    }
+    function go(type){
+
+        document.getElementById('output').value='';
+        var input=document.getElementById('input').value;
+
+        //input=input.replace(/\ [\ ]+/g,"{MARKED}");
+        
+        input=input.split('\n');
+
+        for(var i=0;i<input.length;i++){
+            parse(input[i],type);
+        }
+    }
+
+    var last_film=undefined;
+    function parse(x,type){
+        
+        var sides =x.split("{MARKED}");
+        
+        if (sides.length < 3){
+            return;
+        }
+        var time = sides[1].replace(/\;/g,':').trim();
+        var film ;
+        
+            film= sides[2].trim();
+        if(film ===''){
+            film =last_film;
+        }else{
+            last_film=film;
+        }
+        last_film=film;
+        var template = "TIME : FILM :: NAME";
+        var fast =  "ffmpeg -ss TIME -i FILM.mp4 -vframes 1 -q:v 2 NAME.jpg";
+        var gif = "ffmpeg -ss TIME -i FILM.mp4  -t 1 -f gif NAME.gif";//ffmpeg -ss 61.0 -i 1.mp4  -t 1 -f gif StickAround.gif
+        //ffmpeg -ss puttykeygen.exe -i 2;54.mp4  -t 1 -f gif 2;54=puttykeygen.exe.gif
+
+        template = fast;
+
+        if(type !== null){
+                template=gif;
+        }
+        template=template.replace("FILM",film);
+        template=template.replace("TIME",time);
+        var name = film+'='+time.replace(":",".")
+        template=template.replace("NAME",name);
+        document.getElementById('output').value+=template+'\n';
+    }
+
+//TODO : refactor parseGUIDE() and parse() are similar
+    function parseGuide(x){
+        
+        var sides =x.split("{MARKED}");
+        if (sides.length < 3){
+            console.log();
+            return;
+        }
+
+        var time = sides[1].replace(/\;/g,':').trim();
+        var film = sides[2].trim();
+        var comment = sides[0].trim();
+
+            film= sides[2].trim();
+        if(film.match(/[0-9]/g)){
+            
+            last_film=film;
+        }else{
+                film =last_film;
+        }
+        
+        var debug = "COMMENT : TIME :: FILM  ";
+        var template = "NAME.gif COMMENT "
+
+        
+
+        
+        
+        template=template.replace("FILM",film);
+        template=template.replace("TIME",time);
+        template=template.replace("COMMENT",comment);
+        var name = film+'='+time.replace(":",".")
+        template=template.replace("NAME",name);
+        document.getElementById('output_guide').value+=template+'\n';
+    }
+</script>
+<body>  
+
+<h2></h2>
+
+<button type="button"
+onclick="go();">
+parse.</button>
+
+<p id="demo"></p>
+<textarea id='input'>
+
+properties for each envorinment DEV QA & ___    {MARKED}    3:24    {MARKED}    1-1 {MARKED}
+start.spring.io {MARKED}    1:58    {MARKED}    1-2 {MARKED}
+fill out form and click start   {MARKED}    2:29    {MARKED}    1-2 {MARKED}
+create file and type 1st line   {MARKED}    0:55    {MARKED}    2   {MARKED}
+create new class    {MARKED}    1:38    {MARKED}    2   {MARKED}
+@rest controller    {MARKED}    2:18    {MARKED}    2   {MARKED}
+@get mapping    {MARKED}    2:32    {MARKED}    2   {MARKED}
+create file {MARKED}    2:51    {MARKED}    2   {MARKED}
+-   {MARKED}    3:27    {MARKED}    2   {MARKED}
+-   {MARKED}    3:29    {MARKED}    2   {MARKED}
+private {MARKED}    3:42    {MARKED}    2   {MARKED}
+return new limitsconfiguration1000,1    {MARKED}    4:11    {MARKED}    2   {MARKED}
+test url in browser {MARKED}    4;30    {MARKED}    2   {MARKED}
+copy min and max from other ifle    {MARKED}    0:43    {MARKED}    3   {MARKED}
+create configuration class  {MARKED}    1:40    {MARKED}    3   {MARKED}
+@component @configureation proerties    {MARKED}    2:28    {MARKED}    3   {MARKED}
+    {MARKED}    2:39    {MARKED}    3   {MARKED}
+auto generate getters   {MARKED}    2:44    {MARKED}    3   {MARKED}
+console message failed to start {MARKED}    2:52    {MARKED}    3   {MARKED}
+auto generate setter to gid rid of error message    {MARKED}    3:12    {MARKED}    3   {MARKED}
+    {MARKED}    3:22    {MARKED}    3   {MARKED}
+@autowired  {MARKED}    3:32    {MARKED}    3   {MARKED}
+edit line   {MARKED}    3:44    {MARKED}    3   {MARKED}
+DONE:localhost:8080/limits  {MARKED}    4:03    {MARKED}    3   {MARKED}
+spring initializr   {MARKED}    1:17    {MARKED}    4   {MARKED}
+look    {MARKED}    2:19    {MARKED}    4   {MARKED}
+look    {MARKED}    2:24    {MARKED}    4   {MARKED}
+name = spring cloud config server   {MARKED}    2:44    {MARKED}    4   {MARKED}
+prot = 8888 {MARKED}    3:03    {MARKED}    4   {MARKED}
+install git {MARKED}    1:24    {MARKED}    5   {MARKED}
+git init    {MARKED}    1:39    {MARKED}    6   {MARKED}
+buildpath -> linksource {MARKED}    2:13    {MARKED}    6   {MARKED}
+click browse    {MARKED}    2:16    {MARKED}    6   {MARKED}
+find git thing => finish    {MARKED}    2:36    {MARKED}    6   {MARKED}
+create limit service properties file    {MARKED}    3:14    {MARKED}    6   {MARKED}
+copy paste property = 8 8888    {MARKED}    3:26    {MARKED}    6   {MARKED}
+add file to git reposotory  {MARKED}    4:05    {MARKED}    6   {MARKED}
+get folder path {MARKED}    0:30    {MARKED}    7   {MARKED}
+    {MARKED}    2:11    {MARKED}    7   {MARKED}
+ERROR : localhost:8888/limits-service/default   {MARKED}    2:53    {MARKED}    7   {MARKED}
+@EnableCOnfigServer {MARKED}    3:24    {MARKED}    7   {MARKED}
+fixed error {MARKED}    3:48    {MARKED}    7   {MARKED}
+copy a file {MARKED}    1:21    {MARKED}    8   {MARKED}
+crate another file  {MARKED}    1:28    {MARKED}    8   {MARKED}
+1 111   {MARKED}    1:35    {MARKED}    8   {MARKED}
+2 222   {MARKED}    1:42    {MARKED}    8   {MARKED}
+test url    {MARKED}    4:14    {MARKED}    8   {MARKED}
+rename a file   {MARKED}    1:37    {MARKED}    9   {MARKED}
+spring.cloud.confi .uri {MARKED}    2:36    {MARKED}    9   {MARKED}
+console log look at {MARKED}    3:27    {MARKED}    9   {MARKED}
+look at {MARKED}    3:36    {MARKED}    9   {MARKED}
+url {MARKED}    4:10    {MARKED}    9   {MARKED}
+#NAME?  {MARKED}    2:06    {MARKED}    10  {MARKED}
+after push to git and resart service - > then app will update   {MARKED}    4:26    {MARKED}    10  {MARKED}
+change dev to qa    {MARKED}    4:48    {MARKED}    10  {MARKED}
+url - not set up yet    {MARKED}    1:15    {MARKED}    12  {MARKED}
+initializr  {MARKED}    1:08    {MARKED}    13  {MARKED}
+spring application name {MARKED}    2:51    {MARKED}    13  {MARKED}
+server.port = 8000  {MARKED}    3:19    {MARKED}    13  {MARKED}
+new file = currency exchange controller {MARKED}    1:52    {MARKED}    13  {MARKED}
+@rest controller    {MARKED}    2:01    {MARKED}    13  {MARKED}
+public exchange value retrieve exchange value   {MARKED}    2:19    {MARKED}    14  {MARKED}
+@getmapping {MARKED}    2:38    {MARKED}    14  {MARKED}
+better view {MARKED}    3:10    {MARKED}    14  {MARKED}
+private string from to  {MARKED}    3:41    {MARKED}    14  {MARKED}
+-   {MARKED}    4:05    {MARKED}    14  {MARKED}
+auto generate constructors  {MARKED}    4:29    {MARKED}    14  {MARKED}
+public exchangevalue    {MARKED}    4:43    {MARKED}    14  {MARKED}
+generate fefault getters    {MARKED}    4:54    {MARKED}    14  {MARKED}
+echangevalue()  {MARKED}    5:30    {MARKED}    14  {MARKED}
+url {MARKED}    5:46    {MARKED}    14  {MARKED}
+-   {MARKED}    2:51    {MARKED}    15  {MARKED}
+wriite code also import environemnt {MARKED}    3:21    {MARKED}    15  {MARKED}
+-   {MARKED}    3:36    {MARKED}    15  {MARKED}
+better view {MARKED}    4:00    {MARKED}    15  {MARKED}
+url {MARKED}    4:11    {MARKED}    15  {MARKED}
+wizard duplicate    {MARKED}    5:38    {MARKED}    15  {MARKED}
+dserver port = 8001 {MARKED}    6:04    {MARKED}    15  {MARKED}
+maven dependecnies  {MARKED}    1:06    {MARKED}    16  {MARKED}
+@entity @id {MARKED}    2:05    {MARKED}    16  {MARKED}
+data.sql <-crate file   {MARKED}    2:34    {MARKED}    16  {MARKED}
+insert into {MARKED}    2:39    {MARKED}    16  {MARKED}
+add more money values   {MARKED}    4:00    {MARKED}    16  {MARKED}
+-   {MARKED}    4:30    {MARKED}    16  {MARKED}
+console error message   {MARKED}    4:52    {MARKED}    16  {MARKED}
+@column(name=)  {MARKED}    5:44    {MARKED}    16  {MARKED}
+-   {MARKED}    5:51    {MARKED}    16  {MARKED}
+fix data.sql    {MARKED}    6:13    {MARKED}    16  {MARKED}
+add hardcode port   {MARKED}    6:24    {MARKED}    16  {MARKED}
+fancy url   {MARKED}    7:29    {MARKED}    16  {MARKED}
+ne file exchange value repository   {MARKED}    0:56    {MARKED}    17  {MARKED}
+-   {MARKED}    1:31    {MARKED}    17  {MARKED}
+@autowired  {MARKED}    1:45    {MARKED}    17  {MARKED}
+exchange value findbyfromandto() MAGIC  {MARKED}    3:02    {MARKED}    17  {MARKED}
+repository findbyfromandto  {MARKED}    3:46    {MARKED}    17  {MARKED}
+url {MARKED}    4:38    {MARKED}    17  {MARKED}
+initilizr   {MARKED}    0:35    {MARKED}    18  {MARKED}
+name    {MARKED}    1:36    {MARKED}    18  {MARKED}
+prt {MARKED}    1:58    {MARKED}    18  {MARKED}
+@getmapping {MARKED}    2:18    {MARKED}    19  {MARKED}
+ne w file   {MARKED}    3:10    {MARKED}    19  {MARKED}
+lots of vars    {MARKED}    4:31    {MARKED}    19  {MARKED}
+generate getters and setters    {MARKED}    4:44    {MARKED}    19  {MARKED}
+default constructor {MARKED}    4:56    {MARKED}    19  {MARKED}
+function    {MARKED}    5:14    {MARKED}    19  {MARKED}
+return  {MARKED}    6:06    {MARKED}    19  {MARKED}
+url {MARKED}    6:33    {MARKED}    19  {MARKED}
+newresttempatel()   {MARKED}    0:50    {MARKED}    20  {MARKED}
+#19-20  {MARKED}    1:47    {MARKED}    20  {MARKED}
+map<string,string> uri variables    {MARKED}    3:17    {MARKED}    20  {MARKED}
+urivariables #22 #23    {MARKED}    3:37    {MARKED}    20  {MARKED}
+#26 {MARKED}    4:02    {MARKED}    20  {MARKED}
+#31 {MARKED}    4:20    {MARKED}    20  {MARKED}
+#33 {MARKED}    5:16    {MARKED}    20  {MARKED}
+url {MARKED}    6:03    {MARKED}    20  {MARKED}
+run currency exchange server and converservice  {MARKED}    6:35    {MARKED}    20  {MARKED}
+url {MARKED}    6:48    {MARKED}    20  {MARKED}
+feign make calls simple {MARKED}    0:56    {MARKED}    21  {MARKED}
+maven dependency    {MARKED}    1:52    {MARKED}    21  {MARKED}
+maven   {MARKED}    2:02    {MARKED}    21  {MARKED}
+#8 enable feign client  {MARKED}    2:54    {MARKED}    21  {MARKED}
+new file currency exchange service proxy    {MARKED}    3:40    {MARKED}    21  {MARKED}
+@feign client   {MARKED}    4:03    {MARKED}    21  {MARKED}
+#5 import somethign {MARKED}    4:53    {MARKED}    21  {MARKED}
+#10,11,12 copy paset efunction  {MARKED}    6:11    {MARKED}    21  {MARKED}
+edit    {MARKED}    6:40    {MARKED}    21  {MARKED}
+private currency exvhange proxy proxy   {MARKED}    7:04    {MARKED}    21  {MARKED}
+#17 autowired   {MARKED}    7:07    {MARKED}    21  {MARKED}
+#58 {MARKED}    7:25    {MARKED}    21  {MARKED}
+deletecode ?    {MARKED}    7:30    {MARKED}    21  {MARKED}
+#12 fixed typo  {MARKED}    8:26    {MARKED}    21  {MARKED}
+url {MARKED}    9:23    {MARKED}    21  {MARKED}
+#8 ribbon clinet    {MARKED}    3:06    {MARKED}    21  {MARKED}
+feign client    {MARKED}    3:19    {MARKED}    21  {MARKED}
+#9 add another feign client {MARKED}    3:39    {MARKED}    21  {MARKED}
+#3  {MARKED}    4:32    {MARKED}    22  {MARKED}
+#3 =http//localhost 8000    {MARKED}    4:44    {MARKED}    22  {MARKED}
+-   {MARKED}    4:52    {MARKED}    22  {MARKED}
+laucnh something    {MARKED}    0:51    {MARKED}    23  {MARKED}
+wizard  {MARKED}    1:16    {MARKED}    23  {MARKED}
+right click and duplicate   {MARKED}    1:19    {MARKED}    23  {MARKED}
+change name {MARKED}    1:25    {MARKED}    23  {MARKED}
+arguments   {MARKED}    1:28    {MARKED}    23  {MARKED}
+-dserver    {MARKED}    1:37    {MARKED}    23  {MARKED}
+url {MARKED}    3:10    {MARKED}    23  {MARKED}
+initializr  {MARKED}    2:16    {MARKED}    25  {MARKED}
+@enable eureka server   {MARKED}    3:10    {MARKED}    25  {MARKED}
+-   {MARKED}    3:26    {MARKED}    25  {MARKED}
+-   {MARKED}    3:36    {MARKED}    25  {MARKED}
+#1-6    {MARKED}    4:00    {MARKED}    25  {MARKED}
+url eureka dashboard    {MARKED}    4:23    {MARKED}    25  {MARKED}
+add eureka dependency   {MARKED}    0:36    {MARKED}    26  {MARKED}
+#10 enable discover clinet  {MARKED}    1:11    {MARKED}    26  {MARKED}
+edit properties {MARKED}    1:48    {MARKED}    26  {MARKED}
+#39 maven dependency    {MARKED}    0:39    {MARKED}    27  {MARKED}
+#7enable discovery client   {MARKED}    0:52    {MARKED}    27  {MARKED}
+copy pase somehitng {MARKED}    1:17    {MARKED}    27  {MARKED}
+ #4 disbale plus a test run {MARKED}    1:17    {MARKED}    28  {MARKED}
+initilazr   {MARKED}    2:18    {MARKED}    31  {MARKED}
+enable zull prozy #7    {MARKED}    3:18    {MARKED}    31  {MARKED}
+copy paset properties   {MARKED}    3:45    {MARKED}    31  {MARKED}
+change prot to 8765 {MARKED}    4:10    {MARKED}    31  {MARKED}
+new file . zuul loggin feture   {MARKED}    1:01    {MARKED}    32  {MARKED}
+@component  {MARKED}    1:06    {MARKED}    32  {MARKED}
+extend and do imports   {MARKED}    1:22    {MARKED}    32  {MARKED}
+auto generate implement methods {MARKED}    1:48    {MARKED}    32  {MARKED}
+#27 filter order returns 1  {MARKED}    2:30    {MARKED}    32  {MARKED}
+#12 returns true    {MARKED}    2:54    {MARKED}    32  {MARKED}
+#22 pre {MARKED}    3:33    {MARKED}    32  {MARKED}
+#20,21  {MARKED}    4:08    {MARKED}    32  {MARKED}
+#13 private logger logger   {MARKED}    4:26    {MARKED}    32  {MARKED}
+#26 loggerinfo()    {MARKED}    5:15    {MARKED}    32  {MARKED}
+eureka dashboard    {MARKED}    2:00    {MARKED}    33  {MARKED}
+#10 {MARKED}    1:50    {MARKED}    33  {MARKED}
+#13 bad pciture {MARKED}    2:37    {MARKED}    33  {MARKED}
+runservices {MARKED}    2:50    {MARKED}    33  {MARKED}
+url {MARKED}    3:16    {MARKED}    34  {MARKED}
+add slect to 3 services {MARKED}    0;46    {MARKED}    34  {MARKED}
+add dependency  {MARKED}    1;09    {MARKED}    34  {MARKED}
+#17-20  {MARKED}    2;10    {MARKED}    34  {MARKED}
+pasete into pom {MARKED}    2;40    {MARKED}    34  {MARKED}
+paste again {MARKED}    2;47    {MARKED}    36  {MARKED}
+#17-20  {MARKED}    3;13    {MARKED}    36  {MARKED}
+#19 20 21   {MARKED}    3:23    {MARKED}    36  {MARKED}
+currency exchagne conversion gateway server {MARKED}    4:24    {MARKED}    36  {MARKED}
+#31 logger into {MARKED}    4;33    {MARKED}    36  {MARKED}
+#49 logger  {MARKED}    4;52    {MARKED}    36  {MARKED}
+how ot make demo run faster {MARKED}    8;30    {MARKED}    36  {MARKED}
+zipkin quickstart google & copy jar {MARKED}    2;25    {MARKED}    39  {MARKED}
+run jar {MARKED}    4:21    {MARKED}    39  {MARKED}
+url zipkin  {MARKED}    4;45    {MARKED}    39  {MARKED}
+rabbitmq console    {MARKED}    6;10    {MARKED}    39  {MARKED}
+editpom slect zipkin    {MARKED}    1;11    {MARKED}    40  {MARKED}
+edpit pom bus amqp  {MARKED}    1;37    {MARKED}    40  {MARKED}
+need edited again?  {MARKED}    2;13    {MARKED}    40  {MARKED}
+run the serves  {MARKED}    1;18    {MARKED}    41  {MARKED}
+namingserver->zipkin->currency conversion->currency exchange->zuul  {MARKED}    1;50    {MARKED}    41  {MARKED}
+eureka dashboard    {MARKED}    2;39    {MARKED}    41  {MARKED}
+url check   {MARKED}    3;41    {MARKED}    41  {MARKED}
+zipkin dashbaord    {MARKED}    4;03    {MARKED}    41  {MARKED}
+zipkin find trace *clickbutton* {MARKED}    4;19    {MARKED}    41  {MARKED}
+local component {MARKED}    4;51    {MARKED}    41  {MARKED}
+lauch spring cloud config -> limits service {MARKED}    0;47    {MARKED}    41  {MARKED}
+click down arrow    {MARKED}    1;40    {MARKED}    41  {MARKED}
+run configureations {MARKED}    1;41    {MARKED}    41  {MARKED}
+duplicate limits service applications   {MARKED}    1;45    {MARKED}    41  {MARKED}
+name = 8081 {MARKED}    1;54    {MARKED}    41  {MARKED}
+arugemtns tab ->-deserver=8081  {MARKED}    1;58    {MARKED}    41  {MARKED}
+hit run button  {MARKED}    2;32    {MARKED}    41  {MARKED}
+url localhost 8081 limits   {MARKED}    2;53    {MARKED}    41  {MARKED}
+change min to 22    {MARKED}    3;16    {MARKED}    41  {MARKED}
+#3 secuity enabled = false  {MARKED}    5;27    {MARKED}    41  {MARKED}
+git commit  {MARKED}    6;10    {MARKED}    41  {MARKED}
+bug - url changes not refrshed  {MARKED}    7;07    {MARKED}    41  {MARKED}
+postman refresh url {MARKED}    7;15    {MARKED}    41  {MARKED}
+postaman regresh other url  {MARKED}    8;10    {MARKED}    41  {MARKED}
+launch rabbit mq server {MARKED}    1;11    {MARKED}    43  {MARKED}
+add start bus amqp  {MARKED}    1;26    {MARKED}    43  {MARKED}
+add dependecny here also    {MARKED}    1;37    {MARKED}    43  {MARKED}
+security enabled - false    {MARKED}    1;54    {MARKED}    43  {MARKED}
+lauch spring cloud seerver  {MARKED}    2;02    {MARKED}    43  {MARKED}
+lauch moth limit services   {MARKED}    2;08    {MARKED}    43  {MARKED}
+launch other limits {MARKED}    2;11    {MARKED}    43  {MARKED}
+url check   {MARKED}    2;29    {MARKED}    43  {MARKED}
+edit min to 2   {MARKED}    2;42    {MARKED}    43  {MARKED}
+url refresh and click send  {MARKED}    3;01    {MARKED}    43  {MARKED}
+one url update both *url check  {MARKED}    3;11    {MARKED}    43  {MARKED}
+edit pom hystrix    {MARKED}    2;21    {MARKED}    44  {MARKED}
+@emable hystrix {MARKED}    2;36    {MARKED}    44  {MARKED}
+@hysterix command 9fallbackmethod) //but deleted    {MARKED}    3;00    {MARKED}    44  {MARKED}
+limits configuration (){}   {MARKED}    3;55    {MARKED}    44  {MARKED}
+@hystrix command    {MARKED}    4;21    {MARKED}    44  {MARKED}
+#29 fallback retrievconfiguration   {MARKED}    4;36    {MARKED}    44  {MARKED}
+#30 returns {MARKED}    4;50    {MARKED}    44  {MARKED}
+#30 999,9   {MARKED}    6;15    {MARKED}    44  {MARKED}
+
+
+</textarea>
+
+<textarea id='output'>
+</textarea>
+
+
+
+<hr/>
+make guide with comments
+<button type="button"
+onclick="goGuide();">
+parse guide.</button>
+
+<textarea id='output_guide'>
+
+
+
+</textarea>
+
+
+
+<!--  MAKE GUIDE WITH GIFS  --->
+<hr/>
+make bash script with gifs
+<button type="button"
+onclick="go();">
+parse guide.</button>
+
+<textarea id='output_guide'>
+
+
+
+</textarea>
+
+
+</body>
+</html> 

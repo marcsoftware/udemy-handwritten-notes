@@ -1,0 +1,179 @@
+1
+00:00:02,090 --> 00:00:08,600
+Hello and welcome to this lecture and this lecture is the advanced identity access management summary.
+
+2
+00:00:08,690 --> 00:00:14,330
+So it's the end of this section of the course and it's going to be a summary and exam tips for advance
+
+3
+00:00:14,420 --> 00:00:16,460
+identity access management.
+
+4
+00:00:16,460 --> 00:00:17,690
+So let's get started.
+
+5
+00:00:18,700 --> 00:00:24,710
+Remember identity Federation allows users to authenticate with a web identity provider.
+
+6
+00:00:24,880 --> 00:00:31,540
+So I think Google Facebook or Amazon they use the authenticates first with the web I.D. provider.
+
+7
+00:00:31,900 --> 00:00:39,250
+They then receive an authentication token which is then exchanged for temporary AWOS credentials allowing
+
+8
+00:00:39,250 --> 00:00:42,150
+them to assume an identity access management role.
+
+9
+00:00:42,340 --> 00:00:47,820
+And the I AM role allows them to access AWOS resources company.
+
+10
+00:00:47,830 --> 00:00:54,590
+So it's an I.T. Poca and it handles the interaction between your applications and the web provider.
+
+11
+00:00:55,480 --> 00:00:58,660
+So you don't need to write your own code to do this.
+
+12
+00:00:58,660 --> 00:01:06,640
+It provides sign up sign in and Guest User Access and syncs user data for a seamless experience across
+
+13
+00:01:06,730 --> 00:01:13,620
+multiple devices and company tohe is the recommended approach for web I.T. Federation.
+
+14
+00:01:13,780 --> 00:01:19,600
+So if you see any exam questions asking you which technology to use if you want to authenticate your
+
+15
+00:01:19,600 --> 00:01:26,080
+applications against a web identity provider like Facebook Google or Amazon if there's any questions
+
+16
+00:01:26,080 --> 00:01:28,370
+around that asking you which is the best technology.
+
+17
+00:01:28,570 --> 00:01:35,470
+Well Coquito is the recommended approach particularly for mobile applications and cognito use is use
+
+18
+00:01:35,480 --> 00:01:42,520
+suppose to manage users sign up and sign in either directly to the user pool or via the web identity
+
+19
+00:01:42,520 --> 00:01:43,310
+provider.
+
+20
+00:01:44,490 --> 00:01:52,260
+And it uses push synchronization to send a silent push notification via As an as simple notification
+
+21
+00:01:52,260 --> 00:01:56,520
+service of use updates to multiple device types.
+
+22
+00:01:56,580 --> 00:02:04,030
+So your mobile phone tablet and laptop for example all associated with your user ID.
+
+23
+00:02:04,060 --> 00:02:12,670
+So in our example we had our user authenticating against a user poll which then receives JWT tokens.
+
+24
+00:02:12,670 --> 00:02:15,250
+So gyse on web tokens from the web.
+
+25
+00:02:15,250 --> 00:02:23,660
+Identity providers like Facebook Google or Amazon the company identity so then exchanges the JWT tokens
+
+26
+00:02:23,720 --> 00:02:30,410
+for AWOS credentials which enables the user to temporarily access AWOS resources.
+
+27
+00:02:30,440 --> 00:02:35,260
+For example S-3 IDB RDX easy to etc..
+
+28
+00:02:35,330 --> 00:02:39,050
+Moving on to inline policies managed policies and custom policies.
+
+29
+00:02:39,050 --> 00:02:42,050
+Remember the three different types of I and policy.
+
+30
+00:02:42,050 --> 00:02:49,170
+So we have the managed policy and this is the AWOS managed default policies so the ones that we can
+
+31
+00:02:49,170 --> 00:02:55,240
+search for when we go to create a role or when we want to assign a policy to a user group or row.
+
+32
+00:02:55,410 --> 00:03:02,240
+And these are the policies like Don MIDP full access code deploy full access S-3 full access et cetera.
+
+33
+00:03:02,340 --> 00:03:08,520
+And these can be assigned to any number of users groups or rows across AWOS the customer manage policy.
+
+34
+00:03:08,550 --> 00:03:13,830
+So thats for any policy that is not catered for by the managed policy you can create your own and its
+
+35
+00:03:13,830 --> 00:03:18,320
+managed by you and it can be attached to multiple users groups or rows.
+
+36
+00:03:18,360 --> 00:03:23,610
+And then finally there's the in line policy and that is managed by you and embedded within a single
+
+37
+00:03:23,670 --> 00:03:25,160
+user group or.
+
+38
+00:03:25,260 --> 00:03:29,980
+So it's a one to one mapping between the policy and the entity to which it's embedded.
+
+39
+00:03:30,000 --> 00:03:34,230
+And when you delete the user group or row the policy is also deleted.
+
+40
+00:03:34,230 --> 00:03:39,960
+And in most cases I ws recommends using managed policies over inline policies.
+
+41
+00:03:40,140 --> 00:03:41,990
+So that is the end of this lecture.
+
+42
+00:03:42,030 --> 00:03:43,710
+And that's the end of the section.
+
+43
+00:03:43,830 --> 00:03:48,760
+So well done for completing the section if you have any questions please let me know.
+
+44
+00:03:48,960 --> 00:03:51,240
+If not feel free to move on to the next lecture.
+
+45
+00:03:51,270 --> 00:03:51,940
+Thank you.

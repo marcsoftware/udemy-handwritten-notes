@@ -1,0 +1,187 @@
+1
+00:00:01,050 --> 00:00:07,530
+Hello Cocker's and welcome to this lecture and this lecture is going to be a summary of identity axis
+
+2
+00:00:07,540 --> 00:00:08,430
+not a human one.
+
+3
+00:00:08,430 --> 00:00:09,220
+I won.
+
+4
+00:00:09,510 --> 00:00:14,190
+So we're going to cover off everything that we've learnt and also are going to be telling you some of
+
+5
+00:00:14,190 --> 00:00:16,990
+the exam tips that we have for the section as well.
+
+6
+00:00:17,010 --> 00:00:18,500
+So let's get started.
+
+7
+00:00:18,810 --> 00:00:28,380
+So what if we don't so far identity access management consists of uses groups browes policy documents
+
+8
+00:00:29,100 --> 00:00:32,820
+and if you remember the lab we created a couple of uses.
+
+9
+00:00:32,940 --> 00:00:40,460
+We also created a couple of groups and we use those groups to apply permissions policies to those uses.
+
+10
+00:00:40,980 --> 00:00:48,360
+And we also applied policies directly to the uses and we have an example of a policy document here written
+
+11
+00:00:48,360 --> 00:00:53,480
+in Jason and the document is written as a series of key value pairs.
+
+12
+00:00:53,550 --> 00:01:00,960
+So under the version we don't have the statement The effect is allow and the action is to allow all
+
+13
+00:01:00,960 --> 00:01:04,380
+actions across all resources.
+
+14
+00:01:04,380 --> 00:01:09,370
+So this policy document would give full access to everything within us.
+
+15
+00:01:09,450 --> 00:01:15,900
+And then finally in our lab we also created a role and we created a role which can be used by an EASY
+
+16
+00:01:15,900 --> 00:01:23,530
+TO instance to allow access to read and write files within S-3 since the access management is universal.
+
+17
+00:01:23,670 --> 00:01:26,210
+It doesn't apply to regions at this time.
+
+18
+00:01:26,340 --> 00:01:27,120
+So what does that mean.
+
+19
+00:01:27,120 --> 00:01:33,720
+It just means that identity access management is global and anything you set up within I am can be viewed
+
+20
+00:01:33,780 --> 00:01:35,680
+and utilized by any region.
+
+21
+00:01:35,820 --> 00:01:41,910
+The root account is simply the account you created when you first set up your AWOS account.
+
+22
+00:01:41,910 --> 00:01:47,520
+So that's the email address that you used when you first registered your account with AWOS and it has
+
+23
+00:01:47,520 --> 00:01:48,920
+complete admin access.
+
+24
+00:01:48,960 --> 00:01:53,000
+So of course for day to day activities we shouldn't be using the root account.
+
+25
+00:01:53,160 --> 00:01:59,670
+Instead we should be creating identity access management uses and making sure those users have the permissions
+
+26
+00:01:59,700 --> 00:02:02,880
+and privileges they need to do their jobs.
+
+27
+00:02:02,880 --> 00:02:06,720
+New users have no permissions at all when they first created.
+
+28
+00:02:06,780 --> 00:02:11,210
+So we need to explicitly ask the permissions they need to do their role.
+
+29
+00:02:11,280 --> 00:02:17,670
+For example in the lab we added commissions for S-3 and glazier for our H.R. user to enable them to
+
+30
+00:02:17,670 --> 00:02:20,250
+access those AWOS services.
+
+31
+00:02:20,430 --> 00:02:26,580
+New users are assigned the Access Key ID and seek access key when the very first created and these are
+
+32
+00:02:26,580 --> 00:02:29,160
+not the same as a username and password.
+
+33
+00:02:29,160 --> 00:02:36,260
+You can't use the access key and secret access key to log into the WS console but you can use it access
+
+34
+00:02:36,280 --> 00:02:43,080
+AWOS for the API and come online interface from your local desktop and you only get to view and download
+
+35
+00:02:43,080 --> 00:02:46,220
+the file containing your access key and secret access key.
+
+36
+00:02:46,230 --> 00:02:53,190
+One time when you initially create them and after that you can still view the access key but you cannot
+
+37
+00:02:53,190 --> 00:02:55,490
+view the secret access key again.
+
+38
+00:02:55,710 --> 00:03:01,310
+So if you lose your secret access key you're going to need to regenerate ukase.
+
+39
+00:03:01,380 --> 00:03:08,010
+So to make sure that you save your secret access key in a safe location always sets up multi-factor
+
+40
+00:03:08,010 --> 00:03:08,920
+authentication.
+
+41
+00:03:08,940 --> 00:03:13,850
+Or if a on your root account and that's another thing that we did in the lab.
+
+42
+00:03:14,010 --> 00:03:20,400
+And finally you can create and customize your own password rotation policies.
+
+43
+00:03:20,400 --> 00:03:21,850
+So that's the end of this section.
+
+44
+00:03:21,870 --> 00:03:24,280
+Well done for completing the section.
+
+45
+00:03:24,510 --> 00:03:27,010
+If you have any questions please let me know.
+
+46
+00:03:27,330 --> 00:03:29,700
+Otherwise please join us in the next lecture.
+
+47
+00:03:29,850 --> 00:03:30,330
+Thank you.

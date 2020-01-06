@@ -1,0 +1,163 @@
+1
+00:00:00,560 --> 00:00:06,840
+OK hello cloggers and welcome to this very quick lecture comparing s.c.s versus asinus.
+
+2
+00:00:06,870 --> 00:00:08,790
+So what is s.c.s.
+
+3
+00:00:08,820 --> 00:00:14,040
+Well as he stands for simple email service it's a scalable and highly available email service designed
+
+4
+00:00:14,040 --> 00:00:20,160
+to help marketing teams and application developers send marketing notification and transactional emails
+
+5
+00:00:20,400 --> 00:00:25,260
+to their customers using a pay as you go modals So it's basically sending out marketing emails.
+
+6
+00:00:25,260 --> 00:00:31,110
+It can also be used to receive emails incoming e-mails can be delivered automatically to an S3 bucket
+
+7
+00:00:31,580 --> 00:00:37,060
+and incoming mails can actually be used to trigger lambda functions and S and S notifications.
+
+8
+00:00:37,140 --> 00:00:42,400
+So s.c.s is email only right as soon as you can do things like text messages.
+
+9
+00:00:42,400 --> 00:00:50,100
+You can do things like you know add to ask us Qs published a hasty and points et cetera s.c.s is email
+
+10
+00:00:50,130 --> 00:00:50,540
+only.
+
+11
+00:00:50,550 --> 00:00:52,320
+And when you think of marketing e-mails.
+
+12
+00:00:52,320 --> 00:00:54,840
+Best way to remember it.
+
+13
+00:00:54,850 --> 00:00:56,980
+So it's for automated e-mails.
+
+14
+00:00:57,150 --> 00:01:02,070
+You can have purchased confirmations shipping notifications or status updates et cetera.
+
+15
+00:01:02,160 --> 00:01:07,080
+So you could have a mobile phone company that needs to send an automated confirmation email every time
+
+16
+00:01:07,080 --> 00:01:10,250
+a customer purchases a prepaid mobile phone.
+
+17
+00:01:10,320 --> 00:01:16,350
+You know how two minutes it's used for marketing communications advertisements newsletters special offices
+
+18
+00:01:16,560 --> 00:01:17,820
+office et cetera.
+
+19
+00:01:18,090 --> 00:01:23,870
+And this could be an online retail business that needs to let its customers know about what sales promotions
+
+20
+00:01:23,870 --> 00:01:26,480
+its got on as well as discounts.
+
+21
+00:01:26,490 --> 00:01:32,760
+So a quick comparison s.c.s again like I said email messaging service Estan as it's a pub sub messaging
+
+22
+00:01:32,760 --> 00:01:39,540
+service and it has a whole bunch of different formats and not just email but S.M. s TDP Eskew cetra
+
+23
+00:01:39,860 --> 00:01:45,150
+s.c.s can be used to trigger lambda functions or S and S notifications.
+
+24
+00:01:45,150 --> 00:01:52,380
+Same with s and s it can be used to trigger lambda functions and then it can also be s.c.s can be used
+
+25
+00:01:52,380 --> 00:01:57,600
+for both incoming and outgoing mails whereas S and S can actually fan out messages to a large number
+
+26
+00:01:57,600 --> 00:02:04,530
+of recipients and you can replicate and push messages out to multiple endpoints and formats and not
+
+27
+00:02:04,530 --> 00:02:12,600
+just e-mails but like we said as MSH TDP ask us and as well as e-mails with s.c.s an email address is
+
+28
+00:02:12,600 --> 00:02:19,380
+all that's required to start sending messages to a user with S and S consumers must subscribe to a topic
+
+29
+00:02:19,440 --> 00:02:21,550
+in order to receive the notifications.
+
+30
+00:02:21,550 --> 00:02:28,200
+So s.c.s is essentially asynchronous whereas essence is synchronous so someone has to go in and actually
+
+31
+00:02:28,200 --> 00:02:31,740
+subscribe to a topic to get those notifications.
+
+32
+00:02:31,740 --> 00:02:37,320
+So one of my exam tips just remember that s.c.s is for emails only can be used for incoming and outgoing
+
+33
+00:02:37,320 --> 00:02:37,970
+mails.
+
+34
+00:02:38,010 --> 00:02:39,720
+It is not subscription base.
+
+35
+00:02:39,720 --> 00:02:45,890
+You only need to know the person's email address whereas S and S supports multiple formats as ask us
+
+36
+00:02:46,080 --> 00:02:53,280
+TGP as well as e-mail push notifications only it's a pup submodel So consumers must subscribe to a topic
+
+37
+00:02:53,490 --> 00:02:56,460
+and you can fan messages out to large number of recipients.
+
+38
+00:02:56,520 --> 00:03:00,800
+So multiple clients each with their own s Ask Qs.
+
+39
+00:03:00,930 --> 00:03:03,880
+So that is it for this lecture guys if you have any questions please let me know.
+
+40
+00:03:03,900 --> 00:03:05,840
+If not feel free to move on to the next lecture.
+
+41
+00:03:05,880 --> 00:03:06,350
+Thank you.

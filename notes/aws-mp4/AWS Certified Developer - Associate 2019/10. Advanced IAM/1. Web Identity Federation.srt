@@ -1,0 +1,235 @@
+1
+00:00:00,690 --> 00:00:06,780
+Hello Clockers and welcome to this section of the course and this section is all about advanced identity
+
+2
+00:00:06,780 --> 00:00:12,520
+axis management and we're going to start with web identity Federation.
+
+3
+00:00:12,570 --> 00:00:14,800
+So what is web identity Federation.
+
+4
+00:00:15,060 --> 00:00:22,470
+Well it lets you give your users access to AWOS resources after they have successfully authenticated
+
+5
+00:00:22,560 --> 00:00:28,120
+with a web based identity provider like Amazon Facebook or Google.
+
+6
+00:00:28,200 --> 00:00:35,440
+Following successful authentication the user receives an authentication code from the web I.T. provider
+
+7
+00:00:36,040 --> 00:00:43,900
+which they can then trade for temporary AWOS security credentials which will then allow them to access
+
+8
+00:00:43,960 --> 00:00:45,760
+I ws resources.
+
+9
+00:00:45,760 --> 00:00:51,940
+So for example imagine that you are developing a web based application and you want to make it available
+
+10
+00:00:51,970 --> 00:00:54,100
+to Facebook uses.
+
+11
+00:00:54,100 --> 00:00:59,920
+You can actually use web identity Federation to handle the authentication of the users on your behalf
+
+12
+00:01:00,220 --> 00:01:06,820
+and may provide the service called Amazon cognito which enables web identity Federation with the following
+
+13
+00:01:06,880 --> 00:01:08,020
+features.
+
+14
+00:01:08,050 --> 00:01:12,090
+Firstly it gives you sign up and sign in to your applications.
+
+15
+00:01:12,130 --> 00:01:14,460
+It provides access for guest visas.
+
+16
+00:01:14,710 --> 00:01:19,120
+So it enables you to handle users who don't already have an account.
+
+17
+00:01:19,120 --> 00:01:24,560
+It acts as an identity broker between your application and web I.D. providers.
+
+18
+00:01:24,560 --> 00:01:29,240
+And that means you don't need to write any special code to integrate your application.
+
+19
+00:01:29,290 --> 00:01:35,230
+And the web identity provider it synchronizes use that data across multiple devices.
+
+20
+00:01:35,620 --> 00:01:42,190
+So for example if I access an application using my mobile phone I could change to my use data or my
+
+21
+00:01:42,190 --> 00:01:43,620
+profile data.
+
+22
+00:01:43,870 --> 00:01:50,080
+Next time I log into the same application and I'm using a tablet or a PC I should see the updates that
+
+23
+00:01:50,080 --> 00:01:52,780
+I made for my mobile phone.
+
+24
+00:01:52,960 --> 00:01:57,840
+So you should get a seamless experience across all different devices.
+
+25
+00:01:57,910 --> 00:02:04,960
+And finally cognito is recommended for all mobile applications which run on IWM services and cognito
+
+26
+00:02:04,960 --> 00:02:12,250
+is the recommended approach for weap identity Federation using social media accounts like Facebook Google
+
+27
+00:02:12,310 --> 00:02:14,220
+and also Amazon as well.
+
+28
+00:02:14,380 --> 00:02:21,850
+So just imagine a mobile shopping application and it's using S3 for product data and Dynamo IDB for
+
+29
+00:02:21,850 --> 00:02:28,300
+customer data and you want to enable customers to log in using Facebook and then to be able to access
+
+30
+00:02:28,300 --> 00:02:32,670
+the product data on their own profile data within the customer database.
+
+31
+00:02:32,770 --> 00:02:39,550
+So first of all they'll need to look into Facebook and after successfully logging into Facebook Facebook
+
+32
+00:02:39,550 --> 00:02:46,090
+will give them a web token and cognito it will take the Web token and exchange it for temporary AWOS
+
+33
+00:02:46,210 --> 00:02:47,010
+credentials.
+
+34
+00:02:47,140 --> 00:02:51,670
+And it's these temporary credentials which allow them the access that they need to see the contents
+
+35
+00:02:51,670 --> 00:02:56,040
+of your three pocket and also to request an update data in the database.
+
+36
+00:02:56,170 --> 00:03:02,290
+So a company toke brokerage between the application and Facebook or Google to provide these temporary
+
+37
+00:03:02,290 --> 00:03:08,610
+credentials and then it's these credentials which map to an identity access management role and its
+
+38
+00:03:08,980 --> 00:03:12,640
+role allows them access to the required resources.
+
+39
+00:03:12,820 --> 00:03:19,030
+So this means that there's no need for the application to embed any ws credentials and you don't need
+
+40
+00:03:19,030 --> 00:03:23,810
+to store credentials locally on the device on the mobile phone or the tablet.
+
+41
+00:03:24,130 --> 00:03:30,250
+And another benefit of cognito is that it can also give users a really seamless experience across all
+
+42
+00:03:30,310 --> 00:03:31,460
+mobile devices.
+
+43
+00:03:31,570 --> 00:03:37,900
+So you can logon using multiple different devices and you should get the same user experience no matter
+
+44
+00:03:37,930 --> 00:03:39,620
+what device you are using.
+
+45
+00:03:39,910 --> 00:03:45,090
+So let's take a look at some of our exam tips for web identity Federation.
+
+46
+00:03:45,250 --> 00:03:52,240
+Remember Federation allows users to authenticate with a web identity provider like Google Facebook or
+
+47
+00:03:52,270 --> 00:03:53,360
+Amazon.
+
+48
+00:03:53,530 --> 00:03:57,030
+They use a authenticates first with the web I.D. provider.
+
+49
+00:03:57,410 --> 00:04:04,000
+They then receive the authentication token which gets exchanged for temporary AWOS credentials allow
+
+50
+00:04:04,060 --> 00:04:10,110
+them to receive an identity crisis management low Kokanee to an identity Broca.
+
+51
+00:04:10,120 --> 00:04:15,070
+It handles the interaction between your applications and the web I.D. provider and you don't need to
+
+52
+00:04:15,070 --> 00:04:17,990
+buy any of your own code in order to do this.
+
+53
+00:04:18,030 --> 00:04:24,850
+It provides sign up sign in and guest user access sinks they use the data for a seamless experience
+
+54
+00:04:24,850 --> 00:04:32,560
+across all your devices and Kokanee is the AWOS recommended approach for web I.D. Federation particularly
+
+55
+00:04:32,830 --> 00:04:35,140
+for mobile applications.
+
+56
+00:04:35,140 --> 00:04:36,980
+So that's the end of this lecture.
+
+57
+00:04:37,450 --> 00:04:39,880
+If you have any questions please let me know.
+
+58
+00:04:40,120 --> 00:04:42,530
+If not feel free to move on to the next lecture.
+
+59
+00:04:42,640 --> 00:04:43,130
+Thank you.

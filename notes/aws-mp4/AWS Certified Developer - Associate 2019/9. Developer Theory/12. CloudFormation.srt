@@ -1,0 +1,539 @@
+1
+00:00:00,150 --> 00:00:06,090
+Hello Cocker's and welcome to this lecture and this lecture is all about cloud formation.
+
+2
+00:00:06,090 --> 00:00:08,230
+So let's get started now.
+
+3
+00:00:08,280 --> 00:00:15,570
+Confirmation it's a service that allows you to manage configure and provision your AWOS infrastructure
+
+4
+00:00:15,680 --> 00:00:22,290
+as code and resources are the resources that you're going to provision are defined.
+
+5
+00:00:22,310 --> 00:00:28,720
+Using a cloud formation template and that is the code element and cloud formation.
+
+6
+00:00:28,740 --> 00:00:30,390
+It takes that templates.
+
+7
+00:00:30,510 --> 00:00:36,810
+It interprets it and makes the appropriate API calls in order to create the resources that you have
+
+8
+00:00:36,810 --> 00:00:43,960
+defined in the template and the template supports either YAML or Jason.
+
+9
+00:00:44,250 --> 00:00:46,440
+So you can use either YAML or Jason.
+
+10
+00:00:46,440 --> 00:00:50,710
+Which ever you're comfortable with to create your cloud formation templates.
+
+11
+00:00:52,060 --> 00:00:54,830
+So what are some of the benefits of cloud formation.
+
+12
+00:00:55,060 --> 00:01:00,490
+Well firstly it allows you to provision your infrastructure in a really consistent way.
+
+13
+00:01:00,700 --> 00:01:07,720
+So it's the same every single time there's fewer mistakes because there's less opportunity for human
+
+14
+00:01:07,750 --> 00:01:09,010
+error.
+
+15
+00:01:09,760 --> 00:01:14,340
+It takes less time and effort than it would if you were to configure things manually.
+
+16
+00:01:15,700 --> 00:01:21,480
+You can also version control and peer review templates and it's free to use.
+
+17
+00:01:21,520 --> 00:01:25,020
+However you will be charged for any resources that you create.
+
+18
+00:01:26,380 --> 00:01:33,790
+It can be used to manage updates to existing cloud formation platforms and it can also handle dependencies
+
+19
+00:01:33,790 --> 00:01:40,780
+between different resources to ensure that resources are created in the correct order and it can also
+
+20
+00:01:40,780 --> 00:01:47,180
+be used to really quickly and easily roll back and delete the entire stack that you've created with
+
+21
+00:01:47,180 --> 00:01:48,810
+income formation as well.
+
+22
+00:01:48,910 --> 00:01:55,480
+So it's really easy to clear up environments that were temporary or just being used to test something
+
+23
+00:01:55,780 --> 00:02:01,260
+you can really quickly have cloud formation roll back and delete the whole lot for you as well.
+
+24
+00:02:02,680 --> 00:02:06,840
+So let's look at the cloud formation template in a little bit more detail.
+
+25
+00:02:07,120 --> 00:02:13,090
+So once again you can use either Jamo or Jasen to describe the end state of the infrastructure that
+
+26
+00:02:13,090 --> 00:02:15,810
+you are either provisioning or changing.
+
+27
+00:02:16,030 --> 00:02:21,360
+Once you've created the template you upload it to cloud formation using S3.
+
+28
+00:02:21,370 --> 00:02:28,960
+So within the cloud formation console you actually upload it and ends up in an S3 bucket and then cloud
+
+29
+00:02:28,960 --> 00:02:32,710
+formation accesses the template within the S3 bucket.
+
+30
+00:02:32,830 --> 00:02:39,130
+It reads the template and then it makes the appropriate API calls on your behalf to create the resources
+
+31
+00:02:39,130 --> 00:02:46,750
+for you and the resulting resources are referred to as a stack and it's called a cloud formation stack.
+
+32
+00:02:46,750 --> 00:02:53,290
+So let's have a look at an example cloud formation templates and most of these options or parameters
+
+33
+00:02:53,350 --> 00:02:54,460
+are optional.
+
+34
+00:02:54,640 --> 00:02:59,440
+It's only really the resources section that we'll see in the next slide that is mandatory.
+
+35
+00:02:59,440 --> 00:03:03,160
+So everything else that you can see on this page is optional.
+
+36
+00:03:03,160 --> 00:03:11,050
+So firstly First of all we have the template formas version and the only supported version is 2010 0
+
+37
+00:03:11,050 --> 00:03:16,230
+9 0 9 and that just refers to the version of the template format.
+
+38
+00:03:16,240 --> 00:03:21,310
+So the acceptable the supported template format for the cloud formation template.
+
+39
+00:03:21,310 --> 00:03:24,830
+Moving on we have the description and of course this is optional.
+
+40
+00:03:24,910 --> 00:03:29,210
+So you can just add in a description of your choice something meaningful to you.
+
+41
+00:03:29,380 --> 00:03:35,260
+So in this case it's just describing this as a template to create an easy to instance.
+
+42
+00:03:35,260 --> 00:03:39,190
+Next is meta data and that is simply data about data.
+
+43
+00:03:39,190 --> 00:03:41,270
+Once again it's completely optional.
+
+44
+00:03:41,280 --> 00:03:48,280
+So you can just put in a custom field and for this one we're just providing some data about the specific
+
+45
+00:03:48,280 --> 00:03:51,970
+instances that this confirmation template is going to provision.
+
+46
+00:03:51,980 --> 00:03:57,730
+So just give us a description of web server instance moving down to parameters.
+
+47
+00:03:57,730 --> 00:04:03,580
+So these saw input values that you actually input to cloud formation when you actually go ahead and
+
+48
+00:04:03,580 --> 00:04:05,890
+launch a stack using this template.
+
+49
+00:04:06,100 --> 00:04:12,090
+So this is information that you need to provide when you go ahead and launch this stack.
+
+50
+00:04:12,220 --> 00:04:18,250
+And in this case we're defining some environment an environment type and the allowed values are either
+
+51
+00:04:18,250 --> 00:04:20,140
+prod or test.
+
+52
+00:04:20,140 --> 00:04:25,630
+So we need to provide that when we actually go ahead and launch a stack using this template.
+
+53
+00:04:25,870 --> 00:04:30,730
+And then the next Prometa is conditions and we can use this and we can use conditions.
+
+54
+00:04:30,730 --> 00:04:37,240
+Once again it's completely user defined and we can actually use this to test a condition and take action
+
+55
+00:04:37,420 --> 00:04:40,810
+based on the outcome of testing that condition.
+
+56
+00:04:40,810 --> 00:04:47,560
+So in this case we are evaluating the parameter and type which was declared in the previous section
+
+57
+00:04:47,590 --> 00:04:49,390
+under the premises section.
+
+58
+00:04:49,390 --> 00:04:56,620
+So we're evaluating that and we're saying if it ECOs to prod then we should create poured resources
+
+59
+00:04:56,680 --> 00:05:04,070
+only so you can use it to tell color formation to make decisions based on parameters that you have input.
+
+60
+00:05:04,090 --> 00:05:12,400
+At lunchtime so moving on to mappings and we can use mappings to set our own user defined families.
+
+61
+00:05:12,400 --> 00:05:19,240
+So for example we could set the value of an AM I based on a region so we can completely define this
+
+62
+00:05:19,240 --> 00:05:19,930
+ourself.
+
+63
+00:05:19,930 --> 00:05:26,240
+So for example the EU west one that is the I AM Are we going to use and you could define different am
+
+64
+00:05:26,230 --> 00:05:26,460
+I.
+
+65
+00:05:26,490 --> 00:05:33,550
+For every different region you could define a different for different environments etc. etc. it's all
+
+66
+00:05:33,550 --> 00:05:36,100
+very flexible and completely user defined.
+
+67
+00:05:37,010 --> 00:05:38,880
+The next section called transform.
+
+68
+00:05:38,900 --> 00:05:45,170
+This is quite important because this allows you to actually include snippets of code which are outside
+
+69
+00:05:45,170 --> 00:05:46,720
+the main template.
+
+70
+00:05:46,760 --> 00:05:51,000
+Now you can either include for example code for a lambda function.
+
+71
+00:05:51,260 --> 00:05:52,860
+You could include your own code.
+
+72
+00:05:52,880 --> 00:05:54,620
+You want to reuse.
+
+73
+00:05:54,620 --> 00:05:58,460
+There's also a lot of code snippets which I ws provides.
+
+74
+00:05:58,490 --> 00:06:02,310
+And I'm just going to show you the web page where you can find these.
+
+75
+00:06:02,330 --> 00:06:08,760
+So I'm just going to search for cloud formation snippets and there's a whole load of different exam
+
+76
+00:06:08,880 --> 00:06:15,620
+scenarios that you can use to allow you to declare various different cloud formation template pods.
+
+77
+00:06:15,630 --> 00:06:24,780
+So for example as templates sandpits the dynamite be so easy to elastic container service audience 3:53
+
+78
+00:06:24,800 --> 00:06:26,200
+etc etc..
+
+79
+00:06:26,320 --> 00:06:31,330
+Loew's there's all sorts of different resources that I have provided example code for.
+
+80
+00:06:31,350 --> 00:06:38,370
+So for example if we take a look at the don't do IDB one at Scott is an example piece of code for creating
+
+81
+00:06:38,400 --> 00:06:44,140
+a dynamo IDB table the various different properties and attributes.
+
+82
+00:06:44,380 --> 00:06:50,500
+Global secondary indexes provision throughput etc. all the different things you need to define for Adani
+
+83
+00:06:50,570 --> 00:06:54,040
+IDB table and this example here is in gyse on.
+
+84
+00:06:54,090 --> 00:06:57,030
+But they also show you it in YAML as well.
+
+85
+00:06:57,030 --> 00:07:03,570
+So you could actually create reusable pieces of code which you can store in S3 and cloud formation will
+
+86
+00:07:03,630 --> 00:07:08,600
+allow you to actually reference that with in your cloud formation template.
+
+87
+00:07:08,610 --> 00:07:14,450
+So once again it just allows you to reuse code and maintain consistency throughout your code base.
+
+88
+00:07:14,760 --> 00:07:17,300
+Then moving on to the resources section.
+
+89
+00:07:17,370 --> 00:07:20,220
+So this section of the file is the most important.
+
+90
+00:07:20,340 --> 00:07:26,560
+And this is where you define the AWOS resources that you want cloud formation to deploy for.
+
+91
+00:07:26,910 --> 00:07:30,800
+So in this case we're going to be deploying an AC to instance.
+
+92
+00:07:31,020 --> 00:07:34,280
+We're defining the instance type as a T-2 micro.
+
+93
+00:07:34,450 --> 00:07:39,310
+And we're also specifying which IMO we want to use as well.
+
+94
+00:07:39,310 --> 00:07:44,010
+And finally the last section of this example template is the output section.
+
+95
+00:07:44,070 --> 00:07:50,130
+And again this is completely use the defined and in this particular template it gets you to output the
+
+96
+00:07:50,130 --> 00:07:54,740
+instance ID of the SE to instance that we are provisioning and the outputs.
+
+97
+00:07:54,750 --> 00:08:01,380
+You can see them displayed in the console and they can also be input into another cloud formation stack
+
+98
+00:08:01,440 --> 00:08:02,310
+as well.
+
+99
+00:08:02,310 --> 00:08:04,820
+And you don't need to know the template of by heart.
+
+100
+00:08:04,860 --> 00:08:09,450
+It's unlikely that they're going to ask you really detailed questions about it in the exam but it's
+
+101
+00:08:09,450 --> 00:08:15,480
+important to understand OK what is the anatomy of a cloud formation template what with all the different
+
+102
+00:08:15,480 --> 00:08:17,270
+sections are used for.
+
+103
+00:08:17,520 --> 00:08:23,700
+And remember that the resources section is the most important section and it's the only mandatory section
+
+104
+00:08:23,730 --> 00:08:24,760
+of the template.
+
+105
+00:08:24,780 --> 00:08:30,750
+And also remember that the transform section that is what is used to reference additional code stored
+
+106
+00:08:30,780 --> 00:08:32,850
+in S3.
+
+107
+00:08:32,850 --> 00:08:40,890
+It allows for code reuse for example you can specify lambda code and also template snippets or reusable
+
+108
+00:08:40,890 --> 00:08:43,460
+pieces of cloud formation code.
+
+109
+00:08:43,740 --> 00:08:47,310
+So let's take a look at some bar exam tips for cloud formation.
+
+110
+00:08:49,280 --> 00:08:55,630
+So a confirmation allows you to manage configure and provision AWOS infrastructure as code.
+
+111
+00:08:56,280 --> 00:09:03,590
+And remember we use either YAML or Jasen for the cloud formation template file and remember the main
+
+112
+00:09:03,650 --> 00:09:06,500
+sections of the cloud formation template.
+
+113
+00:09:06,500 --> 00:09:13,280
+So we have parameters which allows you to input custom values and in the example we use an environment
+
+114
+00:09:13,310 --> 00:09:14,060
+type.
+
+115
+00:09:14,150 --> 00:09:19,370
+So in that example transformation will expect to to state which environment the resources are going
+
+116
+00:09:19,370 --> 00:09:26,710
+to be for for example production or test conditions used to make decisions based on a set of parameters.
+
+117
+00:09:26,840 --> 00:09:31,590
+For example it will allow you to provision resources based on environment.
+
+118
+00:09:31,640 --> 00:09:37,010
+If you've used an environment term into the resources section remember that's the mandatory section
+
+119
+00:09:37,100 --> 00:09:40,680
+and defines all the AWOS resources to create.
+
+120
+00:09:40,880 --> 00:09:42,910
+And that could be an S3 bucket.
+
+121
+00:09:42,950 --> 00:09:47,790
+You see two instances an audio database dynamo DB database.
+
+122
+00:09:47,900 --> 00:09:54,470
+Pretty much anything that you can think of within J-ws you can create as a resource using cloud formation
+
+123
+00:09:55,310 --> 00:10:01,840
+mappings allow you to create custom mappings for example mapping a different am I to a different region.
+
+124
+00:10:01,970 --> 00:10:07,590
+So depending on which region you are working in you can tell cloud formation to use specific I might
+
+125
+00:10:07,660 --> 00:10:08,740
+add that region.
+
+126
+00:10:08,990 --> 00:10:10,560
+And finally transforms.
+
+127
+00:10:10,610 --> 00:10:18,080
+So this allows you to reference code located in S3 for example lambda code or reusable snippets of cloud
+
+128
+00:10:18,080 --> 00:10:19,390
+formation code.
+
+129
+00:10:19,430 --> 00:10:21,980
+Both of those located in S3.
+
+130
+00:10:22,310 --> 00:10:27,890
+However the best way to learn information is definitely to start using it and get your hands dirty with
+
+131
+00:10:27,890 --> 00:10:28,420
+it.
+
+132
+00:10:28,520 --> 00:10:31,960
+And that is exactly what we're going to be doing in the next lecture.
+
+133
+00:10:32,330 --> 00:10:34,630
+So the next lecture is going to be a lab.
+
+134
+00:10:34,640 --> 00:10:37,920
+So if we have time please join me in the next lecture.
+
+135
+00:10:38,030 --> 00:10:38,480
+Thank you.

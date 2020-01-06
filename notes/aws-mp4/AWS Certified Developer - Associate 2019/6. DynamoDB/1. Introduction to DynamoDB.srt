@@ -1,0 +1,595 @@
+1
+00:00:00,330 --> 00:00:01,140
+You Clockers.
+
+2
+00:00:01,170 --> 00:00:05,940
+And welcome to this lecture and this lecture is all about Doyne MIDP.
+
+3
+00:00:06,000 --> 00:00:09,500
+So it's going to be the introduction to dynamite ODP.
+
+4
+00:00:09,750 --> 00:00:11,280
+So let's get started.
+
+5
+00:00:12,500 --> 00:00:13,730
+So what is dynamite.
+
+6
+00:00:13,730 --> 00:00:22,970
+DP Well it's a fast and flexible no secret database and it's for applications that need consistent single
+
+7
+00:00:22,970 --> 00:00:27,030
+digit millisecond latency at any scale.
+
+8
+00:00:27,480 --> 00:00:34,770
+And it's a fully managed database and it supports both document and key value data models.
+
+9
+00:00:34,910 --> 00:00:36,880
+It has a really flexible data model.
+
+10
+00:00:36,980 --> 00:00:42,230
+So that means that you don't need to define your database schema upfront and it has really reliable
+
+11
+00:00:42,230 --> 00:00:43,570
+performance as well.
+
+12
+00:00:43,670 --> 00:00:49,230
+And all of these attributes make it a really good fit for mobile gaming and tech.
+
+13
+00:00:49,270 --> 00:00:55,360
+I O-Tay and many other applications and talking about e-bay is also Servilius.
+
+14
+00:00:55,460 --> 00:01:02,210
+It's fully managed and it can be configured to auto scale integrate really really well with Lamda and
+
+15
+00:01:02,210 --> 00:01:08,240
+it's a really popular choice for developers and architects who are designing Servilius applications
+
+16
+00:01:08,530 --> 00:01:15,800
+dynamo IDB tables are always backed by solid state disks or staes which helps to give you a consistently
+
+17
+00:01:15,830 --> 00:01:22,280
+fast performance for your reads and writes the underlying hardware supporting neodymium IDB instance
+
+18
+00:01:22,550 --> 00:01:27,390
+is always spread across three geographically distinct data centers.
+
+19
+00:01:27,590 --> 00:01:30,580
+So that means it avoids any single point of failure.
+
+20
+00:01:30,650 --> 00:01:37,130
+It's one of those locations becomes unavailable and there was a choice of two consistency models for
+
+21
+00:01:37,130 --> 00:01:40,400
+Dynamo ODP read operations.
+
+22
+00:01:40,460 --> 00:01:45,470
+So the first is eventually consistent rates and that is the default.
+
+23
+00:01:45,470 --> 00:01:52,610
+And the second is strongly consistent rates now with eventually consistent rates consistency across
+
+24
+00:01:52,670 --> 00:01:58,630
+all the copies of the data across the three locations is usually reached within a second.
+
+25
+00:01:58,700 --> 00:02:05,000
+And this means that repeating a read or reading a piece of data that you just written or changed should
+
+26
+00:02:05,060 --> 00:02:08,900
+return the updated data within a second.
+
+27
+00:02:09,290 --> 00:02:16,940
+The second option is code strongly consistent rates and with strongly consistent rate will always return
+
+28
+00:02:17,030 --> 00:02:23,160
+a result that reflects all the rights that received a successful response prior to the raid.
+
+29
+00:02:23,180 --> 00:02:30,860
+So that really means that all successful rights will be reflected consistently across all three locations.
+
+30
+00:02:31,690 --> 00:02:35,600
+Tied to my DP is made up of typos and items.
+
+31
+00:02:35,600 --> 00:02:40,850
+So when we say items think of a row of data in the table theres also attributes.
+
+32
+00:02:40,970 --> 00:02:47,390
+So when you spend you see attributes think of a column of data in a table it supports k value document
+
+33
+00:02:47,390 --> 00:02:48,550
+data structures.
+
+34
+00:02:48,680 --> 00:02:52,390
+And when you see key value the key is really the name of the data.
+
+35
+00:02:52,580 --> 00:02:56,810
+So for example user ID and then the value is the data.
+
+36
+00:02:56,860 --> 00:03:07,220
+So so the user id it so and for documents storage documents can be written in Jasen HMO or Eskimo So
+
+37
+00:03:07,220 --> 00:03:14,030
+let's take a look at an example of a dynamo D-B table and this is one that I've already created and
+
+38
+00:03:14,030 --> 00:03:20,990
+it's just a simple table containing data about lectures and each row in the table is an item in the
+
+39
+00:03:20,990 --> 00:03:27,340
+database or a record and each column in the table is an attribute of the item.
+
+40
+00:03:27,350 --> 00:03:33,080
+So let's take a look at one of these items and you can say that each item is made up of a series of
+
+41
+00:03:33,110 --> 00:03:34,810
+key value pairs.
+
+42
+00:03:34,820 --> 00:03:39,470
+So in this case the key is category or the subject matter of the lecture.
+
+43
+00:03:39,470 --> 00:03:42,710
+And then the value is going to be in the next key value pair.
+
+44
+00:03:42,720 --> 00:03:46,620
+It's language and the language is English and so on and so on.
+
+45
+00:03:46,730 --> 00:03:52,820
+And it's these key value pairs which appear in the database as attributes of the items in your table.
+
+46
+00:03:52,940 --> 00:03:56,000
+And the next thing we're going to talk about is primary case.
+
+47
+00:03:56,030 --> 00:04:00,110
+So how do we actually query the data in the table.
+
+48
+00:04:00,210 --> 00:04:04,770
+So I don't to IDB stores and retrieves data based on a primary key.
+
+49
+00:04:05,100 --> 00:04:09,850
+And it's this primary key that we use when we are querying the data.
+
+50
+00:04:10,100 --> 00:04:13,330
+And there are two types of primary key.
+
+51
+00:04:13,340 --> 00:04:17,990
+The first is a partition key on the partition key is a unique attribute.
+
+52
+00:04:17,990 --> 00:04:23,370
+So for example a user id a product ID an e-mail address etc..
+
+53
+00:04:23,450 --> 00:04:29,270
+And the reason why it's called a partition key is because the value of the partition key is input into
+
+54
+00:04:29,360 --> 00:04:35,990
+an internal hash function and the output of this hash function actually determines the partition or
+
+55
+00:04:36,050 --> 00:04:40,370
+the physical location where that data is going to be stored.
+
+56
+00:04:40,370 --> 00:04:46,850
+So if you are using a partition key as your primary key then no two items within your table can have
+
+57
+00:04:46,850 --> 00:04:53,180
+the same partition key because we can't store two items in the same physical location.
+
+58
+00:04:53,180 --> 00:04:57,250
+Now the second type of primary key is called a composite key.
+
+59
+00:04:57,320 --> 00:05:02,690
+And this is made up of a combination of a partition key and so.
+
+60
+00:05:02,990 --> 00:05:09,980
+So you would use this kind of composite K in a situation where the partition key was not necessarily
+
+61
+00:05:10,070 --> 00:05:12,380
+unique within your table.
+
+62
+00:05:12,380 --> 00:05:20,450
+So for example think about a table which is storing data about forum posts and you might be storing
+
+63
+00:05:20,540 --> 00:05:27,560
+attributes such as a user id the name of the forum the time they posted to the forum and the message
+
+64
+00:05:27,560 --> 00:05:28,840
+they posted in the form.
+
+65
+00:05:28,880 --> 00:05:35,370
+And in this example the primary key could be a composite key which was made out of a partition key which
+
+66
+00:05:35,370 --> 00:05:40,880
+should be the user id then a sort key which would be a timestamp of the post.
+
+67
+00:05:40,880 --> 00:05:46,700
+And in this case two items could have the same partition key because you could have the user posting
+
+68
+00:05:46,730 --> 00:05:51,530
+multiple times in multiple forms or multiple times in the same form.
+
+69
+00:05:51,680 --> 00:05:58,700
+So in order to identify the record or the item uniquely we need to use a combination of the user id
+
+70
+00:05:59,000 --> 00:06:01,330
+and the time they did that forum post.
+
+71
+00:06:01,370 --> 00:06:08,150
+Now all items with the same partition key start together and then they are sorted according to the value
+
+72
+00:06:08,240 --> 00:06:09,580
+of the Souci.
+
+73
+00:06:09,830 --> 00:06:15,960
+And once again this allows you to store multiple items using the same partition key.
+
+74
+00:06:16,190 --> 00:06:19,650
+So here's an example of a student's table.
+
+75
+00:06:19,910 --> 00:06:24,770
+And in the first record and within done in my day the record is called an item.
+
+76
+00:06:24,770 --> 00:06:29,910
+So within that first item we've got the unique ID of 1 9 7 5.
+
+77
+00:06:30,110 --> 00:06:36,140
+And in this case this could be partition K because we know it's a unique ID then we have a first name
+
+78
+00:06:36,560 --> 00:06:38,660
+surname and a phone number.
+
+79
+00:06:38,990 --> 00:06:44,630
+But think of it not the table where we might have a number of students and they might be taking multiple
+
+80
+00:06:44,630 --> 00:06:45,630
+courses.
+
+81
+00:06:45,650 --> 00:06:51,320
+So with our second example we have a student called Riyadh's aminals if he was to attend two different
+
+82
+00:06:51,320 --> 00:06:58,430
+courses then his unique user ID would not necessarily be a good primary key on its own because he might
+
+83
+00:06:58,430 --> 00:07:03,070
+appear in our database numerous times having attended multiple courses.
+
+84
+00:07:03,080 --> 00:07:08,800
+So in this case we need to use the composite key and we need to use a partition key along with a sort
+
+85
+00:07:08,840 --> 00:07:17,660
+key in order to give us that unique primary key access control to John MIDP is all managed but identity
+
+86
+00:07:17,660 --> 00:07:24,860
+access management and you can create an I am use within your account who has specific permissions to
+
+87
+00:07:24,860 --> 00:07:27,710
+access and create don't you IDB tables.
+
+88
+00:07:27,740 --> 00:07:33,890
+You can also create an identity crisis management role which enables you to obtain temporary access
+
+89
+00:07:33,890 --> 00:07:38,720
+keys that can then be used to access services like dynamite.
+
+90
+00:07:39,160 --> 00:07:46,220
+And you can also use a special identity access management condition to restrict access to only that
+
+91
+00:07:46,250 --> 00:07:47,400
+own records.
+
+92
+00:07:47,570 --> 00:07:50,970
+So let's take a look at that in a little bit more detail.
+
+93
+00:07:50,990 --> 00:07:57,290
+Imagine a mobile gaming application with millions of users and the users need to access the high scores
+
+94
+00:07:57,290 --> 00:07:59,330
+for each game that they're playing.
+
+95
+00:07:59,330 --> 00:08:04,890
+However Access needs to be restricted to ensure they can view anyone else's data.
+
+96
+00:08:04,910 --> 00:08:12,160
+So in the example here we have a table with attributes such as user ID game title and top score.
+
+97
+00:08:12,440 --> 00:08:18,860
+So a user is going to want to access their own record to view and update their own data but they don't
+
+98
+00:08:18,860 --> 00:08:21,400
+need to access anybody else's data.
+
+99
+00:08:21,410 --> 00:08:27,330
+So how can we make sure that user gets access to the data they need but doesn't see anyone else's data.
+
+100
+00:08:27,380 --> 00:08:33,620
+Well this can be done by adding a condition to an identity access management policy and this will allow
+
+101
+00:08:33,620 --> 00:08:39,950
+the user to access only items where the partition key value matches their user ID.
+
+102
+00:08:40,010 --> 00:08:46,400
+So if Kamila wants to check her high score when she looks into the application she can only access her
+
+103
+00:08:46,460 --> 00:08:48,720
+own scores in the database.
+
+104
+00:08:48,950 --> 00:08:51,230
+She cannot view anyone else's data.
+
+105
+00:08:51,470 --> 00:08:56,490
+She can't tamper with anyone else's scores and she cannot delete anyone else's data.
+
+106
+00:08:57,530 --> 00:09:03,020
+And here's an example of an identity crisis management policy which does just that.
+
+107
+00:09:03,020 --> 00:09:07,110
+So the first statement that the top is the statement identifier.
+
+108
+00:09:07,280 --> 00:09:13,010
+And this just gives the policy a unique identifying name underneath that we have the effect which is
+
+109
+00:09:13,010 --> 00:09:14,060
+to allow.
+
+110
+00:09:14,450 --> 00:09:15,840
+And then on the action.
+
+111
+00:09:15,890 --> 00:09:19,560
+This just defines the actions that the policy is going to allow.
+
+112
+00:09:19,580 --> 00:09:26,160
+So it's going to allow get item put item and update item underneath that.
+
+113
+00:09:26,180 --> 00:09:27,860
+It states the resource.
+
+114
+00:09:27,860 --> 00:09:36,140
+So this is the unique Amazon resource name for your dynamo D-B table and then highlighted here is the
+
+115
+00:09:36,140 --> 00:09:43,190
+condition clause and it's this highlighted conditions section which is really key to configuring this.
+
+116
+00:09:43,400 --> 00:09:49,730
+And this is the section with which configures it to allow users to access only the items where the partition
+
+117
+00:09:49,730 --> 00:09:57,950
+key value matches their user id so it states that for all values debate leading Cays or the partition
+
+118
+00:09:57,950 --> 00:10:03,410
+key that value needs to match the user ID that is requesting the data.
+
+119
+00:10:03,410 --> 00:10:09,500
+So effectively it allows users to access only the items where the partition key value matches their
+
+120
+00:10:09,500 --> 00:10:10,610
+user ID.
+
+121
+00:10:10,910 --> 00:10:17,540
+And then finally the domain name IDB attributes section defines the attributes that the policy applies
+
+122
+00:10:17,540 --> 00:10:18,390
+to.
+
+123
+00:10:18,860 --> 00:10:22,490
+So let's take a look at some of our exam tips for Dynamo ODP.
+
+124
+00:10:22,820 --> 00:10:26,600
+Well firstly it's a low latency no Siku database.
+
+125
+00:10:26,690 --> 00:10:30,410
+It consists of tables items and attributes.
+
+126
+00:10:30,410 --> 00:10:37,050
+And when we think of items think of rows in the database or database records alone we think of attributes
+
+127
+00:10:37,070 --> 00:10:39,950
+just think of columns in the table.
+
+128
+00:10:40,100 --> 00:10:46,900
+It supports both document and key value data models and supported document formats or chase on HCM.
+
+129
+00:10:46,940 --> 00:10:50,110
+An example there are two types of primary case.
+
+130
+00:10:50,300 --> 00:10:57,020
+Firstly the partition key and secondly a composite key which consists of a combination of a partition
+
+131
+00:10:57,020 --> 00:11:03,160
+key and suitcase and the partition key be something like a user ID or a product ID.
+
+132
+00:11:03,440 --> 00:11:05,540
+And then the Souci is usually a range.
+
+133
+00:11:05,540 --> 00:11:08,840
+It could be a timestamp or a date etc..
+
+134
+00:11:09,140 --> 00:11:14,930
+There are two consistency models within dynamite IDB strongly consistent which means that any riots
+
+135
+00:11:14,930 --> 00:11:20,870
+that occurred before the raid will be reflected in the raid and that will be consistent across all three
+
+136
+00:11:20,870 --> 00:11:22,270
+locations.
+
+137
+00:11:22,500 --> 00:11:28,370
+And also there is eventually consistent and with eventually consistent performance can be better.
+
+138
+00:11:28,550 --> 00:11:35,830
+However it can take up to one second Fanu rights or updates to be reflected in your read access to dynamite
+
+139
+00:11:35,890 --> 00:11:42,590
+debate is controlled by using identity access management policies and you can implement fine grained
+
+140
+00:11:42,650 --> 00:11:48,380
+access control using identity access management conditioned premises and it's the domain name ID be
+
+141
+00:11:48,440 --> 00:11:55,780
+leading case parameter which allows users to access only the items where the partition key matches their
+
+142
+00:11:55,780 --> 00:11:56,790
+user ID.
+
+143
+00:11:56,990 --> 00:11:58,570
+So that's the end of this lecture.
+
+144
+00:11:58,580 --> 00:12:04,550
+It was just a quick overview of dynamite Bay and in the next lecture we're going to go ahead and create
+
+145
+00:12:04,550 --> 00:12:09,630
+our own dynamite pay tables and populate them with some data as well.
+
+146
+00:12:09,680 --> 00:12:13,520
+So you have an opportunity to get your hands dirty with Dynamites Eby.
+
+147
+00:12:13,670 --> 00:12:15,750
+So if you have any questions please let me know.
+
+148
+00:12:15,880 --> 00:12:18,760
+Otherwise if you have time please join me in the next lecture.
+
+149
+00:12:18,800 --> 00:12:19,290
+Thank you.

@@ -1,0 +1,391 @@
+1
+00:00:01,030 --> 00:00:06,530
+I Clockers and welcome to this lecture and this lecture is the dynamo DP summary.
+
+2
+00:00:06,540 --> 00:00:11,750
+So it's everything we've learnt in the dynamite's B.S. So let's get started.
+
+3
+00:00:13,480 --> 00:00:22,370
+So Diana IDB as a low latency Marsico database consisting of tables items and attributes it supports
+
+4
+00:00:22,370 --> 00:00:29,090
+both document and key value data models and the supported document formats or Jason I asked him how
+
+5
+00:00:29,270 --> 00:00:33,560
+an X IMO and there's two types of primary key.
+
+6
+00:00:33,620 --> 00:00:40,860
+Firstly the petition K so that could be something like a user ID and a combination of a petition.
+
+7
+00:00:40,940 --> 00:00:48,830
+And Azuki which is called a composite key that might consist of a user ID plus also the data the account
+
+8
+00:00:48,830 --> 00:00:49,670
+was created
+
+9
+00:00:52,520 --> 00:00:54,500
+there were two consistent semi-autos.
+
+10
+00:00:54,620 --> 00:01:00,320
+So we have strongly consistent and eventually consistent and of course if you need the most up to date
+
+11
+00:01:00,320 --> 00:01:07,310
+data for your application configure it to use strongly consistent rates but by default it's eventually
+
+12
+00:01:07,340 --> 00:01:08,370
+consistent.
+
+13
+00:01:08,510 --> 00:01:14,990
+And this means that when you read data from the table it may not reflect the status of a recently completed
+
+14
+00:01:15,080 --> 00:01:21,410
+write operation but if you use strongly consistent then this will reflect all previous rights that was
+
+15
+00:01:21,410 --> 00:01:23,200
+successfully completed.
+
+16
+00:01:23,420 --> 00:01:27,860
+Access control is controlled using identity access management policies.
+
+17
+00:01:28,050 --> 00:01:36,530
+I remember in the lab we used an IBM service role with the dynamo DB A full access policy to allow easy
+
+18
+00:01:36,530 --> 00:01:39,840
+to instance to interact with Doyne MIDP.
+
+19
+00:01:40,150 --> 00:01:46,060
+And when we deleted that row the ACTU instance could no longer query the database.
+
+20
+00:01:46,070 --> 00:01:51,740
+Remember we can use fine grained access control using the identity access management condition parameter
+
+21
+00:01:52,360 --> 00:01:55,620
+and that is called IDB leading case.
+
+22
+00:01:55,670 --> 00:02:02,240
+And we can use that to allow users to access only the items where the partition key value matches their
+
+23
+00:02:02,270 --> 00:02:09,940
+own User ID indexes enable sause queries on specific data columns and give you a different view of your
+
+24
+00:02:09,940 --> 00:02:16,150
+data based on an alternative partition K or partition key and sought key combination.
+
+25
+00:02:16,730 --> 00:02:21,950
+But it's important to understand the differences between a local secondary index and a global secondary
+
+26
+00:02:21,950 --> 00:02:22,920
+index.
+
+27
+00:02:23,270 --> 00:02:29,020
+So just remember for the local secondary index this must be created when you create a table.
+
+28
+00:02:29,210 --> 00:02:35,960
+It has the same partition key as your table but a different sort key whereas the global secondary index
+
+29
+00:02:36,100 --> 00:02:41,900
+you can create that at any time either at table creation time or any time afterwards.
+
+30
+00:02:42,050 --> 00:02:47,570
+And it can have a different partition key as well as a different sort key you can use a query operation
+
+31
+00:02:47,870 --> 00:02:52,310
+to find items in the table using only the primary key attribute.
+
+32
+00:02:52,310 --> 00:02:56,410
+So you provide the primary key name and a distinct value to such file.
+
+33
+00:02:56,600 --> 00:03:01,350
+For example the primary key name of user ID and the value of the user ID.
+
+34
+00:03:01,360 --> 00:03:03,260
+For example 2 0 1.
+
+35
+00:03:03,590 --> 00:03:08,660
+Alternatively a scan operation examines every item in the table.
+
+36
+00:03:08,660 --> 00:03:15,320
+By default it returns all data attributes but you can use the projection expression parameter to refine
+
+37
+00:03:15,320 --> 00:03:21,410
+your results and from the com so you can use the filter function query results are always sorted by
+
+38
+00:03:21,410 --> 00:03:22,150
+the sort.
+
+39
+00:03:22,210 --> 00:03:25,280
+If there is one and that's sorted in ascending order.
+
+40
+00:03:25,280 --> 00:03:27,620
+So one two three four etc..
+
+41
+00:03:29,000 --> 00:03:35,210
+And you could set the scan index for that parameter to Folse if you want to reverse the order.
+
+42
+00:03:35,240 --> 00:03:39,250
+I remember this is for queries only it's not for scans even though it's very misleading.
+
+43
+00:03:39,260 --> 00:03:41,470
+They've called it scan index for.
+
+44
+00:03:41,480 --> 00:03:47,930
+Just remember it's only for queries and in general the query operation tends to be more efficient than
+
+45
+00:03:47,990 --> 00:03:48,810
+a scan.
+
+46
+00:03:49,280 --> 00:03:54,740
+If you want to improve the performance of queries and scans you can do that by setting a smaller page
+
+47
+00:03:54,740 --> 00:04:01,010
+size which uses up fewer read operations because it returns a smaller set of results.
+
+48
+00:04:01,010 --> 00:04:06,740
+You can also isolate your scan operations to specific tables and segregate him from your mission critical
+
+49
+00:04:06,740 --> 00:04:13,990
+traffic Alternatively you can try parallel scans rather than the default sequential scan.
+
+50
+00:04:14,000 --> 00:04:19,910
+However in general you should avoid using scan operations if you can instead design your tables so that
+
+51
+00:04:19,910 --> 00:04:27,730
+you can use the query get a patch get item IPs don't MIDP throughput is measured in capacity units.
+
+52
+00:04:27,740 --> 00:04:34,610
+I remember one right to capacity unit is equal to 1 1 kill about right per second one read capacity
+
+53
+00:04:34,610 --> 00:04:42,590
+unit is equal to one full kilobyte strongly consistent rate per second or two for kilobyte eventually
+
+54
+00:04:42,590 --> 00:04:44,180
+consistent reads per And
+
+55
+00:04:48,060 --> 00:04:54,240
+in order to calculate your write capacity requirements first calculate how many capacity units needed
+
+56
+00:04:54,240 --> 00:04:54,620
+for each.
+
+57
+00:04:54,620 --> 00:04:55,940
+Right.
+
+58
+00:04:56,100 --> 00:04:58,490
+So you would type the size of each item.
+
+59
+00:04:58,680 --> 00:05:08,140
+And in this case it's 512 bytes divided by 1 kilobytes for right capacity units Akos 0.5.
+
+60
+00:05:08,440 --> 00:05:15,840
+Run that up to the nearest whole number and H writes We need one right capacity unit per right operation
+
+61
+00:05:16,820 --> 00:05:20,240
+then multiply that by the number of rights you need per second.
+
+62
+00:05:20,520 --> 00:05:25,980
+So 1 times 100 equals one right to capacity units required for this example.
+
+63
+00:05:28,970 --> 00:05:35,640
+In order to calculate your real capacity requirements first calculate how many capacity units needed
+
+64
+00:05:35,640 --> 00:05:36,600
+for each raid.
+
+65
+00:05:36,600 --> 00:05:44,620
+So in order to read 83 about items per second you type the size of each item so three kilobytes.
+
+66
+00:05:44,620 --> 00:05:47,920
+Divide it by four kilobytes for the read capacity units.
+
+67
+00:05:47,970 --> 00:05:51,830
+So that equals point seventy five round up to the nearest whole number.
+
+68
+00:05:51,900 --> 00:05:55,700
+So each read we need one read capacity unit operation.
+
+69
+00:05:56,130 --> 00:05:58,620
+Multiply that by the number of raids per second.
+
+70
+00:05:58,710 --> 00:06:05,140
+So times 80 equals 80 real capacity units for strongly consistent rates.
+
+71
+00:06:05,160 --> 00:06:10,950
+However if eventual consistency is acceptable and your application is going to use eventual consistency
+
+72
+00:06:11,310 --> 00:06:14,060
+just divide the 80 by 2 which is 40.
+
+73
+00:06:14,070 --> 00:06:21,890
+So 40 read capacity units required for eventual consistency dynamite be accelerator audax provides in-memory
+
+74
+00:06:21,900 --> 00:06:28,330
+caching for Don MIDP tables improves the response times for eventually consistent reads only.
+
+75
+00:06:28,950 --> 00:06:34,320
+You point your JPI close to the docs cluster instead of your table and if the item you queering is in
+
+76
+00:06:34,320 --> 00:06:36,600
+the cash tax will return it.
+
+77
+00:06:36,600 --> 00:06:42,870
+Otherwise it will perform and eventually consistent get item operation to your dynamite db table and
+
+78
+00:06:42,870 --> 00:06:45,560
+its most suitable for read intensive applications.
+
+79
+00:06:45,570 --> 00:06:51,870
+Its not suitable for write intensive all applications that requires strongly consistent reads.
+
+80
+00:06:51,960 --> 00:06:58,380
+Moving onto elastic cache remember elastic cache is an in memory cache which sits between your application
+
+81
+00:06:58,410 --> 00:07:03,720
+and database and that could be tied to my DB database or any audio database.
+
+82
+00:07:03,720 --> 00:07:05,520
+There were two different caching strategies.
+
+83
+00:07:05,580 --> 00:07:12,710
+Lazy loading and right three Remember lazy loading only caches the data when it's requested and it means
+
+84
+00:07:12,710 --> 00:07:15,000
+elastic cache node failures are not fatal.
+
+85
+00:07:15,020 --> 00:07:20,590
+It just means you'll get lots of cash misses until the cash is built up again and you do get a Kashmir's
+
+86
+00:07:20,600 --> 00:07:21,310
+penalty.
+
+87
+00:07:21,350 --> 00:07:26,930
+So there's an overhead to the initial request query database and writing to the cache as well.
+
+88
+00:07:26,930 --> 00:07:32,900
+If the data is not in the cache already and you can avoid Stylo data by implementing a timeout lives
+
+89
+00:07:33,200 --> 00:07:38,540
+the other caching strategy is called right through and this writes data into the cache whenever there
+
+90
+00:07:38,540 --> 00:07:40,880
+is a change in the database.
+
+91
+00:07:40,880 --> 00:07:46,880
+This means the data is never style but there is a right penalty because each write involves a right
+
+92
+00:07:46,880 --> 00:07:53,270
+to the database and a right to the cache and an elastic cache node failure means that data is missing
+
+93
+00:07:53,330 --> 00:07:59,840
+in the cache until it's added or updated in the database and you do have the disadvantage of wasted
+
+94
+00:07:59,840 --> 00:08:01,110
+resources.
+
+95
+00:08:01,160 --> 00:08:06,920
+If most of the data in your database is never accessed so that is the end of this section.
+
+96
+00:08:07,100 --> 00:08:11,840
+Well done for completing this section and if you have any questions please let me know.
+
+97
+00:08:11,930 --> 00:08:14,750
+Otherwise please feel free to move on to the next lecture.
+
+98
+00:08:14,780 --> 00:08:15,290
+Thank ye.

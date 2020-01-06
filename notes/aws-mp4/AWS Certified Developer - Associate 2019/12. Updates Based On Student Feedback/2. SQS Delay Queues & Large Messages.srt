@@ -1,0 +1,267 @@
+1
+00:00:00,480 --> 00:00:04,980
+Hello bloggers and welcome to this lecture and this lecture is all about Eskew.
+
+2
+00:00:05,100 --> 00:00:10,610
+Delay cues and also managing large messages in Eskew s.
+
+3
+00:00:10,740 --> 00:00:12,520
+So let's get started.
+
+4
+00:00:12,540 --> 00:00:15,610
+So what are rescuers delay cues.
+
+5
+00:00:15,810 --> 00:00:22,620
+Well these allow you to postpone the delivery of new messages in escudos so you can postpone the delivery
+
+6
+00:00:22,620 --> 00:00:25,760
+to a queue for a number of seconds.
+
+7
+00:00:25,860 --> 00:00:32,640
+And this means that any messages sent into the delay queue actually remain invisible to any consumers
+
+8
+00:00:32,670 --> 00:00:39,900
+of the queue for the duration of a delay period which you set and the default delay for a delay queue
+
+9
+00:00:39,900 --> 00:00:47,020
+is zero seconds and the maximum is nine hundred seconds which is 15 minutes.
+
+10
+00:00:47,040 --> 00:00:53,400
+So for standard excuse queues this doesn't affect the delivery or the visibility of any messages which
+
+11
+00:00:53,400 --> 00:00:54,920
+are already in the queue.
+
+12
+00:00:55,020 --> 00:00:59,190
+It's only going to affect new messages arriving in the queue.
+
+13
+00:00:59,190 --> 00:01:05,850
+However if it's a FIFO queue this is going to affect the delay of any message which is already in the
+
+14
+00:01:05,850 --> 00:01:06,240
+queue.
+
+15
+00:01:06,810 --> 00:01:08,880
+So when should you use a delay queue.
+
+16
+00:01:09,450 --> 00:01:16,650
+Well with large distributed applications you might need to introduce a delay in processing somewhere
+
+17
+00:01:16,680 --> 00:01:19,170
+along the line for your application.
+
+18
+00:01:19,200 --> 00:01:24,410
+You might even need to apply a delay to an entire queue of messages.
+
+19
+00:01:24,450 --> 00:01:30,450
+For example imagine an online retail application where you might want to introduce a delay of a few
+
+20
+00:01:30,450 --> 00:01:38,250
+seconds in order to allow for updates to a sales or stock control database before sending out notifications
+
+21
+00:01:38,490 --> 00:01:41,730
+to your customers confirming an online transaction.
+
+22
+00:01:42,000 --> 00:01:47,490
+So for delay queues the main thing that you need to know is what they are and what they can be used
+
+23
+00:01:47,490 --> 00:01:48,180
+for.
+
+24
+00:01:48,180 --> 00:01:54,760
+So just remember that they can be used to delay or postpone the delivery of new messages in escudos.
+
+25
+00:01:55,020 --> 00:02:03,120
+Moving on to managing large messages in escudos while the best practice for managing large escudos messages
+
+26
+00:02:03,450 --> 00:02:11,930
+is to actually use s three and when we say large ask us messages I mean messages which are over 256
+
+27
+00:02:12,010 --> 00:02:15,650
+killer bytes and up to two gigs in size.
+
+28
+00:02:15,750 --> 00:02:22,080
+So the main thing to remember is that you can use S3 to store these messages but in order to do that
+
+29
+00:02:22,140 --> 00:02:24,960
+there's a couple of things you're going to need to also configure.
+
+30
+00:02:25,530 --> 00:02:31,320
+So first of all you're going to need the Amazon escudos extended to client library for Java and this
+
+31
+00:02:31,320 --> 00:02:38,940
+is going to allow you to manage the messages when they're in S3 and you'll also need the W.S. SDK for
+
+32
+00:02:38,940 --> 00:02:40,350
+Java as well.
+
+33
+00:02:40,350 --> 00:02:45,380
+And that just provides an API for the S3 Buckets and object operations.
+
+34
+00:02:45,450 --> 00:02:51,860
+So it's that SDK which allows you to get and put and delete objects from the S3 Buckets.
+
+35
+00:02:51,930 --> 00:02:57,060
+So in order to use S3 to store your messages you're actually going to need both of those both the extended
+
+36
+00:02:57,060 --> 00:03:00,110
+client library and also the SDK for Java.
+
+37
+00:03:00,810 --> 00:03:03,930
+So the rescuers extended client library for Java.
+
+38
+00:03:03,930 --> 00:03:11,550
+It allows you to specify that messages are either always stored in S3 or only the messages over a certain
+
+39
+00:03:11,550 --> 00:03:12,050
+size.
+
+40
+00:03:12,060 --> 00:03:17,050
+For example only the messages over two hundred and fifty six kilobytes.
+
+41
+00:03:17,160 --> 00:03:23,310
+It also allows you to send a message referencing a message object which is stored in S3 and also get
+
+42
+00:03:23,370 --> 00:03:30,890
+an delete message objects from S3 now you don't need to know how to set this up for the exam.
+
+43
+00:03:30,910 --> 00:03:35,830
+The main thing that you need to know for the exam is that when you're dealing with large messages in
+
+44
+00:03:35,850 --> 00:03:39,730
+escudos it's really useful to be able to store them in S3.
+
+45
+00:03:39,910 --> 00:03:43,900
+And for that you're going to need the W.S. SDK for Java.
+
+46
+00:03:43,900 --> 00:03:46,480
+The Eskew has extended library for Java.
+
+47
+00:03:46,600 --> 00:03:52,470
+Of course you're going to need an S3 bucket as well and you can't just use the normal a WSOC Ally.
+
+48
+00:03:52,540 --> 00:03:55,560
+You can't do it using only the console.
+
+49
+00:03:55,700 --> 00:04:02,290
+The NWS management console or the ESC U.S. console you can't do this using just the escudos API or any
+
+50
+00:04:02,290 --> 00:04:04,580
+of the other a W S SDK.
+
+51
+00:04:04,750 --> 00:04:11,460
+So just remember the things that you're going to need to use in order to manage your large excuse messages.
+
+52
+00:04:11,590 --> 00:04:13,870
+So moving on to our exam tips.
+
+53
+00:04:13,900 --> 00:04:19,450
+Just remember that you can use the excuse us delay queue if you need to postpone the delivery of new
+
+54
+00:04:19,450 --> 00:04:25,830
+messages messages in your delay queue remain invisible for the duration of the delay period and it's
+
+55
+00:04:25,910 --> 00:04:34,690
+zero by default up to 900 seconds or 15 minutes and you can use delay queues for large distributed applications
+
+56
+00:04:34,990 --> 00:04:41,620
+which might need to introduce a delay in processing in order to avoid errors in the application and
+
+57
+00:04:41,620 --> 00:04:44,370
+for managing large messages in rescuers.
+
+58
+00:04:44,380 --> 00:04:46,230
+Just remember our exam tips.
+
+59
+00:04:46,230 --> 00:04:52,630
+So if you have large messages up to 2 gig store them in S3 and in order to do that you're going to need
+
+60
+00:04:52,630 --> 00:05:00,820
+to have an S3 Buckets and you'll also need to use the w w SDK for Java as well as the escudos extended
+
+61
+00:05:00,850 --> 00:05:03,330
+client library for Java as well.
+
+62
+00:05:03,400 --> 00:05:10,660
+And just remember you can't do this using the regular a W SC ally or the management console or the escudos
+
+63
+00:05:10,750 --> 00:05:16,450
+API so that is everything that you should need to know about delay queues and managing large messages
+
+64
+00:05:16,720 --> 00:05:19,190
+in escudos using S3.
+
+65
+00:05:19,360 --> 00:05:21,640
+If you have any questions please do let me know.
+
+66
+00:05:22,000 --> 00:05:24,250
+If not feel free to move on to the next lecture.
+
+67
+00:05:24,250 --> 00:05:24,840
+Thank you.

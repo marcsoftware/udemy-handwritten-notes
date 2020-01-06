@@ -1,0 +1,879 @@
+1
+00:00:00,330 --> 00:00:06,540
+OK hello cloggers and welcome to this lecture this lecture we're going to start getting our hands dirty
+
+2
+00:00:06,540 --> 00:00:07,700
+with AC too.
+
+3
+00:00:07,770 --> 00:00:10,980
+The best way to learn AWOS is to go ahead and start using it.
+
+4
+00:00:10,980 --> 00:00:12,880
+So let's look into the AWOS cons..
+
+5
+00:00:12,930 --> 00:00:15,440
+OK so I've looked into the AWOS console.
+
+6
+00:00:15,450 --> 00:00:21,360
+Now I want you to first just take a moment to change all region and I would do the rest of this course
+
+7
+00:00:21,360 --> 00:00:24,510
+in the U.S. East in the Northern Virginia region.
+
+8
+00:00:24,510 --> 00:00:30,000
+And the reason for that is that's the main region where Amazon will release all their news services.
+
+9
+00:00:30,000 --> 00:00:34,650
+So if you see something that's quite cutting edge in this course and you can't find that new console
+
+10
+00:00:34,890 --> 00:00:37,490
+it could be because it's not available in your region.
+
+11
+00:00:37,490 --> 00:00:40,700
+So if you can just use us aist Northern Virginia.
+
+12
+00:00:40,700 --> 00:00:42,430
+So that's how you change a region.
+
+13
+00:00:42,630 --> 00:00:48,030
+Now what we want to do is we want to click up here and go to services and we can see compute and straight
+
+14
+00:00:48,030 --> 00:00:49,590
+on to compute is AC too.
+
+15
+00:00:49,590 --> 00:00:53,940
+So let's go ahead and click in there and what we're going to do in this lab is we're going to set up
+
+16
+00:00:54,000 --> 00:00:55,180
+a little web server.
+
+17
+00:00:55,200 --> 00:00:58,120
+So the first thing we need to do is you get this splash screen.
+
+18
+00:00:58,140 --> 00:01:01,330
+You can see that this is a brand new account by default.
+
+19
+00:01:01,350 --> 00:01:06,600
+I don't have anything we want to do is go ahead and launch our first instance.
+
+20
+00:01:06,600 --> 00:01:12,110
+So instances are created from Amazon machine images and you've got a whole bunch here that you know
+
+21
+00:01:12,140 --> 00:01:12,860
+you can choose.
+
+22
+00:01:12,870 --> 00:01:18,330
+So these are two different operating systems so you could have a amazon Linux or Linux Redhat scroll
+
+23
+00:01:18,330 --> 00:01:20,830
+down you could have windows et cetera.
+
+24
+00:01:21,030 --> 00:01:25,800
+Work for this course we're just going to use the Amazon Linux and wine as our default one.
+
+25
+00:01:25,800 --> 00:01:32,180
+Also note that you have the marketplace here and community and so you can actually go and buy a pre-built
+
+26
+00:01:32,540 --> 00:01:35,910
+you know virtual machines to do different things.
+
+27
+00:01:35,940 --> 00:01:41,820
+So let's go ahead and click on the Amazon Linux am I and then here this is where we do our instance
+
+28
+00:01:41,820 --> 00:01:42,380
+families.
+
+29
+00:01:42,390 --> 00:01:49,350
+This is where we can select whether we want to micro or if we want to use something that's optimized
+
+30
+00:01:49,380 --> 00:01:52,470
+for memory or something that's optimized for compute.
+
+31
+00:01:52,470 --> 00:01:55,860
+This is where Dr. mkt fight Dr. McK picks comes in.
+
+32
+00:01:55,860 --> 00:02:00,180
+So these are all your different instance types so we're going to use tape to my credit go ahead and
+
+33
+00:02:00,180 --> 00:02:02,750
+hit next configure instance in here.
+
+34
+00:02:02,760 --> 00:02:08,430
+This is where we say the number of instances you can have a purchasing option you could request a spot
+
+35
+00:02:08,430 --> 00:02:11,510
+instance you could go and enter in your price.
+
+36
+00:02:11,520 --> 00:02:13,960
+I'm not going to do that in here.
+
+37
+00:02:13,980 --> 00:02:17,340
+This is the network so we're going to deploy this into our default VTC.
+
+38
+00:02:17,340 --> 00:02:22,830
+We will cover all bases later on in the course but think of of APAC as just a virtual data center in
+
+39
+00:02:22,830 --> 00:02:24,840
+the cloud that's unique to you.
+
+40
+00:02:25,080 --> 00:02:28,470
+We can use the default BBC to use the default subnet.
+
+41
+00:02:28,480 --> 00:02:33,780
+We'll cover that off Also later on in the course and we want to auto assign a public IP address so when
+
+42
+00:02:33,780 --> 00:02:37,380
+this is first provisioned we want it to have a public IP address.
+
+43
+00:02:37,410 --> 00:02:40,940
+We're not going to assign any identity access management roles just yet.
+
+44
+00:02:40,950 --> 00:02:43,770
+We can do that later on on shutdown.
+
+45
+00:02:43,800 --> 00:02:45,780
+What do we want this instance to do.
+
+46
+00:02:45,780 --> 00:02:48,150
+Do we want it to stop or to terminate.
+
+47
+00:02:48,210 --> 00:02:53,520
+We just want it to stop enable terminations protection will stop us from accidentally deleting this
+
+48
+00:02:53,520 --> 00:02:53,970
+instance.
+
+49
+00:02:53,970 --> 00:02:57,180
+You definitely want to do that you know on a production service.
+
+50
+00:02:57,210 --> 00:02:58,770
+I'm not going to click on that now.
+
+51
+00:02:58,890 --> 00:03:05,280
+Monitoring all instances I'm monitored by default but you can have detailed monitoring detailed monitoring
+
+52
+00:03:05,280 --> 00:03:10,640
+allows you to monitor it monitors at every every minute as opposed to every five minutes.
+
+53
+00:03:10,740 --> 00:03:16,920
+I'm going to leave it as a default tendency we are going to run on a shared hardware instance and scroll
+
+54
+00:03:16,920 --> 00:03:22,730
+all the way down and in here we've got advance details so we can add in user data.
+
+55
+00:03:22,740 --> 00:03:27,000
+These are bootstrap scripts we're going to cover that offer later on in the course so basically we're
+
+56
+00:03:27,000 --> 00:03:29,340
+not making any changes here whatsoever.
+
+57
+00:03:29,340 --> 00:03:30,870
+We're going to leave everything as default.
+
+58
+00:03:30,900 --> 00:03:33,700
+We're going to go ahead and hit next to add our storage.
+
+59
+00:03:33,900 --> 00:03:34,650
+So here's our route.
+
+60
+00:03:34,680 --> 00:03:39,810
+Device volume or boot volume you can see that it's SSD general purpose.
+
+61
+00:03:39,810 --> 00:03:43,510
+You can also do provisions to IOPS and you can do the legacy magnetic.
+
+62
+00:03:43,650 --> 00:03:48,140
+I'm just going to leave it as SSD and we're not going to have an encrypted or anything.
+
+63
+00:03:48,150 --> 00:03:54,450
+You can go in here and add additional volumes if you want but we're not going to do that for this lecture
+
+64
+00:03:54,730 --> 00:04:00,490
+and we're going to go ahead and hit next to add our tags so our tags could just be something like name
+
+65
+00:04:00,930 --> 00:04:04,350
+and then the value will be my web.
+
+66
+00:04:04,430 --> 00:04:06,350
+So something like that.
+
+67
+00:04:06,510 --> 00:04:08,220
+So at any tag that you want.
+
+68
+00:04:08,370 --> 00:04:14,400
+So it's always you could have name you could have department you could have staff ID you know anything
+
+69
+00:04:14,400 --> 00:04:14,930
+that you want.
+
+70
+00:04:14,940 --> 00:04:16,000
+And then the value.
+
+71
+00:04:16,200 --> 00:04:19,720
+And then we're going to go ahead and configure our security groups.
+
+72
+00:04:20,010 --> 00:04:23,970
+So what is a security group will think of a security group as a virtual firewall.
+
+73
+00:04:23,970 --> 00:04:28,290
+So this is way you allow traffic in and out to your little instance.
+
+74
+00:04:28,440 --> 00:04:31,070
+So we're going to need to enable If this is going to be a web server.
+
+75
+00:04:31,080 --> 00:04:37,860
+People are going to be doing it over port 80 or are the TTP so going to have to enable port 80 in order
+
+76
+00:04:37,860 --> 00:04:38,830
+for this to work.
+
+77
+00:04:39,090 --> 00:04:44,760
+So we're going to create a new security group I would call this my web DMZ.
+
+78
+00:04:45,060 --> 00:04:48,360
+So you know that this is the security great for all your web service.
+
+79
+00:04:48,390 --> 00:04:51,750
+We're going to allow S-sh in from anywhere.
+
+80
+00:04:51,740 --> 00:04:58,740
+So S-sh is how we're going to connect to our easy to instance use SS hate for Linux of the windows use
+
+81
+00:04:58,750 --> 00:05:04,590
+Oddy pay it's just article to remotely administer your AC to instances.
+
+82
+00:05:04,590 --> 00:05:08,250
+So in here we can do this so you can do your IP address.
+
+83
+00:05:08,250 --> 00:05:09,390
+You could do anywhere.
+
+84
+00:05:09,390 --> 00:05:15,670
+I'm going to select anyway so this is the Sajda notations old old old old old old Ford slash.
+
+85
+00:05:15,720 --> 00:05:22,230
+And this is that's for IPB for this is for IP basics and this is basically just saying allow anyone
+
+86
+00:05:22,230 --> 00:05:26,660
+to be able to connect in using SS hige to this instance.
+
+87
+00:05:26,730 --> 00:05:29,780
+It's not really secure you should really lock it down to your IP address.
+
+88
+00:05:29,790 --> 00:05:35,580
+But this is just a test and Dev server anyway I'm going to go down and we're going to allow TZP access
+
+89
+00:05:35,580 --> 00:05:36,120
+as well.
+
+90
+00:05:36,180 --> 00:05:39,620
+And we're going to say we want DTP access from anywhere.
+
+91
+00:05:39,720 --> 00:05:45,690
+So people will be able to connect to this to instance on port 80 or port 22 on port 80.
+
+92
+00:05:45,700 --> 00:05:48,270
+They'll be viewing web traffic on port 22.
+
+93
+00:05:48,270 --> 00:05:50,020
+They'll be administering the server.
+
+94
+00:05:50,280 --> 00:05:55,230
+So let's go ahead and hit review and launch and then what we want to do is we just want to go ahead
+
+95
+00:05:55,260 --> 00:05:59,970
+and hit law and she will get this little sort of warning saying that you know the security group is
+
+96
+00:05:59,970 --> 00:06:05,730
+open to the world for S-sh it's not best practice but you know this is just a test and Dev server so
+
+97
+00:06:05,730 --> 00:06:07,410
+go ahead and hit launch.
+
+98
+00:06:07,410 --> 00:06:11,900
+Now if you've never done this before you are going to need public and private case.
+
+99
+00:06:12,150 --> 00:06:18,750
+So we are going to create a new key pair and this is how we connect inter AC to instance so this is
+
+100
+00:06:18,750 --> 00:06:21,840
+how we stop other random people just being able to connect in.
+
+101
+00:06:21,920 --> 00:06:25,150
+It is literally like setting up a lock on the server.
+
+102
+00:06:25,380 --> 00:06:31,410
+You've got your public key is the lock itself and your private key is the key that you use to open the
+
+103
+00:06:31,420 --> 00:06:32,060
+locks.
+
+104
+00:06:32,340 --> 00:06:36,720
+You can share a public case around with anyone but never share your private case soon as you share your
+
+105
+00:06:36,720 --> 00:06:39,330
+private KPP will be able to access this.
+
+106
+00:06:39,540 --> 00:06:43,640
+So we're going to call it my new key pair.
+
+107
+00:06:43,740 --> 00:06:44,820
+Something like that.
+
+108
+00:06:45,090 --> 00:06:46,760
+And go ahead and download it.
+
+109
+00:06:46,770 --> 00:06:49,160
+Make sure you save it somewhere safe.
+
+110
+00:06:49,260 --> 00:06:54,220
+And because if you lose this you won't be able to access your PC to instance if it.
+
+111
+00:06:54,270 --> 00:06:55,190
+You can say it's Dell.
+
+112
+00:06:55,200 --> 00:07:00,030
+Man I'm just going to close this and then we're going to go ahead and hit launch instance and that will
+
+113
+00:07:00,030 --> 00:07:02,010
+now launch our instance.
+
+114
+00:07:02,010 --> 00:07:07,050
+Let's go ahead and view this so it will take a little bit just says pending.
+
+115
+00:07:07,050 --> 00:07:11,010
+And what I'm going to pull is a video wait for this to go green and then we're going to connect into
+
+116
+00:07:11,010 --> 00:07:11,990
+this instance.
+
+117
+00:07:12,120 --> 00:07:14,640
+OK so that instance is now live.
+
+118
+00:07:14,640 --> 00:07:16,650
+So I will be able to connect to it.
+
+119
+00:07:16,650 --> 00:07:18,500
+So here's my public IP address.
+
+120
+00:07:18,510 --> 00:07:23,940
+If you just copy and paste that into your clipboard you'll be able to connect using that public IP address.
+
+121
+00:07:23,940 --> 00:07:25,470
+Now there's a couple of ways you can connect.
+
+122
+00:07:25,470 --> 00:07:27,630
+You can click click here and go connect.
+
+123
+00:07:27,780 --> 00:07:33,870
+And it says that you can use a standalone S-sh client which is what I'm going to use and I'll show you
+
+124
+00:07:33,870 --> 00:07:36,660
+how to do that in both Mac and in Windows.
+
+125
+00:07:36,870 --> 00:07:39,320
+Or you can use a Java S-sh client.
+
+126
+00:07:39,320 --> 00:07:44,080
+Now I am running this on crime and it's no longer a supported plug in.
+
+127
+00:07:44,310 --> 00:07:50,430
+So you can try and do it using Internet Explorer or Firefox or whatever but I'm going to use a standard
+
+128
+00:07:50,490 --> 00:07:52,070
+S-sh client.
+
+129
+00:07:52,080 --> 00:07:56,700
+So what I'm going to do now is I'm just going to load up terminals so if you are using Windows you can
+
+130
+00:07:56,700 --> 00:07:58,240
+skip the rest of this video.
+
+131
+00:07:58,260 --> 00:08:03,430
+Go to the very next video and I'll show you how to log in using Windows using potty.
+
+132
+00:08:03,480 --> 00:08:06,830
+But if you are a Mac user just follow along with me.
+
+133
+00:08:06,960 --> 00:08:12,540
+Ok so I'm in find and I've clicked on applications what you need to do is just scroll down to utilities
+
+134
+00:08:12,780 --> 00:08:15,380
+or open up utilities and you want to open up terminal.
+
+135
+00:08:15,390 --> 00:08:17,470
+Now my terminal is quite big.
+
+136
+00:08:17,490 --> 00:08:23,520
+You can go up here and go to show and you can go a new window using something like Herberts one of my
+
+137
+00:08:23,520 --> 00:08:24,500
+favorites.
+
+138
+00:08:24,630 --> 00:08:29,460
+You can use any settings that will just change the font and the colors and all of that.
+
+139
+00:08:29,730 --> 00:08:35,090
+So I'm just going to use my standard one and so straight away I'm in the Guri directory.
+
+140
+00:08:35,100 --> 00:08:36,620
+I need to go over to.
+
+141
+00:08:36,740 --> 00:08:41,170
+So CD downloads and that's where I downloaded my private key.
+
+142
+00:08:41,460 --> 00:08:44,250
+Now my private key was called My new key pair.
+
+143
+00:08:44,250 --> 00:08:49,980
+The first thing I need to do is to change the permissions on this so I need to make it quite locked
+
+144
+00:08:49,980 --> 00:08:53,490
+down to be able to connect to my PC to instance.
+
+145
+00:08:53,490 --> 00:09:01,850
+So what I would do is call type and say S.H. mod 400 my new key pent up pay.
+
+146
+00:09:01,890 --> 00:09:02,660
+And hit enter.
+
+147
+00:09:02,730 --> 00:09:05,050
+So that has just changed the permissions on the file.
+
+148
+00:09:05,140 --> 00:09:09,790
+And now all I need to do to log in is type S-sh AC to high end users.
+
+149
+00:09:09,810 --> 00:09:10,830
+That's my user name.
+
+150
+00:09:10,840 --> 00:09:11,810
+And then at.
+
+151
+00:09:11,990 --> 00:09:14,950
+And then the IP address and then minus I.
+
+152
+00:09:15,030 --> 00:09:16,400
+And what are we using.
+
+153
+00:09:16,410 --> 00:09:19,880
+We're using my new key pad.
+
+154
+00:09:20,060 --> 00:09:28,320
+PM And that will then use this keypad to try and connect them via S-sh via port 22 to see two instance
+
+155
+00:09:28,650 --> 00:09:31,010
+going to hit yes here tied.
+
+156
+00:09:31,020 --> 00:09:31,670
+Yes.
+
+157
+00:09:31,800 --> 00:09:38,890
+And it's added that private key to sorry it's added this computer to my list of known Herse.
+
+158
+00:09:38,920 --> 00:09:43,490
+And then what I need to do is I'm just going to clear the screen so you can see it a lot easier mean
+
+159
+00:09:43,530 --> 00:09:47,160
+elevate my privileges to route so I'm going to type sudo or su.
+
+160
+00:09:47,340 --> 00:09:50,840
+And so now I'm a super user you can see here it says route.
+
+161
+00:09:50,940 --> 00:09:53,610
+And so this means I have for admin access.
+
+162
+00:09:53,700 --> 00:09:59,580
+So we have a little Linux server in the cloud Let's go and make it a web service for the very first
+
+163
+00:09:59,830 --> 00:10:02,650
+want to do is just run a yum update minus.
+
+164
+00:10:02,650 --> 00:10:03,400
+Yes.
+
+165
+00:10:03,640 --> 00:10:08,490
+And this will just update the you know the operating system with all relevant packages.
+
+166
+00:10:08,500 --> 00:10:13,690
+It means it's got all the latest updates applied to it so that hopefully there will be no vulnerabilities
+
+167
+00:10:14,040 --> 00:10:19,810
+and that can take just a little bit of time but it's just cleaning up now it's done all the installations.
+
+168
+00:10:19,810 --> 00:10:25,630
+And once this is done what we need to do is we're going to go in and install Apache and Apache just
+
+169
+00:10:25,630 --> 00:10:32,380
+turns this little server into a web server and then what we'll do is we'll create a little web page
+
+170
+00:10:32,410 --> 00:10:35,750
+just says hello cloggers or something like that.
+
+171
+00:10:35,770 --> 00:10:37,310
+So that has now finished updating.
+
+172
+00:10:37,330 --> 00:10:44,180
+Let's clear the screen and to install Apache we just need to write yum install and then hate TTP day
+
+173
+00:10:44,740 --> 00:10:47,100
+and then we'll just do mine this wife of mine.
+
+174
+00:10:47,140 --> 00:10:47,800
+Yes.
+
+175
+00:10:48,040 --> 00:10:53,800
+So that has now installed and again I'm going to clear the screen so you can find what I'm doing much
+
+176
+00:10:53,800 --> 00:10:54,340
+easier.
+
+177
+00:10:54,520 --> 00:10:55,840
+So I've installed Apache.
+
+178
+00:10:55,840 --> 00:11:04,850
+The next thing we want to do is we want to start the Apache service so we say service hatred DVD start
+
+179
+00:11:06,120 --> 00:11:08,240
+and that has now started the service.
+
+180
+00:11:08,240 --> 00:11:11,320
+And then we just want to do one other thing.
+
+181
+00:11:11,450 --> 00:11:13,190
+So the service has started.
+
+182
+00:11:13,220 --> 00:11:19,370
+The one thing that we want to do is if this to instance read boots we want Apache to come back on automatically
+
+183
+00:11:19,380 --> 00:11:25,550
+so to do that we just type in check config and then hatred TDB day and then we say on and that will
+
+184
+00:11:25,610 --> 00:11:31,250
+just means that if we restart this to instance Apache will come on automatically so we can now type
+
+185
+00:11:31,250 --> 00:11:38,600
+in service HDDVD and then status that will show us if the TSBD service is running the Apache service.
+
+186
+00:11:38,590 --> 00:11:39,670
+It is now running.
+
+187
+00:11:39,860 --> 00:11:42,310
+And when we install that we've created a directory.
+
+188
+00:11:42,320 --> 00:11:43,970
+So if we go to CD.
+
+189
+00:11:44,270 --> 00:11:48,880
+Dub dub dub page Timo This is the root directory of our Web site.
+
+190
+00:11:48,950 --> 00:11:50,090
+We type in ls.
+
+191
+00:11:50,180 --> 00:11:51,710
+We can say that there's nothing there.
+
+192
+00:11:51,920 --> 00:11:54,900
+So let's go ahead and fix that one I'm going to do.
+
+193
+00:11:54,920 --> 00:12:00,770
+I'm going to write to Nannar index Daut hate TMLC and we're going to create a little web page.
+
+194
+00:12:00,770 --> 00:12:07,760
+So here's a little textedit built into our easy to instance I'm just going to quickly do some code so
+
+195
+00:12:08,000 --> 00:12:13,580
+tim will make this really simple so body then hate Schwann so head.
+
+196
+00:12:13,760 --> 00:12:22,730
+And then it's just going to say hello cloud jurors going to endow H-1 again and our body says like literally
+
+197
+00:12:22,730 --> 00:12:26,520
+the most simple piece of a team or you can do.
+
+198
+00:12:26,540 --> 00:12:33,170
+And we're going to end it here now and TMLC and then I'm just going to hit the control x.
+
+199
+00:12:33,240 --> 00:12:35,730
+They will ask us if we want to say I'm going to hit yes.
+
+200
+00:12:35,840 --> 00:12:37,160
+And then I'm going to hit enter.
+
+201
+00:12:37,340 --> 00:12:38,390
+And so now if I do.
+
+202
+00:12:38,410 --> 00:12:41,800
+LS We can see my little index don't hate him.
+
+203
+00:12:42,020 --> 00:12:46,610
+So next thing to do is I'm just going to clear the screen let's go over it all a web browser and see
+
+204
+00:12:46,610 --> 00:12:47,720
+this Web site.
+
+205
+00:12:47,950 --> 00:12:48,220
+OK.
+
+206
+00:12:48,230 --> 00:12:54,430
+So here I am and my web browser I just type in the IP address you can see straight away Hello cloud.
+
+207
+00:12:54,520 --> 00:12:59,750
+So we've created a little web server in the cloud we've created Web site where we can now connect to
+
+208
+00:12:59,750 --> 00:13:04,480
+that web site using our using that public IP address.
+
+209
+00:13:04,490 --> 00:13:09,800
+So what we now want to do is we're going to look at how we can register a domain name and how we can
+
+210
+00:13:10,030 --> 00:13:14,170
+point that domain name back to this to instance.
+
+211
+00:13:14,180 --> 00:13:19,780
+Now before we go on to registering a domain name we need to in the need to create a application load
+
+212
+00:13:19,780 --> 00:13:21,740
+balance or in order for all this to work.
+
+213
+00:13:21,860 --> 00:13:23,860
+So let's go in the next lecture and explore.
+
+214
+00:13:23,860 --> 00:13:28,900
+From a theoretical point of view what a what the different types of light balances are.
+
+215
+00:13:29,180 --> 00:13:30,570
+What's available to you.
+
+216
+00:13:30,590 --> 00:13:35,210
+And then once we've done that we'll go on and we'll register domain name and we'll point out my name
+
+217
+00:13:35,240 --> 00:13:41,750
+to our application load balance which will then point out to instance and then you will be able to visit
+
+218
+00:13:41,750 --> 00:13:43,990
+this Web site just by typing in a domain name.
+
+219
+00:13:43,990 --> 00:13:46,810
+So if you've got the time please join me in the next lecture.
+
+220
+00:13:46,850 --> 00:13:47,300
+Thank you.

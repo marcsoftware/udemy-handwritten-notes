@@ -1,0 +1,71 @@
+1
+00:00:00,140 --> 00:00:05,070
+AK helicopters and welcome to this lecture So hopefully you're learning an awful lot in the course so
+
+2
+00:00:05,070 --> 00:00:11,310
+far and you're starting to understand how complicated AWOS is now Harry Cleetus of a faceless was an
+
+3
+00:00:11,340 --> 00:00:17,420
+ancient Greek philosopher and he once famously said everything changes and Nothing stands still.
+
+4
+00:00:17,430 --> 00:00:22,560
+And as you start learning AWOS you going to realize how much it changes all of the time.
+
+5
+00:00:22,560 --> 00:00:27,720
+There's literally thousands of new product updates and releases each year and can be really really hard
+
+6
+00:00:27,720 --> 00:00:28,710
+to keep up.
+
+7
+00:00:28,740 --> 00:00:34,020
+And we have a web series called AWOS this week which is basically a weekly show discussing all the new
+
+8
+00:00:34,080 --> 00:00:36,170
+updates to AWOS for the week.
+
+9
+00:00:36,180 --> 00:00:39,020
+It's five minutes or less so when won't take a lot of your time.
+
+10
+00:00:39,030 --> 00:00:43,200
+We have an explain it like High-Five approach of something really complicated comes out we'll try and
+
+11
+00:00:43,200 --> 00:00:48,360
+break it down and help you understand what it is and what it means to you as either solutions architect
+
+12
+00:00:48,360 --> 00:00:54,050
+a developer This admin or a business leader or whatever it is whatever role that do.
+
+13
+00:00:54,240 --> 00:00:58,630
+So the best way to stay up to date with AWOS and all the constant changes.
+
+14
+00:00:58,740 --> 00:01:04,400
+The link is below the on our YouTube channel where you can subscribe through the A Calgary Web site.
+
+15
+00:01:04,530 --> 00:01:06,960
+It is seriously the best way to stay up to eight of us.
+
+16
+00:01:06,960 --> 00:01:09,230
+And like I said it's five minutes or less each week.
+
+17
+00:01:09,360 --> 00:01:12,430
+So make sure you check it out and kipping awesome let's go into the next lecture.
+
+18
+00:01:12,430 --> 00:01:12,930
+Thank you.

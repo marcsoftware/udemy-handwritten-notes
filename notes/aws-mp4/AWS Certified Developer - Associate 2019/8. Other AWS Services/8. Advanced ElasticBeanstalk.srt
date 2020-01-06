@@ -1,0 +1,135 @@
+1
+00:00:00,860 --> 00:00:06,690
+OK hello cloggers and welcome to this lecture this lecture is on advanced elastic veins.
+
+2
+00:00:06,720 --> 00:00:10,710
+Now this is just going to be a theory lecture because we're just going to keep it simple.
+
+3
+00:00:10,920 --> 00:00:16,080
+But it's really important to understand going into your exam that you can customize your elastic beanstalk
+
+4
+00:00:16,080 --> 00:00:20,080
+environment using a plastic beanstalk configuration file.
+
+5
+00:00:20,160 --> 00:00:25,470
+And this means you can define packages to Instow you can create Linux users and groups you can run show
+
+6
+00:00:25,470 --> 00:00:32,400
+commands you can specify services to enable all you can even go in and configure your load balance so
+
+7
+00:00:32,490 --> 00:00:33,650
+much you can do.
+
+8
+00:00:33,750 --> 00:00:39,900
+These files are written in either in YAML or in Jason format and they can have a file name of your choice
+
+9
+00:00:39,930 --> 00:00:47,250
+but they must have a dot com fake extension and they'll all be saved inside a folder called Dot E B
+
+10
+00:00:47,310 --> 00:00:51,350
+extensions so you can have any filename that you want but it's got to have a dot com fake.
+
+11
+00:00:51,390 --> 00:00:56,850
+And though these files all have to be saved inside the folder dot Eby extensions.
+
+12
+00:00:56,850 --> 00:00:59,200
+So where is the extensions folder.
+
+13
+00:00:59,220 --> 00:01:04,920
+What must be included in the top level directory of your application source code bundle.
+
+14
+00:01:04,920 --> 00:01:09,030
+So this means that the configuration files can be placed under the source control along with the rest
+
+15
+00:01:09,090 --> 00:01:10,780
+of your application code.
+
+16
+00:01:10,830 --> 00:01:16,840
+So you probably will get a question going into your exams about how to configure elastic beanstalk deployments.
+
+17
+00:01:17,040 --> 00:01:20,490
+You just use the config files and they all must be saved in the dot.
+
+18
+00:01:20,520 --> 00:01:25,540
+Ebay extensions photo which must be in the top level directory of your application.
+
+19
+00:01:25,560 --> 00:01:26,540
+Remember that.
+
+20
+00:01:26,790 --> 00:01:28,780
+Here's an example of my health check.
+
+21
+00:01:28,800 --> 00:01:30,050
+You r l dot com.
+
+22
+00:01:30,060 --> 00:01:37,470
+So in this example way using Jason and in this example we're telling our lastic load balance the application
+
+23
+00:01:37,470 --> 00:01:43,940
+health check you are ill and we're just saving this in a config file with code up my health check our
+
+24
+00:01:43,980 --> 00:01:50,550
+old config and this would be saved in the IP extensions folder in our root directory.
+
+25
+00:01:50,820 --> 00:01:52,110
+So that's really it.
+
+26
+00:01:52,110 --> 00:01:54,900
+That's my advents elastic beanstalk tips.
+
+27
+00:01:54,930 --> 00:02:00,370
+So just remember that you can customize your elastic beanstalk environment by adding configuration files.
+
+28
+00:02:00,480 --> 00:02:05,550
+Files are going to be either written in Yemen or in JSM the files can have any name that they want but
+
+29
+00:02:05,550 --> 00:02:11,430
+they've got to have the dot config extension and these dot config files are all saved to the DOT Ebby
+
+30
+00:02:11,430 --> 00:02:12,720
+extensions folder.
+
+31
+00:02:12,870 --> 00:02:18,200
+And this must be located in the top level directory of your application source code bundle.
+
+32
+00:02:18,210 --> 00:02:19,920
+So if you have any questions please let me know.
+
+33
+00:02:19,910 --> 00:02:24,270
+If not feel free to move on to the very last elastic things Stuart lecture where we talk about elastic
+
+34
+00:02:24,270 --> 00:02:25,800
+bands with D.S..

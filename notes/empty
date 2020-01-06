@@ -1,0 +1,159 @@
+
+
+58. Step 01 - Part 1 - Intro to Limits Microservice and Spring Cloud Config Server
+5min
+
+59. Step 01 - Part 2 - Setting up Limits Microservice
+6min
+
+60. Step 02 - Creating a hard coded limits service
+5min
+
+61. Step 03 -Enhance limits service to get configuration from application properties
+5min
+
+62. Step 04 - Setting up Spring Cloud Config Server
+4min
+
+63. Step 05 - Installing Git
+2min
+
+64. Step 06 - Creating Local Git Repository
+5min
+
+65. Step 07 - Connect Spring Cloud Config Server to Local Git Repository
+5min
+
+66. Step 08 - Configuration for Multiple Environments in Git Repository
+6min
+
+67. Step 09 - Connect Limits Service to Spring Cloud Config Server
+5min
+
+68. Debugging problems with Spring Cloud Config Server
+1min
+
+69. Step 10 - Configuring Profiles for Limits Service
+6min
+
+70. Step 11 - A review of Spring Cloud Config Server
+4min
+
+71. Step 12 - Introduction to Currency Conversion and Currency Exchange Microservice
+3min
+
+72. Step 13 - Setting up Currency Exchange Microservice
+4min
+
+73. Step 14 - Create a simple hard coded currency exchange service
+6min
+
+74. Step 15 - Setting up Dynamic Port in the the Response
+7min
+
+75. Step 16 - Configure JPA and Initialized Data
+8min
+
+76. Step 17 - Create a JPA Repository
+5min
+
+77. Step 18 - Setting up Currency Conversion Microservice
+2min
+
+78. Step 19 - Creating a service for currency conversion
+7min
+
+79. Step 20 - Invoking Currency Exchange Microservice from Currency Conversion Micro
+8min
+
+80. Use Spring Cloud - Greenwich.RC2 and Spring Boot - 2.1.1.RELEASE
+1min
+
+81. Step 21 - Using Feign REST Client for Service Invocation
+12min
+
+82. Step 22 - Setting up client side load balancing with Ribbon
+5min
+
+83. Step 23 - Running client side load balancing with Ribbon
+5min
+
+84. Debugging problems with Feign and Ribbon
+1min
+
+85. Step 24 - Understand the need for a Naming Server
+3min
+
+86. Step 25 - Setting up Eureka Naming Server
+5min
+
+87. Step 26 - Connecting Currency Conversion Microservice to Eureka
+3min
+
+88. Step 27 - Connecting Currency Exchange Microservice to Eureka
+3min
+
+89. Step 28 - Distributing calls using Eureka and Ribbon
+7min
+
+90. Debugging Problems with Naming Server ( Eureka ) and Ribbon
+1min
+
+91. Step 29 - A review of implementing Eureka, Ribbon and Feign
+4min
+
+92. Step 30 - Introduction to API Gateways
+3min
+
+93. Step 31 - Setting up Zuul API Gateway
+5min
+
+94. Step 32 - Implementing Zuul Logging Filter
+6min
+
+95. Step 33 - Executing a request through Zuul API Gateway
+5min
+
+96. Step 34 - Setting up Zuul API Gateway between microservice invocations
+7min
+
+97. Debugging Problems with Zuul API Gateway
+1min
+
+98. Step 35 - Introduction to Distributed Tracing
+3min
+
+99. Step 36 - Implementing Spring Cloud Sleuth
+9min
+
+100. Step 37 - Introduction to Distributed Tracing with Zipkin
+5min
+
+101. Step 38 - Installing Rabbit MQ
+5min
+
+102. Updates to Step 39 - Running Zipkin on Windows
+1min
+
+103. Step 39 - Setting up Distributed Tracing with Zipkin
+7min
+
+104. Step 40 - Connecting microservices to Zipkin
+4min
+
+105. Updates to Step 40 : Use spring-cloud-starter-zipkin and spring-rabbit
+1min
+
+106. Step 41 - Using Zipkin UI Dashboard to trace requests
+7min
+
+107. Debugging Problems with Zipkin
+1min
+
+108. Step 42 - Understanding the need for Spring Cloud Bus
+9min
+
+109. Step 43 - Implementing Spring Cloud Bus
+5min
+
+110. Step 44 - Fault Tolerance with Hystrix

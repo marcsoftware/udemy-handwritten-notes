@@ -1,0 +1,35 @@
+1
+00:00:00,880 --> 00:00:04,110
+Hello bloggers and welcome to this section of the course.
+
+2
+00:00:04,300 --> 00:00:10,600
+And this is just a quick lecture to introduce this section which is basically a few updates based on
+
+3
+00:00:10,690 --> 00:00:16,780
+student feedback and we won't be introducing any brand new topics is just a cover of a few additional
+
+4
+00:00:16,780 --> 00:00:21,370
+things that are going to help you score some extra points in the exam.
+
+5
+00:00:21,370 --> 00:00:27,190
+So as you know we rely on student feedback to let us know if they see anything in the exam which was
+
+6
+00:00:27,190 --> 00:00:30,080
+a surprise or missing from the course.
+
+7
+00:00:30,730 --> 00:00:37,630
+So if you do take the exam and you notice any topic that wasn't included in our course please do let
+
+8
+00:00:37,630 --> 00:00:42,910
+us know so that we can update and make the developer associate course as good as it can be.
+
+9
+00:00:42,910 --> 00:00:46,300
+So with that said if you've got time please join me in the next lecture.

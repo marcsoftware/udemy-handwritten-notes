@@ -1,0 +1,911 @@
+1
+00:00:00,420 --> 00:00:01,030
+OK.
+
+2
+00:00:01,050 --> 00:00:06,850
+Hello cloggers and welcome to this lecture and this lecture we're going to look at API gateway.
+
+3
+00:00:06,910 --> 00:00:13,670
+Now I'm assuming that some people will know what API is and what API gateway is but not everybody does
+
+4
+00:00:13,680 --> 00:00:14,050
+know.
+
+5
+00:00:14,070 --> 00:00:19,880
+And in order to pass your exam you do need to have a good understanding of this going into it.
+
+6
+00:00:19,890 --> 00:00:26,400
+So I thought I'd start with defining what an API is and if you type in what is an API into Google you're
+
+7
+00:00:26,400 --> 00:00:32,850
+going to get a whole bunch of very complicated sounding text and you it will take you a while to figure
+
+8
+00:00:33,120 --> 00:00:38,430
+out what it is it will take quite a bit orating API just stands for application programming interface.
+
+9
+00:00:38,640 --> 00:00:44,490
+And rather than throwing it sort of heavily technical definitions at you I thought we'd start with something
+
+10
+00:00:44,490 --> 00:00:45,550
+a lot more simpler.
+
+11
+00:00:45,720 --> 00:00:50,040
+So I should imagine a restaurant you've got a couple who've gone out to dinner they've looked at the
+
+12
+00:00:50,040 --> 00:00:55,390
+menu and they know what it is they want to order and then you have a kitchen.
+
+13
+00:00:55,440 --> 00:01:00,630
+So you have all the chefs in the kitchen in the backend and they're ready to basically go ahead and
+
+14
+00:01:00,630 --> 00:01:02,730
+make whatever it is the couple want.
+
+15
+00:01:02,760 --> 00:01:08,100
+The problem is is that the couple doesn't really want to go into the kitchen get the chefs the order
+
+16
+00:01:08,130 --> 00:01:12,510
+and the chefs don't really want to come out of the kitchen to ask the couples what they want because
+
+17
+00:01:12,510 --> 00:01:17,040
+they're busy preparing food for other people so how do you solve this issue.
+
+18
+00:01:17,040 --> 00:01:22,650
+Well of course you have our waiter and I'm sorry for the cheesy images but it will help you remember
+
+19
+00:01:22,650 --> 00:01:24,630
+it you know as you go forward in life.
+
+20
+00:01:24,630 --> 00:01:28,760
+So here is our waiter our waiter is essentially an API.
+
+21
+00:01:28,770 --> 00:01:34,770
+Our waiter basically takes our order from the customer passes that to the kitchen the kitchen then goes
+
+22
+00:01:34,770 --> 00:01:36,700
+ahead and processes orders.
+
+23
+00:01:36,720 --> 00:01:38,400
+They get all the wrong ingredients.
+
+24
+00:01:38,400 --> 00:01:40,380
+They make the salad they make.
+
+25
+00:01:40,470 --> 00:01:46,080
+You know I don't know the stew or whatever it is the couple have ordered they think give this back to
+
+26
+00:01:46,110 --> 00:01:49,020
+the waiter who then brings it out to the customer.
+
+27
+00:01:49,030 --> 00:01:55,260
+So whenever you hear of an API or API gateway I want you to imagine a waiter that will make it a lot
+
+28
+00:01:55,320 --> 00:01:57,810
+easier to understand what's going on.
+
+29
+00:01:57,840 --> 00:02:00,210
+So let's look at a more technical examples.
+
+30
+00:02:00,210 --> 00:02:03,790
+Here we are we have our views and our user wants to go on holiday.
+
+31
+00:02:03,960 --> 00:02:08,160
+So they go over to a Web site could be Skyscanner dot com could be Expedia.
+
+32
+00:02:08,160 --> 00:02:14,460
+Both of those customers have a cloggers a big shout out to the team at Skyscanner and Expedia and what
+
+33
+00:02:14,610 --> 00:02:20,160
+you do is you go in and you enter all your details you enter in what airports you're going to travel
+
+34
+00:02:20,160 --> 00:02:24,960
+from what airports are you going to travel to what date what class of ticket that you want.
+
+35
+00:02:24,960 --> 00:02:26,430
+How many tickets that you want.
+
+36
+00:02:26,430 --> 00:02:27,610
+Et cetera et cetera.
+
+37
+00:02:27,930 --> 00:02:34,530
+And then what these Web sites do is they go and make a series of API calls could be to the airlines
+
+38
+00:02:34,530 --> 00:02:40,860
+themselves it could be two hotels could be a combination of all both of them could be car rental companies
+
+39
+00:02:40,860 --> 00:02:47,400
+et cetera and these you know external companies will process the information request and then they will
+
+40
+00:02:47,400 --> 00:02:49,090
+send it back to the Web site.
+
+41
+00:02:49,200 --> 00:02:56,310
+The Web site will then collect all of this and essentially you know make it look pretty and often order
+
+42
+00:02:56,310 --> 00:02:59,280
+it in relet in terms of relevance of what the user wants.
+
+43
+00:02:59,400 --> 00:03:05,460
+And by the way this data that's sent back from the airlines or from the hotels or whatever is generally
+
+44
+00:03:05,460 --> 00:03:09,520
+in the Jason format we have a look at that in a couple of slides.
+
+45
+00:03:09,840 --> 00:03:16,080
+And basically once the Expedia website or the Skyscanner website or whatever has purchased this data
+
+46
+00:03:16,080 --> 00:03:22,630
+it then sends it back to the user in nice easy to read hate mail back to the user's browser.
+
+47
+00:03:22,710 --> 00:03:28,110
+The user will go on and make a choice as to what they want and hopefully have a really good holiday.
+
+48
+00:03:28,140 --> 00:03:31,940
+So that is how you guys work in real life essentially.
+
+49
+00:03:32,030 --> 00:03:37,470
+You know you have some Web sites who basically go out and make API calls to a whole bunch of other different
+
+50
+00:03:37,470 --> 00:03:42,570
+Web sites get the information back and correlate it and then present it back to the user.
+
+51
+00:03:42,570 --> 00:03:50,280
+So use 80 eyes every single day and you as a user might not know that your web site that you're using.
+
+52
+00:03:50,280 --> 00:03:56,670
+So let's say it is Expedia or Skyscanner you don't know how many API calls it's making you don't know
+
+53
+00:03:56,670 --> 00:04:00,650
+to which companies but it is making those API calls on your behalf.
+
+54
+00:04:00,690 --> 00:04:02,640
+So that's all AP eyes are.
+
+55
+00:04:02,710 --> 00:04:05,190
+Hopefully that is easy enough to understand.
+
+56
+00:04:05,220 --> 00:04:08,830
+So let's look at the different types of API and there are many different types.
+
+57
+00:04:08,850 --> 00:04:16,980
+But the two that are most commonly used we have restful API is now restful API sense though representational
+
+58
+00:04:17,010 --> 00:04:18,410
+state transfer.
+
+59
+00:04:18,450 --> 00:04:21,740
+And this is used by about 70 percent of the Internet.
+
+60
+00:04:21,780 --> 00:04:27,330
+This is a much newer API and it was actually designed to replace another API which we're going to come
+
+61
+00:04:27,330 --> 00:04:30,860
+to in a second but this is pretty much what everyone uses.
+
+62
+00:04:30,870 --> 00:04:35,510
+And when you're doing a restful API typically it's going to use Jason.
+
+63
+00:04:35,610 --> 00:04:38,930
+So we're going to have key value pairs as you can see below.
+
+64
+00:04:39,150 --> 00:04:40,680
+We then have search API.
+
+65
+00:04:40,710 --> 00:04:44,280
+Now surp stands for simple object access protocol.
+
+66
+00:04:44,280 --> 00:04:47,560
+The problem was this has been around since like the late 90s.
+
+67
+00:04:47,590 --> 00:04:54,240
+Problem is it wasn't actually all that simple so restful API eyes were invented to make it a lot easier
+
+68
+00:04:54,660 --> 00:04:56,100
+to use than sorry.
+
+69
+00:04:56,130 --> 00:05:04,860
+And so it uses SML so very similar hatred Timo and use again example of SML down that the bottom.
+
+70
+00:05:04,860 --> 00:05:10,350
+Now when we're going through and doing the rest of this course we're really going to be focusing mostly
+
+71
+00:05:10,350 --> 00:05:15,750
+on restful a prize or risk a prize because that is what API gateway runs on.
+
+72
+00:05:15,750 --> 00:05:17,520
+So what is API Gateway.
+
+73
+00:05:17,520 --> 00:05:23,160
+Well Amazon API Gateway is a fully managed service that makes it easy for developers to publish maintain
+
+74
+00:05:23,160 --> 00:05:24,500
+monitor and secure API.
+
+75
+00:05:24,500 --> 00:05:30,120
+Is it any SCO with a few clicks in the AWOS management console you can create an API that acts as a
+
+76
+00:05:30,120 --> 00:05:36,240
+front door or as your waita for applications to access data business logic or functionality from your
+
+77
+00:05:36,240 --> 00:05:43,080
+back in services such as applications running on E.C to code running on lambda or any web application.
+
+78
+00:05:43,110 --> 00:05:48,540
+So basically allows users to connect into an API or connect into your data and you know you can tell
+
+79
+00:05:48,540 --> 00:05:55,590
+your way to what it is you want from this particular AWOS account that will then be passed back into
+
+80
+00:05:55,920 --> 00:06:01,830
+you know any kind of service that supported by API gateway so it could be Lamda could be easy to copy
+
+81
+00:06:01,980 --> 00:06:03,200
+other services as well.
+
+82
+00:06:03,240 --> 00:06:04,510
+So let's look at this visually.
+
+83
+00:06:04,530 --> 00:06:11,550
+We've got our users that using any kind of device that makes a request over to our AWOS environment
+
+84
+00:06:11,550 --> 00:06:17,510
+to API gateway and then depending on that type of request API gateway can then fold that request to
+
+85
+00:06:17,520 --> 00:06:22,690
+different services such as lammed or two or dynamo D-B et cetera.
+
+86
+00:06:22,710 --> 00:06:25,070
+So what can API gateway do.
+
+87
+00:06:25,090 --> 00:06:30,530
+Well it exposes TTP endpoints to define a risk for API.
+
+88
+00:06:30,570 --> 00:06:31,500
+So what do we mean by that.
+
+89
+00:06:31,500 --> 00:06:37,170
+Well let's quickly just go ahead and Virdi S-sh into an AC to instance of not running just to make it
+
+90
+00:06:37,230 --> 00:06:37,820
+easy.
+
+91
+00:06:38,070 --> 00:06:40,650
+So let's quickly go ahead and have a look at that.
+
+92
+00:06:40,650 --> 00:06:42,680
+But first I'm just going to go back to Google.
+
+93
+00:06:42,820 --> 00:06:48,780
+OK something Google if I quickly just type into Google where the API something like that will get an
+
+94
+00:06:48,780 --> 00:06:49,440
+API.
+
+95
+00:06:49,440 --> 00:06:55,140
+Here we go open where the map API and what we're going to do is we're going to make a quick API request
+
+96
+00:06:55,440 --> 00:06:58,280
+to this API to get the weather in London.
+
+97
+00:06:58,320 --> 00:07:05,790
+So if you click on API doc you'll be able to scroll down and you'll see examples of API calls or API
+
+98
+00:07:05,970 --> 00:07:10,550
+open where the map dot org for slushed data for slushed 2.5 for such weather.
+
+99
+00:07:10,560 --> 00:07:14,250
+And then you've got this little question that little question mark just means you're about to parse
+
+100
+00:07:14,250 --> 00:07:18,210
+a variable and the variable is Q And that equals London.
+
+101
+00:07:18,210 --> 00:07:21,390
+So let's go ahead and copy this into a clipboard.
+
+102
+00:07:21,420 --> 00:07:23,250
+Now I'm in a little easy to instance.
+
+103
+00:07:23,250 --> 00:07:25,880
+You don't need to fire one up unless you really want to.
+
+104
+00:07:25,920 --> 00:07:28,520
+But what I'm going to do is I'm going to type in CO.
+
+105
+00:07:28,710 --> 00:07:35,340
+And then I'm going to paste in that that address and then what I'm going to do is just go ahead and
+
+106
+00:07:35,340 --> 00:07:36,180
+hit enter.
+
+107
+00:07:36,180 --> 00:07:42,540
+And we can see that it has given me back some Jason it's basically saying invalid API K please see blah
+
+108
+00:07:42,540 --> 00:07:43,470
+blah blah blah.
+
+109
+00:07:43,470 --> 00:07:45,880
+So actually what I'd need to do is sign up.
+
+110
+00:07:45,900 --> 00:07:51,120
+So I'm just going to quickly sign up and grab an API case I'm going to clear the screen get this command
+
+111
+00:07:51,120 --> 00:07:54,760
+back up and I'm just going to add in my API key here.
+
+112
+00:07:55,020 --> 00:08:00,450
+OK so I've added in my API key you can see it's this other variable called app ID and that is my API
+
+113
+00:08:00,470 --> 00:08:06,960
+key and if I go ahead and hit enter now I get a API response and it's basically giving me the coordinates
+
+114
+00:08:06,960 --> 00:08:12,780
+in terms of latitude and longitude and it's telling me that the weather is drizzles surprise surprise
+
+115
+00:08:12,780 --> 00:08:13,860
+surprise.
+
+116
+00:08:13,860 --> 00:08:16,200
+So let's go back to the slide that we were just on.
+
+117
+00:08:16,380 --> 00:08:20,320
+So when you say what can API gateway do expose hatred.
+
+118
+00:08:20,400 --> 00:08:22,620
+And points to define a risk for API.
+
+119
+00:08:22,770 --> 00:08:29,640
+Essentially what Gateway does is it gives us a GPS address that we can make calls to and then we can
+
+120
+00:08:29,640 --> 00:08:32,600
+configure how the API responds to those calls.
+
+121
+00:08:32,610 --> 00:08:38,100
+So if we had a you know weather service perhaps we have a whole bunch of weather data sitting in Dynamo
+
+122
+00:08:38,150 --> 00:08:45,150
+D-B we can configure API gateway to go and retrieve that information from dynamo d be using the variables
+
+123
+00:08:45,210 --> 00:08:47,340
+in the Hague.
+
+124
+00:08:47,970 --> 00:08:51,140
+Oh yes get requests that we just sent.
+
+125
+00:08:51,150 --> 00:08:53,220
+So that is all it is.
+
+126
+00:08:53,220 --> 00:08:55,620
+So basically it allows you to serve Ellerslie.
+
+127
+00:08:55,620 --> 00:09:00,230
+I love that word connect to services like Lamda and Dynamo D-B.
+
+128
+00:09:00,240 --> 00:09:05,430
+You don't need to worry about running any two instances you can just use API gateway and that will then
+
+129
+00:09:05,430 --> 00:09:11,940
+connect up to Lamda and Dynamo d Bay and you can send each API endpoint to different targets so you
+
+130
+00:09:11,940 --> 00:09:17,820
+could have one end point going to Lamda one implant going to dynamite Dubay one endpoint going to AC
+
+131
+00:09:17,820 --> 00:09:22,240
+2 et cetera et cetera runs very efficiently with very low cost.
+
+132
+00:09:22,290 --> 00:09:24,860
+It scales effortlessly just like lambdas.
+
+133
+00:09:24,870 --> 00:09:28,330
+You don't have to worry about auto scaling groups or anything like that.
+
+134
+00:09:28,380 --> 00:09:31,830
+You can track and control usage by using an API.
+
+135
+00:09:32,040 --> 00:09:38,400
+As we just saw I was using an API case you can actually track and control usage on API Ickey basis and
+
+136
+00:09:38,400 --> 00:09:43,440
+you can actually throttle requests to prevent attacks so you can stop people from trying to detox your
+
+137
+00:09:43,440 --> 00:09:45,350
+API gateway.
+
+138
+00:09:45,480 --> 00:09:51,480
+You can actually go ahead and throttle API gateway and you can connect to cloud watch to read to log
+
+139
+00:09:51,480 --> 00:09:57,660
+all requests for monitoring and you can actually maintain multiple versions of your API.
+
+140
+00:09:57,870 --> 00:10:01,850
+So how do you configure API gateway Well first of all you have to define an API.
+
+141
+00:10:01,870 --> 00:10:04,060
+This X is basically a container.
+
+142
+00:10:04,100 --> 00:10:07,220
+You then define resources and nested resources.
+
+143
+00:10:07,860 --> 00:10:13,860
+Basically you are all paths and for each resource you have to select a supported HDTV method and these
+
+144
+00:10:13,860 --> 00:10:14,300
+are.
+
+145
+00:10:14,350 --> 00:10:15,600
+So this could get.
+
+146
+00:10:15,600 --> 00:10:18,370
+This could be post Skippy delete.
+
+147
+00:10:18,430 --> 00:10:21,250
+This could be a you know other ones so.
+
+148
+00:10:21,440 --> 00:10:27,970
+Anything that is supported by any HTP method that supported by API gateway You can also set your security
+
+149
+00:10:28,390 --> 00:10:33,650
+and you can also choose your targets such as easy to Lamda dynamite D-B et cetera.
+
+150
+00:10:33,680 --> 00:10:40,060
+It can also set request and response transformations and you can deploy your API to a stage so you can
+
+151
+00:10:40,060 --> 00:10:46,360
+have Prague's you can have test you can have different stages within your API and it's important to
+
+152
+00:10:46,360 --> 00:10:53,380
+remember that it uses API Gateway's own domain by default but you can use your own custom domain.
+
+153
+00:10:53,380 --> 00:10:58,490
+So if people were going in and looking at your code they wouldn't even know that it was an Amazon web
+
+154
+00:10:58,510 --> 00:10:59,900
+service product.
+
+155
+00:10:59,950 --> 00:11:06,850
+They could think that it was your own custom domain or your own custom API and it now supports A.W.
+
+156
+00:11:06,880 --> 00:11:14,110
+a certificate manager so you get free SSL and tell us it's with API gateway if you have bought your
+
+157
+00:11:14,110 --> 00:11:18,820
+domain using route 53 and you've set that up in certificat manager.
+
+158
+00:11:19,030 --> 00:11:26,530
+So what is API caching so API caching in a gateway allows you to cache your endpoints response.
+
+159
+00:11:26,540 --> 00:11:28,570
+So let's say you're sending the same request.
+
+160
+00:11:28,630 --> 00:11:33,610
+The request has been sent many many times and it's always the same response that caching you can reduce
+
+161
+00:11:33,610 --> 00:11:38,970
+the number of calls made to your end point and also improve the latency of requests to your API.
+
+162
+00:11:39,130 --> 00:11:45,940
+So when you enable API caching for a stage API gateway caches a response from your end point for specified
+
+163
+00:11:46,030 --> 00:11:49,180
+TTL time to live period in seconds.
+
+164
+00:11:49,180 --> 00:11:51,320
+So let's take an example at a restaurant.
+
+165
+00:11:51,340 --> 00:11:55,620
+But instead of it being a fancy restaurant let's imagine it as McDonald's.
+
+166
+00:11:55,630 --> 00:12:00,670
+Now I don't know about you but if you go into McDonald's and you order a cheeseburger or you order a
+
+167
+00:12:00,670 --> 00:12:06,670
+Big Mac typically those burgers are already made and they are literally behind the person serving use
+
+168
+00:12:06,730 --> 00:12:11,800
+the person just has to turn around grab the Big Mac all that cheeseburger put it in a bag and give it
+
+169
+00:12:11,800 --> 00:12:13,480
+to you and boom you've got it.
+
+170
+00:12:13,480 --> 00:12:17,950
+They don't have to pass the order to the kitchen and the kitchen has to go in and make it.
+
+171
+00:12:18,130 --> 00:12:23,110
+And the reason for that is because a lot of people ordered cheeseburgers of Big Macs at mcdonalds so
+
+172
+00:12:23,110 --> 00:12:25,380
+effectively the burgers cashed.
+
+173
+00:12:25,390 --> 00:12:30,520
+Now if you go into McDonald's and order a salad or maybe you order of Philipe fish burger or something
+
+174
+00:12:30,520 --> 00:12:32,370
+something that is not commonly ordered.
+
+175
+00:12:32,380 --> 00:12:35,430
+McDonald's that order is not going to be cashed.
+
+176
+00:12:35,440 --> 00:12:40,750
+It's going to need the kitchen to go in and make it so the waiter will have to actually pass the order
+
+177
+00:12:40,780 --> 00:12:46,810
+back to the kitchen wait for the kitchen to build the order and then you know pass it over to back to
+
+178
+00:12:46,810 --> 00:12:49,420
+the way to and then pass it over to you in your bag.
+
+179
+00:12:49,540 --> 00:12:52,120
+So API caching is just simply that.
+
+180
+00:12:52,150 --> 00:12:58,300
+It means that the most commonly used API calls are going to be cached in API gateway for a specified
+
+181
+00:12:58,300 --> 00:13:01,210
+time to live period or a TTL period.
+
+182
+00:13:01,210 --> 00:13:04,080
+So let's go ahead and have a look at this visually Sukkur to our users.
+
+183
+00:13:04,090 --> 00:13:10,450
+They send an API request to API gateway if it doesn't have that request cached it then sends that request
+
+184
+00:13:10,450 --> 00:13:11,690
+over to the service.
+
+185
+00:13:11,710 --> 00:13:19,450
+In this case it's Lambda Lambda then returns that response another user It sends exactly the same response
+
+186
+00:13:19,450 --> 00:13:21,250
+to API gateway.
+
+187
+00:13:21,250 --> 00:13:24,940
+That response is already being cached and that's been cache for it's time to live.
+
+188
+00:13:24,940 --> 00:13:31,480
+And it can be returned to the user very very quickly doesn't need to go back and do the same query again
+
+189
+00:13:31,480 --> 00:13:32,550
+to Lamda.
+
+190
+00:13:32,800 --> 00:13:34,050
+So we're almost done.
+
+191
+00:13:34,060 --> 00:13:40,660
+There's a couple one more thing I just need to talk about which is Colazal cross origin Brazos sharing.
+
+192
+00:13:40,660 --> 00:13:46,260
+Before we do that let's talk about same arge and policy so in computing we have same origin policy and
+
+193
+00:13:46,270 --> 00:13:51,340
+it's basically an important concept in the web application security model.
+
+194
+00:13:51,610 --> 00:13:57,220
+And under the policy a web browser permits scripts contained in a first web page to access data in a
+
+195
+00:13:57,220 --> 00:14:01,980
+second web page but only if both web pages have the same origin.
+
+196
+00:14:01,990 --> 00:14:07,960
+And this is done to prevent things like cross-site scripting attacks and it's enforced by web browsers
+
+197
+00:14:08,470 --> 00:14:12,080
+and it's ignored by tools like postmen and Co.
+
+198
+00:14:12,130 --> 00:14:18,910
+Now Cross origin Rizzo's sharing all cores is one way that the server at the other end is not the client
+
+199
+00:14:18,940 --> 00:14:27,760
+code in the browser but can relax the same origin policy as silts away for API gateway to talk to S-3
+
+200
+00:14:27,760 --> 00:14:34,030
+for example cross origin reserve sharings a mechanism that allows restricted resources to be fonts on
+
+201
+00:14:34,030 --> 00:14:40,870
+a web page to be requested from another domain outside of the domain from which the first resource was
+
+202
+00:14:41,170 --> 00:14:41,840
+served.
+
+203
+00:14:41,860 --> 00:14:49,020
+So this will become important later on we're going to see some examples of cause in the laps going forward.
+
+204
+00:14:49,120 --> 00:14:56,320
+But just be aware that cause is definitely a hot exam topic around S-3 and API gateway and we're going
+
+205
+00:14:56,320 --> 00:14:59,900
+to cover it off in the lab a lot more detail.
+
+206
+00:15:00,080 --> 00:15:06,030
+But essentially what happens is a browser makes a hasty TDP options call for you arrow and options is
+
+207
+00:15:06,350 --> 00:15:13,580
+the DP method just like get put and post and the server returns a response that says these other domains
+
+208
+00:15:13,580 --> 00:15:16,320
+are proved to get this you aro.
+
+209
+00:15:16,580 --> 00:15:22,340
+And if you ever see the error message origin policy cannot be read at the remote resources it just simply
+
+210
+00:15:22,340 --> 00:15:28,240
+means that you need to enable calls on an API gateway and we are going to again see this in the labs
+
+211
+00:15:28,250 --> 00:15:29,040
+coming up.
+
+212
+00:15:29,240 --> 00:15:32,930
+So that is it for this lecture guys hopefully it made a lot of sense.
+
+213
+00:15:32,930 --> 00:15:37,910
+Hopefully API and API gateways doesn't seem too scary to you any more.
+
+214
+00:15:38,210 --> 00:15:42,950
+So what are my exam tips just remember what API gateway is at a high level is the way to who's going
+
+215
+00:15:42,950 --> 00:15:45,190
+to take your orders to the kitchen and back.
+
+216
+00:15:45,430 --> 00:15:51,500
+So probably one of the easiest ways to remember it and API Gateway does have caching capabilities to
+
+217
+00:15:51,530 --> 00:15:52,920
+increase performance.
+
+218
+00:15:53,030 --> 00:15:57,680
+API gateway is low cost and scales automatically so you don't need order scaling groups or anything
+
+219
+00:15:57,680 --> 00:15:59,510
+like that with API gateway.
+
+220
+00:15:59,510 --> 00:16:06,980
+You can throttle API gateway to prevent attacks and you can log results of API or you can log your results
+
+221
+00:16:06,980 --> 00:16:08,210
+to cloud watch.
+
+222
+00:16:08,420 --> 00:16:15,380
+So if you are using javascript or Ajax that uses multiple domains with API gateway then you're going
+
+223
+00:16:15,380 --> 00:16:22,040
+to need to ensure that you have enabled cores on API gateway and cause is enforced by the client.
+
+224
+00:16:22,040 --> 00:16:23,720
+So that is it for this Lexus.
+
+225
+00:16:23,720 --> 00:16:28,460
+You know what lander is you now know what API gateway is we are now ready to go ahead and build our
+
+226
+00:16:28,460 --> 00:16:29,960
+first servo's Web site.
+
+227
+00:16:29,960 --> 00:16:32,060
+So if you've got the time please join me in the next lecture.
+
+228
+00:16:32,060 --> 00:16:32,460
+Thank you.

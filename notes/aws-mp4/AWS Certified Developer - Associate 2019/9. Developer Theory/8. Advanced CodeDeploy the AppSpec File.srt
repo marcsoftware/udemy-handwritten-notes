@@ -1,0 +1,615 @@
+1
+00:00:00,620 --> 00:00:07,680
+I Clockers and welcome to this lecture and this lecture is all about advanced code deploy specifically
+
+2
+00:00:07,740 --> 00:00:09,480
+the app spec file.
+
+3
+00:00:09,570 --> 00:00:11,190
+So let's get started.
+
+4
+00:00:13,070 --> 00:00:20,660
+The app spec file is used to define the parameters which will be used for a code deploy deployment and
+
+5
+00:00:20,660 --> 00:00:28,280
+the file structure depends on whether you're going to be deploying to Lamda or to easy to all on premises
+
+6
+00:00:28,340 --> 00:00:30,520
+systems.
+
+7
+00:00:30,540 --> 00:00:37,590
+So for the lambda deployments the app spec file can be written in either YAML or Jason and it contains
+
+8
+00:00:37,680 --> 00:00:39,840
+three different fields.
+
+9
+00:00:39,840 --> 00:00:41,820
+And the first field is version.
+
+10
+00:00:42,540 --> 00:00:44,580
+And it is reserved for future use.
+
+11
+00:00:44,610 --> 00:00:54,780
+And currently the only allowed value is 0.0 then there's resources and resources really refers to the
+
+12
+00:00:54,780 --> 00:00:59,320
+name and the properties of the lambda function that you're about to deploy.
+
+13
+00:01:00,880 --> 00:01:08,770
+And lastly we have hooks and hooks are used to specify the lambda functions to run at set specific points
+
+14
+00:01:08,830 --> 00:01:13,810
+in the deployment process and they use to validate the deployment.
+
+15
+00:01:13,810 --> 00:01:20,110
+So for example to run validation tests that you might want to run before allowing any traffic to be
+
+16
+00:01:20,110 --> 00:01:26,610
+sent to your newly deployed Lamda instances.
+
+17
+00:01:26,660 --> 00:01:33,390
+So let's have a look at an example of a lambda spec Jamo.
+
+18
+00:01:33,440 --> 00:01:39,910
+So our first field is the version 0 0 as the only supported parameter.
+
+19
+00:01:39,920 --> 00:01:43,130
+The next one all resources.
+
+20
+00:01:43,210 --> 00:01:47,060
+So remember that's the name and the properties of your lambda function.
+
+21
+00:01:47,290 --> 00:01:57,280
+So firstly we have our name my lambda function tight just identifies it as a lambda function and properties
+
+22
+00:01:57,310 --> 00:01:59,780
+and there are four fields currently supported.
+
+23
+00:01:59,800 --> 00:02:01,360
+And these are mandatory.
+
+24
+00:02:01,360 --> 00:02:09,100
+So you must have your name written had an alias feel Amzah function and also the current version that
+
+25
+00:02:09,100 --> 00:02:14,480
+you're running and the target version that you want to shift to.
+
+26
+00:02:14,520 --> 00:02:20,430
+And finally we have hooks which specify the functions that you want to run at a specific points in your
+
+27
+00:02:20,430 --> 00:02:21,480
+deployment.
+
+28
+00:02:22,400 --> 00:02:29,120
+So for lambda we have two different hooks available before allow traffic and off to allow traffic.
+
+29
+00:02:29,130 --> 00:02:31,780
+And let's just have a look at those in a bit more detail.
+
+30
+00:02:33,100 --> 00:02:41,440
+So before allow traffic is used to specify tasks or functions that you want to run before your traffic
+
+31
+00:02:41,440 --> 00:02:46,100
+is routed to your newly deployed lambda function.
+
+32
+00:02:46,100 --> 00:02:52,460
+So for example after deploying your lams function you're going to want to run some tests to validate
+
+33
+00:02:52,460 --> 00:02:58,690
+that the function has been deployed correctly and is behaving correctly and you want to do this before
+
+34
+00:02:58,690 --> 00:03:04,170
+you actually allow any live traffic to be routed to the function.
+
+35
+00:03:04,180 --> 00:03:11,440
+We then have off to allow traffic and this is used to specify the tasks or functions that you want to
+
+36
+00:03:11,440 --> 00:03:17,510
+run after traffic has been routed to your newly deployed lambda functions.
+
+37
+00:03:17,510 --> 00:03:24,800
+So for example you might want to test that the function is correctly accepting traffic is behaving as
+
+38
+00:03:24,800 --> 00:03:28,430
+expected and it's performing as you expect.
+
+39
+00:03:28,430 --> 00:03:35,980
+Now if AC to an on premise is systems the spec for looks slightly different it still has the version
+
+40
+00:03:36,400 --> 00:03:39,210
+and it once again that's reserved for future use.
+
+41
+00:03:39,220 --> 00:03:42,900
+Currently the only value supported is 0.0.
+
+42
+00:03:43,480 --> 00:03:46,880
+And it also has an operating system.
+
+43
+00:03:47,000 --> 00:03:55,720
+So this is where you defined whether you're using Windows or Linux etc. the files Prometa is used to
+
+44
+00:03:55,720 --> 00:04:00,480
+define the location of any application files which need to be copied.
+
+45
+00:04:02,250 --> 00:04:04,470
+And where they should be copied to.
+
+46
+00:04:05,010 --> 00:04:12,290
+So we provide a source and destination folder of any files that we want to copy across and similar to
+
+47
+00:04:12,290 --> 00:04:13,820
+the lambda version of the file.
+
+48
+00:04:13,820 --> 00:04:20,510
+We also have hooks and once again these are lifecycle event hooks that allow you to specify scripts
+
+49
+00:04:20,600 --> 00:04:26,350
+this time that need to be run at set points in the deployment cycle.
+
+50
+00:04:26,360 --> 00:04:33,260
+So for example if part of your deployment process is to unzip application code prior to the deployment
+
+51
+00:04:34,470 --> 00:04:41,370
+you can specify that as one of your lifecycle hooks and you can also run functional tests on your newly
+
+52
+00:04:41,370 --> 00:04:42,790
+deployed application.
+
+53
+00:04:44,700 --> 00:04:49,260
+And deregister unregister instances with load balance.
+
+54
+00:04:49,440 --> 00:04:55,020
+So there's quite a lot of things that you can specify within this Hooke's section of the app spec file
+
+55
+00:04:56,220 --> 00:05:03,600
+and for AC to an on premises deployments the app spec file must be placed within the root directory
+
+56
+00:05:03,720 --> 00:05:05,070
+of the revision.
+
+57
+00:05:05,140 --> 00:05:09,590
+And this means the directory containing all your application source code.
+
+58
+00:05:09,780 --> 00:05:12,760
+And if you don't do this the deployment will fail.
+
+59
+00:05:14,100 --> 00:05:22,230
+So a typical set up looks like for example a folder called my web app and then within that folder your
+
+60
+00:05:22,230 --> 00:05:29,040
+app specter Jamo file and then in this example we have three different directories one called scripts
+
+61
+00:05:29,310 --> 00:05:35,220
+containing any scripts you want to run one called config containing any configuration files that you
+
+62
+00:05:35,220 --> 00:05:41,360
+want to copy across and one called source and that would contain the source code for your application.
+
+63
+00:05:43,010 --> 00:05:48,860
+And if you've already done the code deploy or the code pipeline leps you would have already seen a directory
+
+64
+00:05:48,860 --> 00:05:51,880
+set up very similar to this.
+
+65
+00:05:51,980 --> 00:05:57,620
+So let's have a look at an example aspect to it YAML file for an easy to instance.
+
+66
+00:05:57,620 --> 00:06:00,640
+So we have our version number 0 0 0.
+
+67
+00:06:00,770 --> 00:06:02,350
+Then we have the operating system.
+
+68
+00:06:02,390 --> 00:06:09,790
+And in this case it's going to be Linux the files section and this is the section which defines any
+
+69
+00:06:09,790 --> 00:06:13,090
+files that you want to copy across.
+
+70
+00:06:13,240 --> 00:06:20,260
+And in this example within the conflict directory We want to copy across conflict OTTI XTi and we're
+
+71
+00:06:20,260 --> 00:06:26,620
+going to copy that to a folder called slushed webapps slash config on our destination host.
+
+72
+00:06:26,680 --> 00:06:29,240
+We also have another directory called sose.
+
+73
+00:06:29,380 --> 00:06:35,470
+And in this example we going to copy everything in that source directory into the destination web apps
+
+74
+00:06:35,560 --> 00:06:37,960
+slash my app and the Hook section.
+
+75
+00:06:37,960 --> 00:06:44,170
+In this example it simply defines a couple of different scripts that we're going to run before the installation.
+
+76
+00:06:44,260 --> 00:06:47,790
+And then another script that we can run off to the installation.
+
+77
+00:06:47,980 --> 00:06:52,930
+So before the installation we can run these two scripts which are going to unzip our resource bundle
+
+78
+00:06:52,990 --> 00:06:54,260
+and data bundle.
+
+79
+00:06:54,790 --> 00:07:01,100
+And then after the application has been installed we're going to run this script to test to ensure the
+
+80
+00:07:01,100 --> 00:07:06,340
+application has been successfully installed continuing in the books section of the file.
+
+81
+00:07:06,380 --> 00:07:13,680
+Once the application has started we want to run a set of functional tests and those again allocated
+
+82
+00:07:13,880 --> 00:07:15,280
+in no scripts directory.
+
+83
+00:07:15,420 --> 00:07:24,720
+And we have a timeout that of 36000 seconds or one hour and then the loss of this section we want to
+
+84
+00:07:24,750 --> 00:07:30,900
+validate the service and we have a monitoring script again located in the scripts directory.
+
+85
+00:07:31,470 --> 00:07:38,460
+And also with a timeout of one hour and all of these scripts are going to run as the code deploy user.
+
+86
+00:07:38,880 --> 00:07:44,610
+So that would be the identity access management user that you need to set up with all the correct permissions
+
+87
+00:07:44,700 --> 00:07:47,350
+you need in order to run code deploy.
+
+88
+00:07:47,400 --> 00:07:52,350
+So the Hook section for the spec file is really important to understand.
+
+89
+00:07:52,820 --> 00:07:58,110
+And once again this specifies the scripts that you want to run at specific points within your deployment
+
+90
+00:07:58,110 --> 00:08:02,130
+lifecycle and they do run in a very specific order.
+
+91
+00:08:02,460 --> 00:08:03,920
+So let's take a look at that order.
+
+92
+00:08:03,940 --> 00:08:13,790
+Now so imagine that you have a set of 82 instances sitting behind a load balancer and you want to update
+
+93
+00:08:13,790 --> 00:08:15,490
+them using code deploy.
+
+94
+00:08:15,530 --> 00:08:21,710
+Well the first thing that you need to do is really deregister your instances from the load balancer
+
+95
+00:08:21,980 --> 00:08:27,440
+because you don't want to continue to send traffic and send requests to those instances when you're
+
+96
+00:08:27,440 --> 00:08:28,840
+trying to update them.
+
+97
+00:08:31,100 --> 00:08:35,830
+So the spec file supports hooks which will enable you to do that.
+
+98
+00:08:36,260 --> 00:08:41,090
+And so logically those would be the first activities that you want to do right at the beginning of the
+
+99
+00:08:41,090 --> 00:08:48,320
+deployment and the hooks associated with registering from your light balancer or before block traffic
+
+100
+00:08:49,640 --> 00:08:55,190
+which allows you to specify Tulse you want to run on instances before they get deregistered from the
+
+101
+00:08:55,190 --> 00:09:05,390
+load balancer then block traffic which actually registers your instances from the load balancer then
+
+102
+00:09:05,480 --> 00:09:07,130
+off to block traffic.
+
+103
+00:09:07,130 --> 00:09:12,100
+So any tasks you want to run on your instance is after they have been de-registered.
+
+104
+00:09:13,330 --> 00:09:18,760
+Now the next sequence of events covers all the steps that you would normally need to do when upgrading
+
+105
+00:09:18,910 --> 00:09:20,310
+any application.
+
+106
+00:09:22,030 --> 00:09:27,850
+So first of all you'd want to stop your application so gracefully stop the application in preparation
+
+107
+00:09:27,850 --> 00:09:29,480
+for deploying the new revision.
+
+108
+00:09:31,650 --> 00:09:32,870
+Download bundle.
+
+109
+00:09:33,060 --> 00:09:38,970
+And this simply tells the code deploy agent to copy the application revision files into a temporary
+
+110
+00:09:39,030 --> 00:09:40,060
+location.
+
+111
+00:09:41,770 --> 00:09:43,390
+Before install.
+
+112
+00:09:43,810 --> 00:09:51,370
+Details any Prete installation scripts for example backing up a current version decrypting any files.
+
+113
+00:09:51,370 --> 00:09:58,300
+Any activities that you need to get done before you begin the installation the install stage is where
+
+114
+00:09:58,300 --> 00:10:04,150
+the code deploy agent copies the application revision files from that temporary location to that correct
+
+115
+00:10:04,240 --> 00:10:09,590
+final location to install hook details.
+
+116
+00:10:09,630 --> 00:10:12,460
+Any post installation scripts that you need to run.
+
+117
+00:10:12,480 --> 00:10:19,830
+So if for example configuration tasks any changing in file permissions adding executable access to a
+
+118
+00:10:19,830 --> 00:10:27,480
+file etc application start restarts any services that was stopped during the application stop stage
+
+119
+00:10:28,530 --> 00:10:29,930
+and validate service.
+
+120
+00:10:29,940 --> 00:10:35,620
+So this details any tests that you want to run in order to validate your service.
+
+121
+00:10:35,700 --> 00:10:36,710
+Then moving on.
+
+122
+00:10:36,880 --> 00:10:41,640
+These three fine herx all relate to reregistering your instances.
+
+123
+00:10:41,640 --> 00:10:43,340
+Back with the load balance.
+
+124
+00:10:43,680 --> 00:10:50,930
+So we've got before allowed traffic which specifies any tasks that you want to run before you reregister
+
+125
+00:10:50,930 --> 00:10:58,130
+your instances with the load balancer allow traffic which is the activity of registering the instances
+
+126
+00:10:58,190 --> 00:11:02,470
+with the load balancer and off to allow traffic.
+
+127
+00:11:02,540 --> 00:11:08,450
+So any tasks you want to run on your instance is after they've been registered with the load balancer.
+
+128
+00:11:08,930 --> 00:11:15,020
+So that's quite a lot to remember but it is really important to try and remember the sequence of events
+
+129
+00:11:15,020 --> 00:11:18,270
+that happen during a code deploy deployments.
+
+130
+00:11:18,620 --> 00:11:22,220
+And I've tried to summarize them here in this graphic and in my mind.
+
+131
+00:11:22,250 --> 00:11:25,220
+I kind of see it as a three stage process really.
+
+132
+00:11:25,220 --> 00:11:31,880
+So right at the beginning as a set of tasks that we need to run in order to de-register all systems
+
+133
+00:11:31,940 --> 00:11:33,180
+from the light balancer.
+
+134
+00:11:33,350 --> 00:11:37,330
+So that's the before block traffic blocked traffic and off to block traffic.
+
+135
+00:11:40,600 --> 00:11:45,910
+Then the next stage we have all of the tasks that you need to do in order to upgrade your application
+
+136
+00:11:47,050 --> 00:11:54,010
+and then finally we need to do a set of tasks to reregister with all load balancer and just remember
+
+137
+00:11:54,480 --> 00:11:57,380
+the sequence of events always happens in the same order.
+
+138
+00:11:57,400 --> 00:12:02,840
+You can't change the order of course and often they refer to it as the run order of hooks.
+
+139
+00:12:02,860 --> 00:12:09,130
+So if you see any questions in the exam relating to the run order of Herc's in a code deployed deployment.
+
+140
+00:12:09,130 --> 00:12:11,650
+This is what they're talking about.
+
+141
+00:12:11,650 --> 00:12:15,700
+So let's take a look at some of our exam tips.
+
+142
+00:12:15,750 --> 00:12:19,830
+So the spec file defines all the promises needed for the deployment.
+
+143
+00:12:19,920 --> 00:12:26,280
+So for example the location of any application files any pre and post deployment validation tests run
+
+144
+00:12:28,010 --> 00:12:34,940
+for AC to an on premises systems the spec file must be written in YAML and it must be placed in the
+
+145
+00:12:34,940 --> 00:12:36,910
+root directory of your revision.
+
+146
+00:12:37,040 --> 00:12:44,750
+So the same folder containing your application code lambda however supports YAML or Jason for the spec
+
+147
+00:12:44,750 --> 00:12:50,990
+file and once again Schweitzer's remember a run order books in the code deployed deployment.
+
+148
+00:12:51,080 --> 00:12:57,340
+We have the before block traffic block traffic an after block traffic then the applications stop before
+
+149
+00:12:57,370 --> 00:13:06,080
+in so Instow off to install application start validate service and then finally those steps to reregister
+
+150
+00:13:06,080 --> 00:13:12,740
+with your life balance before allow traffic allow traffic and of to allow traffic.
+
+151
+00:13:13,330 --> 00:13:14,870
+So that's the end of this lecture.
+
+152
+00:13:14,920 --> 00:13:16,950
+If you have any questions please let me know.
+
+153
+00:13:17,110 --> 00:13:19,670
+If not please feel free to move on to the next lecture.
+
+154
+00:13:19,690 --> 00:13:20,230
+Thank you.

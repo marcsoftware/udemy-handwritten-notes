@@ -1,0 +1,407 @@
+1
+00:00:00,780 --> 00:00:07,140
+Hello bloggers and welcome to this lecture and this lecture is going to cover deploying docker containers
+
+2
+00:00:07,230 --> 00:00:14,370
+using Elastic Beanstalk so as you know you can use Elastic Beanstalk to deploy your web applications
+
+3
+00:00:14,610 --> 00:00:21,510
+without having to worry about provisioning any underlying infrastructure and as well as supporting applications
+
+4
+00:00:21,510 --> 00:00:29,850
+developed to using programming languages like Java dot net no J.S. Python etc. You can also deploy docker
+
+5
+00:00:29,850 --> 00:00:37,690
+containers using Elastic Beanstalk and if you remember docker containers are self-contained and they
+
+6
+00:00:37,690 --> 00:00:44,530
+include all of the configuration information and software that your web application requires to run.
+
+7
+00:00:44,530 --> 00:00:51,520
+So think any libraries system tools code and runtime environment as well.
+
+8
+00:00:51,700 --> 00:00:57,550
+So that means that once you've Docker your application it's going to run anywhere where docker containers
+
+9
+00:00:57,640 --> 00:00:58,660
+are supported.
+
+10
+00:00:58,660 --> 00:01:05,200
+Now when you deploy a docker container using Elastic Beanstalk Elastic Beanstalk handles all of the
+
+11
+00:01:05,200 --> 00:01:11,260
+capacity provisioning load balancing scaling and application health monitoring.
+
+12
+00:01:11,260 --> 00:01:17,440
+So it's a really really easy and quick way to get started with docker containers without having to worry
+
+13
+00:01:17,440 --> 00:01:21,100
+about provisioning any underlying infrastructure.
+
+14
+00:01:21,100 --> 00:01:27,610
+So when you deploy a docker container using Elastic Beanstalk you can either run a single docker container
+
+15
+00:01:27,910 --> 00:01:35,110
+on an easy to instance provisioned by Elastic Beanstalk or alternatively you can run multiple docker
+
+16
+00:01:35,110 --> 00:01:42,910
+containers and to do that you would use Elastic Beanstalk to build an ISIS cluster or elastic container
+
+17
+00:01:42,910 --> 00:01:50,230
+service cluster and then deploy multiple docker containers on each instance within the ECF cluster and
+
+18
+00:01:50,230 --> 00:01:53,870
+Elastic Beanstalk will handle all of that for you as well.
+
+19
+00:01:53,920 --> 00:02:00,070
+So when you're ready to deploy your code you Simply upload a zip file containing a bundle of your code
+
+20
+00:02:00,430 --> 00:02:04,800
+an elastic beanstalk will do the rest and when you need to upgrade your code.
+
+21
+00:02:04,930 --> 00:02:08,350
+So you want to upgrade your application to a new version.
+
+22
+00:02:08,350 --> 00:02:15,390
+It's one easy step in the console to upload a new version of your zip file and deploy your new code.
+
+23
+00:02:15,730 --> 00:02:20,820
+But really the best way to learn about how this all hangs together is to get your hands dirty.
+
+24
+00:02:21,100 --> 00:02:26,200
+So if you'd like to join me in the console now we're going to deploy a couple of versions of a docker
+
+25
+00:02:26,200 --> 00:02:35,770
+container using Elastic Beanstalk so here I am in the W W console and I'm just gonna head down to compute
+
+26
+00:02:36,250 --> 00:02:39,230
+and find Elastic Beanstalk.
+
+27
+00:02:39,490 --> 00:02:46,510
+Click on get started and first of all we need to give our new Elastic Beanstalk application a name and
+
+28
+00:02:46,510 --> 00:02:53,040
+I'm just gonna call it my doctor app we need to choose a platform and we've got a choice between a single
+
+29
+00:02:53,070 --> 00:02:59,340
+docker container which is going to be installed on a single easy to instance or a multi container Docker
+
+30
+00:02:59,580 --> 00:03:02,830
+so multiple instances of our docker container.
+
+31
+00:03:02,880 --> 00:03:07,860
+So I'm just gonna select the first one we're going to upload our own code and this code is available
+
+32
+00:03:07,860 --> 00:03:10,140
+for you in the resources section.
+
+33
+00:03:10,140 --> 00:03:12,840
+So I'm just going to hit upload choose file.
+
+34
+00:03:12,840 --> 00:03:19,950
+So we're going to go with Version 1 first and the zip file it just contains a docker file and an application
+
+35
+00:03:19,950 --> 00:03:21,900
+file as well.
+
+36
+00:03:21,900 --> 00:03:27,120
+And the docker file it just contains some instructions for building out our Docker image and then the
+
+37
+00:03:27,120 --> 00:03:33,780
+application Doc pi is the python code and it's just a simple website and the combination of the docker
+
+38
+00:03:33,780 --> 00:03:41,040
+file and the application Doc pi is gonna be used to create a really simple web application and for the
+
+39
+00:03:41,040 --> 00:03:45,060
+exam you won't be tested on how to write Python code.
+
+40
+00:03:45,060 --> 00:03:50,160
+The main thing that they're going to test you on is that you know how to deploy a docker container in
+
+41
+00:03:50,160 --> 00:03:52,180
+a plastic beanstalk.
+
+42
+00:03:52,500 --> 00:04:01,280
+So coming back to the console I'm going to select version one of our ZIP file it open and before you
+
+43
+00:04:01,280 --> 00:04:06,800
+upload just notice that it gives you this version label which is a unique name for this version of your
+
+44
+00:04:06,800 --> 00:04:08,210
+application code.
+
+45
+00:04:08,210 --> 00:04:16,100
+So once you've selected your file just hit upload and create application and it does take a couple of
+
+46
+00:04:16,100 --> 00:04:17,780
+minutes to spin everything up.
+
+47
+00:04:17,780 --> 00:04:19,340
+So just be patient.
+
+48
+00:04:19,520 --> 00:04:23,980
+And I'm just going to pause the video now until that has completed.
+
+49
+00:04:24,060 --> 00:04:28,980
+So now that has successfully completed and it took about I think it took about four minutes.
+
+50
+00:04:29,250 --> 00:04:33,880
+So hopefully after a few minutes you should have a similar result to me and you should see a big green
+
+51
+00:04:33,880 --> 00:04:39,970
+tech health OK and all the recent events appearing down here on the bottom of the screen.
+
+52
+00:04:40,260 --> 00:04:44,960
+So once that is already at the top of the screen you'll see and you are all like this.
+
+53
+00:04:45,320 --> 00:04:51,510
+And if you open that link in a new tab in your browser it's going to take you to a Web site which is
+
+54
+00:04:51,510 --> 00:04:53,810
+being served from your docker container.
+
+55
+00:04:53,940 --> 00:05:00,390
+So congratulations your docker container is now running an Elastic Beanstalk on your own dedicated environment
+
+56
+00:05:00,420 --> 00:05:07,680
+in the W.S. cloud so you can see how easy it is to get a docker application up and running using Elastic
+
+57
+00:05:07,680 --> 00:05:08,760
+Beanstalk.
+
+58
+00:05:08,970 --> 00:05:15,480
+And now we're going to go and upgrade our application to another version so come back to your Elastic
+
+59
+00:05:15,480 --> 00:05:23,070
+Beanstalk dashboard and we're going to hit upload and deploy select choose file and we're going to select
+
+60
+00:05:23,130 --> 00:05:29,980
+version two of our application and it's automatically going to apply a new version label.
+
+61
+00:05:30,060 --> 00:05:31,710
+So just go ahead and hit deploy
+
+62
+00:05:34,340 --> 00:05:40,690
+and Elastic Beanstalk is now updating our environment and it's that easy to update the code within your
+
+63
+00:05:40,690 --> 00:05:43,210
+Elastic Beanstalk environment.
+
+64
+00:05:43,210 --> 00:05:45,820
+So once again it's going to take a couple of minutes to complete.
+
+65
+00:05:45,820 --> 00:05:51,010
+So I'm just going to pause the video and wait a few minutes and see if that has completed.
+
+66
+00:05:51,010 --> 00:05:51,400
+Okay.
+
+67
+00:05:51,430 --> 00:05:56,440
+So that has now completed and it didn't actually take as long as the first time because it's only deploying
+
+68
+00:05:56,440 --> 00:06:00,860
+all code it's not actually going in and creating two instances.
+
+69
+00:06:00,940 --> 00:06:07,930
+And if that has been successful we can head back to our Web site hit refresh and there is a new version.
+
+70
+00:06:07,960 --> 00:06:10,110
+So great work everyone you just deployed.
+
+71
+00:06:10,120 --> 00:06:15,730
+Version two of your Docker application and one lost really cool thing that I wanted to show you is that
+
+72
+00:06:15,730 --> 00:06:22,600
+you can really easily revert back to previous versions so if you head back to the console and hit upload
+
+73
+00:06:22,630 --> 00:06:29,080
+and deploy you'll see this message at the top saying to deploy a previous version go to the application
+
+74
+00:06:29,080 --> 00:06:29,950
+versions page.
+
+75
+00:06:30,220 --> 00:06:35,590
+So if you click on application versions you'll see your previous version and your current version as
+
+76
+00:06:35,590 --> 00:06:36,090
+well.
+
+77
+00:06:36,220 --> 00:06:42,400
+So you can just select the previous version and go in and deploy that version if you want to roll back
+
+78
+00:06:42,400 --> 00:06:48,900
+to your previous version and once you've finished exploring the console you can really easily terminate
+
+79
+00:06:48,930 --> 00:06:49,440
+everything.
+
+80
+00:06:49,440 --> 00:06:59,220
+So if we go back to environments hit actions and you can just select delete application and hit delete
+
+81
+00:07:00,250 --> 00:07:05,480
+and that will just take care of deleting the entire Elastic Beanstalk environment for you.
+
+82
+00:07:05,490 --> 00:07:12,150
+So moving on to the exam tips for Elastic Beanstalk and docker if you're using Elastic Beanstalk remember
+
+83
+00:07:12,150 --> 00:07:18,540
+that you can deploy a docker container to a single easy to instance and you can also use Elastic Beanstalk
+
+84
+00:07:18,840 --> 00:07:23,590
+to deploy multiple Docker instances to an elastic container service cluster.
+
+85
+00:07:23,700 --> 00:07:30,570
+And if you want to deploy a docker application all you do is upload your code bundle to Elastic Beanstalk.
+
+86
+00:07:31,030 --> 00:07:34,400
+And if you want to upgrade your application to a new version it's really easy.
+
+87
+00:07:34,400 --> 00:07:36,780
+It's just one step in the console.
+
+88
+00:07:36,780 --> 00:07:42,330
+You just upload the next version of your code and Elastic Beanstalk will deploy that for you and it
+
+89
+00:07:42,330 --> 00:07:46,770
+will also manage previous versions of your code as well.
+
+90
+00:07:46,860 --> 00:07:53,610
+And as we did in the lab code can be uploaded directly from your local machine or it can also be uploaded
+
+91
+00:07:53,610 --> 00:07:55,810
+from an S3 bucket as well.
+
+92
+00:07:55,890 --> 00:08:01,380
+And alternatively you can also store your code in code commit you're not restricted to just storing
+
+93
+00:08:01,380 --> 00:08:03,620
+it on your local machine or in S3.
+
+94
+00:08:03,660 --> 00:08:08,940
+So it is possible to use code commit but if you want to do that you must administer Elastic Beanstalk
+
+95
+00:08:09,240 --> 00:08:13,700
+and your deployment using the Elastic Beanstalk come online interface.
+
+96
+00:08:13,700 --> 00:08:15,710
+And that's actually out of scope for the exam.
+
+97
+00:08:15,720 --> 00:08:21,570
+So you don't need to be able to use the Elastic Beanstalk Cielo but it is worth noting that you can
+
+98
+00:08:21,570 --> 00:08:27,690
+store your code in code commit and have that integrated with your Elastic Beanstalk environment.
+
+99
+00:08:27,720 --> 00:08:29,750
+So that is the end of this lecture.
+
+100
+00:08:29,880 --> 00:08:32,150
+If you have any questions please let me know.
+
+101
+00:08:32,340 --> 00:08:34,770
+If not feel free to move on to the next lecture.
+
+102
+00:08:34,770 --> 00:08:35,280
+Thank you.

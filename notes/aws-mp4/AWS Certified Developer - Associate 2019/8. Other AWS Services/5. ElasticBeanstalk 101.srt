@@ -1,0 +1,231 @@
+1
+00:00:00,340 --> 00:00:03,230
+OK hello cloggers and welcome to this lecture.
+
+2
+00:00:03,240 --> 00:00:08,880
+This lecture is on elastic beings beanstalk one on one and we have already used plastic Beanstalk in
+
+3
+00:00:08,880 --> 00:00:09,680
+this course.
+
+4
+00:00:09,870 --> 00:00:15,230
+But over the next few lectures we'll use it and a lot more detail go into advanced silastic things can
+
+5
+00:00:15,240 --> 00:00:17,520
+we look at how you can use elastic things with.
+
+6
+00:00:17,670 --> 00:00:18,390
+Yes.
+
+7
+00:00:18,420 --> 00:00:19,860
+So before we get started.
+
+8
+00:00:19,860 --> 00:00:21,760
+What is elastic Bonestell.
+
+9
+00:00:21,780 --> 00:00:26,300
+Well it's a service for deploying and scaling web applications developed in many popular languages or
+
+10
+00:00:26,310 --> 00:00:29,430
+Java dot net page pain O.J.'s Python Ruby.
+
+11
+00:00:29,430 --> 00:00:37,160
+Go and Daka onto widely used applications of platforms like Apache Tomcat or engine X or passenger or
+
+12
+00:00:37,210 --> 00:00:38,310
+I I.
+
+13
+00:00:38,430 --> 00:00:43,200
+And so this means that developers can focus on writing code and don't need to worry about any of the
+
+14
+00:00:43,230 --> 00:00:46,190
+underlying infrastructure needed to run the application.
+
+15
+00:00:46,380 --> 00:00:51,690
+So essentially what elastic beanstalk is is you just throw away at some code in a zip file and it will
+
+16
+00:00:51,690 --> 00:00:55,580
+go in and detect or go in and configure an environment for you.
+
+17
+00:00:55,610 --> 00:01:00,560
+So go in and configure the Web servers might put them behind in order scaling great.
+
+18
+00:01:00,600 --> 00:01:06,210
+It could go in and configure Yes or you could manage phrenologists environment will cover that off in
+
+19
+00:01:06,210 --> 00:01:07,670
+the audio section.
+
+20
+00:01:07,740 --> 00:01:13,860
+So that's all it is it's basically a provisioning service very sort of similar to cloud formation in
+
+21
+00:01:13,860 --> 00:01:21,210
+that you know you use it to provision environments except cloud formation is all Jason based and club
+
+22
+00:01:21,250 --> 00:01:26,810
+promotion you upload cloud formation templates whereas with elastic beanstalk it's very much using the
+
+23
+00:01:26,810 --> 00:01:33,240
+GUI you see go through click you know different buttons and then you go in and provision your environment.
+
+24
+00:01:33,240 --> 00:01:35,810
+So we will do that in the next lab.
+
+25
+00:01:36,060 --> 00:01:37,370
+So basically what you do.
+
+26
+00:01:37,370 --> 00:01:42,300
+Like I just said you upload the code an elastic beanstalk Stokoe handle deployment capacity provisioning
+
+27
+00:01:42,360 --> 00:01:48,810
+load balancing or scaling and the applications health and you still contain full control of the underlying
+
+28
+00:01:48,810 --> 00:01:55,010
+AWOS resources power your applications and you pay for the only you only pay for the AWOS resources
+
+29
+00:01:55,020 --> 00:01:57,240
+required to store and run your application.
+
+30
+00:01:57,240 --> 00:02:00,440
+So this could be easy two or three.
+
+31
+00:02:00,450 --> 00:02:05,760
+And essentially when you create a new elastic beanstalk deployment it will create a new S3 bucket and
+
+32
+00:02:05,760 --> 00:02:09,930
+it will save every version of your code in that S3 bucket.
+
+33
+00:02:09,930 --> 00:02:14,700
+And again we're going to have a look at that in the lab so elastic beanstalk is the fastest and simplest
+
+34
+00:02:14,700 --> 00:02:16,770
+way to deploy your applications in.
+
+35
+00:02:16,770 --> 00:02:23,100
+AWOS it automate automatically scows your application up and down you can select the easy to instance
+
+36
+00:02:23,100 --> 00:02:25,810
+type that is optimal for your application.
+
+37
+00:02:25,860 --> 00:02:30,590
+You can retrain full administrative control over the resources parrying your application or you could
+
+38
+00:02:30,610 --> 00:02:33,120
+just have elastic beanstalk do it for you.
+
+39
+00:02:33,240 --> 00:02:37,000
+You can actually go through and do manage platform updates.
+
+40
+00:02:37,080 --> 00:02:41,160
+So this will automatically update things like your operating system Java page.
+
+41
+00:02:41,150 --> 00:02:45,430
+Pay no japes even Apache et cetera.
+
+42
+00:02:45,660 --> 00:02:50,940
+You can monitor and manage application health var dashboard and it's integrated integrated with cloud
+
+43
+00:02:50,940 --> 00:02:55,800
+watch and X-ray so you're going to have good performance data as well as metrics.
+
+44
+00:02:55,800 --> 00:02:58,100
+So what are some exam tips for elastic.
+
+45
+00:02:58,350 --> 00:03:04,140
+We'll just remember that it's basically a way of deploying your web application and it will provision
+
+46
+00:03:04,200 --> 00:03:05,560
+all the resources behind it.
+
+47
+00:03:05,580 --> 00:03:08,970
+That includes the servers could include the yes etc..
+
+48
+00:03:09,120 --> 00:03:15,990
+It supports a widely used programming technologies like Java page PE Python Ruby go Daka dot net and
+
+49
+00:03:15,990 --> 00:03:24,400
+no genius and also supports applications of platforms like Tom-Kat passenger buma etc..
+
+50
+00:03:24,530 --> 00:03:26,520
+Previsions the underlying resources for you.
+
+51
+00:03:26,580 --> 00:03:33,000
+You yourself can fully manage the E.S. two instances or elastic beanstalk can do that for you and then
+
+52
+00:03:33,000 --> 00:03:34,110
+you can do updates.
+
+53
+00:03:34,110 --> 00:03:36,730
+You can do monitoring and metrics and health checks.
+
+54
+00:03:36,900 --> 00:03:38,430
+And this is all included.
+
+55
+00:03:38,430 --> 00:03:42,900
+So the best way to literalistic penstock is to go ahead and get our hands dirty so that's what we'll
+
+56
+00:03:42,900 --> 00:03:44,040
+do in the next lecture.
+
+57
+00:03:44,040 --> 00:03:46,210
+So if you've got the time please join me in the next lecture.
+
+58
+00:03:46,260 --> 00:03:46,600
+Thank you.

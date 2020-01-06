@@ -1,0 +1,503 @@
+1
+00:00:00,450 --> 00:00:03,900
+R.K. helicopters on welcome to this section of the Course.
+
+2
+00:00:03,900 --> 00:00:08,280
+This section is campus and in this lecture we're going to look at campus 101.
+
+3
+00:00:08,320 --> 00:00:10,000
+So what is Kamis.
+
+4
+00:00:10,110 --> 00:00:15,150
+What camis just stands for Key Management Service and it's a managed service that makes it easy for
+
+5
+00:00:15,150 --> 00:00:19,280
+you to create and control the encryption keys used to encrypt your data.
+
+6
+00:00:19,390 --> 00:00:27,570
+AWOS Camus's integrated with the other AWOS services including abs S-3 redshift elastic trans coda Amazon
+
+7
+00:00:27,570 --> 00:00:33,870
+work my Amazon relational database or Adi's and others to make it simple to encrypt your data with encryption
+
+8
+00:00:33,870 --> 00:00:35,480
+keys that you manage.
+
+9
+00:00:35,490 --> 00:00:38,260
+So the best way to learn Kamis is to start using it.
+
+10
+00:00:38,280 --> 00:00:44,250
+So let's go to the AWOS console and I have a challenge for you see if you can find the KAMC service
+
+11
+00:00:44,370 --> 00:00:46,070
+if you can see it in the console.
+
+12
+00:00:46,140 --> 00:00:48,470
+OK so here I am in the AWOS console.
+
+13
+00:00:48,480 --> 00:00:54,690
+If you go to services and you go down here you might think that you know Kamis would be and security
+
+14
+00:00:54,690 --> 00:00:57,150
+identity and compliance.
+
+15
+00:00:57,150 --> 00:01:02,090
+It's not actually or it is but it's not a visible link that you can click on.
+
+16
+00:01:02,190 --> 00:01:05,970
+What you need to do is go over to identity access management.
+
+17
+00:01:05,970 --> 00:01:10,920
+Now what we're going to do is we're going to create a user and we're going to actually create a group
+
+18
+00:01:11,400 --> 00:01:17,300
+and we're going to put this use in the group assign it administrator access so that they can you know
+
+19
+00:01:17,550 --> 00:01:19,560
+use the entire AWOS console.
+
+20
+00:01:19,740 --> 00:01:25,140
+And then what we're going to do is we're going to create our encryption keys and give that use access
+
+21
+00:01:25,140 --> 00:01:28,110
+to the case we might actually just create two users.
+
+22
+00:01:28,140 --> 00:01:32,500
+So why don't we go ahead and create outgroups and we're going to create a new group.
+
+23
+00:01:32,700 --> 00:01:36,470
+I'm going to call this my KAMC great.
+
+24
+00:01:36,630 --> 00:01:39,310
+So these are people who have access to mass.
+
+25
+00:01:39,310 --> 00:01:44,470
+We're going to go ahead and hit next and I'm going to give them the group administrator access so they
+
+26
+00:01:44,520 --> 00:01:47,950
+might be trusted data security Paypal et cetera.
+
+27
+00:01:48,120 --> 00:01:54,860
+So going to go ahead and create groups or anyone in this group will become a be able to administer Haimson
+
+28
+00:01:54,900 --> 00:01:58,230
+do anything at the administrative level within the console.
+
+29
+00:01:58,260 --> 00:02:06,480
+So let's go ahead and create our users I'm going to add a user let's call our use my key manager.
+
+30
+00:02:06,870 --> 00:02:13,140
+So this is the person who's going to be able to basically do administrate or you know basically manage
+
+31
+00:02:13,140 --> 00:02:16,630
+the keys from a permissions point of view.
+
+32
+00:02:16,980 --> 00:02:22,710
+And that's always best practice to have someone who can manage the keys permissions but doesn't have
+
+33
+00:02:22,740 --> 00:02:25,360
+the ability to encrypt or decrypt.
+
+34
+00:02:25,360 --> 00:02:26,730
+And then you have the opposite.
+
+35
+00:02:26,730 --> 00:02:32,670
+So you have a user who doesn't manages the keys permissions but they have the ability to do the encryption
+
+36
+00:02:32,700 --> 00:02:33,940
+and decryption.
+
+37
+00:02:33,930 --> 00:02:36,460
+And that way you have two levels of access.
+
+38
+00:02:36,510 --> 00:02:38,530
+So this will be an meninges a group.
+
+39
+00:02:38,700 --> 00:02:44,700
+We're gonna give them both programmatic and AWOS management console access going to do a custom password.
+
+40
+00:02:44,700 --> 00:02:46,620
+I'm not going to tell you what it is.
+
+41
+00:02:47,490 --> 00:02:54,150
+And that's what they would need in order to log into the console to Antek this so that I can log in
+
+42
+00:02:54,150 --> 00:02:56,370
+myself go ahead and hit next.
+
+43
+00:02:56,390 --> 00:03:02,420
+Can I add them to our campus group and we're going to go ahead and just scroll down and hit next.
+
+44
+00:03:02,520 --> 00:03:04,060
+And so this is my key manager.
+
+45
+00:03:04,080 --> 00:03:05,690
+Let's create that user.
+
+46
+00:03:05,940 --> 00:03:11,790
+And then with my other manager and you do what you don't necessarily need the secret access for this
+
+47
+00:03:11,790 --> 00:03:16,560
+one in the next lecture we will need a secret access but we'll do that proud day to use those.
+
+48
+00:03:16,560 --> 00:03:21,960
+We're going to go ahead and close up and create a new user and this will be the person who does the
+
+49
+00:03:21,960 --> 00:03:22,730
+description.
+
+50
+00:03:22,730 --> 00:03:30,510
+So my encryptor So this user is going to do all the encryption and decryption going to give them access
+
+51
+00:03:30,510 --> 00:03:31,990
+to the console as well.
+
+52
+00:03:32,020 --> 00:03:37,770
+I'm just going to create a password and I'm going to make sure they don't need to change their password
+
+53
+00:03:37,770 --> 00:03:38,830
+coming in.
+
+54
+00:03:38,930 --> 00:03:45,630
+Going to go ahead and hit save and next review and create my user now I accidentally didn't add them
+
+55
+00:03:45,630 --> 00:03:48,500
+to the group so just make sure that I can do that.
+
+56
+00:03:48,780 --> 00:03:55,800
+So if we want to do that we just go in to here clicked on my encrypt click on groups and use it a group
+
+57
+00:03:55,890 --> 00:03:58,130
+and I'm going to add them back to my script.
+
+58
+00:03:58,230 --> 00:03:59,490
+And there we go.
+
+59
+00:03:59,490 --> 00:04:08,150
+So we've now got our two users my encrypt and my key manager and they're both members of the kamis Mike
+
+60
+00:04:08,240 --> 00:04:09,410
+Hamis great.
+
+61
+00:04:09,720 --> 00:04:11,440
+So you know what Kamis actually is.
+
+62
+00:04:11,430 --> 00:04:14,020
+Well it is part of identity access management.
+
+63
+00:04:14,150 --> 00:04:20,310
+If you notice I am is a global service but if we go into encryption keys you can see here we've got
+
+64
+00:04:20,340 --> 00:04:25,260
+our regions going to use a region that I haven't used before yet in this call so I'm going to jump over
+
+65
+00:04:25,260 --> 00:04:26,630
+to EU London.
+
+66
+00:04:26,760 --> 00:04:31,320
+You can choose any region that you want but just remember going into your exam that your encryption
+
+67
+00:04:31,320 --> 00:04:35,400
+keys are regional So encryption keys for Kamis are regional.
+
+68
+00:04:35,400 --> 00:04:40,350
+You can't have an encryption key in US Swan and then use that to decrypt data.
+
+69
+00:04:40,480 --> 00:04:44,280
+An EU west one they have to be in the same region.
+
+70
+00:04:44,280 --> 00:04:50,760
+So what I'm going to do in the London region and what I'm going to do now is going to go ahead and create
+
+71
+00:04:50,820 --> 00:04:51,920
+my case.
+
+72
+00:04:51,960 --> 00:04:57,460
+So I'm just going to create one k going to call it my encryption cane to keep it simple.
+
+73
+00:04:57,780 --> 00:05:04,330
+And then here we've got our advance options now have the material origins so Kamis we can either use
+
+74
+00:05:04,330 --> 00:05:08,440
+Camus's or we can use an external for the developer associate.
+
+75
+00:05:08,450 --> 00:05:13,840
+This is actually outside the scope but you need to understand this if you ever want to do the security
+
+76
+00:05:14,170 --> 00:05:19,790
+specialty and we go into a lot of detail of that in the security specialty course.
+
+77
+00:05:19,900 --> 00:05:23,500
+For now just click OK M-S as your key material of origin.
+
+78
+00:05:23,500 --> 00:05:29,230
+This means we're not importing any material ourselves we're just letting games do everything that it
+
+79
+00:05:29,230 --> 00:05:30,110
+needs to do.
+
+80
+00:05:30,280 --> 00:05:31,910
+So go ahead and hit next in here.
+
+81
+00:05:31,930 --> 00:05:34,720
+You might want to do your you know war game.
+
+82
+00:05:34,720 --> 00:05:37,730
+Let's say one could say that this is for the finance teams.
+
+83
+00:05:37,750 --> 00:05:41,520
+This is what they use to encrypt payslips or something like that.
+
+84
+00:05:41,710 --> 00:05:45,130
+Can it go in here and in here we've got our key administrators.
+
+85
+00:05:45,130 --> 00:05:50,230
+Who do we want who can administer this case through the camis API or this.
+
+86
+00:05:50,260 --> 00:05:51,940
+We're going to give talki manage.
+
+87
+00:05:51,960 --> 00:05:55,830
+So they're the only ones who will be able to do administration of this.
+
+88
+00:05:56,380 --> 00:06:02,950
+And then define key usage permission so who's actually being able to use this key to encrypt and decrypt
+
+89
+00:06:02,950 --> 00:06:03,500
+data.
+
+90
+00:06:03,520 --> 00:06:05,940
+Well we want that to be miring crypto.
+
+91
+00:06:06,280 --> 00:06:08,450
+And then we're going to go ahead and hit finish.
+
+92
+00:06:08,680 --> 00:06:13,280
+And that has created a policy and now we have our encryption key in here.
+
+93
+00:06:13,390 --> 00:06:17,170
+So they go we've created our first Kamis K. in A.
+
+94
+00:06:17,170 --> 00:06:17,580
+M..
+
+95
+00:06:17,710 --> 00:06:18,470
+So what have we to learn.
+
+96
+00:06:18,490 --> 00:06:20,370
+Well we learned about the customer masticate.
+
+97
+00:06:20,360 --> 00:06:26,440
+So we created our customer master key just then in that lab and the customer M.K. consists of a few
+
+98
+00:06:26,440 --> 00:06:32,770
+things consists of an alias so the name that we gave to it it consists of the creation date a description
+
+99
+00:06:32,980 --> 00:06:35,500
+the key state and then the key material.
+
+100
+00:06:35,530 --> 00:06:38,460
+This can either be customer provided or AWOS can provide.
+
+101
+00:06:38,470 --> 00:06:42,760
+We didn't import our key material but we do do that in the security specialty course.
+
+102
+00:06:42,780 --> 00:06:49,330
+This one we just use the AWOS provided one thing to note about the custom masticate is it cannot leave
+
+103
+00:06:49,330 --> 00:06:55,240
+Kamis you can never export this if you need to export Yuki's you can and need to use cloud hate s.m.
+
+104
+00:06:55,300 --> 00:07:01,600
+The main difference between camps and cloud HSM is that camis uses multitenant to hardware cloud hate
+
+105
+00:07:01,650 --> 00:07:03,930
+Sam is dedicated to you.
+
+106
+00:07:03,970 --> 00:07:05,790
+So that's the main difference.
+
+107
+00:07:05,830 --> 00:07:11,340
+And when you are using the cloud HSM you can export your custom Mosse decays.
+
+108
+00:07:11,350 --> 00:07:12,390
+So how do we set this up.
+
+109
+00:07:12,400 --> 00:07:18,070
+Well we simply set up a customer masticate by going into I am we created an alias and the description
+
+110
+00:07:18,130 --> 00:07:20,630
+we choose our key material option.
+
+111
+00:07:20,650 --> 00:07:22,830
+So we decided to let Amazon do this.
+
+112
+00:07:22,840 --> 00:07:28,750
+We then defied our key administrative permissions so which user or role can administer the K but not
+
+113
+00:07:28,750 --> 00:07:35,050
+use the K through the camis API and then we defined the key usage of permissions so which user can actually
+
+114
+00:07:35,050 --> 00:07:39,310
+go in and encrypt or decrypt data using this case.
+
+115
+00:07:39,400 --> 00:07:42,220
+And just remember the O'Chee material options is two options.
+
+116
+00:07:42,220 --> 00:07:47,620
+You can either use camis generated code which is what we just did or you can import your own key material
+
+117
+00:07:47,860 --> 00:07:53,530
+again for the developers so shit exam that's outside the scope but you will need to know how to do that
+
+118
+00:07:53,560 --> 00:07:57,120
+when you move on to security specialty if you ever want to go down that route.
+
+119
+00:07:57,160 --> 00:08:00,760
+So that is it for this lecture guys in the next lecture what we're going to do is we're going to use
+
+120
+00:08:00,760 --> 00:08:04,370
+the campus API are actually going to do it at the command line level.
+
+121
+00:08:04,510 --> 00:08:09,160
+So we're going to spin up a little easy to instance we're going to log in and we're going to run AWOS
+
+122
+00:08:09,170 --> 00:08:14,920
+configure where they're going to set up the credentials for the person who has the permissions to use
+
+123
+00:08:14,980 --> 00:08:19,750
+encrypt and decrypt them we're going to create some plain text files and encrypt them decrypt them and
+
+124
+00:08:19,750 --> 00:08:25,380
+re-encrypt them then we're briefly going to look at how we can rotate our kids using the command line.
+
+125
+00:08:25,390 --> 00:08:27,290
+So if you got the time please join me in the next lecture.
+
+126
+00:08:27,310 --> 00:08:27,730
+Thank you.

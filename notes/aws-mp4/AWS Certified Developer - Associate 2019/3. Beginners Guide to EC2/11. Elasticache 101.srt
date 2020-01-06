@@ -1,0 +1,367 @@
+1
+00:00:00,540 --> 00:00:06,270
+OK Hillary pluggers and welcome to this lecture this is actually going to look at Elastic cash one or
+
+2
+00:00:06,290 --> 00:00:07,770
+one or less the case.
+
+3
+00:00:07,810 --> 00:00:11,190
+Some people renounce it that I'm going to pronounce it the American way.
+
+4
+00:00:11,190 --> 00:00:17,430
+Going forward to cash so less to cash is a web service that makes it easy to deploy operate and scale
+
+5
+00:00:17,430 --> 00:00:19,990
+and in memory cache in the cloud.
+
+6
+00:00:19,990 --> 00:00:24,330
+And basically it's going to improve your performance of your web applications by allowing you to retrieve
+
+7
+00:00:24,360 --> 00:00:31,850
+information from fast managed in-memory caches instead of relying entirely on slower disk based databases.
+
+8
+00:00:31,860 --> 00:00:38,160
+So basically it's a way of caching your most frequently used queries from your database instead of putting
+
+9
+00:00:38,160 --> 00:00:43,860
+it in your database we put it in elastic cache and that takes a bit and it takes a lot of load off your
+
+10
+00:00:44,130 --> 00:00:50,480
+production databases so you know always constantly querying the top 10 for sale items for example where
+
+11
+00:00:50,490 --> 00:00:55,620
+you're not constantly querying you know maybe it's a new Wordpress blog or something like that you can
+
+12
+00:00:55,620 --> 00:00:59,100
+actually cashola that information using elastic cache.
+
+13
+00:00:59,310 --> 00:01:04,800
+So it can be used to significantly improve latency for many read heavy application workloads.
+
+14
+00:01:04,800 --> 00:01:10,630
+This could be things like social networking gaming media sharing in Q&amp;A portholes in particular will
+
+15
+00:01:10,650 --> 00:01:17,370
+compute intensive work loads such as a recommendation engine and caching improves the applications performance
+
+16
+00:01:17,370 --> 00:01:23,640
+by storing critical pieces of data in memory for low latency access cache information may include the
+
+17
+00:01:23,640 --> 00:01:30,510
+results of intensive you know database queries all the results of computationally intensive calculations.
+
+18
+00:01:30,540 --> 00:01:37,250
+So the more you cache the less load you put on your database the more you for your database up and you
+
+19
+00:01:37,440 --> 00:01:41,160
+basically make your applications far more effective.
+
+20
+00:01:41,160 --> 00:01:48,900
+If you've ever used Magento Magento is a slacker online web store or online software for building stores
+
+21
+00:01:49,530 --> 00:01:52,780
+and it is an extremely memory intensive.
+
+22
+00:01:52,950 --> 00:01:54,760
+So we use Meng Passhe a lot.
+
+23
+00:01:54,760 --> 00:01:58,760
+When I worked at Rackspace Magento take a huge load off the database.
+
+24
+00:01:58,800 --> 00:02:04,770
+So we've got different types of elastic cash we've got to we've got memcached day memcached day is a
+
+25
+00:02:04,770 --> 00:02:07,630
+widely adopted memory object caching system.
+
+26
+00:02:07,780 --> 00:02:14,010
+LS The cache protocol compliant with memcached so using popular tools that use with your existing memcached
+
+27
+00:02:14,220 --> 00:02:20,550
+environments right now it's going to work seamlessly with the AWOS memcached deal less to cache service.
+
+28
+00:02:20,580 --> 00:02:26,460
+We then have read us and read us is a popular open source in memory key value store that supports data
+
+29
+00:02:26,460 --> 00:02:33,720
+structures sorted sets and lists and elastic cache supports master slave replication and Malte a Z which
+
+30
+00:02:33,720 --> 00:02:37,500
+can be used to achieve cross Bayly abilities and redundancy.
+
+31
+00:02:37,530 --> 00:02:40,880
+So if you need MOTY a z axis you want to use Radice.
+
+32
+00:02:41,100 --> 00:02:45,060
+If you're not concerned about redundancy then you want to use memcached.
+
+33
+00:02:45,090 --> 00:02:50,430
+And of course these a very popular scenario questions as to whether or not you should use memcached
+
+34
+00:02:50,530 --> 00:02:51,490
+or Redus.
+
+35
+00:02:51,750 --> 00:02:58,230
+So although both memcached and Radice appear similar on the surface in both caches they are actually
+
+36
+00:02:58,230 --> 00:03:03,790
+quite different in practice now because of the replication and persistent features of red as elastic
+
+37
+00:03:03,850 --> 00:03:09,340
+cache actually manages read us more like a relational database and read us elastic hash clusters are
+
+38
+00:03:09,360 --> 00:03:15,870
+managed as stateful entities which include failover very similar to how Amazon manages database Fail-Safe
+
+39
+00:03:16,440 --> 00:03:17,270
+with memcached.
+
+40
+00:03:17,290 --> 00:03:21,350
+It's designed as a pure caching solution with no persistence.
+
+41
+00:03:21,450 --> 00:03:25,740
+So less to cache manage is memcached nodes as a pool that can grow and shrink.
+
+42
+00:03:25,740 --> 00:03:29,770
+Very similar to an ATM isn't easy to auto scaling group.
+
+43
+00:03:29,820 --> 00:03:35,370
+And if you haven't come across auto scaling yet it's obviously you can start with two web servers and
+
+44
+00:03:35,370 --> 00:03:40,350
+then as you get to a certain load you Wadham it will automatically add a web server behind your load
+
+45
+00:03:40,350 --> 00:03:43,320
+balance so increase it to 3 increase it to 4 etc..
+
+46
+00:03:43,330 --> 00:03:45,620
+You do you go in and configure it.
+
+47
+00:03:45,750 --> 00:03:52,020
+So individual nodes with memcached are expendable and less the cache provides additional capabilities
+
+48
+00:03:52,020 --> 00:03:56,300
+here such as automatic node replacement and auto discovery.
+
+49
+00:03:56,520 --> 00:03:58,860
+So what are the use cases for memcached.
+
+50
+00:03:59,010 --> 00:04:03,000
+Is object casing your primary goal for example to offload your database.
+
+51
+00:04:03,000 --> 00:04:04,610
+If so then use memcached.
+
+52
+00:04:04,860 --> 00:04:06,640
+If you want something as simple as possible.
+
+53
+00:04:06,660 --> 00:04:08,340
+Then you want to use memcached.
+
+54
+00:04:08,670 --> 00:04:14,940
+If you are planning on running large Schneiders with multithreaded performance with utilization of multiple
+
+55
+00:04:15,120 --> 00:04:17,060
+costs or multiple OCP cause.
+
+56
+00:04:17,100 --> 00:04:19,090
+If so then use memcache.
+
+57
+00:04:19,500 --> 00:04:25,020
+And if you want the ability to scale your cache horizontally to scale out as you grow then go ahead
+
+58
+00:04:25,050 --> 00:04:27,270
+and use memcached day with Redus.
+
+59
+00:04:27,270 --> 00:04:33,240
+If you're looking for more advanced data types such as lists hashes and sets use Redus to sorting and
+
+60
+00:04:33,240 --> 00:04:36,340
+ranking data sets in memory hope you such as with the later boards.
+
+61
+00:04:36,360 --> 00:04:41,380
+If so use Redus really remember that going into the exam if you see a scenario we're talking about using
+
+62
+00:04:41,390 --> 00:04:46,820
+a lead creating a board and they ask you whether you should be using memcached auratus choose red this
+
+63
+00:04:47,400 --> 00:04:53,080
+is persistence of your store information important so do you actually value your data.
+
+64
+00:04:53,100 --> 00:04:54,690
+You want persistence then.
+
+65
+00:04:54,690 --> 00:05:00,840
+If so use rattus and you want to run in multiple zees with failover then you read us.
+
+66
+00:05:00,890 --> 00:05:04,530
+So basically if you want something as simple as possible go use memcached.
+
+67
+00:05:04,880 --> 00:05:09,820
+And if it's just literally taking a load off of your database use memcached.
+
+68
+00:05:09,910 --> 00:05:15,920
+If you've got Laborde information or you want multi availabilities zones or you know a persistence of
+
+69
+00:05:15,920 --> 00:05:20,490
+your entire data is really really important to you than you want to go and use read us.
+
+70
+00:05:20,690 --> 00:05:24,980
+So typically you're going to give a scenario question where a particular database will be under a whole
+
+71
+00:05:24,980 --> 00:05:30,020
+bunch of load or stress and you may be asked which service you should use to alleviate this.
+
+72
+00:05:30,020 --> 00:05:36,050
+The answers are always going to be less to cash particularly if your database is particularly read heavy
+
+73
+00:05:36,110 --> 00:05:38,570
+and not prone to frequent changing.
+
+74
+00:05:38,630 --> 00:05:44,810
+However they could throw in a scenario where redshift would be a better answer because if your database
+
+75
+00:05:44,810 --> 00:05:50,360
+is feeling stressed because management running online analytics processing transactions on it then you
+
+76
+00:05:50,360 --> 00:05:55,850
+probably want to use red S sorry red shift rather than less to cash.
+
+77
+00:05:55,850 --> 00:06:00,110
+So if you few If you think it's a data warehousing question go for a red shift.
+
+78
+00:06:00,110 --> 00:06:05,240
+If it's literally just about taking stress off your database because it's very very real heavy then
+
+79
+00:06:05,240 --> 00:06:07,030
+you want less to cash.
+
+80
+00:06:07,130 --> 00:06:13,090
+And then again going into the exam just remember you want to use memcached if object casing is your
+
+81
+00:06:13,090 --> 00:06:13,750
+primary goal.
+
+82
+00:06:13,760 --> 00:06:18,110
+You want to keep things as simply as possible as simple as possible and you want to scale your cash
+
+83
+00:06:18,110 --> 00:06:18,800
+horizontally.
+
+84
+00:06:18,800 --> 00:06:21,870
+You want to scale out that's when you use memcached D.
+
+85
+00:06:21,990 --> 00:06:28,760
+If you've got lists hashes and sets you want read us if you're doing leaderboards you want read us if
+
+86
+00:06:28,760 --> 00:06:31,850
+you want data assistance if you want more availability zones.
+
+87
+00:06:31,880 --> 00:06:36,100
+And if you need the pub sub capabilities needed then you want Retta.
+
+88
+00:06:36,110 --> 00:06:39,650
+But definitely if it's talks about leaderboards read us read us read us.
+
+89
+00:06:39,650 --> 00:06:41,320
+So that is it for this lecture guys.
+
+90
+00:06:41,330 --> 00:06:43,260
+If you have any questions please let me know.
+
+91
+00:06:43,280 --> 00:06:45,240
+If not feel free to move on to the next lecture.
+
+92
+00:06:45,260 --> 00:06:45,600
+Thank you.

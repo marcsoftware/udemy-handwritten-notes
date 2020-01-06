@@ -1,0 +1,727 @@
+1
+00:00:00,610 --> 00:00:08,160
+Hello clunkers and welcome to this lecture and this lecture is gonna be a lab all about dynamo DP in
+
+2
+00:00:08,160 --> 00:00:13,890
+this lab we're going to create some dynamo DP tables using some p HP scripts which we're going to run
+
+3
+00:00:13,950 --> 00:00:20,790
+on an easy to instance and this instance is going to have a role assigned to it to enable it to interact
+
+4
+00:00:20,790 --> 00:00:22,410
+with Dynamo DP.
+
+5
+00:00:22,410 --> 00:00:27,450
+So if you're ready to get started please join me in the console and the first thing that I'm going to
+
+6
+00:00:27,450 --> 00:00:32,670
+do is create an identity access management role for our easy to instance.
+
+7
+00:00:32,670 --> 00:00:40,270
+So go ahead and find identity access management under security or then see compliance and we're gonna
+
+8
+00:00:40,270 --> 00:00:50,050
+go and click on roles and create role and it's going to be a service role for easy to so click on easy
+
+9
+00:00:50,050 --> 00:00:53,120
+to then hit next.
+
+10
+00:00:53,250 --> 00:00:57,980
+And we're going to select a policy type so click in the search box and we're going to just search for
+
+11
+00:00:57,980 --> 00:00:59,130
+Dynamo DP.
+
+12
+00:00:59,330 --> 00:01:04,650
+And I'm going to select dynamo DP full access click on Next.
+
+13
+00:01:05,940 --> 00:01:07,920
+And we need to give our role a name.
+
+14
+00:01:07,920 --> 00:01:14,620
+So I'm just going to call it dynamo DP and click on Create role so that's our role down here created.
+
+15
+00:01:14,620 --> 00:01:22,240
+And the next thing we need to do is go back to the dashboard go back to services and click on easy to
+
+16
+00:01:23,950 --> 00:01:31,810
+and click on launch instance and select the Linux I am I and we're just going to stay with the T2 micro
+
+17
+00:01:33,200 --> 00:01:35,210
+click on Next.
+
+18
+00:01:35,210 --> 00:01:38,720
+Most of these defaults we can just keep as the defaults but there's a couple of things that we need
+
+19
+00:01:38,720 --> 00:01:39,710
+to change.
+
+20
+00:01:39,710 --> 00:01:46,500
+So first of all we need to select our I am role that we just created so select dynamo DP and then on
+
+21
+00:01:46,500 --> 00:01:54,370
+the advance details we've got a bash script or a bootstrap script to add in here which is a script that's
+
+22
+00:01:54,380 --> 00:01:58,360
+gonna be run when the instance starts for the very first time.
+
+23
+00:01:58,400 --> 00:02:03,070
+So that is in the resources section but I've just got it copied so I'm just going to paste it in now
+
+24
+00:02:04,010 --> 00:02:10,040
+and all this script does is it just first of all it tells us it's using the bash interpreter it then
+
+25
+00:02:10,040 --> 00:02:15,920
+does a young update minus Y it then installs Apache HP and get as well.
+
+26
+00:02:16,310 --> 00:02:23,420
+It starts Apache and it makes sure that Apache will continue to start on boot up and then it changes
+
+27
+00:02:23,420 --> 00:02:30,820
+directory to var dub dub dub HMO and then it creates just a really simple test website.
+
+28
+00:02:30,980 --> 00:02:37,040
+And then finally it clones some code that we already have located in this get hub location.
+
+29
+00:02:37,130 --> 00:02:40,920
+So under get hub dot com a kangaroo dynamo DP.
+
+30
+00:02:41,120 --> 00:02:46,010
+So once you have cut and paste that and you'll just find this in the resources section of the course
+
+31
+00:02:46,040 --> 00:02:54,120
+you just copy and paste it in there then just hit on add storage next add tags and we're going to add
+
+32
+00:02:54,120 --> 00:03:02,620
+a tag tag we're going to add is name and then we're going to just call this one dynamo DP dynamo DBC
+
+33
+00:03:02,670 --> 00:03:10,170
+to click on Next and you want to select a security group which has both ATP and SS H.
+
+34
+00:03:10,480 --> 00:03:16,480
+So I've got this one here that I created for different lab and it allows ATP access via port 80 and
+
+35
+00:03:16,540 --> 00:03:18,160
+also SS H access.
+
+36
+00:03:18,490 --> 00:03:19,870
+So I'm going to select that one.
+
+37
+00:03:20,920 --> 00:03:24,660
+However if you don't have one you can go ahead and create a new security group.
+
+38
+00:03:24,680 --> 00:03:27,250
+Just click that button here but we don't need to do that.
+
+39
+00:03:27,280 --> 00:03:35,510
+I'm just going to select the one I already have here and then click on review and launch and then click
+
+40
+00:03:35,510 --> 00:03:40,070
+on launch and select an existing key pair for your region.
+
+41
+00:03:40,080 --> 00:03:44,270
+So I'm in the London Region so and I already have a key pair for London.
+
+42
+00:03:44,280 --> 00:03:46,250
+So I'm going to select that one again.
+
+43
+00:03:46,260 --> 00:03:50,970
+If you don't have one you can just click on Create new keeper and it will create one for you that you
+
+44
+00:03:50,970 --> 00:03:52,220
+can download.
+
+45
+00:03:52,410 --> 00:03:56,780
+I'm just gonna use the one that I already have and then click on launch instances.
+
+46
+00:03:58,030 --> 00:04:02,400
+And that might take a while so I'm just going to post the video now and come back when that has completed
+
+47
+00:04:04,160 --> 00:04:08,530
+and now here we are on the easy to dashboard and my instance has been launched.
+
+48
+00:04:08,660 --> 00:04:15,890
+So I just select the instance scroll down and find the public IP copy that's a clipboard.
+
+49
+00:04:15,890 --> 00:04:18,110
+And now I'm going to go to my terminal window
+
+50
+00:04:24,910 --> 00:04:27,780
+and I'm gonna type SS H minus I.
+
+51
+00:04:27,850 --> 00:04:29,170
+And then the name of my keeper.
+
+52
+00:04:35,570 --> 00:04:38,050
+Easy to dash user at.
+
+53
+00:04:38,870 --> 00:04:43,350
+And then paste in the IP address of your easy to instance and hit enter.
+
+54
+00:04:44,320 --> 00:04:48,040
+And then we are inside the easy to instance.
+
+55
+00:04:48,310 --> 00:05:00,390
+So the first thing I'm gonna do is pseudo as you then seedy for dub dub dub HMO and hit Ellis and we
+
+56
+00:05:00,390 --> 00:05:03,520
+can see that a new directory has been created.
+
+57
+00:05:03,580 --> 00:05:10,500
+The Dynamo D.B. directory has been cloned from our get repository and there's also this test Doc P HP
+
+58
+00:05:10,560 --> 00:05:18,100
+file which is our Web page so the next thing that we need to do is we need to install the SDK for HP
+
+59
+00:05:18,220 --> 00:05:21,220
+and when we do that there's a couple of commands that we need to run.
+
+60
+00:05:21,280 --> 00:05:26,740
+First of all we need to get composer and then we need to use composer to install the latest version
+
+61
+00:05:26,830 --> 00:05:27,980
+of the SDK.
+
+62
+00:05:28,060 --> 00:05:31,240
+So I'm just gonna show you a web page which has those commands in it.
+
+63
+00:05:32,290 --> 00:05:40,020
+So this is the web page with the documentation for installing the w w SDK for P HP and the recommended
+
+64
+00:05:40,020 --> 00:05:46,920
+way for installing the SDK is to use composer which is a tool that manages and installs the dependencies
+
+65
+00:05:47,100 --> 00:05:48,990
+for installing HP.
+
+66
+00:05:48,990 --> 00:05:55,170
+So if we scroll down there is a link to the command line installation for compose it for Linux.
+
+67
+00:05:55,170 --> 00:05:59,760
+So we're installing this on our easy to instance so it's going to be the Linux installation.
+
+68
+00:05:59,760 --> 00:06:04,680
+So I'm just going to open up in a new tab and it gives us these four different commands that we need
+
+69
+00:06:04,680 --> 00:06:11,900
+to run to download the composer installer verify it then run the installer and then finally remove it.
+
+70
+00:06:12,060 --> 00:06:17,460
+And don't worry I'm going to add a text file with all of the commands that you need to run in order
+
+71
+00:06:17,460 --> 00:06:20,250
+to install composer and install CHP.
+
+72
+00:06:20,280 --> 00:06:22,970
+So that's going to be in the resources of the lecture.
+
+73
+00:06:23,070 --> 00:06:28,200
+So I'm just gonna start off by copying that first command and the first thing I'm going to do is type
+
+74
+00:06:28,200 --> 00:06:34,680
+pseudo askew and then I'm going to paste that command into my terminal window and a few students have
+
+75
+00:06:34,680 --> 00:06:40,230
+reported issues with their T2 micro server running out of memory when going through these steps to install
+
+76
+00:06:40,230 --> 00:06:46,170
+composer AMP BHP and unfortunately we haven't been able to replicate the problem on our side so we can't
+
+77
+00:06:46,170 --> 00:06:48,270
+really explain why that might be happening.
+
+78
+00:06:48,270 --> 00:06:53,530
+However if you do experience memory issues when trying to run this set of commands I've added a work
+
+79
+00:06:53,530 --> 00:06:59,250
+around that one of our students who experience the issue has kindly provided which just creates a swap
+
+80
+00:06:59,250 --> 00:07:03,860
+file and it should hopefully fix any memory issues that you are experiencing.
+
+81
+00:07:03,930 --> 00:07:09,750
+Just go ahead and run these three commands and they are in the resources section of the course and then
+
+82
+00:07:09,750 --> 00:07:11,130
+you should be able to continue.
+
+83
+00:07:11,130 --> 00:07:18,840
+So now I'm gonna come back to my Web page and grab the second command and paste that copy our third
+
+84
+00:07:18,840 --> 00:07:25,300
+command and paste then copy the fourth command
+
+85
+00:07:28,880 --> 00:07:30,000
+and paste.
+
+86
+00:07:30,200 --> 00:07:36,240
+Just gonna clear the screen come back to our page and so we've downloaded and installed composer.
+
+87
+00:07:36,330 --> 00:07:40,830
+So the next thing that we need to do is run this command as well.
+
+88
+00:07:41,070 --> 00:07:43,630
+And this is just going to install HP.
+
+89
+00:07:43,800 --> 00:07:47,910
+So grab that and paste that into a window.
+
+90
+00:07:53,030 --> 00:07:53,610
+And it does.
+
+91
+00:07:53,710 --> 00:07:58,810
+Just take a few seconds but if it's successful you should see a similar response to this.
+
+92
+00:07:59,290 --> 00:08:06,070
+So now that has completed let's just run less and we're going to change directory into the dynamo DP
+
+93
+00:08:06,370 --> 00:08:13,030
+directory and you can see there's two different files in here two different BHP files.
+
+94
+00:08:13,180 --> 00:08:19,000
+So there's one called create tables and that's that file is that script is going to create a bunch of
+
+95
+00:08:19,000 --> 00:08:21,880
+tables in our dynamo DP.
+
+96
+00:08:22,060 --> 00:08:28,380
+And the second one is called upload data and that's going to upload some data into those tables.
+
+97
+00:08:28,390 --> 00:08:32,440
+Now the first thing that we need to do is we just need to make an update into this create tables dot
+
+98
+00:08:32,440 --> 00:08:37,460
+BHP to make sure that we're installing our tables in the correct region.
+
+99
+00:08:37,480 --> 00:08:39,490
+So I'm just going to open that up now
+
+100
+00:08:44,740 --> 00:08:52,180
+and you'll want to come down where you see this section here where it specifies the region and at the
+
+101
+00:08:52,180 --> 00:08:55,160
+moment mine is set to EU West 1.
+
+102
+00:08:55,180 --> 00:08:59,950
+So what you need to do is replace that with whatever region you're working from so whichever region
+
+103
+00:08:59,950 --> 00:09:02,040
+you're running the easy to instance in.
+
+104
+00:09:02,080 --> 00:09:04,730
+That's the region that you want to specify here.
+
+105
+00:09:04,750 --> 00:09:07,210
+So if I come back to my console I'm in London.
+
+106
+00:09:07,210 --> 00:09:12,210
+So that means I'm going to have to change my region because London is a ust to too.
+
+107
+00:09:12,250 --> 00:09:15,220
+Actually you can see it down here as well you west to a.
+
+108
+00:09:15,220 --> 00:09:18,830
+So that's for the availability zone but the region is EU West too.
+
+109
+00:09:18,940 --> 00:09:26,750
+So that means I need to go back and change that in my BHP file so I'm going to come across here and
+
+110
+00:09:26,750 --> 00:09:35,760
+replace that with two and then save and then we are done with that file and now we also need to make
+
+111
+00:09:35,760 --> 00:09:38,940
+the same update in the upload data dot BHP
+
+112
+00:09:43,870 --> 00:09:50,760
+and again scroll down until you find region and come across and just replace that with your desired
+
+113
+00:09:50,760 --> 00:09:54,860
+region and save.
+
+114
+00:09:54,960 --> 00:09:56,960
+And now we are done with those two files.
+
+115
+00:09:57,090 --> 00:10:01,020
+So it's really important to make sure you change the region and you change it in both files otherwise
+
+116
+00:10:01,020 --> 00:10:06,290
+the lab will not work and the next thing we're going to do is come back to our console window and I'm
+
+117
+00:10:06,290 --> 00:10:11,420
+gonna go into dynamo DP now and just show you this is the splash screen that you should see if you don't
+
+118
+00:10:11,420 --> 00:10:14,370
+have any dynamo DB tables created already.
+
+119
+00:10:14,450 --> 00:10:16,000
+So that moment we've got nothing here.
+
+120
+00:10:16,040 --> 00:10:25,140
+So I'm gonna go back into my AC to instance go and find the public IP for that instance select for instance
+
+121
+00:10:25,230 --> 00:10:32,010
+and just copy that to clipboard then I'm going to open a new tab on my browser paste the IP in on your
+
+122
+00:10:32,010 --> 00:10:41,500
+browser tab and then just hit slash dynamo DP and then the name of create tables dot BHP
+
+123
+00:10:45,050 --> 00:10:52,900
+and then hit enter so this is just gonna run that BHP script to create some tables within dynamo DP
+
+124
+00:10:52,930 --> 00:11:01,600
+for us and it just takes a few moments to complete okay and we just got the response now just saying
+
+125
+00:11:01,600 --> 00:11:06,850
+it's created a table for the product catalog forum thread and reply.
+
+126
+00:11:06,850 --> 00:11:12,610
+So it's created four tables for us and now the next thing we need to do is we need to run that BHP script
+
+127
+00:11:12,610 --> 00:11:15,200
+to upload data into our tables.
+
+128
+00:11:15,490 --> 00:11:21,790
+So just come back to your browser window and we can just modify it and delete the create tables and
+
+129
+00:11:21,790 --> 00:11:27,850
+just replace that with upload data and then just hit enter.
+
+130
+00:11:27,850 --> 00:11:32,410
+So it's adding data into the product catalogue forum and reply table now.
+
+131
+00:11:32,530 --> 00:11:36,760
+So it says that's finished so let's go back into the console and see what it's put in the tables for
+
+132
+00:11:36,760 --> 00:11:37,490
+us.
+
+133
+00:11:37,570 --> 00:11:42,520
+So come back to services and dynamo DP
+
+134
+00:11:45,850 --> 00:11:51,310
+click on tables and you can say is created these four different tables for us.
+
+135
+00:11:51,310 --> 00:11:56,450
+So let's take a look at the product catalog table for example click on items
+
+136
+00:11:59,360 --> 00:12:00,980
+and we can see the upload data.
+
+137
+00:12:01,260 --> 00:12:10,270
+HP has populated our table with a load of different items and we've got here a product I.D. a price
+
+138
+00:12:10,390 --> 00:12:14,520
+category title type brand color etc..
+
+139
+00:12:15,600 --> 00:12:21,420
+I just noticed that not all items have every single attribute and that's one of the great things about
+
+140
+00:12:21,420 --> 00:12:24,290
+dynamo DP is that you don't have to have everything.
+
+141
+00:12:24,290 --> 00:12:25,310
+It's very flexible.
+
+142
+00:12:25,350 --> 00:12:28,750
+Not every item has to have the same type or number of attributes.
+
+143
+00:12:31,030 --> 00:12:37,690
+And just notice here that you can either query and you can query based on a product I.D. for example
+
+144
+00:12:38,100 --> 00:12:39,580
+and we can enter a value here.
+
+145
+00:12:39,580 --> 00:12:47,170
+So for example if I enter valued I enter 1 0 2 here click on Start search it will search for an item
+
+146
+00:12:47,230 --> 00:12:53,830
+in our table with the product catalog ideas of 1 0 2 and then you can also run a scan as well which
+
+147
+00:12:53,830 --> 00:12:59,020
+will just show us everything in the table if we click on spot search for that it will just show us absolutely
+
+148
+00:12:59,020 --> 00:13:05,650
+everything in the table and there's just one more thing that I want to show you which is how to interact
+
+149
+00:13:05,650 --> 00:13:08,720
+with our database using the command line.
+
+150
+00:13:08,770 --> 00:13:11,040
+So I'm gonna come back to my terminal window now.
+
+151
+00:13:13,030 --> 00:13:19,620
+So I'm back in my terminal session on my easy to instance and I can actually use the AWB US command
+
+152
+00:13:19,620 --> 00:13:24,030
+line interface to query the database programmatically.
+
+153
+00:13:24,400 --> 00:13:31,240
+And remember we created the identity access management role to give this instance dynamo DP full access
+
+154
+00:13:31,600 --> 00:13:35,790
+so it should be able to connect to our database and make queries.
+
+155
+00:13:35,800 --> 00:13:41,530
+Now I already have the command in my clipboard so I'm just going to paste it now and this command simply
+
+156
+00:13:41,530 --> 00:13:50,860
+uses the AWB CLIA to talk to dynamo DP and to run a get item operation on the table name called product
+
+157
+00:13:50,860 --> 00:13:56,980
+catalog and the region is going to be EU West too because that's where my dynamo DB table is located
+
+158
+00:13:57,010 --> 00:13:59,070
+and the key is specified here.
+
+159
+00:13:59,070 --> 00:14:06,730
+So that's the partition key and the partition key is an I.D. and the value is the numerical value and
+
+160
+00:14:06,730 --> 00:14:15,760
+the value is 2 0 5 so I'm searching the diagram IDB table for product with the product I.D. of 2 0 5.
+
+161
+00:14:16,060 --> 00:14:22,810
+So I'm going to hit enter and that has queried the table and it's brought up that product item and this
+
+162
+00:14:22,810 --> 00:14:29,660
+is all enabled by the identity access management role which has given us full access to dining IDB.
+
+163
+00:14:29,770 --> 00:14:39,970
+So if I go back to the console and go into services and then back into identity access management and
+
+164
+00:14:39,980 --> 00:14:48,100
+I'm going to go into that role the tiny IDB Ro and I'm going to delete that permission
+
+165
+00:14:52,690 --> 00:14:54,080
+and I'm actually going to delete the roll
+
+166
+00:14:57,550 --> 00:15:01,050
+so now that role doesn't exist for our easy to instance anymore.
+
+167
+00:15:01,060 --> 00:15:05,890
+So let's go back to the instance and see if we can still run that database command.
+
+168
+00:15:05,890 --> 00:15:08,950
+So I'm just going to hit up arrow and try and run the command again.
+
+169
+00:15:08,950 --> 00:15:09,660
+There you go.
+
+170
+00:15:09,670 --> 00:15:15,310
+So the security token included in the request is invalid and it's not letting us access our table.
+
+171
+00:15:16,060 --> 00:15:21,820
+So just remember if you want your easy two instances to be able to access your dynamo DB tables to be
+
+172
+00:15:21,820 --> 00:15:27,220
+able to query them and insert items into them they need to have that identity access management service
+
+173
+00:15:27,220 --> 00:15:30,730
+role to allow them access to the database
+
+174
+00:15:33,950 --> 00:15:35,180
+so that it's dynamo DP.
+
+175
+00:15:35,180 --> 00:15:40,820
+And we just created some tables and populated them with some data so that you're able to now manipulate
+
+176
+00:15:40,820 --> 00:15:46,640
+that data and run queries and searches etc. and this will really help you as you progressed through
+
+177
+00:15:46,640 --> 00:15:51,020
+this section of the course and it will really help you to get a little bit more familiar with Dynamo
+
+178
+00:15:51,020 --> 00:15:53,270
+DP and how it all works.
+
+179
+00:15:53,420 --> 00:15:58,490
+So that is the end of this lecture hopefully that all worked for you if you have any questions please
+
+180
+00:15:58,490 --> 00:15:59,340
+let me know.
+
+181
+00:15:59,420 --> 00:16:02,360
+If not please feel free to move on to the next lecture.
+
+182
+00:16:02,360 --> 00:16:02,840
+Thank you.

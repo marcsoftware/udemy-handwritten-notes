@@ -1,0 +1,451 @@
+1
+00:00:00,300 --> 00:00:03,010
+OK hello cloudburst and welcome to this lecture.
+
+2
+00:00:03,030 --> 00:00:08,040
+This is one of my favorite sections in the Colts this is the Sevilla section and this lecture is called
+
+3
+00:00:08,040 --> 00:00:10,250
+Savalas 1 1.
+
+4
+00:00:10,320 --> 00:00:15,960
+Now before we talk about what Servilius actually is let's go through the history of cloud computing
+
+5
+00:00:16,020 --> 00:00:19,800
+and I'm going to try this in approximately two minutes so I'm going to try and summarize the entire
+
+6
+00:00:19,800 --> 00:00:26,100
+history of cloud computing So a lot of developers and solutions architects like me we really don't like
+
+7
+00:00:26,100 --> 00:00:27,510
+computer hardware.
+
+8
+00:00:27,510 --> 00:00:29,950
+It's heavy it's cumbersome it breaks all the time.
+
+9
+00:00:30,060 --> 00:00:36,240
+We've basically spent the last few decades building layer of abstraction layer of obstruction in code
+
+10
+00:00:36,540 --> 00:00:40,270
+to shield ourselves from the ugly truth of what's actually running our code.
+
+11
+00:00:40,290 --> 00:00:45,750
+And first we decided hey just chuckle is hardware in a data sent us somewhere and someone else can be
+
+12
+00:00:45,750 --> 00:00:50,370
+responsible for making sure it's turned on it's connected to the network that there's fault tolerance
+
+13
+00:00:50,370 --> 00:00:51,110
+et cetera.
+
+14
+00:00:51,240 --> 00:00:56,300
+And hooray we no longer needed to get out of our chairs but provisioning the infrastructure wasn't fun
+
+15
+00:00:56,310 --> 00:01:01,620
+we had to talk to people we had to place orders with suppliers we had to get the supplies to provide
+
+16
+00:01:02,040 --> 00:01:03,810
+the hardware to the data center provider.
+
+17
+00:01:03,810 --> 00:01:05,550
+We then needed to get it ready.
+
+18
+00:01:05,590 --> 00:01:10,830
+We needed to get it network we needed sysops administrators to go in and give us you know install the
+
+19
+00:01:10,830 --> 00:01:14,640
+operating systems or at least give us remote access so we could do that.
+
+20
+00:01:14,790 --> 00:01:21,960
+And I worked direct space in 2010 so over eight years ago now but when I worked it would take anywhere
+
+21
+00:01:21,960 --> 00:01:28,290
+from 10 days from when the customer placed an order three to 20 days depending on the customer segment
+
+22
+00:01:28,950 --> 00:01:35,130
+and so that is quite a long time and space are actually really fast compared to other providers in the
+
+23
+00:01:35,130 --> 00:01:36,280
+industry.
+
+24
+00:01:36,300 --> 00:01:41,040
+One of the other places that I worked it could take us anywhere between three to six months from when
+
+25
+00:01:41,040 --> 00:01:47,290
+a customer placed an order to him we actually delivered all the hardware for them to be able to access.
+
+26
+00:01:47,340 --> 00:01:50,850
+So it hasn't been fun but things have gotten a lot faster.
+
+27
+00:01:50,850 --> 00:01:54,240
+So in 2006 Amazon released E.C too.
+
+28
+00:01:54,480 --> 00:01:59,100
+And this was the birth of infrastructure's a service suddenly you could provision machines with API
+
+29
+00:01:59,100 --> 00:02:05,190
+calls from the command line or from a web browser and it was absolute heaven and infrastructure's a
+
+30
+00:02:05,190 --> 00:02:10,170
+service was born and developers and solution's architects and technical people all around the world
+
+31
+00:02:10,170 --> 00:02:16,140
+cheered and AWOS is basically infrastructure is koj you can go in and commissioning machine anywhere
+
+32
+00:02:16,140 --> 00:02:19,570
+in the world and have it do your bidding with a single API call.
+
+33
+00:02:19,590 --> 00:02:26,730
+Now if I went back in time to 2010 and told you in 2006 lets say and told someone that they would be
+
+34
+00:02:26,730 --> 00:02:29,780
+able to spin up virtual servers in the cloud from anywhere on earth.
+
+35
+00:02:29,790 --> 00:02:31,500
+They would have thought that I was crazy.
+
+36
+00:02:31,500 --> 00:02:34,350
+So this is why AWOS is so far ahead of the game.
+
+37
+00:02:34,350 --> 00:02:39,270
+They were one of the very first people to market with this service but theres still a problem with this
+
+38
+00:02:39,270 --> 00:02:44,460
+right this infrastructure to run but this still a problem with this right.
+
+39
+00:02:44,460 --> 00:02:49,350
+You still have to worry about infrastructure it still exists in basically something you could still
+
+40
+00:02:49,350 --> 00:02:51,190
+go wrong at any moment.
+
+41
+00:02:51,210 --> 00:02:55,500
+Its always going to be in the back of your mind what if it crashes or what happens if it gets hacked
+
+42
+00:02:55,500 --> 00:03:02,790
+or goes off line cetera and then Microsoft as you came out blazing with platform as a service and Amazon's
+
+43
+00:03:02,880 --> 00:03:09,690
+version of PAHs is basically elastic stalk and what it does is it allows you to you know its a nice
+
+44
+00:03:09,690 --> 00:03:14,400
+way of saying Give me a code and we'll spin up the machine for you and we'll even push the code into
+
+45
+00:03:14,400 --> 00:03:16,160
+it and run it for you.
+
+46
+00:03:16,170 --> 00:03:18,570
+And that was great it was one less step that you had to perform.
+
+47
+00:03:18,570 --> 00:03:23,100
+You didn't have to worry about the architecture but again you still had a server that you had to control
+
+48
+00:03:23,340 --> 00:03:24,740
+and where things could go wrong.
+
+49
+00:03:24,780 --> 00:03:27,700
+And that was still your responsibility as a customer.
+
+50
+00:03:27,820 --> 00:03:33,300
+Then containers came along and containerisation has gained a lot of popularity in the last few years
+
+51
+00:03:33,770 --> 00:03:39,000
+and although it's not exclusively related to cloud containers are popular in cloud environments and
+
+52
+00:03:39,000 --> 00:03:44,030
+containers little lightweight alternatives to full blown virtualization.
+
+53
+00:03:44,120 --> 00:03:49,620
+They're isolated and lightweight but they still need to be deployed to a server and they are an excellent
+
+54
+00:03:49,620 --> 00:03:51,710
+solution when dependencies are in play.
+
+55
+00:03:51,810 --> 00:03:55,950
+But they have their own housekeeping challenges you still have to worry about keeping your containers
+
+56
+00:03:55,950 --> 00:03:59,600
+running stuff to worry about scaling and response to load etc..
+
+57
+00:03:59,730 --> 00:04:02,070
+They are still your responsibility.
+
+58
+00:04:02,220 --> 00:04:08,620
+And then Lamda comes out and Cephalus computing was born and basically lammed allows you to take you
+
+59
+00:04:08,640 --> 00:04:14,610
+code and run it without any need to previsions servers install software deploy containers or worry about
+
+60
+00:04:14,700 --> 00:04:22,490
+any low level details and your code can be run in massive parallel parallelize way in response to events.
+
+61
+00:04:22,500 --> 00:04:27,360
+So the cloud provider takes care provisioning and management of the infrastructure and the developer
+
+62
+00:04:27,750 --> 00:04:29,710
+doesn't even need to think about it.
+
+63
+00:04:29,760 --> 00:04:35,130
+And if you have an Amazon elex or at home every time you say the word X or every time you're talking
+
+64
+00:04:35,700 --> 00:04:40,920
+to your Lexar device guess what's actually what you're communicating with you're actually communicating
+
+65
+00:04:40,920 --> 00:04:43,900
+with lambda lambda talking back to you.
+
+66
+00:04:43,930 --> 00:04:52,140
+Even now you know in 2000 from basically since the first Alexa's came out so 2016 you'd have been able
+
+67
+00:04:52,140 --> 00:04:54,350
+to talk to Alamdar and Lamda talks back to you.
+
+68
+00:04:54,510 --> 00:04:58,820
+And the great thing about this is you don't have to worry about managing servers.
+
+69
+00:04:58,890 --> 00:05:05,910
+So this is a blog written my brother this was written on October 21st 2015 and it talks about survivalists
+
+70
+00:05:05,940 --> 00:05:11,700
+and I would argue that we were certainly one of the first startups in the world to fully embrace Vellis
+
+71
+00:05:12,360 --> 00:05:17,580
+if not the very first start up with certainly the first startup to build a service learning management
+
+72
+00:05:17,580 --> 00:05:18,420
+system.
+
+73
+00:05:18,690 --> 00:05:22,110
+So we've been doing service for awful long time.
+
+74
+00:05:22,110 --> 00:05:27,880
+I'll show you a brief network diagram of how you know our platform in a second.
+
+75
+00:05:28,060 --> 00:05:29,980
+We're also the founders of service.
+
+76
+00:05:30,020 --> 00:05:36,070
+So we had the very first a service call which was in New York in 2016 in Brooklyn.
+
+77
+00:05:36,090 --> 00:05:42,030
+We then did one in Tokyo and one in London last year we did one in Austin one in New York and then another
+
+78
+00:05:42,030 --> 00:05:43,160
+one in Tokyo.
+
+79
+00:05:43,440 --> 00:05:48,790
+We've already had one in Paris this year and we have a another one in San Francisco coming up.
+
+80
+00:05:48,790 --> 00:05:51,130
+So if you want to check that out just go to several askant.
+
+81
+00:05:51,180 --> 00:05:58,710
+I always I mean the conferences are amazing it's all the cutting edge people in cloud talking about
+
+82
+00:05:58,710 --> 00:06:04,140
+how they're using service and how it's you know what impact it's having on their business.
+
+83
+00:06:04,230 --> 00:06:07,760
+And this is the platform the cloud architecture.
+
+84
+00:06:07,770 --> 00:06:08,650
+So we have here.
+
+85
+00:06:08,720 --> 00:06:14,100
+Angela J.S. running across the bridge in the browser across all devices it could be your iPhone could
+
+86
+00:06:14,100 --> 00:06:19,050
+be your iPad could be Android tablets could be your PC or Macs whatever.
+
+87
+00:06:19,050 --> 00:06:24,210
+And then basically it's running in the browser the browser then sends requests to API gateway and then
+
+88
+00:06:24,210 --> 00:06:27,210
+that's also two different lambda functions.
+
+89
+00:06:27,210 --> 00:06:33,210
+So it might be that you know you're on our discussion forums asking a question or it might be that I'm
+
+90
+00:06:33,210 --> 00:06:39,570
+uploading a video to the platform an updated lecture and that's going to kick off a whole elastic transcoding
+
+91
+00:06:39,570 --> 00:06:42,330
+pipeline et cetera et cetera.
+
+92
+00:06:42,390 --> 00:06:45,840
+And then when you're actually watching the videos they're stored in S3.
+
+93
+00:06:45,840 --> 00:06:53,000
+We actually use cloud front to stream them down so cloud front is Amazon's CDN service.
+
+94
+00:06:53,040 --> 00:06:55,350
+We use Auth. 0 for authentication.
+
+95
+00:06:55,350 --> 00:07:00,030
+So when you sign in with Facebook with Google or with the linked in or whatever that's author zero or
+
+96
+00:07:00,540 --> 00:07:05,790
+we use firebase as our back and database is now owned by Google.
+
+97
+00:07:05,880 --> 00:07:13,670
+So we multi cloud as well and we use Strype we use pipo we use brain tree etc. for credit card payments
+
+98
+00:07:13,710 --> 00:07:16,660
+and we send all our emails out through a campaign monitor.
+
+99
+00:07:16,740 --> 00:07:22,020
+And what's unique about this entire architecture is we don't have any easy to instances we don't have
+
+100
+00:07:22,020 --> 00:07:25,660
+any D.S. instances don't have anything to manage.
+
+101
+00:07:25,740 --> 00:07:32,520
+And this scales automatically so we could have 100000 or you know a million people on the platform at
+
+102
+00:07:32,520 --> 00:07:37,240
+any given time and lambda is just going to scale automatically to make that demen.
+
+103
+00:07:37,240 --> 00:07:40,320
+So it is very very scalable.
+
+104
+00:07:40,350 --> 00:07:42,540
+And the great thing is it's very very cost effective.
+
+105
+00:07:42,540 --> 00:07:47,100
+We actually only just started paying for our Lamda invocations.
+
+106
+00:07:47,100 --> 00:07:53,370
+I think at the beginning of this year and we just turned 3 just actually just a few days ago.
+
+107
+00:07:53,670 --> 00:08:00,570
+So we've basically been running on free to lambda for the last two years and we are at currently about
+
+108
+00:08:00,570 --> 00:08:01,960
+600000 students.
+
+109
+00:08:01,960 --> 00:08:08,240
+So it gives you an idea as to why service is so disruptive anyway so that is an introduction to several
+
+110
+00:08:08,250 --> 00:08:12,780
+US in the next lecture we're going to cover off Lamda and what it is and how it works from a theoretical
+
+111
+00:08:12,780 --> 00:08:16,710
+point of view then we're going to start getting our hands dirty so if you've got the time please join
+
+112
+00:08:16,710 --> 00:08:17,940
+us in the next lecture.
+
+113
+00:08:17,940 --> 00:08:18,540
+Thank you.

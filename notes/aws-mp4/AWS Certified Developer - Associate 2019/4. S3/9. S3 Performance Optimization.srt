@@ -1,0 +1,227 @@
+1
+00:00:00,540 --> 00:00:07,140
+Hello cloud gurus and welcome to this lecture and this lecture is going to be about S-3 performance
+
+2
+00:00:07,170 --> 00:00:09,030
+optimization.
+
+3
+00:00:09,150 --> 00:00:15,990
+And it's just going to be a very short theoretical lecture covering the different mechanisms for performance
+
+4
+00:00:15,990 --> 00:00:19,490
+optimization within three.
+
+5
+00:00:19,640 --> 00:00:24,870
+Now S3 is designed to support Gary Jolles request rights by default.
+
+6
+00:00:24,880 --> 00:00:30,600
+However if you are routinely experiencing incredibly high utilization.
+
+7
+00:00:30,650 --> 00:00:40,880
+So for example if you're S3 buckets are consistently receiving over 100 put list delete or over 300
+
+8
+00:00:40,950 --> 00:00:45,720
+get requests per second then the awesome best practice guidelines.
+
+9
+00:00:45,980 --> 00:00:49,510
+Which will help you to optimize your S-3 performance.
+
+10
+00:00:49,730 --> 00:00:53,290
+And this guidance is based on the type of workload that you are running.
+
+11
+00:00:53,420 --> 00:00:59,900
+So for example folks get intensive workloads AWOS recommend to use cloud front.
+
+12
+00:00:59,900 --> 00:01:03,640
+Content delivery service to get the best performance.
+
+13
+00:01:03,770 --> 00:01:09,860
+And as we've seen before in the previous lecture cloud front case your most frequently Access objects
+
+14
+00:01:10,340 --> 00:01:14,440
+and it will significantly reduce latency feel get requests.
+
+15
+00:01:14,450 --> 00:01:18,360
+So how do we optimize for workloads that are not intensive.
+
+16
+00:01:18,620 --> 00:01:21,290
+Well for the mix request type workloads.
+
+17
+00:01:21,290 --> 00:01:29,600
+So for example a mix of get put delete or get Buckett the names that you actually use for your objects
+
+18
+00:01:29,720 --> 00:01:33,580
+can really impact performance for this type of workload.
+
+19
+00:01:33,680 --> 00:01:40,520
+And this is all to do with the way that S3 uses key names to determine which physical partition an object
+
+20
+00:01:40,520 --> 00:01:47,150
+is going to be stored in and the use of sequential names and so for example names that are prefixed
+
+21
+00:01:47,150 --> 00:01:54,800
+with a time stamp or an alphabetical sequence increases the likelihood of having multiple objects stored
+
+22
+00:01:54,800 --> 00:01:56,380
+within the same partition.
+
+23
+00:01:57,110 --> 00:02:04,670
+And for heavy workloads this can of course cause issues and contention because you're trying to access
+
+24
+00:02:04,700 --> 00:02:08,970
+files that are physically located within the same partition.
+
+25
+00:02:09,380 --> 00:02:15,710
+So in this case by using a random prefix to Yochi names instead of a sequential one you could actually
+
+26
+00:02:15,710 --> 00:02:22,720
+force S-3 to distribute your case across multiple partitions thus distributing the workload.
+
+27
+00:02:23,120 --> 00:02:25,460
+Let's have a look at an example.
+
+28
+00:02:25,580 --> 00:02:30,620
+And in this example the following sequential key names are not optimal.
+
+29
+00:02:30,760 --> 00:02:36,970
+So just imagine that you are uploading a large number of objects into S3 where you might be tempted
+
+30
+00:02:36,970 --> 00:02:41,720
+to use sequential numbers or dates as part of the key names your objects.
+
+31
+00:02:42,130 --> 00:02:47,050
+So in this example they're using the sequential dates as their Foden names.
+
+32
+00:02:47,170 --> 00:02:52,530
+And of course the Fodor name in that folder structure becomes part of the case name of your object.
+
+33
+00:02:52,810 --> 00:02:58,450
+So in this first example it's highly likely that all of these objects are going to get stored on the
+
+34
+00:02:58,450 --> 00:02:59,650
+same partition.
+
+35
+00:02:59,710 --> 00:03:04,090
+And just imagine you had hundreds and hundreds of objects and they were all getting stored on the same
+
+36
+00:03:04,090 --> 00:03:05,130
+partition.
+
+37
+00:03:05,170 --> 00:03:11,860
+Of course that's eventually going to cause contention when you if you have many many hundreds of requests
+
+38
+00:03:11,860 --> 00:03:13,560
+happening per second.
+
+39
+00:03:14,020 --> 00:03:21,130
+So for optimal performance the best practice advice is to introduce randomness into the game.
+
+40
+00:03:21,190 --> 00:03:27,460
+So in the second example we're still using that kind of data format for the folder name.
+
+41
+00:03:27,580 --> 00:03:35,230
+However a four character a hex hash has been added as a prefix to that name or in fact any random sequence
+
+42
+00:03:35,260 --> 00:03:37,810
+of characters could be used.
+
+43
+00:03:37,810 --> 00:03:42,370
+The point is just to add that element of randomness within that name.
+
+44
+00:03:42,520 --> 00:03:48,860
+And this is what is going to force S-3 to store all of these different objects on different partitions
+
+45
+00:03:49,900 --> 00:03:58,500
+so it spreads the workload across a number of different partitions and reduces the likelihood of a contention.
+
+46
+00:03:58,510 --> 00:04:01,590
+So what are our exam tips.
+
+47
+00:04:01,680 --> 00:04:08,140
+All you need to remember really is the two main approaches to performance optimization for S3 and forget
+
+48
+00:04:08,230 --> 00:04:09,420
+intensive workloads.
+
+49
+00:04:09,430 --> 00:04:16,240
+That is to use cloud front as we're used in the lab and you saw how much more quickly you could access
+
+50
+00:04:16,240 --> 00:04:23,530
+a file using the cloud from each location compared to accessing it directly from a very remote packet
+
+51
+00:04:24,340 --> 00:04:31,840
+and then for the mixed workloads avoid sequential names for S-3 objects instead use a random prefix
+
+52
+00:04:32,170 --> 00:04:38,650
+like a hex hash at the front of the case name to prevent multiple objects from being stored on the same
+
+53
+00:04:38,650 --> 00:04:40,950
+partition.
+
+54
+00:04:40,980 --> 00:04:42,390
+So that's the end of this lecture.
+
+55
+00:04:42,420 --> 00:04:47,440
+And the next lecture is going to be a summary of S-3 of everything that we've learned for the last three.
+
+56
+00:04:47,550 --> 00:04:50,060
+So if you've got time please join me in the next lecture.
+
+57
+00:04:50,070 --> 00:04:50,650
+Thank you.

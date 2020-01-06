@@ -1,0 +1,255 @@
+1
+00:00:01,830 --> 00:00:08,460
+Hello Cokers and welcome to this lecture and this lecture is all about dynamite D-B provisioned throughput
+
+2
+00:00:10,840 --> 00:00:17,350
+and proficient throughput is the mechanism that we use to define the capacity and performance requirements
+
+3
+00:00:17,380 --> 00:00:18,670
+in Don MIDP.
+
+4
+00:00:18,940 --> 00:00:20,680
+So let's get started.
+
+5
+00:00:20,680 --> 00:00:28,030
+So does deep a previsions Reaper is measured in capacity units and when you create your table assuming
+
+6
+00:00:28,030 --> 00:00:34,780
+you're not using auto scaling you need to specify your requirements in terms of reach capacity units
+
+7
+00:00:35,380 --> 00:00:43,230
+and right capacity units and one right capacity unit is equal to 1 1 kilobyte per second.
+
+8
+00:00:44,020 --> 00:00:52,600
+And one real capacity unit is equal to 1 strongly consistent read of four kilobytes per seconds or two
+
+9
+00:00:52,690 --> 00:01:00,140
+eventually consistent rates of four kilobytes per second and eventually consistent reads all the default.
+
+10
+00:01:00,580 --> 00:01:03,610
+So let's have a look at an example configuration.
+
+11
+00:01:03,610 --> 00:01:10,330
+So think of a table with five read capacity units and five right capacity units configured.
+
+12
+00:01:10,870 --> 00:01:18,190
+And this configuration will be able to perform 5 4 kilobytes strongly consistent rates which equals
+
+13
+00:01:18,430 --> 00:01:21,010
+20 kilobytes per second.
+
+14
+00:01:21,010 --> 00:01:25,890
+It will be able to perform twice as many eventually consistent rates per second.
+
+15
+00:01:25,900 --> 00:01:28,430
+So that would be 40 kilobytes per second.
+
+16
+00:01:29,020 --> 00:01:36,160
+And it will be able to perform 5 1 kilobyte bytes per second which equals five kilobytes per second.
+
+17
+00:01:37,570 --> 00:01:44,470
+Now if your application reads or writes large items is going to consume more capacity units and it will
+
+18
+00:01:44,470 --> 00:01:51,460
+cost you more as well because the price goes up the more read and write capacity units you are provisioning.
+
+19
+00:01:51,460 --> 00:01:56,950
+So lets have a look at how we calculate the requirements how we work out how many read or write capacity
+
+20
+00:01:56,950 --> 00:02:00,580
+units you're going to need full application.
+
+21
+00:02:00,670 --> 00:02:06,810
+So I imagine you have an application and it needs to read 80 items or table rows per second.
+
+22
+00:02:07,850 --> 00:02:14,740
+And each item is three kilobytes in size and you need strongly consistent rates.
+
+23
+00:02:14,850 --> 00:02:19,800
+First of all you need to calculate how many read capacity units are needed for each rate.
+
+24
+00:02:20,250 --> 00:02:26,490
+So the way we do that is we take the size of each item and divide it by four kilobytes.
+
+25
+00:02:26,490 --> 00:02:30,000
+So 3 divided by four is 0.75.
+
+26
+00:02:30,440 --> 00:02:32,750
+Round that up to the nearest whole number.
+
+27
+00:02:33,000 --> 00:02:40,050
+So h Reid is going to need one read capacity unit per read operation and then we simply multiply that
+
+28
+00:02:40,050 --> 00:02:42,060
+by the number of rates per second.
+
+29
+00:02:42,060 --> 00:02:44,600
+So in this case 80 rates per second.
+
+30
+00:02:44,790 --> 00:02:52,670
+So thats going to be 80 read capacity units required for strongly consistent rates but what about eventually
+
+31
+00:02:52,670 --> 00:02:53,690
+consistent rates.
+
+32
+00:02:53,720 --> 00:02:56,350
+Well you do exactly the same calculation.
+
+33
+00:02:56,540 --> 00:03:03,020
+However as this is eventually consistent rates and you get to 4 kilobyte rates per second with eventually
+
+34
+00:03:03,020 --> 00:03:07,310
+consistent which is double the three strongly consistent.
+
+35
+00:03:07,550 --> 00:03:12,420
+Just take your calculations for the strongly consistent rates and you can just divide it by two.
+
+36
+00:03:12,590 --> 00:03:19,190
+So we take the size of each item divided by four kilobytes three divided by four point seventy five
+
+37
+00:03:19,640 --> 00:03:22,040
+rounded up to the nearest whole number is 1.
+
+38
+00:03:22,220 --> 00:03:25,940
+Then multiply that by the number of raids per second is 80.
+
+39
+00:03:25,940 --> 00:03:29,930
+Divide it by two because you get double the three put provincially consistent.
+
+40
+00:03:29,930 --> 00:03:35,190
+So that means you only need 40 read capacity units for eventually consistent reads.
+
+41
+00:03:35,210 --> 00:03:39,380
+For this example but what's about right capacity units.
+
+42
+00:03:39,380 --> 00:03:49,120
+Well just imagine you want to write 100 items per second in your table and H item is 512 bytes in size.
+
+43
+00:03:49,130 --> 00:03:53,270
+So firstly you would calculate how many capacity units are needed for each.
+
+44
+00:03:53,270 --> 00:03:55,070
+Right.
+
+45
+00:03:55,520 --> 00:04:04,630
+So the size of each item divided by 1 kilobyte for right capacity units so that's 512 bytes divided
+
+46
+00:04:04,630 --> 00:04:12,480
+by 1 kilobytes equals zero point five round that up to the nearest whole number.
+
+47
+00:04:13,270 --> 00:04:20,140
+So each rights will need one right writes capacity unit per write operation and then multiply that by
+
+48
+00:04:20,140 --> 00:04:22,280
+the number of rights per second.
+
+49
+00:04:22,660 --> 00:04:29,960
+So that's 100 white capacity units required in this example.
+
+50
+00:04:30,230 --> 00:04:32,640
+So let's have a look at some of our exam tips.
+
+51
+00:04:32,720 --> 00:04:37,490
+So it's really important to understand read and write capacity units.
+
+52
+00:04:37,820 --> 00:04:42,890
+And it's important to know how to do those calculations as well because if you do get asked in the exam
+
+53
+00:04:42,950 --> 00:04:47,050
+it will be really easy marks if you know how to do the calculation.
+
+54
+00:04:47,090 --> 00:04:54,150
+So just remember provisional throughput is measured in capacity units one right capacity unit is 1 1
+
+55
+00:04:54,210 --> 00:04:55,820
+kilobyte right per second.
+
+56
+00:04:57,060 --> 00:05:05,370
+One read capacity unit is one for kilobyte strongly consistent rate or two for kilobyte eventually consistent
+
+57
+00:05:05,370 --> 00:05:07,140
+reads per second.
+
+58
+00:05:07,170 --> 00:05:08,890
+So that is the end of this lecture.
+
+59
+00:05:08,940 --> 00:05:13,160
+As I said it's really important to understand how to do those calculations.
+
+60
+00:05:13,200 --> 00:05:18,630
+So it's definitely worth doing our quizzes and doing our tests and making sure that you fully understand
+
+61
+00:05:18,630 --> 00:05:20,700
+how to do those relations.
+
+62
+00:05:21,140 --> 00:05:23,260
+But if you have any questions please let me know.
+
+63
+00:05:23,340 --> 00:05:25,770
+If not please feel free to move on to the next lecture.
+
+64
+00:05:25,800 --> 00:05:26,280
+Thank ye.

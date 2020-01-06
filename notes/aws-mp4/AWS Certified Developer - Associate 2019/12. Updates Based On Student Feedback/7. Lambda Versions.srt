@@ -1,0 +1,439 @@
+1
+00:00:01,210 --> 00:00:07,060
+Hello kangaroos and welcome to this lecture and this lecture is all about lambda virgins.
+
+2
+00:00:07,210 --> 00:00:13,900
+So when you create a new lambda function there is only one version and they attach this label or this
+
+3
+00:00:13,930 --> 00:00:21,370
+alias to it and it's called latest And When you upload a new version of the code to Lambda then the
+
+4
+00:00:21,370 --> 00:00:24,880
+new version that you upload will become latest.
+
+5
+00:00:24,880 --> 00:00:30,640
+But you can actually create multiple versions of your function code and then use different aliases to
+
+6
+00:00:30,640 --> 00:00:36,670
+reference the different versions so you can refer to the specific version that you want to use within
+
+7
+00:00:36,670 --> 00:00:37,770
+your application.
+
+8
+00:00:37,930 --> 00:00:46,360
+Using an R N or Amazon resource name for example in a development environment you might want to maintain
+
+9
+00:00:46,420 --> 00:00:53,380
+a few different versions of the same function as you develop and test and change your code and an alias
+
+10
+00:00:53,440 --> 00:00:54,720
+is the way to do that.
+
+11
+00:00:54,820 --> 00:01:00,460
+So you can create different versions of the same function called for example development test production
+
+12
+00:01:00,460 --> 00:01:08,030
+etc. and an alias is just like a pointer to a specific version of the function code.
+
+13
+00:01:08,050 --> 00:01:14,620
+So in this example we have a developer on the left hand side and they are busy updating their code and
+
+14
+00:01:14,620 --> 00:01:21,550
+adding new code into an S3 bucket and within lambda we've got our version 1 2 which we've applied an
+
+15
+00:01:21,580 --> 00:01:23,100
+alias called prod.
+
+16
+00:01:23,250 --> 00:01:30,430
+And we've also got a version 2 which also happens to be the latest version of the code and that version
+
+17
+00:01:30,430 --> 00:01:38,350
+too has an alias of test so we can reference each of these aliases using the Amazon resource name.
+
+18
+00:01:38,830 --> 00:01:42,580
+And it's the Amazon resource name that we use to call the function.
+
+19
+00:01:42,610 --> 00:01:48,010
+So if we want to use the latest version of the code we can refer to it using the IRS and which ends
+
+20
+00:01:48,040 --> 00:01:49,450
+in latest.
+
+21
+00:01:49,450 --> 00:01:55,590
+Or we could also alternatively use the N which ends in test which uses the test alias.
+
+22
+00:01:55,770 --> 00:02:00,750
+But if we want it to use our version one of the code our production version then we use the IRS in it
+
+23
+00:02:00,760 --> 00:02:02,660
+which ends in prod.
+
+24
+00:02:02,800 --> 00:02:06,040
+But what happens if we add another version.
+
+25
+00:02:06,430 --> 00:02:10,990
+So let's say for example we upload another version of our code to Lambda.
+
+26
+00:02:11,520 --> 00:02:18,070
+Well when you upload new code to lambda and that new code is going to become the latest version but
+
+27
+00:02:18,070 --> 00:02:22,430
+we've still got our aliases for the prod and test versions.
+
+28
+00:02:22,430 --> 00:02:24,320
+So version 1 and version 2.
+
+29
+00:02:24,320 --> 00:02:31,190
+But if your application is using an alias to refer to the function then do remember to update the IRS
+
+30
+00:02:31,320 --> 00:02:32,470
+that you're using.
+
+31
+00:02:32,470 --> 00:02:38,530
+If you want to use the new code because if you're using the alias of test or prod then you're still
+
+32
+00:02:38,530 --> 00:02:45,220
+gonna be pointing to version one of its broad version too if its test so your application will continue
+
+33
+00:02:45,220 --> 00:02:50,980
+to use basically the original code or the previous version of the code and if you want your application
+
+34
+00:02:50,980 --> 00:02:57,210
+to use the latest version you need to make sure that it is referring to the IRS in using the label latest.
+
+35
+00:02:57,590 --> 00:03:02,350
+But the best way to understand all of this is if I show you what I mean in the console and you'll see
+
+36
+00:03:02,350 --> 00:03:09,760
+how easy it is to set up Virgin numbers and aliases as well and how easy it is to find these Amazon
+
+37
+00:03:09,760 --> 00:03:11,430
+resource names.
+
+38
+00:03:11,470 --> 00:03:22,170
+So here I am in the console and I'm just gonna head over to compute and Lambda create function and make
+
+39
+00:03:22,170 --> 00:03:27,370
+sure you've selected author from scratch I'm gonna give my function a name.
+
+40
+00:03:27,400 --> 00:03:37,890
+I'm going to call it my lambda make sure that the runtime is no J.S. 10 and click on Create function
+
+41
+00:03:40,180 --> 00:03:45,440
+and then once that's done just scroll down to the function code section and we're going to upload a
+
+42
+00:03:45,440 --> 00:03:51,100
+zip file and the zip files are going to be in the resources section of the course such as download them
+
+43
+00:03:51,100 --> 00:03:59,570
+to your local machine and select the first one and the first one is called V1 dot zip so upload that
+
+44
+00:03:59,570 --> 00:04:06,170
+one hit save and there's our function and it should site.
+
+45
+00:04:06,170 --> 00:04:13,800
+This is version 1 so we're then going to configure a test event gonna call it T1
+
+46
+00:04:16,560 --> 00:04:23,920
+it creates and test come up to the top and check the execution result.
+
+47
+00:04:23,930 --> 00:04:24,560
+So there we go.
+
+48
+00:04:24,560 --> 00:04:25,580
+Hello from lambda.
+
+49
+00:04:25,580 --> 00:04:32,840
+This is version 1 and just notice at the top of the page this is where you'll find the R N so the Amazon
+
+50
+00:04:32,900 --> 00:04:34,070
+resource name.
+
+51
+00:04:34,070 --> 00:04:42,560
+So that is the either end of our function and if we head down to qualifiers you'll find it's already
+
+52
+00:04:42,560 --> 00:04:44,600
+created this latest alias.
+
+53
+00:04:45,410 --> 00:04:51,980
+So if we select that one it will take us to the latest version of our code and it's like the version
+
+54
+00:04:51,980 --> 00:04:53,630
+that we've just uploaded.
+
+55
+00:04:53,630 --> 00:04:57,100
+So if we go and look at the function code there you go.
+
+56
+00:04:57,170 --> 00:05:07,770
+This is version 1 so it's already automatically been labeled as latest and there's a R N so now I'm
+
+57
+00:05:07,770 --> 00:05:12,740
+going to add another version and an alias so I'm gonna go into actions.
+
+58
+00:05:12,910 --> 00:05:16,650
+I'm not gonna publish a version based on this latest.
+
+59
+00:05:16,650 --> 00:05:22,500
+So it creates the snapshot of the code and configuration of the latest version.
+
+60
+00:05:22,500 --> 00:05:24,150
+So I'm gonna give it a description
+
+61
+00:05:26,840 --> 00:05:31,500
+and hit publish so there we go we've got version 1.
+
+62
+00:05:31,510 --> 00:05:35,550
+I also notice that version 1 it's got its own HRN So there we go.
+
+63
+00:05:35,590 --> 00:05:40,800
+Version 1 and we can also go in and create an alias.
+
+64
+00:05:40,990 --> 00:05:47,530
+So if you click on actions and create alias and we can give our alias a name and I'm gonna call this
+
+65
+00:05:47,530 --> 00:05:50,800
+one prod and give it a description
+
+66
+00:05:54,460 --> 00:05:55,800
+and then we select the version.
+
+67
+00:05:55,830 --> 00:05:59,020
+So is it gonna be the latest or is it gonna be our version one.
+
+68
+00:05:59,050 --> 00:06:02,660
+So let's make it out version one and hit create.
+
+69
+00:06:03,010 --> 00:06:05,060
+So that is our alias created.
+
+70
+00:06:05,230 --> 00:06:12,200
+And you can see the alias has got its own a R N so now what if we had a new version of our code that
+
+71
+00:06:12,200 --> 00:06:14,450
+we wanted to start testing with.
+
+72
+00:06:14,450 --> 00:06:24,910
+Well let's go back to our function down to the function code and upload a new zip file so this time
+
+73
+00:06:24,910 --> 00:06:36,580
+we're going to use version 2.0 zip hit save there's our version too and run a test again scroll up to
+
+74
+00:06:36,580 --> 00:06:38,170
+the top to see the results.
+
+75
+00:06:38,230 --> 00:06:38,650
+There we are.
+
+76
+00:06:38,680 --> 00:06:39,670
+Hello from lambda.
+
+77
+00:06:39,670 --> 00:06:41,300
+This is virgin 2.
+
+78
+00:06:41,320 --> 00:06:45,490
+And once again if you look at the top right hand side you'll find the end.
+
+79
+00:06:45,700 --> 00:06:53,050
+And if we want to look at the latest version click on the latest version scroll down to our function
+
+80
+00:06:53,050 --> 00:06:56,550
+code and you should see that it says version two down here.
+
+81
+00:06:56,890 --> 00:07:02,500
+So you'll see that the latest version has automatically updated to be pointing at the latest code that
+
+82
+00:07:02,500 --> 00:07:04,090
+we just uploaded.
+
+83
+00:07:04,090 --> 00:07:09,170
+And if we want to create a new version within lambda we can go to publish new version.
+
+84
+00:07:09,190 --> 00:07:11,520
+So this is gonna be our version number two.
+
+85
+00:07:11,530 --> 00:07:14,110
+And I'm gonna give it a description.
+
+86
+00:07:14,440 --> 00:07:17,730
+So this is a new version of our code which needs to be tested.
+
+87
+00:07:17,890 --> 00:07:20,240
+So that is our version too.
+
+88
+00:07:20,320 --> 00:07:26,920
+We can also go in and create an alias and I'm gonna make an alias of test an all test systems should
+
+89
+00:07:26,920 --> 00:07:37,330
+use this alias and it's gonna be version two and hit create and there is the origin of our test alias
+
+90
+00:07:38,760 --> 00:07:45,330
+and you can actually see all of the aliases down here and which version they are relating to.
+
+91
+00:07:45,330 --> 00:07:50,680
+And when it says unqualified up here it actually means that you're just using the initial portion of
+
+92
+00:07:50,680 --> 00:07:57,230
+the Irene up to the name of your function and you're not qualifying it with a dollar latest or.
+
+93
+00:07:57,230 --> 00:08:03,610
+Version 1 version 2 or any alias name it just means that you're only using the lambda function name
+
+94
+00:08:03,610 --> 00:08:04,470
+itself.
+
+95
+00:08:04,600 --> 00:08:12,050
+And when you use it on qualified you will default to using the dollar latest version so hopefully that'll
+
+96
+00:08:12,070 --> 00:08:16,840
+show you how easy it is to create inversions and aliases in lambda.
+
+97
+00:08:16,880 --> 00:08:19,090
+So moving on to our exam tips.
+
+98
+00:08:19,160 --> 00:08:25,070
+Just remember that the dollar latest is always the latest version of the code you've uploaded into lambda
+
+99
+00:08:26,650 --> 00:08:32,310
+and use lambda versioning and aliases to point your applications to a specific version.
+
+100
+00:08:32,320 --> 00:08:37,900
+If you don't want to use the dollar latest and remember if you don't use any alias at all and you just
+
+101
+00:08:37,900 --> 00:08:44,620
+use an unqualified R N so just ending in the function name not using prod or latest or whatever then
+
+102
+00:08:44,680 --> 00:08:48,100
+that will default to using the latest version.
+
+103
+00:08:48,100 --> 00:08:54,400
+And finally if your application is using an alias remember that it will not automatically use new code
+
+104
+00:08:54,430 --> 00:08:55,750
+when you upload it.
+
+105
+00:08:55,780 --> 00:09:01,430
+So if you are using an alias and you're uploading new code that you want your application to use then
+
+106
+00:09:01,450 --> 00:09:06,900
+just remember to update your application to point at the latest version of the code.
+
+107
+00:09:06,940 --> 00:09:10,510
+So that is everything that I wanted to tell you about lambda versions.
+
+108
+00:09:10,630 --> 00:09:12,960
+If you have any questions please let me know.
+
+109
+00:09:13,090 --> 00:09:15,410
+If not feel free to move on to the next lecture.
+
+110
+00:09:15,670 --> 00:09:16,120
+Thank you.

@@ -1,0 +1,427 @@
+1
+00:00:00,170 --> 00:00:06,550
+Hello cloggers and welcome to this lecture and this lecture is going to be our development theory summary.
+
+2
+00:00:06,930 --> 00:00:12,750
+So it's going to summarize everything we've learned in this section including all of our exam tips.
+
+3
+00:00:12,750 --> 00:00:14,160
+So let's get started.
+
+4
+00:00:16,390 --> 00:00:22,930
+So continuous integration and continuous deployment and all of the related toes are definitely worth
+
+5
+00:00:23,020 --> 00:00:29,380
+a few points in the exam and it's worth reading that white paper it's really explains the topic very
+
+6
+00:00:29,380 --> 00:00:33,210
+well and it will really help you consolidate all of your knowledge in that area.
+
+7
+00:00:33,220 --> 00:00:39,250
+So I would definitely recommend reading that before you go into the exam remember.
+
+8
+00:00:39,250 --> 00:00:46,150
+Continuous integration is all about integrating all merging your code changes frequently at least once
+
+9
+00:00:46,150 --> 00:00:53,510
+per day and it enables multiple developers to work on the same application without impacting each other.
+
+10
+00:00:55,460 --> 00:01:02,690
+Whereas continuous delivery is all about automating the build test and deployment functions of the release
+
+11
+00:01:02,780 --> 00:01:10,850
+lifecycle and continuous deployment fully automates the entire release process and it allows code to
+
+12
+00:01:10,850 --> 00:01:17,210
+be deployed into production as soon as it is successfully passed through the release pipeline and the
+
+13
+00:01:17,210 --> 00:01:24,440
+tools that they provide to allow you to get started with C and C D R code commit which is the source
+
+14
+00:01:24,440 --> 00:01:25,520
+control service.
+
+15
+00:01:25,550 --> 00:01:32,420
+So it gets as a service code build which enables you to compile your source code run tests and package
+
+16
+00:01:32,420 --> 00:01:40,990
+code code deploy which performs automated deployment to easy to on premise systems and lambda and code
+
+17
+00:01:40,990 --> 00:01:49,060
+pipeline which is the entire C ICD orchestration or workflow tool which fully automates your entire
+
+18
+00:01:49,060 --> 00:01:54,130
+release process right from build to test and finally deployment.
+
+19
+00:01:54,760 --> 00:02:00,010
+So code commit is based on get it's a centralized repository or repo for all your code.
+
+20
+00:02:00,010 --> 00:02:02,420
+Pineries images libraries etc..
+
+21
+00:02:02,590 --> 00:02:09,160
+It tracks and manages your code changes maintains version history and manages updates from multiple
+
+22
+00:02:09,160 --> 00:02:14,590
+sources enabling collaboration between multiple users and multiple teams.
+
+23
+00:02:14,740 --> 00:02:21,070
+Deploy is that fully managed an automated deployment service and it can be used as part of a continuous
+
+24
+00:02:21,070 --> 00:02:24,640
+delivery or continuous deployment process.
+
+25
+00:02:24,640 --> 00:02:27,660
+Remember there are two different types of deployment approach.
+
+26
+00:02:27,670 --> 00:02:34,330
+You've got the in-place also known as rolling update and this is where you stop the application on each
+
+27
+00:02:34,330 --> 00:02:39,960
+host and you deploy the latest code on each host either in turn or all at once.
+
+28
+00:02:40,000 --> 00:02:46,310
+And this type of deployment applies too easy to an on premise systems only not supported for lambda.
+
+29
+00:02:46,420 --> 00:02:51,610
+It's good for environments where you don't mind taking your systems offline for the duration of the
+
+30
+00:02:51,610 --> 00:02:53,160
+application deployment.
+
+31
+00:02:53,440 --> 00:02:59,170
+And remember if you want to rollback this kind of deployment you need to redeploy your previous version
+
+32
+00:02:59,260 --> 00:03:01,990
+of the application so it can take some time.
+
+33
+00:03:02,080 --> 00:03:06,750
+Then the other type of deployment approach that we have is blue green.
+
+34
+00:03:06,790 --> 00:03:12,400
+And remember this is where we provision new instances and then install the new application on those
+
+35
+00:03:12,400 --> 00:03:13,740
+new instances.
+
+36
+00:03:13,750 --> 00:03:18,630
+The traffic is then routed to the new instances according to your own schedule and this is supported
+
+37
+00:03:18,630 --> 00:03:22,150
+for easy to on premise and lambda functions.
+
+38
+00:03:22,980 --> 00:03:28,050
+One advantage is that the Roback is really easy and all you need to do is route the traffic back to
+
+39
+00:03:28,050 --> 00:03:33,190
+your original instances assuming you haven't already terminated them.
+
+40
+00:03:33,300 --> 00:03:39,210
+And blue represents the active deployment or your original instances whereas Green is the brand new
+
+41
+00:03:39,210 --> 00:03:40,150
+release.
+
+42
+00:03:40,170 --> 00:03:46,470
+Moving on to a default code deploy the app spec file is used to define all the parameters that you need
+
+43
+00:03:46,470 --> 00:03:48,430
+for the deployment.
+
+44
+00:03:48,510 --> 00:03:55,440
+For example the location of any configuration files application follows any pre and post deployment
+
+45
+00:03:55,440 --> 00:04:01,190
+validation tests run and for AC to an on premises systems.
+
+46
+00:04:01,190 --> 00:04:07,970
+The app Spectro YAML file must be placed in the root directory of your application revision.
+
+47
+00:04:07,970 --> 00:04:11,960
+So that's the same folder that contains your application code.
+
+48
+00:04:11,990 --> 00:04:18,770
+And remember this is what we configured in the code deploy and the code pipeline lab for AC to an on
+
+49
+00:04:18,770 --> 00:04:19,880
+premises systems.
+
+50
+00:04:19,880 --> 00:04:22,470
+The file must be written in Jamo.
+
+51
+00:04:22,470 --> 00:04:30,380
+However to support either YAML or Jason format and try to remember to run order of the hooks in our
+
+52
+00:04:30,380 --> 00:04:36,590
+code deployed deployment and I try to think of it as three different phases so the first phase would
+
+53
+00:04:36,590 --> 00:04:42,750
+be all the activities that you need to do in order to block your traffic at the load balancer.
+
+54
+00:04:42,950 --> 00:04:48,530
+So d registering you instances from the load balancer and that would be before block traffic blocked
+
+55
+00:04:48,530 --> 00:04:51,050
+traffic and off to block traffic.
+
+56
+00:04:51,440 --> 00:04:56,990
+Then the next phase would be all the activities you need to do in order to upgrade your application
+
+57
+00:04:57,050 --> 00:04:58,880
+or install your application.
+
+58
+00:04:58,880 --> 00:05:06,500
+So that would be application stop before install install off to install application start and validate
+
+59
+00:05:06,500 --> 00:05:10,390
+service and then the final phase.
+
+60
+00:05:10,760 --> 00:05:15,780
+Everything that you need to do to reregister all instances with your light balancer.
+
+61
+00:05:15,950 --> 00:05:22,510
+So that would be before allow traffic allow traffic and off to allow traffic.
+
+62
+00:05:22,510 --> 00:05:29,780
+And just remember that they refer to this sequence of events as the run order of hooks and it all relates
+
+63
+00:05:29,780 --> 00:05:33,980
+to the hooks section in your aspect or YAML file.
+
+64
+00:05:34,430 --> 00:05:41,480
+Remember Koepp pipeline is a continuous integration and continuous delivery service and it automates
+
+65
+00:05:41,570 --> 00:05:49,120
+your end to end software release process based on a workflow that you define and it can be configured
+
+66
+00:05:49,180 --> 00:05:55,570
+to automatically tracheal pipeline as soon as a change is detected in your source code repository.
+
+67
+00:05:55,570 --> 00:05:58,960
+And if you did the code pipeline map you would have seen that in action.
+
+68
+00:05:58,960 --> 00:06:05,230
+So when we updated the code that was located you know S3 bucket that automatically triggered our pipeline
+
+69
+00:06:05,440 --> 00:06:09,760
+to pull down that source code and deploy it to our instances.
+
+70
+00:06:09,760 --> 00:06:16,060
+Finally could pipeline integrates with lots of other services from a W-S like code build and code deploy
+
+71
+00:06:16,150 --> 00:06:19,450
+as well as third party and custom plugins.
+
+72
+00:06:19,510 --> 00:06:25,540
+And if you remember as part of the Lappe that we did for code pipeline we integrated with code deploy
+
+73
+00:06:25,660 --> 00:06:35,870
+and S3 moving on to TACA TACA allows you to package up your software into containers which you can then
+
+74
+00:06:35,870 --> 00:06:43,610
+run an elastic container service or s.c.s and ATOC a container includes everything that the software
+
+75
+00:06:43,610 --> 00:06:49,990
+needs to run including code libraries runtime environment variables etc..
+
+76
+00:06:51,900 --> 00:06:58,420
+I remember we use a special file called a doc file to specify the instructions needed to assemble your
+
+77
+00:06:58,420 --> 00:07:08,120
+doc image and once built the doc images can be stored in a plastic container registry or AC or an atheist
+
+78
+00:07:08,200 --> 00:07:16,780
+can then use the image stored in the registry to launch dock containers on your s.c.s cluster.
+
+79
+00:07:17,060 --> 00:07:23,440
+Remember there are a few different commands that Daka provides to allow you to build and tag and push
+
+80
+00:07:23,440 --> 00:07:26,310
+your doc image to the E.S. repository.
+
+81
+00:07:26,960 --> 00:07:28,750
+And the first one is to build.
+
+82
+00:07:28,740 --> 00:07:35,740
+Mine is T and that simply reads the Daka file and runs all the commands in the doc a file to build your
+
+83
+00:07:35,800 --> 00:07:39,150
+image.
+
+84
+00:07:39,160 --> 00:07:46,480
+We then have the doc tag command and that is used to apply a tag or like an alias to your image so that
+
+85
+00:07:46,480 --> 00:07:50,020
+tag can be used to refer to your image programmatically.
+
+86
+00:07:51,730 --> 00:07:58,100
+And then finally we have the talker push command which pushes the image into your PC or repository.
+
+87
+00:08:00,320 --> 00:08:01,670
+Moving on to code belled.
+
+88
+00:08:01,670 --> 00:08:07,490
+Sorry just remember code build is a managed build service and it can be used to build source code run
+
+89
+00:08:07,490 --> 00:08:14,390
+tests and produce software packages based on commands that you define yourself and by default we used
+
+90
+00:08:14,390 --> 00:08:21,320
+to build Specht YAML file to define the build commands and any settings used by code builder to run
+
+91
+00:08:21,320 --> 00:08:22,220
+your build.
+
+92
+00:08:22,520 --> 00:08:25,250
+And that's completely user defined.
+
+93
+00:08:25,250 --> 00:08:30,680
+So it's up to you exactly what you put in that build Specht YAML and code build will run it all for
+
+94
+00:08:30,680 --> 00:08:31,180
+you.
+
+95
+00:08:33,350 --> 00:08:39,170
+And remember that you can completely override the settings in the build specked YAML by adding your
+
+96
+00:08:39,170 --> 00:08:42,540
+own commands into the console when you launch the build.
+
+97
+00:08:42,770 --> 00:08:48,620
+So that means that even if you don't have permission to modify the build specter YAML or if you don't
+
+98
+00:08:48,620 --> 00:08:53,900
+have write permission to the source code within code commit or wherever you're holding your source code
+
+99
+00:08:54,410 --> 00:08:59,900
+you can always override the settings and input your own settings at the console when you launch the
+
+100
+00:08:59,900 --> 00:09:02,010
+build.
+
+101
+00:09:02,330 --> 00:09:07,640
+And finally if you build files just check the build logs as they appear at the bottom of the code build
+
+102
+00:09:07,640 --> 00:09:15,230
+console and you can also view the full code build log with in cloud watch so that is the end of the
+
+103
+00:09:15,230 --> 00:09:17,950
+section really well done so getting through that section.
+
+104
+00:09:17,950 --> 00:09:20,620
+I hope you enjoyed it and learned a lot.
+
+105
+00:09:20,620 --> 00:09:23,250
+So if you have any questions please let me know.
+
+106
+00:09:23,500 --> 00:09:26,230
+If not please feel free to move on to the next lecture.
+
+107
+00:09:26,260 --> 00:09:26,790
+Thank you.

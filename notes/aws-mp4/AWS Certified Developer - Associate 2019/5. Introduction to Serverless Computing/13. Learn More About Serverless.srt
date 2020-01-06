@@ -1,0 +1,39 @@
+1
+00:00:03,970 --> 00:00:06,230
+I k Hellyer cloggers and welcome to this lecture.
+
+2
+00:00:06,240 --> 00:00:08,260
+Hopefully you're enjoying the course so far.
+
+3
+00:00:08,310 --> 00:00:10,250
+If you do want to learn more about syphilis.
+
+4
+00:00:10,260 --> 00:00:15,810
+A cow has a number of great courses on our platform that helps you understand similis better and how
+
+5
+00:00:15,810 --> 00:00:18,780
+to build reliable and scalable architectures.
+
+6
+00:00:18,780 --> 00:00:22,110
+These courses include a more detailed course on AWOS lambda.
+
+7
+00:00:22,140 --> 00:00:27,030
+We've got a service for beginners course which is course where you learn how to build a portfolio using
+
+8
+00:00:27,040 --> 00:00:28,470
+Servilius and react.
+
+9
+00:00:28,470 --> 00:00:31,770
+We also have a course about using similis architectures with Grof.
+
+10
+00:00:31,770 --> 00:00:38,290
+Q Well these courses are all available on the platform today so make sure you check them out.

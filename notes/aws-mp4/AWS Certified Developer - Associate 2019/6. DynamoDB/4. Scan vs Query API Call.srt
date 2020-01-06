@@ -1,0 +1,451 @@
+1
+00:00:00,660 --> 00:00:08,190
+Hello Clockers and welcome to this lecture and this lecture is all about dynamo D-B scan and query API
+
+2
+00:00:08,190 --> 00:00:09,480
+calls.
+
+3
+00:00:10,320 --> 00:00:14,280
+So there's two different ways of getting your information out of the database.
+
+4
+00:00:14,310 --> 00:00:20,440
+We have scans and queries and this lecture is just going to discuss the differences between the two
+
+5
+00:00:20,440 --> 00:00:21,060
+of those.
+
+6
+00:00:21,130 --> 00:00:23,800
+So let's get started.
+
+7
+00:00:23,800 --> 00:00:25,320
+So what is a query.
+
+8
+00:00:25,570 --> 00:00:34,090
+Well a query operation finds items in your table based on the primary key attribute and also a distinct
+
+9
+00:00:34,180 --> 00:00:36,610
+value to search for.
+
+10
+00:00:36,730 --> 00:00:43,660
+For example if you're looking for an item where the user ID is equal to one thé you're going to query
+
+11
+00:00:43,660 --> 00:00:51,790
+that dynamite D-B table based on the primary key of user ID and the value will be to 1 2 and that will
+
+12
+00:00:51,790 --> 00:00:54,380
+select all the attributes for that item.
+
+13
+00:00:54,520 --> 00:01:00,970
+So for example if you were storing the first name surname email etc all those attributes would come
+
+14
+00:01:01,030 --> 00:01:02,180
+up in that query
+
+15
+00:01:05,540 --> 00:01:10,430
+and you can use an optional so key name and value to refine the results.
+
+16
+00:01:10,430 --> 00:01:18,770
+If you have multiple results for example if your so key is a timestamp you can refine the query to select
+
+17
+00:01:18,950 --> 00:01:22,660
+only the items with a timestamp of the last seven days.
+
+18
+00:01:24,480 --> 00:01:30,180
+So for example you might want to create the last time a user logged into a form the last time they posted
+
+19
+00:01:30,180 --> 00:01:38,560
+in a forum that kind of thing now by default a query returns all the attributes for the items.
+
+20
+00:01:38,560 --> 00:01:45,100
+But you can use the projection expression parameter if you want the query to only return specific attributes
+
+21
+00:01:45,100 --> 00:01:47,080
+that you're looking for.
+
+22
+00:01:47,080 --> 00:01:53,560
+For example if you only wanted to see the user id and email address rather than all the attributes for
+
+23
+00:01:53,560 --> 00:02:02,170
+that item in the table results are always sorted by the sort key if they're numeric they're sorted in
+
+24
+00:02:02,170 --> 00:02:06,340
+numeric order and that by default is in ascending order.
+
+25
+00:02:06,340 --> 00:02:14,370
+So one two three four and if that ASCII characters they are also sorted by default in ascending order
+
+26
+00:02:15,480 --> 00:02:22,740
+and you can reverse the order by setting the scan index forward parameter to foce this only applies
+
+27
+00:02:22,740 --> 00:02:23,340
+to queries.
+
+28
+00:02:23,340 --> 00:02:29,570
+And unfortunately they've called it scan index forward but it does only apply to queries.
+
+29
+00:02:29,600 --> 00:02:35,420
+So just remember that if you see any questions relating to scan index forward parameter it's relating
+
+30
+00:02:35,420 --> 00:02:40,460
+to queries and not scan and it's to reverse the order of the results from your query.
+
+31
+00:02:42,840 --> 00:02:48,780
+By default all queries are eventually consistent but you can set them to each Strone consistent but
+
+32
+00:02:48,780 --> 00:02:52,490
+you need to explicitly set the query to be strongly consistent.
+
+33
+00:02:54,120 --> 00:03:02,550
+So moving on to scans is a scan well a scan operation examines every single item in the table and by
+
+34
+00:03:02,550 --> 00:03:06,090
+default it returns all the data attributes.
+
+35
+00:03:06,090 --> 00:03:12,030
+Once again you can use the projection expression parameter to refine your scan results to return only
+
+36
+00:03:12,030 --> 00:03:13,750
+the attributes you're looking for.
+
+37
+00:03:13,950 --> 00:03:20,680
+And you can also filter the results of the scan once it's been done but it's a lot easier to understand
+
+38
+00:03:20,710 --> 00:03:22,660
+the difference between scans and queries.
+
+39
+00:03:22,660 --> 00:03:27,700
+If I actually show you in the console so I'm going to move to the console now so I can show you exactly
+
+40
+00:03:27,700 --> 00:03:28,750
+what I mean.
+
+41
+00:03:29,260 --> 00:03:35,220
+So here I am in the console and I'm in the dynamite B.S. and I'm going to go to my typos.
+
+42
+00:03:36,440 --> 00:03:41,080
+And these are the titles that we set up if you did the previous lab already you you'll be able to try
+
+43
+00:03:41,080 --> 00:03:44,230
+this yourself on your own tables.
+
+44
+00:03:44,230 --> 00:03:50,770
+So first of all I'm going to go to the product catalogue table and click on items and these are all
+
+45
+00:03:50,770 --> 00:03:53,440
+the items in my product catalog table.
+
+46
+00:03:53,440 --> 00:03:59,770
+So first of all I'm going to run a query I'm going to select query here and I can query on the partition
+
+47
+00:03:59,780 --> 00:04:03,430
+the key for this table the partition key is the ID.
+
+48
+00:04:03,430 --> 00:04:09,750
+So it's the product ID and it's this attribute in this column and I can query based on one of these
+
+49
+00:04:09,760 --> 00:04:11,150
+attribute IDs.
+
+50
+00:04:11,450 --> 00:04:13,860
+I can create based on the partition key.
+
+51
+00:04:14,230 --> 00:04:16,110
+It's a numerical value.
+
+52
+00:04:16,450 --> 00:04:19,410
+And I can enter a value here that I want to search for.
+
+53
+00:04:19,540 --> 00:04:26,280
+So I'm going to search for 2 0 2 and click on Start Search and it's found my likes and with the ID 2
+
+54
+00:04:26,310 --> 00:04:28,130
+0 2.
+
+55
+00:04:28,240 --> 00:04:30,850
+So now let's compare that to a scan operation.
+
+56
+00:04:30,850 --> 00:04:40,050
+So if I select scan instead and click on Start Search it gives me the entire table and if I want to
+
+57
+00:04:40,050 --> 00:04:43,020
+refine these results I need to add a filter.
+
+58
+00:04:43,320 --> 00:04:49,350
+So I'm going to add a filter here and I'm going to filter on price so I can filter on any of these attributes
+
+59
+00:04:49,350 --> 00:04:49,930
+here.
+
+60
+00:04:50,220 --> 00:04:56,790
+So I'm going to filter on price and it's the numerical values are change that number and you get a lot
+
+61
+00:04:56,790 --> 00:04:57,330
+of choices.
+
+62
+00:04:57,330 --> 00:05:01,620
+So I can search for items of a specific price or greater than less than.
+
+63
+00:05:01,680 --> 00:05:07,310
+So I'm going to search for items greater than 100.
+
+64
+00:05:07,560 --> 00:05:11,480
+Click on search and it will apply that filter.
+
+65
+00:05:12,050 --> 00:05:17,600
+But the thing to remember with the scan is it's not doing it's not searching the database it's first
+
+66
+00:05:17,600 --> 00:05:23,300
+dumping the data the entire table and then it's applying a filter on top of that to show as only the
+
+67
+00:05:23,300 --> 00:05:24,780
+results that we're looking for.
+
+68
+00:05:27,550 --> 00:05:30,420
+So what should we use a query or a scan.
+
+69
+00:05:30,670 --> 00:05:36,790
+Well a query is much more efficient than a scan because the scan dumps the entire table then filters
+
+70
+00:05:36,790 --> 00:05:40,670
+out the unwanted values to provide the desired results.
+
+71
+00:05:40,810 --> 00:05:47,850
+And this adds the extra step of removing the data that you don't want and as the type of grows the scan
+
+72
+00:05:47,850 --> 00:05:56,070
+operation takes longer and longer and a scan operation on a large table can actually use up the provision
+
+73
+00:05:56,070 --> 00:06:00,750
+throughput for a large table in just one single operation.
+
+74
+00:06:00,750 --> 00:06:07,200
+And there are some ways to improve performance so you can reduce the impact of a query or scan by setting
+
+75
+00:06:07,200 --> 00:06:11,540
+a smaller page size which uses fewer read operations.
+
+76
+00:06:12,280 --> 00:06:16,790
+For example you can set the page size to return 40 items.
+
+77
+00:06:17,020 --> 00:06:22,360
+And this means that you will end up with a larger number of small operations which will allow other
+
+78
+00:06:22,360 --> 00:06:26,460
+requests to succeed without throttling the database.
+
+79
+00:06:26,950 --> 00:06:32,830
+But in general you should try and avoid using scan operations if you can instead design your tables
+
+80
+00:06:32,830 --> 00:06:37,960
+in a way that you can use the query get a patch get item API.
+
+81
+00:06:38,710 --> 00:06:42,430
+And the second option is that you can use parallel scans.
+
+82
+00:06:42,430 --> 00:06:50,050
+So by default a scan operation process is data sequentially and it returns it in one megabyte increments
+
+83
+00:06:50,620 --> 00:06:54,110
+before moving on to retrieve the next one to make about data.
+
+84
+00:06:55,010 --> 00:06:57,890
+And it can only scan one partition as time.
+
+85
+00:06:58,060 --> 00:07:05,060
+However you can configure it to my DP to use parallel scans instead by logically dividing a table or
+
+86
+00:07:05,060 --> 00:07:09,530
+index into segments and then scanning each segment in parallel.
+
+87
+00:07:09,830 --> 00:07:10,980
+And this could work really well.
+
+88
+00:07:11,000 --> 00:07:16,910
+If your database is not already really busy however it's best to avoid parallel scans if your table
+
+89
+00:07:16,940 --> 00:07:23,270
+or index is already incurring heavy read why activity from other applications because the parallel scans
+
+90
+00:07:23,270 --> 00:07:26,350
+could well impact the other applications.
+
+91
+00:07:26,390 --> 00:07:29,570
+So what our scan and queery exam tips.
+
+92
+00:07:30,110 --> 00:07:38,870
+Well just remember a query operation finds items in the table using only the primary key attribute and
+
+93
+00:07:38,870 --> 00:07:41,960
+you need to provide a distinct value to search for.
+
+94
+00:07:41,960 --> 00:07:46,410
+So remember when I searched in the table for a product ID of 2 0 2.
+
+95
+00:07:46,610 --> 00:07:52,910
+And then the query operation found that product for me a scan operation examines every item in the table
+
+96
+00:07:54,180 --> 00:07:57,860
+by default it returns all the data about Chhobi.
+
+97
+00:07:58,060 --> 00:08:04,300
+But you can use the projection expression parameter to refine the results and you can also use the filter
+
+98
+00:08:04,510 --> 00:08:05,830
+like I did earlier.
+
+99
+00:08:05,980 --> 00:08:07,300
+So I use that filter.
+
+100
+00:08:07,390 --> 00:08:13,890
+So I use the filter to refine the results to products which had a price greater than 100 query results
+
+101
+00:08:13,910 --> 00:08:15,810
+are always sorted by the Sauti.
+
+102
+00:08:15,820 --> 00:08:22,570
+If there is one there sort it by default in ascending order and you can use the scan index for parameter
+
+103
+00:08:22,900 --> 00:08:29,530
+to false to reverse the order for queries I need and remember a query operation is generally more efficient
+
+104
+00:08:29,530 --> 00:08:30,760
+than a scan.
+
+105
+00:08:30,880 --> 00:08:36,270
+Reduce the impact of your query or scan by setting a smaller page size which uses fewer reader operations
+
+106
+00:08:37,210 --> 00:08:42,230
+and for scans You can also try to isolate scan operations to specific tables.
+
+107
+00:08:42,370 --> 00:08:47,200
+Alternatively try out parallel scans rather than the default sequential scan.
+
+108
+00:08:47,200 --> 00:08:52,540
+However in general avoid using scan operations if you can and design your type was in a way that can
+
+109
+00:08:52,540 --> 00:08:55,570
+use Querrey get or patch get item IPs.
+
+110
+00:08:55,600 --> 00:08:57,430
+So that is the end of this lecture.
+
+111
+00:08:57,700 --> 00:08:59,900
+If you have any questions please let me know.
+
+112
+00:09:00,130 --> 00:09:02,660
+If not please feel free to move on to the next lecture.
+
+113
+00:09:02,710 --> 00:09:03,080
+Thank you.

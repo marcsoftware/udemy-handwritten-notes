@@ -1,0 +1,327 @@
+1
+00:00:00,480 --> 00:00:07,740
+Helicopters and welcome to this lecture and this lecture is called Code deploy one on one and it's just
+
+2
+00:00:07,800 --> 00:00:13,580
+a really short theoretical lecture just explaining the basic concepts of code deploy.
+
+3
+00:00:13,680 --> 00:00:15,000
+So let's get started.
+
+4
+00:00:15,000 --> 00:00:16,750
+So what is code to deploy.
+
+5
+00:00:16,890 --> 00:00:24,060
+Well code deploy is an automated deployment service which allows you to deploy your application code
+
+6
+00:00:24,120 --> 00:00:30,930
+automatically and you can use it to deploy your code to E.C two instances on Primus systems and also
+
+7
+00:00:30,990 --> 00:00:32,320
+lambda functions.
+
+8
+00:00:32,340 --> 00:00:38,340
+It allows you to quickly release new features avoid downtime during application deployments and avoid
+
+9
+00:00:38,490 --> 00:00:44,910
+the risks associated with manual deployments and it also ensures that all of your deployments are completely
+
+10
+00:00:44,940 --> 00:00:50,280
+consistent because it removes all the manual steps associated with deploying software.
+
+11
+00:00:50,490 --> 00:00:56,000
+It automatically scales with your infrastructure and it integrates with various CIC Dittoes.
+
+12
+00:00:56,010 --> 00:01:04,470
+So for example Jenkin's get hub the Lachine suite of products as well as AWOS code pipeline and you
+
+13
+00:01:04,470 --> 00:01:10,260
+can also use it with configuration management tools like ansible puppets and shift and there are two
+
+14
+00:01:10,260 --> 00:01:12,860
+different deployment approaches available.
+
+15
+00:01:12,900 --> 00:01:14,780
+And these are really important tonight.
+
+16
+00:01:14,820 --> 00:01:15,440
+The exam.
+
+17
+00:01:15,450 --> 00:01:19,990
+So the first one is called in place and the second one is called blue green.
+
+18
+00:01:20,040 --> 00:01:23,040
+So let's look at those in a little bit more detail.
+
+19
+00:01:23,040 --> 00:01:30,360
+So for an in place deployments the first thing that happens is the application is stopped on each instance
+
+20
+00:01:30,480 --> 00:01:33,090
+in turn as shown in the diagram.
+
+21
+00:01:33,120 --> 00:01:38,600
+We have three instances and they're all running version 1.0 of all software.
+
+22
+00:01:38,670 --> 00:01:45,090
+And in order to run the emplace deployments we shut down the application on the first instance and during
+
+23
+00:01:45,090 --> 00:01:48,440
+this time the instance is going to be out of service.
+
+24
+00:01:48,450 --> 00:01:51,230
+So your capacity is going to be reduced.
+
+25
+00:01:51,240 --> 00:01:57,360
+We then install version 2.0 of our application and then at that point we can bring that system back
+
+26
+00:01:57,360 --> 00:01:58,000
+on.
+
+27
+00:01:58,020 --> 00:02:03,690
+And if all your instances are behind a load balancer You can also configure the load balancer to stop
+
+28
+00:02:03,690 --> 00:02:09,570
+sending requests to any instances which are being upgraded and then bring them back into your load balanced
+
+29
+00:02:09,570 --> 00:02:12,180
+group as soon as they're ready to service requests.
+
+30
+00:02:12,180 --> 00:02:19,290
+Now an in place upgrade is also known as a rolling update and it can only be used for AC to and on premise
+
+31
+00:02:19,290 --> 00:02:22,160
+systems is not supported for lambda.
+
+32
+00:02:22,170 --> 00:02:28,260
+And another drawback of this kind of deployment is that when you need to rollback your changes the previous
+
+33
+00:02:28,260 --> 00:02:31,160
+version of the application will need to be redeploys.
+
+34
+00:02:31,200 --> 00:02:32,430
+So it's not instant.
+
+35
+00:02:32,430 --> 00:02:39,030
+Moving on to the blue screen deployments with this approach in the diagram again we have three instances
+
+36
+00:02:39,090 --> 00:02:40,650
+running version 1.0.
+
+37
+00:02:40,710 --> 00:02:43,010
+And that represents the active deployment.
+
+38
+00:02:43,020 --> 00:02:49,500
+So the existing systems and we actually provision brand new instances and deploy the latest revision
+
+39
+00:02:49,560 --> 00:02:52,110
+of our software on these new instances.
+
+40
+00:02:52,110 --> 00:02:57,880
+So you can see in the diagram we have three new instances and these are all running version 2.0.
+
+41
+00:02:57,930 --> 00:03:01,740
+The new instance is then registered with an elastic load balancer.
+
+42
+00:03:01,830 --> 00:03:08,190
+And as soon as they're ready to service requests traffic will be routed to these new instances and eventually
+
+43
+00:03:08,280 --> 00:03:11,050
+the original instances will be terminated.
+
+44
+00:03:11,370 --> 00:03:18,480
+So the big advantage of a green deployment is that the new instances can be created ahead of time and
+
+45
+00:03:18,480 --> 00:03:24,060
+then the code can be released to production by simply switching all traffic to the new servers.
+
+46
+00:03:24,060 --> 00:03:29,670
+So the release process really just becomes a change on your elastically balance and switching back to
+
+47
+00:03:29,670 --> 00:03:35,970
+the original environment is also much faster and more reliable because it's just a case of routing the
+
+48
+00:03:35,970 --> 00:03:38,190
+traffic back to the original servers.
+
+49
+00:03:38,220 --> 00:03:40,620
+As long as you haven't already terminated them.
+
+50
+00:03:40,620 --> 00:03:48,000
+One other advantage of a green deployment is that there's no reduction in performance or capacity during
+
+51
+00:03:48,000 --> 00:03:51,950
+the deployment because we're not shutting down any of our active servers.
+
+52
+00:03:52,020 --> 00:03:55,340
+So let's move on to some of the code deployed terminology.
+
+53
+00:03:55,380 --> 00:04:01,860
+First of all we have deployment group and this is a set of easy two instances or lambda functions.
+
+54
+00:04:01,950 --> 00:04:08,430
+So it's a new revision of the software is going to be deployed deployment is the process and components
+
+55
+00:04:08,520 --> 00:04:15,540
+used to apply a new revision deployment configuration is a set of deployment rules as well as success
+
+56
+00:04:15,600 --> 00:04:19,140
+or failure conditions which are used during the deployments.
+
+57
+00:04:19,140 --> 00:04:25,350
+The app spec file and this is a special configuration file which defines the deployment actions that
+
+58
+00:04:25,350 --> 00:04:27,390
+you want code deployed to execute.
+
+59
+00:04:27,390 --> 00:04:31,500
+Revision refers to everything needed to deploy the new version.
+
+60
+00:04:31,500 --> 00:04:42,120
+So for example the spec file any application files executables etc and application is a unique identifier
+
+61
+00:04:42,360 --> 00:04:48,570
+for the application that you want to deploy and this identifier is used to ensure that the correct combination
+
+62
+00:04:48,690 --> 00:04:56,040
+of revision deployment configuration and deployment group are all referenced to in the deployment.
+
+63
+00:04:56,040 --> 00:05:02,360
+So let's take a look at some of our code deploy exam tips so just remember it's a fully managed automated
+
+64
+00:05:02,360 --> 00:05:08,360
+deployment service and it can be used as part of your continuous delivery or continuous deployment process.
+
+65
+00:05:08,390 --> 00:05:14,090
+And remember the two different types of deployment of Partch for the emplace or rolling update you stop
+
+66
+00:05:14,090 --> 00:05:18,310
+the application on each host in order to deploy the latest code.
+
+67
+00:05:18,310 --> 00:05:25,010
+It's for easy to on premise systems only not for Lamda and to Roback you have to redeploy the previous
+
+68
+00:05:25,010 --> 00:05:26,760
+version of the application.
+
+69
+00:05:26,960 --> 00:05:32,190
+So it's not instant and it will take you some time to rollback for the blue green deployment.
+
+70
+00:05:32,390 --> 00:05:37,610
+Panu instances are provisioned and the new application is deployed to these new instances.
+
+71
+00:05:37,610 --> 00:05:42,760
+So this means your existing application on your existing instances are not impacted at all.
+
+72
+00:05:42,800 --> 00:05:49,110
+Traffic is then routed to the new instances according to your own schedule and is supported for AC to
+
+73
+00:05:49,390 --> 00:05:52,510
+on premise and also lambda functions.
+
+74
+00:05:52,610 --> 00:05:55,220
+Finally Roback is really easy.
+
+75
+00:05:55,220 --> 00:06:00,090
+All you do is rate the traffic back to the original instances on your load balancer.
+
+76
+00:06:00,140 --> 00:06:04,670
+And remember TLOU is the active deployment or your original set up Claras.
+
+77
+00:06:04,670 --> 00:06:06,560
+Green is the new release.
+
+78
+00:06:06,560 --> 00:06:09,020
+So those are the basics of code deploy.
+
+79
+00:06:09,110 --> 00:06:11,900
+We are going to be following this up with a lab.
+
+80
+00:06:12,020 --> 00:06:16,100
+So you will get the opportunity to get your hands dirty with code deploy.
+
+81
+00:06:16,190 --> 00:06:19,040
+So if you have time please join me in the next lecture.
+
+82
+00:06:19,040 --> 00:06:19,490
+Thank you.

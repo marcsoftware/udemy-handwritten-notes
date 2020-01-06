@@ -1,0 +1,591 @@
+1
+00:00:02,420 --> 00:00:08,780
+Hello cloggers and welcome to this lecture and this lecture is going to be a cloud formation lab and
+
+2
+00:00:08,780 --> 00:00:12,350
+we're going to make our very first cloud formation stack.
+
+3
+00:00:12,350 --> 00:00:14,140
+So let's get started.
+
+4
+00:00:17,370 --> 00:00:24,920
+So here I am in the AWOS console and you'll find cloud formation under management tools.
+
+5
+00:00:25,010 --> 00:00:30,830
+So it's not under compute it's actually under management tools because that's exactly what it is.
+
+6
+00:00:30,830 --> 00:00:35,690
+So we use it to deploy and manage resources using templates.
+
+7
+00:00:35,690 --> 00:00:42,390
+So click on cloud formation and the first thing we're going to do is just click on Create new stack.
+
+8
+00:00:43,060 --> 00:00:46,670
+And here it's asking you to select a template.
+
+9
+00:00:46,700 --> 00:00:54,200
+Now you can either create a new template on the fly using design a template but we are going to use
+
+10
+00:00:54,200 --> 00:00:57,170
+a template that I've already created.
+
+11
+00:00:57,180 --> 00:01:02,720
+They also do have sample templates here and you can play around with some of the sample templates that
+
+12
+00:01:02,720 --> 00:01:04,000
+they have as well.
+
+13
+00:01:04,010 --> 00:01:09,880
+So for example you can create a WordPress blog lampstand or ruby on rails etc..
+
+14
+00:01:09,980 --> 00:01:13,370
+So a few different sample templates that you can have a play around with.
+
+15
+00:01:13,700 --> 00:01:21,080
+But we're going to use a template that I've already created and you can either specify an Amazon S3
+
+16
+00:01:21,080 --> 00:01:24,530
+template you RL If you have one already uploaded to S-3.
+
+17
+00:01:24,740 --> 00:01:30,460
+If not you can just click on Choose file and you can select a file from your local machine.
+
+18
+00:01:30,470 --> 00:01:36,950
+So I've already created this cloud formation template here and I'm just going to walk through the template
+
+19
+00:01:36,950 --> 00:01:41,110
+and show you exactly what were creating him.
+
+20
+00:01:41,120 --> 00:01:46,710
+So here is my template and it's a really simple template on all it's going to do is create an easy to
+
+21
+00:01:46,730 --> 00:01:51,920
+instance and enable us to S-sh onto that new instance as well.
+
+22
+00:01:51,920 --> 00:01:58,310
+So first of all we have the template format version and it's always going to be 2010 0 9 0 9 because
+
+23
+00:01:58,350 --> 00:02:02,290
+it's the only supported template format version.
+
+24
+00:02:02,300 --> 00:02:08,840
+Next we have our description and the description is that it's just a template to create an easy to instance
+
+25
+00:02:08,960 --> 00:02:17,900
+and enable S-sh then moving on to parameters and we're defining a parameter called key name.
+
+26
+00:02:18,550 --> 00:02:26,080
+And it's going to be the name of an S-sh key pad that I have located on my system to enable me to log
+
+27
+00:02:26,110 --> 00:02:28,710
+into my PC to instance.
+
+28
+00:02:28,750 --> 00:02:35,830
+So it's got a type and it's also got a constraint description to remind us to provide the name of an
+
+29
+00:02:35,830 --> 00:02:38,270
+existing S-sh keypad.
+
+30
+00:02:38,830 --> 00:02:46,360
+So remember parameters is used for inputting parameters into cloud formation when we launch the stack.
+
+31
+00:02:46,580 --> 00:02:50,300
+Then the next section the most important section is resources.
+
+32
+00:02:50,300 --> 00:02:56,940
+So this section defines the resources that we are asking cloud formation to create for us.
+
+33
+00:02:57,200 --> 00:03:06,490
+And the first resource is called My easy to instance it's type is AWOS easy to instance under properties
+
+34
+00:03:06,500 --> 00:03:14,830
+we have an instance type which is going to be T-2 micro then Image ID and this is the a.m.-I the Amazon
+
+35
+00:03:14,830 --> 00:03:21,310
+machine image that we're going to use to launch the instant so the operating system and this line is
+
+36
+00:03:21,310 --> 00:03:27,890
+really important because this is the AWOS the next who I am I which is located in EU West one.
+
+37
+00:03:28,030 --> 00:03:34,780
+Now if you remember I am Mei's they are region specific and if I tried to access this I am from a different
+
+38
+00:03:34,780 --> 00:03:35,450
+region.
+
+39
+00:03:35,680 --> 00:03:41,380
+So I tried to launch this confirmation stack in a different region for launch in U.S. East one for example
+
+40
+00:03:41,970 --> 00:03:43,440
+isn't going to work.
+
+41
+00:03:43,450 --> 00:03:46,110
+So what you need to do is replace this.
+
+42
+00:03:46,120 --> 00:03:48,310
+I am my day with another.
+
+43
+00:03:48,350 --> 00:03:53,750
+I am available in your region and I'm just going to show you how to find one of those.
+
+44
+00:03:53,800 --> 00:04:01,030
+So come back to your console click on services and go to easy to I'm just going to open it in a new
+
+45
+00:04:01,030 --> 00:04:03,200
+tab.
+
+46
+00:04:03,410 --> 00:04:08,720
+If you click on launch instance I make sure you're in the region that you like a region that you want
+
+47
+00:04:08,720 --> 00:04:09,740
+to work in.
+
+48
+00:04:09,740 --> 00:04:17,230
+So for example if you're working in U.S. aist you can just select the region and then copy.
+
+49
+00:04:17,300 --> 00:04:17,780
+Am I.
+
+50
+00:04:17,780 --> 00:04:22,010
+Id just copy that and then place that into your file.
+
+51
+00:04:22,250 --> 00:04:27,380
+So that will just make sure that you don't show instance in the correct region and you are using the
+
+52
+00:04:27,380 --> 00:04:29,690
+correct I am Id feel region.
+
+53
+00:04:29,780 --> 00:04:33,740
+Otherwise it will not work.
+
+54
+00:04:33,750 --> 00:04:36,030
+So that's the only thing that you need to change in this file.
+
+55
+00:04:36,040 --> 00:04:40,170
+Just make sure you update that I am ID with a valid then x 2.
+
+56
+00:04:40,190 --> 00:04:43,860
+I am for the region in which you are working.
+
+57
+00:04:44,070 --> 00:04:50,170
+Then this next line key name is actually referencing the name that we created up here which is our canine
+
+58
+00:04:50,190 --> 00:04:51,100
+parameter.
+
+59
+00:04:51,360 --> 00:04:59,040
+So it's telling cloud formation to use to associate this S-sh keypad with on instance to allow us to
+
+60
+00:04:59,040 --> 00:05:01,500
+S-sh into the instance.
+
+61
+00:05:01,500 --> 00:05:03,330
+We can also apply tacks here.
+
+62
+00:05:03,360 --> 00:05:10,950
+I've just created a user defined tag of name and the value is going to be my FCF instance and then the
+
+63
+00:05:10,950 --> 00:05:16,890
+next resource we're creating is going to be a brand new security group and this security group is going
+
+64
+00:05:16,890 --> 00:05:21,180
+to enable S-sh access for port 22.
+
+65
+00:05:21,480 --> 00:05:32,750
+It's going to have one ingress rule allowing TZP traffic on port 22 from an IP range of 0.0 0.0 forward
+
+66
+00:05:32,770 --> 00:05:33,630
+slash their own.
+
+67
+00:05:33,750 --> 00:05:39,810
+So in other words enabling S-sh to the entire world to this instance and then the last section of the
+
+68
+00:05:39,810 --> 00:05:41,730
+file is going to be outputs.
+
+69
+00:05:41,790 --> 00:05:48,930
+And in this case I'm asking how information to output the instance ID of the new PC to instance that
+
+70
+00:05:48,930 --> 00:05:50,220
+we have created.
+
+71
+00:05:50,550 --> 00:05:56,640
+So that is the really simple capitalization template and once you have updated your ID then we are ready
+
+72
+00:05:56,640 --> 00:05:58,010
+to continue.
+
+73
+00:05:58,050 --> 00:06:03,920
+So come back to the console back to the cloud formation console and I'm just going to check up here
+
+74
+00:06:03,920 --> 00:06:09,360
+and make sure that I'm in the correct region so I need to be an EU Ireland which is EU west one to match
+
+75
+00:06:09,380 --> 00:06:11,010
+my I am I.
+
+76
+00:06:11,010 --> 00:06:19,380
+And now I'm going to select choose File and it's going to be my cloud formation template Jamo click
+
+77
+00:06:19,380 --> 00:06:20,260
+on next.
+
+78
+00:06:20,400 --> 00:06:22,290
+And we need to give a name to all stack.
+
+79
+00:06:22,290 --> 00:06:27,600
+So you just give your stock a name and we need to select all SISIA sites keypad and it's coming up under
+
+80
+00:06:27,600 --> 00:06:28,610
+parameters.
+
+81
+00:06:28,710 --> 00:06:31,670
+So remember that was our parameters section of a file.
+
+82
+00:06:31,720 --> 00:06:36,630
+So I'm going to select a key pad that I know that I have on my system and it should only show you the
+
+83
+00:06:36,630 --> 00:06:41,680
+key pads that are available for the region for which you are working and just click next.
+
+84
+00:06:41,720 --> 00:06:48,030
+We don't need to add any more options in here but just come down to the advanced section and I just
+
+85
+00:06:48,030 --> 00:06:55,440
+want to show you down here that we have this rollback on failure feature and this defines whether the
+
+86
+00:06:55,440 --> 00:06:56,780
+stack is rolled back.
+
+87
+00:06:56,790 --> 00:06:59,250
+If part of the stack creation files.
+
+88
+00:06:59,430 --> 00:07:03,180
+So you'd have a choice and by default it's set to Yes.
+
+89
+00:07:03,180 --> 00:07:09,330
+So this means if something goes wrong with the information provisioning then it will automatically Roback
+
+90
+00:07:09,360 --> 00:07:10,450
+the whole thing.
+
+91
+00:07:10,590 --> 00:07:16,680
+So for example if there's a problem with your YAML template and cloud formation cannot deploy the infrastructure
+
+92
+00:07:16,830 --> 00:07:22,860
+the resources that you have specified in the way that you specified them then it will automatically
+
+93
+00:07:22,890 --> 00:07:24,810
+rollback.
+
+94
+00:07:24,820 --> 00:07:27,880
+However you have the opportunity to set it to no.
+
+95
+00:07:28,050 --> 00:07:33,390
+So you could set it to know if for example you wanted to debug a cloud formation stack that was constantly
+
+96
+00:07:33,390 --> 00:07:34,270
+failing.
+
+97
+00:07:34,320 --> 00:07:39,190
+You might want to set its notes to try and understand what is actually going wrong here.
+
+98
+00:07:39,360 --> 00:07:45,000
+And if you're doing this from the API for example as a disable Roback flag that you would use but from
+
+99
+00:07:45,000 --> 00:07:47,540
+within the console you can just disable rollback.
+
+100
+00:07:47,610 --> 00:07:53,390
+Just basically toggling this radio button but we're just going to keep that to the default because hopefully
+
+101
+00:07:53,390 --> 00:07:59,660
+this isn't going to file and we're going to click on next and then click Create and it can take a few
+
+102
+00:07:59,660 --> 00:08:02,190
+minutes for it to actually go ahead and create this.
+
+103
+00:08:02,210 --> 00:08:04,400
+Sometimes it can take about three or four minutes.
+
+104
+00:08:04,430 --> 00:08:08,690
+So I'm going to pose the video now and come back to this when it is complete.
+
+105
+00:08:08,690 --> 00:08:10,070
+So that has now completed.
+
+106
+00:08:10,130 --> 00:08:14,520
+And if your status has not updated you can just hit the refresh button here.
+
+107
+00:08:14,890 --> 00:08:21,320
+I'm not going to click on my stack and down here we can see all the events associated with the cloud
+
+108
+00:08:21,320 --> 00:08:23,270
+formation tasks.
+
+109
+00:08:23,270 --> 00:08:25,840
+We can also view the template that we uploaded.
+
+110
+00:08:26,000 --> 00:08:31,790
+We can look at any parameters that the parameter that we provided and we can also look at outputs as
+
+111
+00:08:31,790 --> 00:08:32,310
+well.
+
+112
+00:08:32,450 --> 00:08:37,310
+So this was why at the end of the template where we asked cloud formations to give us an output and
+
+113
+00:08:37,310 --> 00:08:40,990
+the output is the instance Id And that is the value.
+
+114
+00:08:41,480 --> 00:08:48,310
+So let's go to our easy to dashboard and see if we can find on instance so come to se.
+
+115
+00:08:48,620 --> 00:08:51,350
+And there is our instance so it's running.
+
+116
+00:08:51,410 --> 00:08:57,170
+There is the name for instance my C-f instance if we look down here at the properties of the instance
+
+117
+00:08:57,350 --> 00:09:01,020
+you should have the key pen name that you specified.
+
+118
+00:09:01,060 --> 00:09:04,530
+You can view the embed rules as well of the security group.
+
+119
+00:09:04,670 --> 00:09:07,940
+You should have caught 22 for everyone.
+
+120
+00:09:08,030 --> 00:09:11,220
+So it looks like it successfully created everything for us.
+
+121
+00:09:11,300 --> 00:09:19,670
+It's created or easy to instance using that pen name and it has also given us port 22 in the associated
+
+122
+00:09:19,670 --> 00:09:20,890
+security group.
+
+123
+00:09:21,080 --> 00:09:27,140
+So that should be everything that we need to actually go ahead and look into our new instance.
+
+124
+00:09:27,140 --> 00:09:33,970
+So first of all I'm just going to copy the public IP and I'm going to move to my terminal window now
+
+125
+00:09:33,990 --> 00:09:36,790
+I'm just going to try and S-sh in that instance.
+
+126
+00:09:36,810 --> 00:09:38,280
+So I'm going to run SISIA.
+
+127
+00:09:38,330 --> 00:09:49,390
+Mine is I named my key pad which is my all and key pair to come easy to use at.
+
+128
+00:09:49,440 --> 00:09:53,230
+And then Thyssen the public IP address of money for instance
+
+129
+00:09:55,970 --> 00:10:02,600
+and then we also create star instance it's opened up the port for S-sh and it's also associated that
+
+130
+00:10:02,720 --> 00:10:05,280
+S-sh key with on instance as well.
+
+131
+00:10:05,330 --> 00:10:06,740
+So that is cloud formation.
+
+132
+00:10:06,740 --> 00:10:09,240
+You can see that it's really really simple to use.
+
+133
+00:10:09,380 --> 00:10:10,740
+It's really really easy.
+
+134
+00:10:10,850 --> 00:10:16,380
+And if we go back to our console we can actually get confirmation to delete the whole stack as well.
+
+135
+00:10:16,430 --> 00:10:27,690
+So if we come back to the console going to go to services confirmation actions and delete stack yes
+
+136
+00:10:27,690 --> 00:10:30,520
+delete on it should delete the whole lot for you.
+
+137
+00:10:30,720 --> 00:10:33,080
+And there's one other thing I want to show you.
+
+138
+00:10:33,210 --> 00:10:38,410
+If you come down to S-3 you'll see that confirmation.
+
+139
+00:10:38,410 --> 00:10:44,230
+It actually creates a bucket hat with your cloud formation templates in and so located in here if you
+
+140
+00:10:44,230 --> 00:10:48,260
+make it public you can actually download your confirmation template there.
+
+141
+00:10:48,400 --> 00:10:54,940
+So when you upload a template into confirmation it actually stores in an S3 bucket on what's cloud formation
+
+142
+00:10:54,940 --> 00:10:57,490
+has successfully deleted all your resources.
+
+143
+00:10:57,490 --> 00:11:02,770
+You'll be able to delete this bucket as well but you're going to struggle to delete it before confirmation
+
+144
+00:11:02,770 --> 00:11:07,450
+has finished deleting resources because there's a dependency on this bucket.
+
+145
+00:11:07,630 --> 00:11:11,850
+So that is really everything you should need to know for the exam for cloud formation.
+
+146
+00:11:12,130 --> 00:11:14,630
+If you have any questions please let me know.
+
+147
+00:11:14,890 --> 00:11:17,430
+If not feel free to move on to the next lecture.
+
+148
+00:11:17,650 --> 00:11:18,280
+Thank you.

@@ -1,0 +1,491 @@
+1
+00:00:00,690 --> 00:00:06,870
+Hello Clockers and welcome to this lecture and this lecture is a confirmation time lap.
+
+2
+00:00:06,990 --> 00:00:13,810
+And in this lab we're going to deploy a lambda function using cloud formation and Sam.
+
+3
+00:00:13,830 --> 00:00:15,280
+So let's get started.
+
+4
+00:00:15,360 --> 00:00:22,110
+So I'm in my terminal window and the first thing you're going to need to do is install Python.
+
+5
+00:00:22,170 --> 00:00:28,920
+Now I work on a Mac and so a Mac it already has Python installed but it has like it has a pretty old
+
+6
+00:00:29,010 --> 00:00:37,090
+version of it and you're going to need at least Python 3 and usually by default you get Python 2 on
+
+7
+00:00:37,460 --> 00:00:38,440
+on a Mac.
+
+8
+00:00:38,550 --> 00:00:43,760
+So if you don't have Python 3 installed on your system then you going to need to go and download that
+
+9
+00:00:43,890 --> 00:00:49,770
+and get that installed and only some links in the resources to allow you to find the instructions to
+
+10
+00:00:49,770 --> 00:00:53,000
+install Python for your specific operating system.
+
+11
+00:00:53,100 --> 00:01:00,060
+But I've already installed it and if I run Python Monis Monis version it will tell me that I'm running
+
+12
+00:01:00,120 --> 00:01:03,960
+3 dot 7 and then the next thing you need to install is Pipp.
+
+13
+00:01:03,960 --> 00:01:08,610
+So if you don't have that installed once you've got Python installed you can just type easy underscore
+
+14
+00:01:08,670 --> 00:01:13,100
+Instow and then hit and that will install it for you.
+
+15
+00:01:13,100 --> 00:01:20,000
+And then the next thing you need to do is install the AWOS Sam C alloy and you can use Pipp to do that
+
+16
+00:01:21,310 --> 00:01:22,190
+so you just type.
+
+17
+00:01:22,200 --> 00:01:31,610
+Pip Instow AWOS hyphen Sam hyphen C L I will install it for you.
+
+18
+00:01:31,660 --> 00:01:35,020
+So that has successfully installed.
+
+19
+00:01:35,370 --> 00:01:39,470
+So the next thing we're going to do is we're going to create an S three buckets.
+
+20
+00:01:39,480 --> 00:01:45,480
+And this is going to be the packet that we use to upload our Lamda deployment package of to we've created
+
+21
+00:01:45,480 --> 00:01:45,710
+it.
+
+22
+00:01:45,750 --> 00:01:52,350
+So you want to make sure that the AWOS use that you've used when you run AWOS configure has the correct
+
+23
+00:01:52,350 --> 00:01:55,210
+permissions to create a bucket in S3.
+
+24
+00:01:55,260 --> 00:02:01,200
+So to do that you can just do it ws I am gets use user.
+
+25
+00:02:01,250 --> 00:02:06,590
+And that's just going to tell me which user I run IWM configure with when I can get that on my system
+
+26
+00:02:07,010 --> 00:02:08,990
+and it's a user called Fe.
+
+27
+00:02:09,320 --> 00:02:13,970
+I'm just going to check in my console to make sure that user has the access it needs.
+
+28
+00:02:13,970 --> 00:02:26,860
+So if I come down to security and compliance click on I am going to find my user there I am and onto
+
+29
+00:02:26,860 --> 00:02:29,830
+my permissions I've got S-3 full access.
+
+30
+00:02:29,830 --> 00:02:35,920
+And if you use it doesn't have S-3 for access then you can just go to add permissions and you can directly
+
+31
+00:02:35,980 --> 00:02:40,060
+at that find the access that you want and just add that directly to your user.
+
+32
+00:02:40,210 --> 00:02:44,200
+So I'm going to come back to the terminal and the next thing we're going to do is we're going to create
+
+33
+00:02:44,290 --> 00:02:51,310
+our S3 packet so we can do this from the command line just type AWOS S3 and bathe and make bucket and
+
+34
+00:02:51,310 --> 00:02:58,060
+then S3 Kahlon hyphen hyphen and then the name of your pocket and I'm just going to call mine cloud
+
+35
+00:02:58,060 --> 00:02:59,270
+formation.
+
+36
+00:02:59,710 --> 00:03:02,310
+Sam bucket.
+
+37
+00:03:02,410 --> 00:03:05,650
+And then you have to specify which region you want this created in.
+
+38
+00:03:05,780 --> 00:03:07,370
+And I'm going to use.
+
+39
+00:03:07,930 --> 00:03:12,110
+I'm going to use a new West too and then hit enter.
+
+40
+00:03:13,050 --> 00:03:14,260
+So that's created a packet.
+
+41
+00:03:14,310 --> 00:03:19,320
+And this is going to be the packet that we use to upload Alamdar deployment packages after we've created
+
+42
+00:03:19,320 --> 00:03:19,680
+them.
+
+43
+00:03:19,680 --> 00:03:21,360
+So I've got two files to show you.
+
+44
+00:03:21,360 --> 00:03:22,960
+One is index dot J.
+
+45
+00:03:22,960 --> 00:03:29,730
+S which defines Ahlam to function and the other one is a cloud formation templates as well.
+
+46
+00:03:29,730 --> 00:03:32,940
+So I'm just going to go to my text editor to show you those two files.
+
+47
+00:03:32,940 --> 00:03:39,390
+So this is our index dot J S and it's just a really quick lambda function to output this string.
+
+48
+00:03:39,390 --> 00:03:43,600
+Hello talker's this lambda function was deployed using Sam.
+
+49
+00:03:43,620 --> 00:03:45,190
+So it's just a nice function.
+
+50
+00:03:45,240 --> 00:03:49,330
+Really very quick and simple and it's just going to output that message.
+
+51
+00:03:49,350 --> 00:03:55,440
+So the other file I want to show you is called lambda YAML and this is the cloud formation template.
+
+52
+00:03:55,440 --> 00:04:01,980
+So it's pretty similar to the one we used previously in our other cloud formation lap but the main difference
+
+53
+00:04:01,980 --> 00:04:06,690
+that you've got is that it uses this transform parameter here.
+
+54
+00:04:07,020 --> 00:04:09,760
+And this is what defines it as a Samm deployment.
+
+55
+00:04:09,900 --> 00:04:15,410
+So this AWOS service that tells cloud formation that this is going to be using time.
+
+56
+00:04:15,450 --> 00:04:20,770
+So the resources that we're going to be provisioning it's going to be a function of the type services
+
+57
+00:04:20,850 --> 00:04:21,560
+function.
+
+58
+00:04:21,630 --> 00:04:28,830
+The Hadleigh is going to be called index dot handler and the runtime is going to be node 6 10 and then
+
+59
+00:04:28,830 --> 00:04:29,870
+the S3 bucket.
+
+60
+00:04:29,880 --> 00:04:35,850
+Here we need to make sure that this S3 bucket matches the name that you used when you created your S3
+
+61
+00:04:35,850 --> 00:04:36,600
+bucket.
+
+62
+00:04:36,840 --> 00:04:40,470
+So to make sure you changed that the same name that you used.
+
+63
+00:04:40,470 --> 00:04:46,080
+So those are two files and you're going to need to download them and have them in the same directory
+
+64
+00:04:46,110 --> 00:04:47,320
+that you were working in.
+
+65
+00:04:47,460 --> 00:04:51,330
+So now we are ready to run our two commands are to some commands.
+
+66
+00:04:51,450 --> 00:04:55,560
+And if you remember from the previous lecture there were two commands that we need to run.
+
+67
+00:04:55,770 --> 00:05:00,420
+So the first one is some package and that's going to package up the code and it's going to upload it
+
+68
+00:05:00,420 --> 00:05:02,200
+to the S3 packet.
+
+69
+00:05:02,370 --> 00:05:08,310
+And the second one is Sam deploy and that is going to deploy or function using cloud formation.
+
+70
+00:05:08,310 --> 00:05:16,320
+So this is our first command and it's some package and we specify the template file lambda Jamo So that's
+
+71
+00:05:16,320 --> 00:05:18,710
+how cloud formation template file.
+
+72
+00:05:19,200 --> 00:05:25,200
+And then the output template file is going to be this file called Sam template to Jamo and it's going
+
+73
+00:05:25,200 --> 00:05:32,160
+to upload all Lamda deployment code into the S3 bucket that we created and has successfully packaged
+
+74
+00:05:32,160 --> 00:05:37,140
+everything and it's written the output to the same template Toyama.
+
+75
+00:05:37,260 --> 00:05:44,870
+So if we type L S we can see that some templates are Jamo has been created and we can type more
+
+76
+00:05:47,670 --> 00:05:49,130
+and take a look at that file.
+
+77
+00:05:49,140 --> 00:05:55,320
+So that is the template file that Sam and cloud formation are going to use to deploy our function.
+
+78
+00:05:55,350 --> 00:06:00,990
+So now we are ready to run some deploy and I'm just going to paste the command in X is quite low command
+
+79
+00:06:01,200 --> 00:06:06,660
+and we're running some deploy and it's using this template file some template that our previous command
+
+80
+00:06:06,660 --> 00:06:07,860
+created.
+
+81
+00:06:08,010 --> 00:06:10,300
+The stock is going to be called my stacks.
+
+82
+00:06:10,320 --> 00:06:16,890
+That's the name for cloud formation stack and we are using these capabilities flag to enable cloud formation
+
+83
+00:06:16,890 --> 00:06:22,130
+to create an eye and Roll on your behalf to allow the function to execute.
+
+84
+00:06:22,170 --> 00:06:27,270
+So now I'm just going to hit enter and it's just going and creating a stack right now so he can check
+
+85
+00:06:27,270 --> 00:06:28,410
+all this in the console.
+
+86
+00:06:28,410 --> 00:06:34,590
+If I come back to my console go to cloud formation and you should see that your stack is being created
+
+87
+00:06:34,620 --> 00:06:35,720
+it's in progress.
+
+88
+00:06:35,730 --> 00:06:38,810
+And you can see that it's created the eye roll ready.
+
+89
+00:06:38,940 --> 00:06:40,500
+So it's still in progress.
+
+90
+00:06:40,680 --> 00:06:45,540
+And then hopefully if this is successful we should see a message soon telling us that it has created
+
+91
+00:06:45,540 --> 00:06:48,990
+a function as well and it can take a minute or so to complete.
+
+92
+00:06:48,990 --> 00:06:53,490
+So don't worry if it's taking a little bit of time I'm just going to pause the video now and come back
+
+93
+00:06:53,520 --> 00:06:54,700
+in a moment.
+
+94
+00:06:54,930 --> 00:07:00,840
+So that has now successfully created we have a status of create complete and if we check the events
+
+95
+00:07:00,840 --> 00:07:04,760
+below we can say it has successfully created or lambda function.
+
+96
+00:07:04,770 --> 00:07:07,770
+So let's go back to services.
+
+97
+00:07:08,530 --> 00:07:10,950
+Find Lamda it's under compute.
+
+98
+00:07:11,080 --> 00:07:14,410
+And we should see our test function has been created.
+
+99
+00:07:14,410 --> 00:07:18,420
+So it's called my stack last modified to two minutes ago.
+
+100
+00:07:18,460 --> 00:07:24,490
+So let's click on that function and if we scroll down we can see the function code here and we can actually
+
+101
+00:07:24,490 --> 00:07:26,280
+test our function as well.
+
+102
+00:07:27,490 --> 00:07:32,800
+So if we go to configure test events and stick with the default template hello world and we're just
+
+103
+00:07:32,800 --> 00:07:42,010
+going to call it my if and click concreate and then make sure my event is selected and then hit test.
+
+104
+00:07:42,040 --> 00:07:43,510
+So it feels it's been successful.
+
+105
+00:07:43,520 --> 00:07:46,210
+And you should see execution results succeeded.
+
+106
+00:07:46,480 --> 00:07:53,170
+And if you click on details you'll see a status code of 200 which means a successful status code and
+
+107
+00:07:53,170 --> 00:07:58,550
+then you see the body count gurus this lambda function was deployed using Sam.
+
+108
+00:07:58,630 --> 00:08:03,550
+So that is some nice kill formation using Sam and that should be everything that you need to know for
+
+109
+00:08:03,550 --> 00:08:04,840
+the exam.
+
+110
+00:08:04,840 --> 00:08:10,810
+So the main thing to remember is that if you're deploying several applications and you want to deploy
+
+111
+00:08:10,810 --> 00:08:16,960
+them automatically you can use Sam with cloud formation and it definitely simplifies things for you.
+
+112
+00:08:17,050 --> 00:08:19,100
+And there are those two commands that we use.
+
+113
+00:08:19,110 --> 00:08:25,690
+Remember we use some package to create Ah-Sam templates and upload our deployment code to the S3 buckets.
+
+114
+00:08:25,750 --> 00:08:32,540
+And then we used some deploy to actually go ahead and deploy our lambda function using cloud formation.
+
+115
+00:08:32,650 --> 00:08:37,320
+So hopefully that will work for you if you have any questions please do let me know.
+
+116
+00:08:37,330 --> 00:08:42,630
+There's one thing I just want to remind you about when you're using cloud formation to make sure once
+
+117
+00:08:42,640 --> 00:08:47,020
+you have finished with your stack do you make sure you go in and delete it all.
+
+118
+00:08:47,170 --> 00:08:55,130
+So you can come back to cover formation select your stock hit delete stack and of course you need to
+
+119
+00:08:55,130 --> 00:08:59,940
+separately delete your S-3 packet and make sure you'll have the function is deleted as well.
+
+120
+00:08:59,960 --> 00:09:01,250
+So that's the end of this lecture.
+
+121
+00:09:01,280 --> 00:09:03,150
+If you have any questions please let me know.
+
+122
+00:09:03,170 --> 00:09:05,420
+If not feel free to move on to the next lecture.
+
+123
+00:09:05,420 --> 00:09:05,810
+Thank you.

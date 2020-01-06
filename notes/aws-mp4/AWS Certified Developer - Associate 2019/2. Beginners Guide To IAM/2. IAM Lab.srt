@@ -1,0 +1,903 @@
+1
+00:00:00,590 --> 00:00:06,990
+Hello Clockers and welcome to this lecture and this lecture is going to be an identity access management
+
+2
+00:00:06,990 --> 00:00:08,330
+lab.
+
+3
+00:00:08,970 --> 00:00:11,400
+So we're going to configure our user account.
+
+4
+00:00:11,400 --> 00:00:16,710
+We're going to set up multi-factor authentication and we're going to create a first user group and set
+
+5
+00:00:16,710 --> 00:00:18,920
+up a role as well.
+
+6
+00:00:18,930 --> 00:00:22,360
+So you're going to need to log into the IWM console.
+
+7
+00:00:22,410 --> 00:00:25,560
+So if he got time please join me in the console.
+
+8
+00:00:27,350 --> 00:00:33,890
+Here I am in the console and this is a brand new AWOS account that I've set up specifically for this
+
+9
+00:00:33,890 --> 00:00:34,530
+lab.
+
+10
+00:00:34,610 --> 00:00:36,450
+So it has not been used before.
+
+11
+00:00:36,620 --> 00:00:40,780
+When you first walk into the console you'll notice that there's a few different wizards here.
+
+12
+00:00:40,970 --> 00:00:46,080
+There's also some tutorials and videos here some of which are free.
+
+13
+00:00:46,160 --> 00:00:51,080
+Then if you come to the top of the screen on the right hand side you'll notice that we have a list of
+
+14
+00:00:51,080 --> 00:00:52,630
+different regions here.
+
+15
+00:00:52,940 --> 00:00:57,410
+And normally the best thing to do is select the region that is closest to you.
+
+16
+00:00:57,650 --> 00:00:59,210
+So I'm located in London.
+
+17
+00:00:59,270 --> 00:01:01,090
+So London is my closest region.
+
+18
+00:01:01,100 --> 00:01:05,220
+And that's the one I generally try to use either that Orlando Frankfurt.
+
+19
+00:01:05,240 --> 00:01:07,240
+And they're all very fast for London.
+
+20
+00:01:07,310 --> 00:01:12,740
+However when they launch a brand new service in WS they don't launch it to every single region at the
+
+21
+00:01:12,740 --> 00:01:14,040
+same time.
+
+22
+00:01:14,240 --> 00:01:19,460
+So you may find that if you're looking at my screen certain services that appear on my screen that don't
+
+23
+00:01:19,490 --> 00:01:20,900
+appear in your screen.
+
+24
+00:01:20,900 --> 00:01:26,360
+And the reason for that could be that if you're in a different region it may be that that service is
+
+25
+00:01:26,360 --> 00:01:32,360
+not yet available in your region and generally when they launch into service it normally gets launched
+
+26
+00:01:32,360 --> 00:01:35,440
+to us East which is the North Virginia region.
+
+27
+00:01:35,550 --> 00:01:40,920
+Generally that's the place where they launch the new services that get lost that first and then overtime
+
+28
+00:01:41,160 --> 00:01:44,930
+it later on gets made available throughout the other regions.
+
+29
+00:01:44,930 --> 00:01:49,130
+So if you see something on your screen that you're expecting to see or that you can see on my screen
+
+30
+00:01:49,430 --> 00:01:54,040
+the best thing to do is simply change regions and see if you can point to in another region.
+
+31
+00:01:54,050 --> 00:01:59,120
+So let's get started with identity access management and the first thing I'm going to do is come to
+
+32
+00:01:59,120 --> 00:02:06,620
+the top left of the screen and click on services and you'll see there are loads of different services
+
+33
+00:02:06,620 --> 00:02:15,220
+provided within AWOS and identity access management comes under security identity and compliance.
+
+34
+00:02:15,230 --> 00:02:21,780
+So go ahead and click on I am and the first thing that you should see is a splash screen similar to
+
+35
+00:02:21,780 --> 00:02:22,680
+this.
+
+36
+00:02:22,680 --> 00:02:26,730
+Welcome to identity access management.
+
+37
+00:02:27,180 --> 00:02:35,280
+It also shows you a site in Menke and this number here is your customer account number and it's a personalized
+
+38
+00:02:35,280 --> 00:02:37,950
+link that you can use to log into the console.
+
+39
+00:02:37,950 --> 00:02:43,590
+And if you want to you can actually customize it to make a much more friendly you or else I'm going
+
+40
+00:02:43,590 --> 00:02:45,520
+to go ahead and see if I can customize this.
+
+41
+00:02:45,570 --> 00:02:54,300
+I'm just going to call mine a cloud guru Fay and see if I can use that name yet.
+
+42
+00:02:54,310 --> 00:02:56,040
+So that is changed my sign in link.
+
+43
+00:02:56,050 --> 00:03:01,240
+So next time I want to look into the console I can just simply use that link instead and it will take
+
+44
+00:03:01,240 --> 00:03:07,840
+me straight to my console and we can say here on the I am resources that we don't have any users groups
+
+45
+00:03:07,900 --> 00:03:16,980
+or policies or rows or identity providers created and in the security status section they give you this
+
+46
+00:03:16,980 --> 00:03:23,490
+checklist of the minimum kind of security baseline that they recommend you apply to every single account
+
+47
+00:03:23,900 --> 00:03:26,190
+and the first one is delete your access case.
+
+48
+00:03:26,190 --> 00:03:29,030
+With that they've already done that for you.
+
+49
+00:03:29,070 --> 00:03:33,900
+The second one is to activate multi-factor authentication on your router account.
+
+50
+00:03:33,960 --> 00:03:39,750
+So that means to enable another level of authentication beyond the username and password that you use
+
+51
+00:03:39,750 --> 00:03:47,060
+to log into your account with the next step would be to create individual identity axis management uses.
+
+52
+00:03:47,220 --> 00:03:53,210
+Because we don't want everyone within our organization to be logging into AWOS using the root account.
+
+53
+00:03:53,280 --> 00:03:59,040
+It's best practice to only use that account when you really really need to when there's no other way
+
+54
+00:03:59,040 --> 00:04:01,370
+to do the tasks that you're trying to do.
+
+55
+00:04:01,830 --> 00:04:08,250
+Instead you'll want to restrict access to your users and only gives them access they need to do that
+
+56
+00:04:08,250 --> 00:04:09,240
+job.
+
+57
+00:04:09,750 --> 00:04:17,900
+So we would create individual identity access management uses them to a relevant group and assign permissions
+
+58
+00:04:17,990 --> 00:04:24,220
+on a group by great basis according to the job function that your users are doing.
+
+59
+00:04:24,230 --> 00:04:31,880
+For example your database administrator is my only need access to the databases running in a W-S and
+
+60
+00:04:31,900 --> 00:04:40,370
+your teams might need access to certain S-3 buckets within ws whereas your systems administrators would
+
+61
+00:04:40,370 --> 00:04:46,010
+again need a completely different level of access and we'd need access to administer various resources
+
+62
+00:04:46,070 --> 00:04:47,400
+within a WS.
+
+63
+00:04:47,450 --> 00:04:54,440
+So it's best practice to create individual user accounts for your users then group them into logical
+
+64
+00:04:54,440 --> 00:04:54,930
+groups.
+
+65
+00:04:54,950 --> 00:05:03,650
+For example our database administration systems administration etc. and then assign the relevant permissions
+
+66
+00:05:03,770 --> 00:05:07,100
+to each of those groups on a group by group basis.
+
+67
+00:05:07,430 --> 00:05:12,380
+And then the final thing it advises you to do is to apply a password policy.
+
+68
+00:05:12,380 --> 00:05:17,470
+So that's all about password complexity and lifecycle management as well.
+
+69
+00:05:17,930 --> 00:05:22,780
+So let's go ahead and activate multi-factor authentication on our account.
+
+70
+00:05:22,790 --> 00:05:32,510
+So if you click on the arrow here the then click on manage MFA and there's two different types of MFI
+
+71
+00:05:32,520 --> 00:05:33,320
+device.
+
+72
+00:05:33,550 --> 00:05:39,900
+But we're going to use the virtual MFA device make sure that one is selected and click on next.
+
+73
+00:05:39,990 --> 00:05:47,880
+And now to activate the MFA device you first need to install an MFA compatible application and we normally
+
+74
+00:05:47,880 --> 00:05:55,050
+install that on a smartphone PC or other device and you can find a list of the MFH compatible applications.
+
+75
+00:05:55,050 --> 00:05:57,980
+If you click this link here so let's just click on that
+
+76
+00:06:01,320 --> 00:06:05,830
+scroll down and the supported virtual MFI applications.
+
+77
+00:06:05,850 --> 00:06:11,520
+There's a few different ones supported for Android iPhone Windows phone and BlackBerry.
+
+78
+00:06:11,760 --> 00:06:15,750
+But I have an iPhone so I'm going to be using Google authenticator.
+
+79
+00:06:15,780 --> 00:06:22,320
+So depending on which device you're using download the relevant MFA application and then come back to
+
+80
+00:06:22,320 --> 00:06:24,810
+the console.
+
+81
+00:06:24,840 --> 00:06:31,650
+So once you've downloaded the relevant MFA application just click on next step and then it will show
+
+82
+00:06:31,650 --> 00:06:37,940
+you this QR code which you need to scan using the MFA application on your device.
+
+83
+00:06:40,430 --> 00:06:49,260
+So on my phone here I'm going to select scan barcode and it gives me the six digit authentication code
+
+84
+00:06:49,680 --> 00:06:51,930
+which I need to type in my web page
+
+85
+00:06:54,740 --> 00:06:59,680
+and then I need to wait until that code expires and it's going to give me another code.
+
+86
+00:06:59,930 --> 00:07:01,150
+And there it is.
+
+87
+00:07:01,430 --> 00:07:03,560
+And I'm just going to type it in here.
+
+88
+00:07:05,310 --> 00:07:13,470
+And click activate and you should get this message that the MFA device is successfully associated.
+
+89
+00:07:13,470 --> 00:07:21,410
+So now if that was successful you should have a green tick next to your activate MFA on account.
+
+90
+00:07:21,420 --> 00:07:26,310
+And if it was successful and you don't see the green tick just refresh the browser on that quintic should
+
+91
+00:07:26,330 --> 00:07:28,370
+show up.
+
+92
+00:07:28,420 --> 00:07:33,320
+So the next thing we're going to do is create some identity access management eases.
+
+93
+00:07:33,520 --> 00:07:36,430
+So click on users on the left hand side
+
+94
+00:07:39,330 --> 00:07:49,070
+click on Add user and again to create a user code Fe and there's two different ways to access AWOS.
+
+95
+00:07:49,340 --> 00:07:59,010
+The first access type is programmatic and this enables access using the AWOS API come online interface
+
+96
+00:07:59,190 --> 00:08:01,810
+and developing toolkit as well.
+
+97
+00:08:02,280 --> 00:08:06,060
+And we call that programmatic access.
+
+98
+00:08:06,150 --> 00:08:14,540
+This is how applications will access AWOS and it's also how you can access the command line on your
+
+99
+00:08:14,540 --> 00:08:15,540
+local machine.
+
+100
+00:08:17,050 --> 00:08:23,700
+So I'm going to select programmatic access it and then the second method of accessing AWOS is by the
+
+101
+00:08:23,710 --> 00:08:24,800
+console.
+
+102
+00:08:24,810 --> 00:08:26,340
+And that's what we're doing right now.
+
+103
+00:08:26,470 --> 00:08:29,020
+So I'm going to select console access as well.
+
+104
+00:08:30,730 --> 00:08:37,610
+And I'm going to keep the default to an auto generated password for the console and also require a password
+
+105
+00:08:37,610 --> 00:08:40,660
+reset when the user looks in.
+
+106
+00:08:40,670 --> 00:08:48,290
+So just keep those last two to the default and click on next and now it's asking us to set permissions
+
+107
+00:08:48,290 --> 00:08:49,790
+for our new user.
+
+108
+00:08:49,790 --> 00:08:53,330
+So we've got a choice of how we can actually set these permissions.
+
+109
+00:08:53,330 --> 00:09:00,720
+Firstly we can add user to a group so if we had groups already existing We could add them to an existing
+
+110
+00:09:00,720 --> 00:09:07,120
+group or we can create a new group we can copy permissions from an existing user.
+
+111
+00:09:07,650 --> 00:09:11,500
+And also we can attach permissions directly to the user.
+
+112
+00:09:11,790 --> 00:09:19,200
+But for now we're just going to go ahead and create groups or click on create great and we need to give
+
+113
+00:09:19,240 --> 00:09:22,350
+our group a name and I'm going to call the group this admin
+
+114
+00:09:25,220 --> 00:09:31,130
+and then next thing it's asking us to do is to add a policy and it's these policies which define the
+
+115
+00:09:31,130 --> 00:09:36,110
+permissions that are going to be granted to the group.
+
+116
+00:09:36,330 --> 00:09:39,140
+So this is going to be osseous Hopman group.
+
+117
+00:09:39,330 --> 00:09:45,830
+I'm just going to search for Azmin and there's a whole load of default policies that you can choose
+
+118
+00:09:45,830 --> 00:09:47,250
+from.
+
+119
+00:09:47,300 --> 00:09:54,830
+So let's have a look at the administrator access policy and if you click on this arrow and click on
+
+120
+00:09:54,830 --> 00:09:59,420
+Jason and you can actually look at the Jason code which makes up the policy.
+
+121
+00:09:59,450 --> 00:10:07,010
+So we've got a version on an underneath that a statement and then the effect of the policy which is
+
+122
+00:10:07,010 --> 00:10:11,530
+to allow and then action is everything.
+
+123
+00:10:11,530 --> 00:10:15,400
+So that means you can run any action on any resource.
+
+124
+00:10:15,400 --> 00:10:23,050
+So basically this is giving the user full access to AWOS and he can take a look at all of these policies
+
+125
+00:10:23,130 --> 00:10:24,890
+or look at the permissions that they give you.
+
+126
+00:10:25,060 --> 00:10:31,900
+So if you click on the arrow select make sure Tyson is selected and you can look at the the Jason code
+
+127
+00:10:31,930 --> 00:10:39,660
+and it's really just a key value pair so you can see for example in this policy allows you for cloud
+
+128
+00:10:39,660 --> 00:10:48,500
+trial to list the tags Look-Up events for code commit it allows you to do a poll and a get push etc..
+
+129
+00:10:48,540 --> 00:10:56,670
+So I'm just going to go back into administrator access make sure that that is selected and click on
+
+130
+00:10:56,670 --> 00:10:57,850
+Create group.
+
+131
+00:10:58,110 --> 00:11:00,240
+So that's our group created.
+
+132
+00:11:00,240 --> 00:11:01,980
+We've attached our policy.
+
+133
+00:11:02,770 --> 00:11:09,640
+I'm going to review and this just shows us all of the choices that we've selected so we've got my user
+
+134
+00:11:10,270 --> 00:11:17,520
+with poker Matic and console access with an auto generated password requiring a reset on first logon
+
+135
+00:11:18,360 --> 00:11:24,480
+and our user is going to be a member of this admin group and by default they're also going to be giving
+
+136
+00:11:24,480 --> 00:11:27,960
+this permission to change their password.
+
+137
+00:11:28,950 --> 00:11:34,680
+So let's go ahead and create the user so a user has been created.
+
+138
+00:11:34,750 --> 00:11:39,470
+We can also say that I've been given this access key and say access Kate.
+
+139
+00:11:39,820 --> 00:11:47,840
+And if we click on show it show was that secret access came on this access key and Secret Access Key
+
+140
+00:11:49,130 --> 00:11:53,320
+are needed when we lock in using the command line interface.
+
+141
+00:11:53,320 --> 00:12:00,910
+So when we want to interact programmatically with AWOS we can only do that using the access key and
+
+142
+00:12:00,910 --> 00:12:09,110
+seek access key whereas if we want to log into the console that's when we would use our username and
+
+143
+00:12:09,110 --> 00:12:10,720
+password.
+
+144
+00:12:11,010 --> 00:12:15,810
+And it's really important to remember that the only time you get to see the same access key is when
+
+145
+00:12:15,810 --> 00:12:20,910
+you first create the user and we move away from this page we might be able to see the secret access
+
+146
+00:12:20,910 --> 00:12:27,450
+key again and you can download it as a CSJ so you can download it and keep it on your machine keep it
+
+147
+00:12:27,450 --> 00:12:28,510
+somewhere safe.
+
+148
+00:12:29,460 --> 00:12:33,370
+Because if we lose this secret access key We're going to have to regenerate it.
+
+149
+00:12:33,400 --> 00:12:35,180
+That's really important to know.
+
+150
+00:12:35,310 --> 00:12:42,500
+And it's also important to remember the difference between access and seek 6K and name and password.
+
+151
+00:12:42,500 --> 00:12:44,430
+So let's go ahead and hit close.
+
+152
+00:12:44,580 --> 00:12:50,790
+So now I'm going to go in and create another user and this user are going to call John the guy and give
+
+153
+00:12:50,790 --> 00:12:57,870
+him programatic and console access and click on next I'm going to add him to the same.
+
+154
+00:12:57,860 --> 00:12:59,500
+It's this great.
+
+155
+00:13:00,050 --> 00:13:03,000
+Click on review and create Eiza
+
+156
+00:13:06,490 --> 00:13:07,640
+and close.
+
+157
+00:13:07,680 --> 00:13:15,030
+Now John he is going to work for the H-L team I'm going to create a new group called H.
+
+158
+00:13:15,150 --> 00:13:20,900
+So he can create great Nicollet Shaw click on next.
+
+159
+00:13:22,090 --> 00:13:23,330
+Anthropology type.
+
+160
+00:13:23,530 --> 00:13:28,810
+Now the whole team we're going to give them access to S-3 to read files in S-3.
+
+161
+00:13:29,110 --> 00:13:35,800
+So for policy type I'm just going to search for a policy containing S-3 and we've got one here S-3 read
+
+162
+00:13:35,860 --> 00:13:37,540
+only access.
+
+163
+00:13:37,540 --> 00:13:46,830
+So I'm going to select the next step and create group.
+
+164
+00:13:46,970 --> 00:13:48,360
+So now we've got two groups.
+
+165
+00:13:48,390 --> 00:13:54,450
+We've got one for say submarines giving them full access within AWOS and there's two users who are members
+
+166
+00:13:54,450 --> 00:13:55,780
+of that group.
+
+167
+00:13:56,080 --> 00:14:04,560
+And we've also got our second group called H R with read only access to S-3 and then the next thing
+
+168
+00:14:04,560 --> 00:14:12,270
+I'm going to do is I'm going to add John into my group so I'm going to go back to John and click on
+
+169
+00:14:12,270 --> 00:14:13,010
+his name.
+
+170
+00:14:14,600 --> 00:14:15,710
+Click on groups.
+
+171
+00:14:18,780 --> 00:14:25,650
+Add use to groups and then select our H.R. group and click add to two groups.
+
+172
+00:14:28,040 --> 00:14:31,910
+And I can also hear if I want I can delete him from the CCBN group.
+
+173
+00:14:31,930 --> 00:14:35,000
+I'm going to do that because he's not a systems administrator.
+
+174
+00:14:35,030 --> 00:14:38,960
+He works for H.R. So we're going to take that position away.
+
+175
+00:14:38,970 --> 00:14:40,370
+Click on remove from group
+
+176
+00:14:43,780 --> 00:14:45,480
+and if we go back to permissions
+
+177
+00:14:48,130 --> 00:14:56,820
+and click on Add permissions for John we can also add permissions directly to John.
+
+178
+00:14:57,020 --> 00:14:59,120
+Without it being on a per group basis.
+
+179
+00:14:59,120 --> 00:15:06,110
+So for example let's say he needs to specifically access Lycia because he's in charge of archiving as
+
+180
+00:15:06,110 --> 00:15:07,270
+well in our company.
+
+181
+00:15:07,460 --> 00:15:16,820
+So let's click on at existing policies directly and search for Lycia are we going to give him Lycia
+
+182
+00:15:17,020 --> 00:15:19,670
+full access.
+
+183
+00:15:19,710 --> 00:15:29,700
+Click on next and at permissions and then in the summary for John we can say that he has Amazon glacé
+
+184
+00:15:29,700 --> 00:15:36,220
+a full access which we've attached directly and then he also has this S-3 read only access which is
+
+185
+00:15:36,220 --> 00:15:39,500
+attached by the group.
+
+186
+00:15:39,520 --> 00:15:45,520
+So if we go back 12 dashboard we can say we've got four out of five ticks here.
+
+187
+00:15:45,700 --> 00:15:51,850
+And then the last thing we need to do is apply and identity excess management password policy.
+
+188
+00:15:52,210 --> 00:15:59,430
+So if we click on then click on manage password policy and here is where we can set up a password policy.
+
+189
+00:16:00,880 --> 00:16:04,560
+And this is simply a set of rules defining the type of password.
+
+190
+00:16:04,610 --> 00:16:10,460
+And I am using of set so we can define the minimum password length.
+
+191
+00:16:10,550 --> 00:16:13,160
+So I'm going to change that at 12.
+
+192
+00:16:13,400 --> 00:16:20,480
+We can set it to require at least one up uppercase letter one lower case letter one number.
+
+193
+00:16:20,480 --> 00:16:27,680
+We can set password expiration in a period of days so we can set it to expire after 90 days.
+
+194
+00:16:27,680 --> 00:16:34,730
+So whatever password policy you have within your organization you should be able to reflect that here
+
+195
+00:16:34,750 --> 00:16:37,150
+within AWOS as well.
+
+196
+00:16:37,150 --> 00:16:44,810
+So then just click on apply password policy and then if we go back to our dashboard We've got five green
+
+197
+00:16:44,810 --> 00:16:52,720
+ticks now the last thing we're going to do here is we're going to create a roll click on Rose
+
+198
+00:16:55,370 --> 00:17:00,630
+and I am rose or a secure white to grant permissions to entities that you trust.
+
+199
+00:17:01,010 --> 00:17:08,470
+And the examples they give are and I am used in another account application code running on an easy
+
+200
+00:17:08,470 --> 00:17:16,510
+to instance that needs to perform actions on AWOS resources and be a service that needs to act on resources
+
+201
+00:17:16,540 --> 00:17:18,470
+in your account to provide its features
+
+202
+00:17:22,860 --> 00:17:28,280
+and uses from a corporate directory who's you who are using identity federation with Sammo.
+
+203
+00:17:28,440 --> 00:17:30,420
+So we don't need to worry about that last one.
+
+204
+00:17:32,450 --> 00:17:36,140
+That's something that we're going to revisit in a little bit more detail later on in the course
+
+205
+00:17:38,940 --> 00:17:46,440
+but right now we're going to create a roll allowing an easy to instance to write files to S-3.
+
+206
+00:17:46,460 --> 00:17:53,750
+So let's click on Create role and we need to select the AWOS service that we want to create the profile.
+
+207
+00:17:53,870 --> 00:17:59,630
+So make sure AWOS service is selected choose the service that the role will use.
+
+208
+00:17:59,690 --> 00:18:05,510
+And we're going to select easy to click on next.
+
+209
+00:18:05,710 --> 00:18:10,780
+And now from the default policies we need to search for a policy relating to S3.
+
+210
+00:18:10,780 --> 00:18:12,950
+So just type as 3 in the search box
+
+211
+00:18:16,820 --> 00:18:23,210
+and I'm going to select as three full access and this will give any easy to instance which has this
+
+212
+00:18:23,210 --> 00:18:24,550
+role attached.
+
+213
+00:18:24,650 --> 00:18:26,780
+We'll have full access to S-3.
+
+214
+00:18:26,780 --> 00:18:32,350
+So I'm going to go ahead and click on next gif or roll a name
+
+215
+00:18:36,270 --> 00:18:41,980
+and click on Create row.
+
+216
+00:18:42,110 --> 00:18:47,700
+So now we've created that row we're going to be able to apply that row to an any new E.S. to instance
+
+217
+00:18:47,700 --> 00:18:57,630
+that we create and if we go back to the dashboard we can say we've got two uses two grapes and we got
+
+218
+00:18:57,630 --> 00:19:01,160
+one roll.
+
+219
+00:19:01,500 --> 00:19:06,960
+So that's all we're going to do with I am at the moment but you're going to be using it quite a bit
+
+220
+00:19:06,960 --> 00:19:08,040
+throughout the course.
+
+221
+00:19:08,070 --> 00:19:11,430
+So you're going to become very familiar with I am.
+
+222
+00:19:11,430 --> 00:19:12,990
+As you progress throughout the course
+
+223
+00:19:15,800 --> 00:19:17,490
+and that's the end of this lecture.
+
+224
+00:19:17,540 --> 00:19:20,340
+So if you have any questions please let me know.
+
+225
+00:19:20,390 --> 00:19:23,110
+If not please feel free to move on to the next lecture.
+
+226
+00:19:23,240 --> 00:19:23,680
+Thank you.

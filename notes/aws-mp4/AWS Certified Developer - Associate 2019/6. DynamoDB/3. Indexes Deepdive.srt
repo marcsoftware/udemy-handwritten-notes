@@ -1,0 +1,187 @@
+1
+00:00:00,270 --> 00:00:05,100
+Hello cloggers and welcome to this lecture and this lecture is going to be all about dynamite.
+
+2
+00:00:05,110 --> 00:00:08,910
+DP index's So let's get started.
+
+3
+00:00:09,420 --> 00:00:11,420
+So what is an index.
+
+4
+00:00:11,430 --> 00:00:18,240
+Well in stinko databases an index is a data structure which allows you to perform really fast queries
+
+5
+00:00:18,600 --> 00:00:24,780
+on specific columns within a table and you can select the columns that you're interested in that you
+
+6
+00:00:24,780 --> 00:00:26,710
+want to include in that index.
+
+7
+00:00:26,910 --> 00:00:32,720
+And then you run your searches against that index rather than on the entire data set.
+
+8
+00:00:32,760 --> 00:00:36,860
+So it really makes your queries much more efficient.
+
+9
+00:00:36,990 --> 00:00:44,700
+And in talking about DP There are two types of index supported to help speed up your dynamo IDB queries.
+
+10
+00:00:44,700 --> 00:00:45,670
+Now don't try IDB.
+
+11
+00:00:45,670 --> 00:00:52,330
+Of course it's not a sequel database but it does still have this index feature and Entine of ODP.
+
+12
+00:00:52,350 --> 00:00:59,590
+There are two types of index that are supported which will both help speed up your dynamo DB queries.
+
+13
+00:00:59,610 --> 00:01:06,210
+So firstly we have the local secondary index and also the global secondary index.
+
+14
+00:01:06,210 --> 00:01:09,900
+So let's take a look at these in a little bit more detail.
+
+15
+00:01:10,470 --> 00:01:17,540
+Now a local secondary index is an index that can only be created when you are creating your table.
+
+16
+00:01:18,270 --> 00:01:26,410
+So you cannot add remove or modify it later and it has the same partition key as your original table
+
+17
+00:01:27,760 --> 00:01:29,930
+but it does have a different sort key.
+
+18
+00:01:30,100 --> 00:01:35,320
+And that's what gives you the different view on your data because your data is going to be organized
+
+19
+00:01:35,410 --> 00:01:38,090
+according to an alternative sort.
+
+20
+00:01:38,410 --> 00:01:44,260
+Any queries that are based on this sort key that you run against the local secondary index are then
+
+21
+00:01:44,260 --> 00:01:47,710
+much faster than they would be if you were using the mind table.
+
+22
+00:01:47,710 --> 00:01:54,040
+So for example in a customer table where you're storing all information about your customers their e-mail
+
+23
+00:01:54,040 --> 00:01:59,980
+address all of that all the purchases they've made all their contact details et cetera you might have
+
+24
+00:01:59,980 --> 00:02:06,280
+a local secondary index which uses the main partition of user ID and then uses a different sort caid
+
+25
+00:02:06,370 --> 00:02:07,820
+to your main table.
+
+26
+00:02:07,960 --> 00:02:11,990
+So you might use a sort key like account creation date.
+
+27
+00:02:12,100 --> 00:02:19,060
+Now for global secondary indexes these are much much more flexible so you can create the global secondary
+
+28
+00:02:19,060 --> 00:02:21,000
+index whenever you like.
+
+29
+00:02:21,130 --> 00:02:27,020
+So you can either create it when you create your table or you can add it later on and it allows you
+
+30
+00:02:27,020 --> 00:02:33,010
+to choose a different partition key as well as a different sort key to your main table.
+
+31
+00:02:33,080 --> 00:02:36,530
+So that gives you a completely different view of the data.
+
+32
+00:02:36,530 --> 00:02:41,220
+And of course it speeds up any queries that are relating to this alternative partition.
+
+33
+00:02:41,270 --> 00:02:42,500
+And so key.
+
+34
+00:02:42,620 --> 00:02:49,400
+So for example in our customer table we might want to create a global secondary index using a different
+
+35
+00:02:49,400 --> 00:02:54,560
+partition of email address and then use a sort of last log in date.
+
+36
+00:02:55,130 --> 00:02:58,880
+So what are exam tips for the dynamite IDB indexes.
+
+37
+00:02:59,090 --> 00:03:06,480
+Well firstly indexes overall enable much faster queries but only on very specific data columns that
+
+38
+00:03:06,480 --> 00:03:11,970
+give you a different view with your data based on an alternative partition key or an alternative partition
+
+39
+00:03:11,970 --> 00:03:14,730
+key and an automotive Souci.
+
+40
+00:03:15,000 --> 00:03:18,970
+And it's really important to understand the differences between these two types of index.
+
+41
+00:03:18,990 --> 00:03:24,870
+So just remember for the local secondary index it must be created when you create your table and it
+
+42
+00:03:24,870 --> 00:03:27,880
+uses the same partition but a different sort key.
+
+43
+00:03:28,970 --> 00:03:35,300
+And for the global secondary index you can create it anytime either at table creation or afterwards.
+
+44
+00:03:35,330 --> 00:03:39,560
+And it can have a different position key as well as a different sort key.
+
+45
+00:03:39,590 --> 00:03:40,760
+So that's the end of this lecture.
+
+46
+00:03:40,760 --> 00:03:43,010
+If you have any questions please let me know.
+
+47
+00:03:43,220 --> 00:03:46,080
+If not please feel free to move on to the next section.

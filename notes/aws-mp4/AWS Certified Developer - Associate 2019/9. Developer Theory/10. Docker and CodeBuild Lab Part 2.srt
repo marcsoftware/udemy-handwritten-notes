@@ -1,0 +1,463 @@
+1
+00:00:00,360 --> 00:00:03,660
+So let's see if we can get code build to build our image.
+
+2
+00:00:03,660 --> 00:00:05,600
+For us.
+
+3
+00:00:05,880 --> 00:00:10,090
+And in order to do that the first thing we need is a build spec file.
+
+4
+00:00:10,240 --> 00:00:12,990
+And I've got one already prepared which I'm gonna show you.
+
+5
+00:00:13,440 --> 00:00:19,500
+And this is the configuration file for code build which tells code build exactly how to build all Docker
+
+6
+00:00:19,500 --> 00:00:26,700
+image and you basically add into this file all the commands that you want code build to run in order
+
+7
+00:00:26,700 --> 00:00:27,750
+to build your software.
+
+8
+00:00:28,020 --> 00:00:30,840
+And there are a few debugging commands in here as well.
+
+9
+00:00:30,840 --> 00:00:36,950
+But the most important bits to note are in the pre build the build and the Post build section.
+
+10
+00:00:37,050 --> 00:00:42,600
+And we're going to be using exactly the same commands that I used earlier when I was manually building
+
+11
+00:00:42,630 --> 00:00:43,950
+out the Docker image.
+
+12
+00:00:44,010 --> 00:00:50,310
+The first one to note is this easy or get log in and then the second one is this docker build minus
+
+13
+00:00:50,310 --> 00:00:50,930
+T.
+
+14
+00:00:51,150 --> 00:00:53,310
+And then the docker tag command.
+
+15
+00:00:53,310 --> 00:00:55,780
+And then finally the docker push command.
+
+16
+00:00:55,920 --> 00:01:02,360
+But you are going to need to do some updates on this file in order to make it correct for your own configuration.
+
+17
+00:01:02,370 --> 00:01:04,860
+So first of all we're going to change the region.
+
+18
+00:01:04,860 --> 00:01:10,530
+So just set it to the region that you're working in and I'm working EU central this time and then inside
+
+19
+00:01:10,650 --> 00:01:15,990
+and then within the docker target command you're going to need to change this to the correct you or
+
+20
+00:01:15,990 --> 00:01:19,070
+I for your own ACR repository.
+
+21
+00:01:19,380 --> 00:01:24,860
+And I'm just going to change that also to the central region and then the last command you need to change
+
+22
+00:01:24,870 --> 00:01:26,260
+is this Docker push command.
+
+23
+00:01:26,280 --> 00:01:30,030
+And once again you need to change it to the correct you or I.
+
+24
+00:01:30,030 --> 00:01:34,260
+So I'm just going to change that's essential but do just make sure that you've grabbed the correct you
+
+25
+00:01:34,260 --> 00:01:36,170
+or I for your repository.
+
+26
+00:01:36,510 --> 00:01:39,090
+So hopefully you should recognise those Docker commands.
+
+27
+00:01:39,090 --> 00:01:43,740
+They're definitely worth remembering for the exam and understanding what each one of them does.
+
+28
+00:01:43,860 --> 00:01:49,440
+And now because we've updated that file we're going to need to save it and then put it to our code commit
+
+29
+00:01:49,440 --> 00:01:52,350
+repository so that it can be accessed by code build.
+
+30
+00:01:52,800 --> 00:01:59,610
+So head over to the terminal window and I'm in the same directory where my build spec dot Yama is located
+
+31
+00:01:59,850 --> 00:02:11,720
+and I'm going to run get at build spec so yellow then get commits minus M and I'm just going to add
+
+32
+00:02:11,720 --> 00:02:22,330
+the message adding build spec dot yellow and hit enter and then I'm gonna type get push and it will
+
+33
+00:02:22,330 --> 00:02:26,540
+automatically push that to our master repository.
+
+34
+00:02:26,560 --> 00:02:34,370
+So now if we come back to our code commit click on the build specs yellow set and we can see that that
+
+35
+00:02:34,370 --> 00:02:43,110
+has got our updated file in there and it includes the correct you or I for all Docker repository.
+
+36
+00:02:43,150 --> 00:02:50,110
+So now we are ready to get code build to actually build our Docker image for us so we can go back to
+
+37
+00:02:50,380 --> 00:02:58,900
+services and code build and click on Create project and I'm gonna call my project Hello cloud gurus
+
+38
+00:02:59,650 --> 00:03:06,400
+scroll down and it's already picked up the source provider as code commit but you could store your source
+
+39
+00:03:06,400 --> 00:03:13,120
+in S3 get hub bit bucket etc under repository you're going to need to add the name of your code commit
+
+40
+00:03:13,120 --> 00:03:19,210
+repo so it's my source code repo then scroll down for the environment settings just keep to the default
+
+41
+00:03:19,240 --> 00:03:27,070
+so we're using an image managed by code build on the operating system it's going to be Ubuntu runtime
+
+42
+00:03:27,160 --> 00:03:35,290
+will be standard image I'm gonna select standard 2.0 I'm gonna keep to the default of always use the
+
+43
+00:03:35,290 --> 00:03:41,980
+latest image for this runtime version and then make sure you select this privileged flag so enable this
+
+44
+00:03:41,980 --> 00:03:47,140
+flag if you want to build Docker images and we want to build Docker images so we need to select that
+
+45
+00:03:47,140 --> 00:03:53,710
+flag as well on the service roll we're going to allow it to create a new service role for us and it
+
+46
+00:03:53,710 --> 00:03:58,660
+should have all the permissions that we need to do everything within code build then scrolling down
+
+47
+00:03:58,660 --> 00:04:03,650
+to the built spec section and you've actually got a choice here so it's optional to use the build spec
+
+48
+00:04:03,740 --> 00:04:10,250
+yammer or file or you can actually go ahead and insert your own build commands instead.
+
+49
+00:04:10,450 --> 00:04:15,640
+So that is actually really important to note because by default code build is going to be looking for
+
+50
+00:04:15,640 --> 00:04:22,540
+a file called Build spec dot Jamil in the source code root directory but to be aware that you can actually
+
+51
+00:04:22,540 --> 00:04:29,650
+go in and override the build spec dot Jamil if you want to by inserting your own build commands and
+
+52
+00:04:29,650 --> 00:04:36,460
+if we click that option now you'll see that you can you can add the commands in this text box or you
+
+53
+00:04:36,460 --> 00:04:42,340
+can also switch to an editor mode and build out your own basically build out your own build spec dot
+
+54
+00:04:42,410 --> 00:04:48,910
+Jamil within this template and this is a really useful feature if for example you're building a project
+
+55
+00:04:49,000 --> 00:04:53,890
+and you don't want to use the commands and the parameters contained within the build spec dot yammer
+
+56
+00:04:54,170 --> 00:05:00,040
+or even if you don't have permission to modify the build spec dot Jamil or you don't have permission
+
+57
+00:05:00,040 --> 00:05:05,800
+to edit the source code within code commit you can actually just go in and add your own commands here
+
+58
+00:05:06,220 --> 00:05:11,650
+and that's also a really important tip for the exam so just remember that you can either add your commands
+
+59
+00:05:11,710 --> 00:05:16,940
+in the console as an alternative to using the build aspect or UML but we're going to be using build
+
+60
+00:05:16,970 --> 00:05:25,250
+Specter also just make sure that option is selected and scroll down and create build project so that
+
+61
+00:05:25,250 --> 00:05:30,320
+is our build project created and in order to start the build you just click this button here so hit
+
+62
+00:05:30,320 --> 00:05:35,960
+stop build and if we scroll down you'll see all the options that we selected earlier and once again
+
+63
+00:05:36,170 --> 00:05:40,550
+you can actually go in and override some of the environment variables if you want to.
+
+64
+00:05:40,670 --> 00:05:47,450
+So you can add them in as key value pairs or even create parameters within parameter store for example
+
+65
+00:05:47,480 --> 00:05:54,230
+if you wanted to add sensitive passwords access I.D. database connection strings etc. so you can go
+
+66
+00:05:54,230 --> 00:05:55,340
+in and do that as well.
+
+67
+00:05:55,340 --> 00:06:00,510
+At this stage but we're not going to do that we're just gonna hit stop build and pray that it works.
+
+68
+00:06:00,680 --> 00:06:04,300
+And as the build is in progress it actually gives you quite a lot of feedback.
+
+69
+00:06:04,550 --> 00:06:09,530
+So it will give you feedback on the various phases of the build as it's going through and completing
+
+70
+00:06:09,530 --> 00:06:09,980
+them.
+
+71
+00:06:10,040 --> 00:06:12,920
+And you've also got access to these built logs as well.
+
+72
+00:06:13,040 --> 00:06:20,020
+So if you click on tail logs it should also show you the logs as well and unfortunately it does look
+
+73
+00:06:20,080 --> 00:06:22,110
+like we have got a failed build.
+
+74
+00:06:22,510 --> 00:06:28,890
+So I can see an error here called Access Denied exception when calling the get authorization token and
+
+75
+00:06:28,900 --> 00:06:35,850
+that is related to our it's related to the service role that code build automatically created for us.
+
+76
+00:06:36,280 --> 00:06:42,880
+So it looks like there was some permissions missing and the permission it needs is the easy or get authorization
+
+77
+00:06:42,970 --> 00:06:43,670
+token.
+
+78
+00:06:43,720 --> 00:06:45,930
+So let's see if we can fix that.
+
+79
+00:06:45,970 --> 00:06:49,140
+So I'm gonna go back to identity access management.
+
+80
+00:06:49,210 --> 00:06:52,330
+I'm gonna find the role that it created for us earlier.
+
+81
+00:06:52,330 --> 00:06:54,240
+I'm just gonna search by typing Hello.
+
+82
+00:06:54,310 --> 00:06:55,750
+And there is our service role.
+
+83
+00:06:55,750 --> 00:07:02,920
+So let's take a look at the policy and it looks like the policy it's created for us it's got access
+
+84
+00:07:02,920 --> 00:07:06,720
+to cloud watch logs code commit an S3.
+
+85
+00:07:06,760 --> 00:07:09,380
+So there's definitely some permissions missing there.
+
+86
+00:07:09,400 --> 00:07:13,050
+So we need to go in and attach an additional policy to this role.
+
+87
+00:07:13,420 --> 00:07:17,860
+So just click on attach policies and I'm gonna search for registry.
+
+88
+00:07:17,860 --> 00:07:23,890
+So we need to give our service role access to the easy to container registry in order to log into it
+
+89
+00:07:23,920 --> 00:07:29,950
+and push Docker images into the registry so select the power user role and hit attach policy and then
+
+90
+00:07:29,950 --> 00:07:32,010
+we're gonna go back and try our build again.
+
+91
+00:07:32,020 --> 00:07:38,080
+So come back to code build and just hit retry build and hopefully this time it should be successful
+
+92
+00:07:40,230 --> 00:07:41,910
+so that has now succeeded.
+
+93
+00:07:41,970 --> 00:07:48,360
+And if we scroll down and check the phase details we can see that every phase was successful and you
+
+94
+00:07:48,360 --> 00:07:53,460
+can click on the build logs and it just shows you the last 10000 lines of the build log.
+
+95
+00:07:53,460 --> 00:07:58,440
+But if you want to view the entire log you can actually click on this link here and it will take you
+
+96
+00:07:58,440 --> 00:08:04,860
+into cloud watch logs and by default it's going to send all its logs into cloud watch logs so you can
+
+97
+00:08:04,860 --> 00:08:10,620
+drill down on the logs and you can see basically second by second of what is going on with your code
+
+98
+00:08:10,620 --> 00:08:11,070
+build.
+
+99
+00:08:11,220 --> 00:08:16,000
+So that's a really good way to troubleshoot if something is going wrong within your code build.
+
+100
+00:08:16,080 --> 00:08:20,670
+And there's just one last thing that I want to show you which is in our ACR repository it's just come
+
+101
+00:08:20,670 --> 00:08:27,010
+back to services ACR go into our repository and you should see that there's another image has appeared.
+
+102
+00:08:27,060 --> 00:08:29,900
+So our original image has been intact.
+
+103
+00:08:30,090 --> 00:08:32,280
+So that's the one that we created earlier.
+
+104
+00:08:32,280 --> 00:08:37,380
+And then the one that we created just a minute ago that has been added to our repository and it's had
+
+105
+00:08:37,380 --> 00:08:40,330
+the image tag of latest added.
+
+106
+00:08:40,590 --> 00:08:42,430
+So that was a pretty long lab.
+
+107
+00:08:42,810 --> 00:08:43,800
+I hope you got it to work.
+
+108
+00:08:43,800 --> 00:08:44,350
+Okay.
+
+109
+00:08:44,370 --> 00:08:50,190
+But please do let me know if you hit any issues and in the next lecture which is going to recap on everything
+
+110
+00:08:50,190 --> 00:08:53,820
+that we did in this lab as well as some of our exam tips.
+
+111
+00:08:54,300 --> 00:08:55,950
+So that is the end of this lecture.
+
+112
+00:08:56,280 --> 00:08:57,120
+I hope you enjoyed it.
+
+113
+00:08:57,150 --> 00:08:58,960
+I hope it all worked for you.
+
+114
+00:08:59,190 --> 00:09:01,550
+If you have any questions please let me know.
+
+115
+00:09:01,980 --> 00:09:04,440
+If not feel free to move on to the next lecture.
+
+116
+00:09:04,440 --> 00:09:04,950
+Thank you.

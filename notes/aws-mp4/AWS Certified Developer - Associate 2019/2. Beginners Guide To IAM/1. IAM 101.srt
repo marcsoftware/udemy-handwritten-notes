@@ -1,0 +1,227 @@
+1
+00:00:00,240 --> 00:00:05,800
+Hello Clockers and welcome to this lecture and this lecture is called Identity access management.
+
+2
+00:00:05,860 --> 00:00:06,830
+One on.
+
+3
+00:00:07,230 --> 00:00:14,670
+And I am is the best place to start with AWOS because it's all about setting up your uses and granting
+
+4
+00:00:14,670 --> 00:00:17,840
+those users access to the IWM.
+
+5
+00:00:18,040 --> 00:00:19,820
+So let's get started.
+
+6
+00:00:20,070 --> 00:00:22,180
+So what is I am.
+
+7
+00:00:22,350 --> 00:00:30,480
+Well essentially I am allows you to manage uses and also manage that level of access to the AWOS console
+
+8
+00:00:31,170 --> 00:00:38,700
+and it's really important to understand I am and how it works both for the exam and for administrating
+
+9
+00:00:38,730 --> 00:00:41,900
+companies I ws account in real life.
+
+10
+00:00:42,750 --> 00:00:45,550
+So what does I am give you.
+
+11
+00:00:45,600 --> 00:00:49,770
+It gives you centralized control over your AWOS account.
+
+12
+00:00:49,830 --> 00:00:54,150
+It also gives you shared access to AWOS account.
+
+13
+00:00:54,270 --> 00:00:56,750
+It gives you granular permissions.
+
+14
+00:00:56,880 --> 00:01:02,530
+So this means you can enable different levels of access to different users within your organization
+
+15
+00:01:03,680 --> 00:01:13,020
+it enables identity federation including with Active Directory Facebook and linked in etc..
+
+16
+00:01:13,870 --> 00:01:20,620
+So this means it can enable users to log in using credentials stored in an Active Directory Facebook
+
+17
+00:01:20,680 --> 00:01:22,100
+or linked in.
+
+18
+00:01:22,120 --> 00:01:29,680
+It allows multi-factor authentication and this is where a user is granted access only after successfully
+
+19
+00:01:29,680 --> 00:01:34,960
+completing multiple independent authentication mechanisms.
+
+20
+00:01:34,960 --> 00:01:42,470
+So for example providing a username and password as one authentication mechanism and then providing
+
+21
+00:01:42,500 --> 00:01:51,320
+a software token site that could be via a token generator like Google authenticator as the second authentication
+
+22
+00:01:51,350 --> 00:01:52,340
+mechanism.
+
+23
+00:01:53,770 --> 00:01:59,920
+It also provides temporary access for users or devices and services as necessary.
+
+24
+00:02:01,110 --> 00:02:07,950
+So for example if you developed a web or mobile phone application you can configure identity access
+
+25
+00:02:07,950 --> 00:02:15,960
+management to enable users to have temporary access to AWOS resources within your account for example
+
+26
+00:02:15,990 --> 00:02:24,520
+to enable access to store or retrieve data located in an Esrey packet or within a dynamo D-B database.
+
+27
+00:02:24,720 --> 00:02:32,100
+It allows you to set up your own password rotation policy it integrates with many different IWM services
+
+28
+00:02:33,190 --> 00:02:41,170
+and it supports PCI DSS compliance for any applications associated with the payment card industry.
+
+29
+00:02:42,040 --> 00:02:47,400
+So there are some cool concepts that you need to understand before going into the exam.
+
+30
+00:02:47,560 --> 00:02:49,330
+So first of all we have users.
+
+31
+00:02:49,420 --> 00:02:56,860
+So this is the end users and just think people say these are the people logging into the AWOS Consolo
+
+32
+00:02:57,130 --> 00:03:02,560
+and also interacting with AWOS by running IP like commands.
+
+33
+00:03:02,620 --> 00:03:09,690
+We didn't have groups which are collections of users grouped together with a common set of permissions.
+
+34
+00:03:09,700 --> 00:03:17,200
+So for example your marketing team might need access to read and write certain files stored in an S3
+
+35
+00:03:17,200 --> 00:03:24,850
+bucket and that might be logos or images et cetera and they're going to need a specific set of permissions
+
+36
+00:03:24,970 --> 00:03:27,270
+to allow them to do this.
+
+37
+00:03:27,310 --> 00:03:33,820
+So it makes sense to create a group with the required permissions and then all you need to do is add
+
+38
+00:03:33,880 --> 00:03:39,840
+the relevant users into that group and they will all have permissions to read us three buckets.
+
+39
+00:03:39,850 --> 00:03:45,850
+And similarly you might have a database administration's team and they need to create Modibo tables
+
+40
+00:03:45,910 --> 00:03:48,010
+and run queries on the database.
+
+41
+00:03:48,010 --> 00:03:53,140
+So in that case you can create a group with the relevant permissions for Dynamo IDB and then add all
+
+42
+00:03:53,140 --> 00:03:55,390
+of your database admins into that group.
+
+43
+00:03:55,510 --> 00:03:57,210
+And we also have roles.
+
+44
+00:03:57,370 --> 00:04:02,290
+Now you can create rows and then assign them to AWOS resources.
+
+45
+00:04:02,710 --> 00:04:10,100
+So a role is used to define a set of commissions for example S-3 bucket access and then that role could
+
+46
+00:04:10,100 --> 00:04:15,570
+be assumed by either uses or AWOS services such as AC too.
+
+47
+00:04:15,800 --> 00:04:21,710
+So you might have an easy to instance which needs to query a database or access files in S-3 and you
+
+48
+00:04:21,710 --> 00:04:24,180
+can configure that using a road.
+
+49
+00:04:24,200 --> 00:04:30,980
+And finally we have policies and a policy is a document that defines either one or more commissions
+
+50
+00:04:31,640 --> 00:04:36,550
+and a policy can be attached to either a user group or role.
+
+51
+00:04:36,650 --> 00:04:42,920
+And when we attach a policy the user group or row will then have the permissions defined within that
+
+52
+00:04:42,920 --> 00:04:43,650
+policy.
+
+53
+00:04:43,730 --> 00:04:48,340
+And it's possible for a user group and wrote to all share the same policy.
+
+54
+00:04:48,560 --> 00:04:53,150
+So the quickest way to learn Identity Crisis management is actually to start using it.
+
+55
+00:04:53,150 --> 00:04:54,860
+And that's what we're going to do right now.
+
+56
+00:04:54,860 --> 00:05:00,450
+So if you've got time please join me in the next lecture which is an identity access management lab.
+
+57
+00:05:00,530 --> 00:05:00,950
+Thank you.

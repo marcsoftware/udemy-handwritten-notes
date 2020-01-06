@@ -1,0 +1,591 @@
+1
+00:00:00,650 --> 00:00:01,210
+OK.
+
+2
+00:00:01,230 --> 00:00:06,090
+Hello cloggers and welcome to this lecture this lecture we're going to look at Version control with
+
+3
+00:00:06,090 --> 00:00:06,960
+LAMDA.
+
+4
+00:00:07,040 --> 00:00:11,700
+We're just going to look at this before we go ahead and build our search service web site using Poley
+
+5
+00:00:12,140 --> 00:00:16,680
+and where we will use version control away you should use it in real life is when you're developing
+
+6
+00:00:16,680 --> 00:00:21,150
+Alexa's skills when you're making changes to your Alexa's skills because if you break something you
+
+7
+00:00:21,150 --> 00:00:23,620
+can just roll back to a previous version.
+
+8
+00:00:23,700 --> 00:00:29,370
+So versioning when you use versioning and AWOS lambda you can publish one or more versions of your lambda
+
+9
+00:00:29,370 --> 00:00:29,960
+functions.
+
+10
+00:00:29,970 --> 00:00:33,210
+You can have version one version to version 3 et cetera et cetera.
+
+11
+00:00:33,240 --> 00:00:38,370
+And as a result you can work with different variations of your lambda function in your development workflow.
+
+12
+00:00:38,380 --> 00:00:43,210
+So you could have development you could have Bayda you could have production et cetera et cetera.
+
+13
+00:00:43,470 --> 00:00:46,850
+Each lambda function version has unique A R N.
+
+14
+00:00:46,860 --> 00:00:48,910
+And we'll see that in the lab as we go.
+
+15
+00:00:49,080 --> 00:00:54,300
+And after you publish a version it's immutable that just simply means it cannot be changed.
+
+16
+00:00:54,300 --> 00:00:56,660
+You won't be able to go in there and edit it.
+
+17
+00:00:56,730 --> 00:01:02,580
+The one you can go in and edit will always have that dollar sign latest and the don't sign latest is
+
+18
+00:01:02,580 --> 00:01:05,690
+basically the most is the latest version of your function.
+
+19
+00:01:05,760 --> 00:01:09,780
+And again we're going to see that in the AWOS console shortly.
+
+20
+00:01:10,020 --> 00:01:15,680
+And then we have qualified and unqualified A-R and so basically there's two types of A-R ends when you're
+
+21
+00:01:15,840 --> 00:01:17,230
+referring to your functions.
+
+22
+00:01:17,370 --> 00:01:24,240
+Qualified A-R and has if we have a look at and end here we've got our A-R and code hello world and then
+
+23
+00:01:24,240 --> 00:01:31,050
+we've got the latest that a qualified A and an unqualified A-R and is just the name of the function.
+
+24
+00:01:31,050 --> 00:01:33,660
+We don't have any version after after it.
+
+25
+00:01:33,720 --> 00:01:36,570
+So that's all Litta unqualified A-R is.
+
+26
+00:01:36,590 --> 00:01:39,400
+And then finally with versioning we can create aliases.
+
+27
+00:01:39,420 --> 00:01:45,730
+So basically an alias is just a name that points to particular version of your function.
+
+28
+00:01:45,750 --> 00:01:51,480
+So let's say we create version 1 so that we could then create an alias called production and that points
+
+29
+00:01:51,480 --> 00:01:52,550
+to version 1.
+
+30
+00:01:52,650 --> 00:01:56,820
+And then what you can do is you can use things like if you are using S-3 or you've got a whole bunch
+
+31
+00:01:56,820 --> 00:02:03,600
+of other lambda functions you could point to to the production A-R and so be your version name and then
+
+32
+00:02:03,870 --> 00:02:08,310
+Prod. and then that will automatically map back to the latest one.
+
+33
+00:02:08,310 --> 00:02:13,830
+Now when you update your latest code let's say you publish version 2 you can then change the mapping
+
+34
+00:02:13,890 --> 00:02:19,710
+of that alias over to version 2 so that you don't have to go through and update all your functions in
+
+35
+00:02:19,800 --> 00:02:26,340
+other lambda functions or S3 or whatever it's still using the production alias and all you're doing
+
+36
+00:02:26,340 --> 00:02:27,630
+is changing the mapping.
+
+37
+00:02:27,750 --> 00:02:32,700
+And then that way if something does break you can change your alias back from version 2 to version 1
+
+38
+00:02:33,180 --> 00:02:34,770
+and your code will then work.
+
+39
+00:02:34,770 --> 00:02:37,050
+So that's what we use aliases for.
+
+40
+00:02:37,050 --> 00:02:39,300
+We're going to have a quick look at that in the console.
+
+41
+00:02:39,300 --> 00:02:40,970
+So let's go ahead and get started.
+
+42
+00:02:41,250 --> 00:02:43,040
+OK here I am in the AWOS.
+
+43
+00:02:43,140 --> 00:02:47,880
+So go to services and we'll go down to Lamda which is the computer.
+
+44
+00:02:47,940 --> 00:02:52,730
+It is a compute service and you get the splash screen if you haven't created a function before.
+
+45
+00:02:52,740 --> 00:02:59,840
+Go ahead and create a new function will call this function my new function or something like that.
+
+46
+00:02:59,960 --> 00:03:00,810
+You can do it in no.
+
+47
+00:03:00,840 --> 00:03:04,240
+J.S. it really doesn't matter what the runtime environment you have.
+
+48
+00:03:04,470 --> 00:03:09,620
+And then I'm going to use an existing roll which is my lambda roll which we created in the lambda lecture.
+
+49
+00:03:09,660 --> 00:03:11,520
+Go ahead and create the function.
+
+50
+00:03:11,820 --> 00:03:13,710
+So that has now created the function.
+
+51
+00:03:13,770 --> 00:03:17,300
+And you can see it in here it just says hello from lambdas from Lambda.
+
+52
+00:03:17,310 --> 00:03:21,660
+So what we're going to do is we're going to go ahead and create three different versions of this function.
+
+53
+00:03:21,660 --> 00:03:23,690
+The first one is going to say hello.
+
+54
+00:03:24,000 --> 00:03:27,900
+So we go here make a change and then I'm going to hit safe.
+
+55
+00:03:28,080 --> 00:03:34,350
+Now straight away if we click up into qualifiers you'll see two ones you'll see versions and aliases
+
+56
+00:03:34,440 --> 00:03:35,610
+so we click on versions.
+
+57
+00:03:35,610 --> 00:03:38,840
+The latest Dala dollar latest version is here.
+
+58
+00:03:38,960 --> 00:03:42,480
+And you can see here now where this function are in.
+
+59
+00:03:42,590 --> 00:03:44,740
+And we've got Dala latest at the end.
+
+60
+00:03:44,850 --> 00:03:48,700
+And this means it is the latest version of function and it's just saying hello.
+
+61
+00:03:49,020 --> 00:03:53,040
+Now what we want to do is we want to save this as a publish it as a version.
+
+62
+00:03:53,040 --> 00:03:56,170
+So we're going to publish this as a new two hole version.
+
+63
+00:03:56,170 --> 00:03:58,260
+You can't go in and make any changes.
+
+64
+00:03:58,290 --> 00:04:03,020
+So call this version description version 1 and go ahead and hit publish.
+
+65
+00:04:03,510 --> 00:04:09,780
+And you can see up here version 1 and it's even We've got the error and mine you function.
+
+66
+00:04:09,780 --> 00:04:14,820
+And at the end we've got the colon and then one and if we actually scroll down you can see the text
+
+67
+00:04:14,820 --> 00:04:18,840
+in him but we can't go and edit it and it says code handler.
+
+68
+00:04:18,840 --> 00:04:21,450
+Editing is only available for the latest versions.
+
+69
+00:04:21,450 --> 00:04:23,280
+Click here to go to latest.
+
+70
+00:04:23,280 --> 00:04:26,510
+You see up here are Ayran has now changed to latest.
+
+71
+00:04:26,580 --> 00:04:28,950
+We are now able to go in and edit out code.
+
+72
+00:04:28,950 --> 00:04:30,840
+So let's go ahead and make a new version.
+
+73
+00:04:30,840 --> 00:04:33,890
+So Hillary cloud going to hit save.
+
+74
+00:04:34,140 --> 00:04:37,670
+And then what I'm going to do is going to click in actions publishes a new version.
+
+75
+00:04:37,700 --> 00:04:42,250
+I'm going to call this version to go ahead and hit publish.
+
+76
+00:04:42,340 --> 00:04:48,150
+And then finally going to again you can see up here we're now Colan to the end of the hour and can't
+
+77
+00:04:48,150 --> 00:04:50,000
+go in here make any edits.
+
+78
+00:04:50,130 --> 00:04:55,140
+I want to go back to my latest version I just click in here on diversions and then what I want to do
+
+79
+00:04:55,140 --> 00:04:59,930
+is write a third version Geary's say hello cloggers which will now.
+
+80
+00:05:00,080 --> 00:05:03,170
+My latest one going to go ahead and hit save.
+
+81
+00:05:03,260 --> 00:05:07,940
+And again I'm going to publish as a new version and I'm going to this version 3.
+
+82
+00:05:08,030 --> 00:05:09,730
+So there we go publish.
+
+83
+00:05:10,100 --> 00:05:14,120
+So now we can go back through our different versions so we can look at version 1.
+
+84
+00:05:14,150 --> 00:05:22,220
+It's immutable so we can edit it just says hello version 2 say hello cloud and then version 3 which
+
+85
+00:05:22,220 --> 00:05:25,160
+is also our current latest version.
+
+86
+00:05:25,220 --> 00:05:26,370
+Hello Klau curers.
+
+87
+00:05:26,420 --> 00:05:29,400
+But we can also go in and have a look at our latest version.
+
+88
+00:05:29,600 --> 00:05:31,300
+So let's have a look at some aliases.
+
+89
+00:05:31,370 --> 00:05:35,240
+Go ahead here and go create alias and we can call this one.
+
+90
+00:05:35,240 --> 00:05:38,810
+Let's say version and then one can't have spaces.
+
+91
+00:05:39,110 --> 00:05:42,590
+So this is my version 1.
+
+92
+00:05:42,830 --> 00:05:45,350
+And then we're going to point it at which version.
+
+93
+00:05:45,350 --> 00:05:46,880
+Well again in point version 1.
+
+94
+00:05:46,970 --> 00:05:48,770
+Go ahead and hit create.
+
+95
+00:05:48,770 --> 00:05:52,120
+So now with the alias you can see the actual alias name up here.
+
+96
+00:05:52,130 --> 00:05:52,910
+Version 1.
+
+97
+00:05:52,910 --> 00:05:58,490
+And as a way of mapping to our versions that's all alias's are doing then mapping to our versions.
+
+98
+00:05:58,490 --> 00:06:04,770
+So what you might want to do in the real world is go ahead and create an alias for your latest version.
+
+99
+00:06:04,760 --> 00:06:12,550
+So let's call this latest version and latest version of my code.
+
+100
+00:06:12,950 --> 00:06:18,110
+And instead of doing it to version one two or three we're going to point it at latests and then we can
+
+101
+00:06:18,110 --> 00:06:22,430
+actually reference this in elsewhere in AWOS.
+
+102
+00:06:22,430 --> 00:06:27,230
+And we know that it's always going to be pointing to the latest version of our code because this is
+
+103
+00:06:27,230 --> 00:06:31,140
+mapping it to the aliases mapping it to later versions.
+
+104
+00:06:31,140 --> 00:06:32,630
+So that's how visioning works.
+
+105
+00:06:32,630 --> 00:06:34,100
+One last thing I should show you.
+
+106
+00:06:34,340 --> 00:06:38,440
+You can use versioning to create splits between traffic.
+
+107
+00:06:38,450 --> 00:06:42,280
+So let's say let's say you want to do blue green testing.
+
+108
+00:06:42,300 --> 00:06:45,670
+Oh and base testing is blue and green deployments.
+
+109
+00:06:45,970 --> 00:06:50,760
+So say my split traffic something like that.
+
+110
+00:06:51,170 --> 00:06:56,640
+And so what we're going to do is we're going to send let's say 50 percent to Version 3 which would be
+
+111
+00:06:56,640 --> 00:06:57,740
+our latest one.
+
+112
+00:06:57,980 --> 00:07:03,480
+We do 25 percent to let's put in 25 percent.
+
+113
+00:07:03,590 --> 00:07:09,740
+And you'll note that we can't go in and add an additional version so we can split traffic between our
+
+114
+00:07:09,740 --> 00:07:10,910
+lambda functions.
+
+115
+00:07:10,910 --> 00:07:14,700
+It's always going to add up to 100 percent as we decrease one.
+
+116
+00:07:14,720 --> 00:07:16,460
+The other one will increase.
+
+117
+00:07:16,760 --> 00:07:20,780
+And one last thing I should point out is you can't do it to the latest version.
+
+118
+00:07:20,780 --> 00:07:26,240
+So if I go to latest and then additional version 2 and I try and hit create it's going to give us an
+
+119
+00:07:26,240 --> 00:07:26,570
+error.
+
+120
+00:07:26,570 --> 00:07:31,550
+So there was an error in creating the alias latest is not supported for an alias pointing to more than
+
+121
+00:07:31,550 --> 00:07:32,200
+one version.
+
+122
+00:07:32,210 --> 00:07:34,370
+He can't have the latest in there.
+
+123
+00:07:34,450 --> 00:07:39,950
+So the way you get round that is you just you know publish all latest as a particular version so version
+
+124
+00:07:39,950 --> 00:07:43,880
+3 in version 2 20 80 percent and go ahead and hit create.
+
+125
+00:07:43,880 --> 00:07:47,760
+And there we go we can now split our traffic using this alias.
+
+126
+00:07:47,780 --> 00:07:51,980
+This is going to split it between two functions and is very important to remember that you can do that
+
+127
+00:07:51,980 --> 00:07:53,250
+going into your exam.
+
+128
+00:07:53,450 --> 00:07:55,690
+So what my exam tips.
+
+129
+00:07:56,230 --> 00:08:00,710
+So my exam tips well you can have multiple versions of lambda functions.
+
+130
+00:08:00,860 --> 00:08:07,430
+You the latest version will always use the latest as at the end of the foreigns you'll be able to see
+
+131
+00:08:07,430 --> 00:08:08,170
+it.
+
+132
+00:08:08,180 --> 00:08:14,480
+Qualified use of versions will use Dala latest unqualified versions will not versions are immutable
+
+133
+00:08:14,480 --> 00:08:15,700
+so they cannot be changed.
+
+134
+00:08:15,710 --> 00:08:20,240
+If you do want to make a change you have to basically go in delete the version or republish it and then
+
+135
+00:08:20,240 --> 00:08:23,570
+you can split traffic using aliases to different versions.
+
+136
+00:08:23,660 --> 00:08:26,390
+You cannot split traffic with the dollar later.
+
+137
+00:08:26,400 --> 00:08:31,910
+Instead you need to create an alias to the latest and then basically go in and split the traffic from
+
+138
+00:08:31,910 --> 00:08:32,400
+them.
+
+139
+00:08:32,540 --> 00:08:37,280
+So the most important thing to remember is the traffic splitting is definitely an exam topic and you
+
+140
+00:08:37,280 --> 00:08:42,190
+just basically need to know that it is possible we will use versioning or you should use versioning
+
+141
+00:08:42,200 --> 00:08:43,910
+in the next lap.
+
+142
+00:08:44,060 --> 00:08:51,560
+I use versioning for my creating my Lexis skills all the time is definitely worth doing so that way
+
+143
+00:08:51,560 --> 00:08:57,530
+if you make any mistake in the code and your Aleck's functions doesn't work anymore you can always just
+
+144
+00:08:57,530 --> 00:08:58,430
+roll back.
+
+145
+00:08:58,610 --> 00:08:59,150
+So that is it.
+
+146
+00:08:59,150 --> 00:09:01,720
+But this is like guys if you have any questions please let me know.
+
+147
+00:09:01,880 --> 00:09:03,760
+If not feel free to move on to the next lecture.
+
+148
+00:09:03,770 --> 00:09:03,980
+Think.

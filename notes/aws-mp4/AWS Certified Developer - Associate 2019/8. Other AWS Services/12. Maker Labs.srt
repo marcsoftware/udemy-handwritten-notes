@@ -1,0 +1,51 @@
+1
+00:00:03,990 --> 00:00:09,170
+OK helicopters welcome to this very quick lecture I just wanted to tell you about our may collapse.
+
+2
+00:00:09,180 --> 00:00:14,660
+Nightclubs are about 20 to 40 minutes in length and they're basically a hands on and fun way to learn.
+
+3
+00:00:14,660 --> 00:00:17,210
+Cloud computing and the great for beginners.
+
+4
+00:00:17,210 --> 00:00:20,660
+So basically we've got a whole bunch of different make collapse on the platform.
+
+5
+00:00:20,660 --> 00:00:26,750
+We've got a main generating IO table and we've got a lab that uses a security camera Lamda recognition
+
+6
+00:00:26,770 --> 00:00:30,160
+an S and S to tell you if you've left a washing on the washing line.
+
+7
+00:00:30,170 --> 00:00:36,680
+I've got another lab that basically scans Twitter and uses camisa lammed dynamo eBay and Amazon comprehend
+
+8
+00:00:36,920 --> 00:00:40,640
+to do sentiment analysis to see if Twitter uses hate cats.
+
+9
+00:00:40,640 --> 00:00:44,990
+And we've got a whole bunch of others I'm about to film one using deep blends I'm just waiting for my
+
+10
+00:00:44,990 --> 00:00:50,660
+deep lens to arrive so you can watch these labs on the go while using our mobile app and you can try
+
+11
+00:00:50,930 --> 00:00:53,350
+building the LEDs yourself when you get home.
+
+12
+00:00:53,390 --> 00:00:54,360
+Make sure you check it out.
+
+13
+00:00:54,380 --> 00:00:59,680
+Great way to learn cloud computing and have a lot of fun in the process as well.

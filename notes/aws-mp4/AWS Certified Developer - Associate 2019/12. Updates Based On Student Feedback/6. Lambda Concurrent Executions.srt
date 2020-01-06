@@ -1,0 +1,175 @@
+1
+00:00:00,840 --> 00:00:07,140
+Hello tigers and welcome to this lecture and this lecture is going to cover the lambda concurrent executions
+
+2
+00:00:07,230 --> 00:00:08,310
+limit.
+
+3
+00:00:08,820 --> 00:00:14,760
+Now for the exam it's not actually necessary to remember loads and loads of limits so they're not really
+
+4
+00:00:14,760 --> 00:00:20,010
+going to test you on what's the limit for this and what's the limit for that but for lambda you do need
+
+5
+00:00:20,010 --> 00:00:27,450
+to be aware that there is a concurrent execution limit and that means it's basically a limit on the
+
+6
+00:00:27,450 --> 00:00:32,430
+number of functions that can be run simultaneously within the same region.
+
+7
+00:00:32,460 --> 00:00:38,820
+So do just be aware that there is this concurrent execution limit and it's basically a safety feature
+
+8
+00:00:39,000 --> 00:00:45,690
+to limit the number of concurrent executions across all functions in a given region per account.
+
+9
+00:00:47,170 --> 00:00:51,430
+And the default is 1000 concurrent executions per region.
+
+10
+00:00:51,580 --> 00:00:57,400
+And if you do hit the limit then you will see an error message and the error message is too many requests
+
+11
+00:00:57,430 --> 00:01:06,010
+exception and you might also see this HBP status code of four to nine and 1000 concurrent executions.
+
+12
+00:01:06,070 --> 00:01:12,370
+It's only the default and you can actually request that they increase that limit so you will need to
+
+13
+00:01:12,370 --> 00:01:17,770
+contact a W US support but you can do that through the console and you can just request that the limit
+
+14
+00:01:17,770 --> 00:01:23,950
+is increased so just be aware that if you have many lambda functions and they're all running in the
+
+15
+00:01:23,950 --> 00:01:30,310
+same region and then you suddenly start seeing new invocation requests being rejected then it may well
+
+16
+00:01:30,310 --> 00:01:37,870
+be that you've hit your limit and actually at a cloud guru or daily usage is around six point five million
+
+17
+00:01:38,230 --> 00:01:44,170
+lambda invocations per day every time you log onto our platform and you launch a new course or you start
+
+18
+00:01:44,170 --> 00:01:49,660
+a new lecture in the background it's actually a lambda function which is making everything happen and
+
+19
+00:01:49,660 --> 00:01:56,590
+yet we have six point five million lambda invocations per day and we run out of one region at the moment
+
+20
+00:01:56,630 --> 00:01:59,880
+so it's all running from U.S. East 1.
+
+21
+00:01:59,890 --> 00:02:05,380
+So as you can imagine for a busy website it is definitely possible to hit that limit.
+
+22
+00:02:05,380 --> 00:02:11,260
+And as I said before you can just request an increase by submitting a request to the AWB support center
+
+23
+00:02:11,590 --> 00:02:16,360
+or alternatively you can also configure something called reserved concurrency.
+
+24
+00:02:16,360 --> 00:02:23,530
+And this guarantees that a set number of executions will always be available for any critical functions.
+
+25
+00:02:23,530 --> 00:02:28,780
+So for example if you had a whole load of different functions and some were highly critical whereas
+
+26
+00:02:28,840 --> 00:02:35,140
+others were not so important to your application or to your business you can reserve some concurrency
+
+27
+00:02:35,320 --> 00:02:41,080
+for those critical functions to make sure that there's always a set number of concurrent executions
+
+28
+00:02:41,170 --> 00:02:43,760
+available for those critical functions.
+
+29
+00:02:43,780 --> 00:02:47,200
+However do be aware that it also does act as a limit.
+
+30
+00:02:47,200 --> 00:02:54,760
+So for example if you set a reserved concurrency of 500 for a specific function that specific function
+
+31
+00:02:54,850 --> 00:02:58,950
+will never be able to go over 500 concurrent executions.
+
+32
+00:02:59,410 --> 00:03:01,600
+So onto our exam tips.
+
+33
+00:03:01,600 --> 00:03:07,780
+Basically all you need to know about concurrent executions is that there is a limit so the limit is
+
+34
+00:03:07,780 --> 00:03:10,580
+1000 concurrent executions per second.
+
+35
+00:03:10,840 --> 00:03:14,710
+And of course just imagine you're running a service website like a cloud guru.
+
+36
+00:03:14,980 --> 00:03:18,460
+It's very likely that you would hit that limit at some point.
+
+37
+00:03:18,460 --> 00:03:24,010
+And if you do hit that limit you will start to see invocations being rejected and you'll start to see
+
+38
+00:03:24,070 --> 00:03:26,830
+HDP status code 4 2 9.
+
+39
+00:03:26,830 --> 00:03:33,010
+And the remedy is either get the limit raised by AWP support or if you just have a few very critical
+
+40
+00:03:33,010 --> 00:03:39,580
+functions then you can set a reserved concurrency to guarantee that a set number of concurrent executions
+
+41
+00:03:39,880 --> 00:03:43,630
+are always available to your critical functions.
+
+42
+00:03:44,020 --> 00:03:49,390
+So that is everything that you should need to know about the lambda concurrent executions limit if you
+
+43
+00:03:49,390 --> 00:03:54,220
+have any questions please let me know if not feel free to move on to the next lecture.
+
+44
+00:03:54,220 --> 00:03:54,730
+Thank you.

@@ -1,0 +1,267 @@
+1
+00:00:00,380 --> 00:00:00,890
+Okay.
+
+2
+00:00:00,900 --> 00:00:05,370
+Hello closures and welcome to the very last lecture in this section of the course.
+
+3
+00:00:05,370 --> 00:00:07,430
+So this is the server summary.
+
+4
+00:00:07,530 --> 00:00:11,200
+So let's go through all our exam tips and we'll start with Lambda.
+
+5
+00:00:11,220 --> 00:00:14,340
+So remember that lambda scales out and not up.
+
+6
+00:00:14,370 --> 00:00:17,520
+So you scale it out automatically.
+
+7
+00:00:17,550 --> 00:00:22,350
+So this just simply means that you can have many many different concurrent lambda functions running
+
+8
+00:00:22,350 --> 00:00:25,440
+at once lambda functions are all independent.
+
+9
+00:00:25,440 --> 00:00:28,290
+So one event is going to equal one function.
+
+10
+00:00:28,290 --> 00:00:32,090
+Lambda is service and you should know what services are serving us.
+
+11
+00:00:32,100 --> 00:00:38,940
+So things like dynamo D.B. things like S3 things like lambda things like elastic beanstalk have servers
+
+12
+00:00:38,940 --> 00:00:44,000
+easy to has servers etc. lambda functions can trigger other lambda functions.
+
+13
+00:00:44,010 --> 00:00:49,720
+So one event can equal X number of functions if the functions trigger other functions.
+
+14
+00:00:49,800 --> 00:00:55,620
+So you can have an infinite number of functions in theory and then architectures can get extremely complicated
+
+15
+00:00:55,620 --> 00:01:00,000
+with the lambda and AWP as X-ray allows you to debug what is happening.
+
+16
+00:01:00,000 --> 00:01:05,760
+So we saw that in our lab we're able to go in and see x ray are using x ray we're able to see all the
+
+17
+00:01:05,820 --> 00:01:12,840
+updates to dynamo D.B. our S.A. notifications and it was failing there were able to go in and troubleshoot
+
+18
+00:01:12,840 --> 00:01:14,940
+that and make it better.
+
+19
+00:01:14,940 --> 00:01:20,700
+Also remember that lambda can do things globally so you can use it to backup S3 Buckets to other S3
+
+20
+00:01:20,700 --> 00:01:22,300
+Buckets in other regions.
+
+21
+00:01:22,530 --> 00:01:25,730
+But each lambda function will is on a regional basis.
+
+22
+00:01:25,740 --> 00:01:30,990
+So if you're doing it in Northern Virginia that's a separate area then obviously if you're doing it
+
+23
+00:01:31,050 --> 00:01:38,700
+in USD 1 and then also go into Lam into the exam knowing the lambda triggers that is really important
+
+24
+00:01:38,700 --> 00:01:42,110
+to understand all the different services that can trigger lambda.
+
+25
+00:01:42,210 --> 00:01:49,020
+Remember what API Gateway is at a very high level and remember that API Gateway has caching capabilities
+
+26
+00:01:49,020 --> 00:01:50,190
+to increase performance.
+
+27
+00:01:50,220 --> 00:01:57,150
+So I use that example of a waiter sorry at McDonald's you know when you're at McDonald's you get big
+
+28
+00:01:57,150 --> 00:02:01,360
+macs and cheeseburgers very very quickly but if you're going to order something like a fish burger or
+
+29
+00:02:01,360 --> 00:02:07,650
+a salad it can take the kitchen a longer kitchen has to actually go out and make it just like that API
+
+30
+00:02:07,650 --> 00:02:08,780
+Gateway can cash.
+
+31
+00:02:08,910 --> 00:02:16,110
+The most common requests so you get it a lot faster API Gateway is very low cost and scales automatically
+
+32
+00:02:16,140 --> 00:02:22,760
+and you can throttle API gateway to prevent attacks and Amazon do throttle API Gateway themselves anyway
+
+33
+00:02:22,770 --> 00:02:28,650
+we'll get to that in a few slides and you can log results to cloud watch if you're using JavaScript
+
+34
+00:02:28,740 --> 00:02:34,530
+AJAX that supports multiple domains with API Gateway you have to ensure that you've enabled cause on
+
+35
+00:02:34,560 --> 00:02:41,010
+API Gateway and cause is enforced by the clients so across origin resource sharing.
+
+36
+00:02:41,040 --> 00:02:46,200
+Moving on to version control with Lambda you can have multiple versions of your lambda functions the
+
+37
+00:02:46,200 --> 00:02:52,200
+latest version will always use the dollar latest qualified versions we'll use dollar latest and unqualified
+
+38
+00:02:52,200 --> 00:02:58,530
+versions when I say qualified versions it will be the ARVN and then at the end you'll have the colon
+
+39
+00:02:58,560 --> 00:03:06,360
+and then latest as unqualified will not have the latest at the end of the R and versions are immutable
+
+40
+00:03:06,450 --> 00:03:12,690
+they cannot be changed and you can actually split traffic using aliases two different versions B cannot
+
+41
+00:03:12,690 --> 00:03:14,380
+split this traffic with the latest.
+
+42
+00:03:14,390 --> 00:03:19,950
+Instead you have to go and create an alias to the latest and then you can split your traffic from there.
+
+43
+00:03:19,950 --> 00:03:23,390
+Remember you can only split it two ways you can't do it three ways.
+
+44
+00:03:23,550 --> 00:03:28,920
+Step functions was a great way to visualize your service application and step functions automatically
+
+45
+00:03:28,920 --> 00:03:32,370
+triggers and tracks each step step functions logs.
+
+46
+00:03:32,370 --> 00:03:33,510
+The state of each step.
+
+47
+00:03:33,510 --> 00:03:40,320
+So if something goes wrong you can track what went wrong and where and then x ray or so x ray we used
+
+48
+00:03:40,380 --> 00:03:45,810
+again to just see what was going inside our service applications just see the performance and if there
+
+49
+00:03:45,810 --> 00:03:47,030
+was any errors.
+
+50
+00:03:47,340 --> 00:03:50,010
+The x ray SDK provides three things.
+
+51
+00:03:50,010 --> 00:03:55,590
+You've got your interceptors to add to your code to trace incoming TTP requests you've got your client
+
+52
+00:03:55,590 --> 00:04:02,430
+handlers to instrument AWB says declare key clients that your application uses to call the other AWB
+
+53
+00:04:02,430 --> 00:04:08,460
+services and then you've got to reach DTP client to instrument calls to other internal and external
+
+54
+00:04:08,660 --> 00:04:15,360
+GDP Web services with x ray remember that it integrates with Elastic Load Balancing lambda API Gateway
+
+55
+00:04:15,360 --> 00:04:21,810
+easy to and elastic beanstalk and then also just remember the languages that are supported so Java go
+
+56
+00:04:21,870 --> 00:04:24,870
+no J.S. Python Ruby and dot net.
+
+57
+00:04:24,990 --> 00:04:28,920
+So that is it for this section of the course goes perfectly you've had lots of fun building out our
+
+58
+00:04:28,930 --> 00:04:29,940
+services website.
+
+59
+00:04:29,940 --> 00:04:35,610
+We then went on to build out our own Alexis skill using the service application repository.
+
+60
+00:04:35,610 --> 00:04:41,400
+We then went on to learn about x ray about step functions about lambda about API gateway.
+
+61
+00:04:41,400 --> 00:04:45,910
+Now remember we do two service conferences all over the world check out servers.
+
+62
+00:04:46,120 --> 00:04:49,030
+Oh if you want to check out where the nearest one is.
+
+63
+00:04:49,140 --> 00:04:56,670
+Service is a huge revolution in software architecture and its really is most applications will become
+
+64
+00:04:56,680 --> 00:04:58,140
+service sooner or later.
+
+65
+00:04:58,140 --> 00:05:02,350
+In my opinion so that is for this lecture goes if you have any questions please let me know.
+
+66
+00:05:02,410 --> 00:05:05,080
+If not feel free to move on to the next section of course.
+
+67
+00:05:05,110 --> 00:05:05,630
+Thank you.

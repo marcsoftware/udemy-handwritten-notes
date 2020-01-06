@@ -1,0 +1,243 @@
+1
+00:00:00,180 --> 00:00:03,600
+OK hello cloggers and welcome to the summary lectures.
+
+2
+00:00:03,610 --> 00:00:05,970
+You're at the end of the camis section.
+
+3
+00:00:05,970 --> 00:00:12,270
+I understand it was pretty much very very you know fast section of the course but it does come up in
+
+4
+00:00:12,270 --> 00:00:17,400
+the developers so that you can go in and delete that E.S. to instance by the way we are no longer going
+
+5
+00:00:17,400 --> 00:00:17,900
+to use it.
+
+6
+00:00:17,910 --> 00:00:19,980
+And you can go ahead and delete OK's.
+
+7
+00:00:19,980 --> 00:00:25,110
+One thing to note when you delete your key is you have to disable it first and then you basically have
+
+8
+00:00:25,110 --> 00:00:26,080
+to share it.
+
+9
+00:00:26,250 --> 00:00:30,840
+And it would take between seven to think it's 30 or 35 days in order to delete.
+
+10
+00:00:30,870 --> 00:00:33,060
+Let's have a quick look at how we can do that.
+
+11
+00:00:33,180 --> 00:00:35,210
+So here I am and the U.S. consulate.
+
+12
+00:00:35,310 --> 00:00:40,230
+I'm just going to go over to I-AM which is under security identity and compliance.
+
+13
+00:00:40,230 --> 00:00:42,160
+Can it go over to my encryption case.
+
+14
+00:00:42,180 --> 00:00:43,840
+I was doing mine out of London.
+
+15
+00:00:43,860 --> 00:00:47,560
+I'm just going to click in here and we can say my key in here.
+
+16
+00:00:47,730 --> 00:00:52,680
+And then what I'm going to do is go to key actions and I'm going to disable it first then I'm going
+
+17
+00:00:52,680 --> 00:00:57,820
+to go and click on this key and I'm going to go to actions should locate deletion.
+
+18
+00:00:57,950 --> 00:01:00,810
+It's between 7 and 30 days ago.
+
+19
+00:01:01,110 --> 00:01:05,790
+I'm going to show you all this to be deleted within seven days and hit show George elation.
+
+20
+00:01:05,820 --> 00:01:07,330
+You can't delete it immediately.
+
+21
+00:01:07,350 --> 00:01:10,490
+You have to wait a minimum of one week.
+
+22
+00:01:10,530 --> 00:01:14,730
+That doesn't actually come up in the developer associate but it does come up in the certified security
+
+23
+00:01:14,730 --> 00:01:15,630
+specialty.
+
+24
+00:01:15,630 --> 00:01:19,100
+So moving on to my exam tips just remember what camis is.
+
+25
+00:01:19,200 --> 00:01:23,220
+It's a managed service that makes it easy for you to create and control the encryption keys that are
+
+26
+00:01:23,220 --> 00:01:24,760
+used to encrypt your data.
+
+27
+00:01:24,810 --> 00:01:30,650
+So integrated with a whole bunch of different services including abs S3 redshift elastic trans Koita
+
+28
+00:01:30,750 --> 00:01:37,500
+work meio are LDS and some others to make it simple to encrypt your data with encryption keys that you
+
+29
+00:01:37,500 --> 00:01:38,400
+manage.
+
+30
+00:01:38,580 --> 00:01:44,730
+When we do this we create a custom Ammal sticky on the customer Masaki consists of an alias so its name
+
+31
+00:01:44,910 --> 00:01:47,610
+its creation date its description the key state.
+
+32
+00:01:47,610 --> 00:01:52,520
+So whether its been enabled or disabled which is what we just did then and then the key material and
+
+33
+00:01:52,520 --> 00:01:56,300
+this can either be customer provided or provided by AWOS.
+
+34
+00:01:56,310 --> 00:02:02,970
+And remember that case in camps can never be exported Kaysing cloud hates us and can terms the actual
+
+35
+00:02:02,970 --> 00:02:04,750
+physical underlying hardware.
+
+36
+00:02:04,890 --> 00:02:13,770
+Its multitenant hardware but its basically multitenant HSM as well as cloud asem as dedicated HSM device
+
+37
+00:02:13,950 --> 00:02:20,870
+thats dedicated to you and we do again this often a lot more detail in the certified security specialty
+
+38
+00:02:21,410 --> 00:02:22,080
+to set one up.
+
+39
+00:02:22,080 --> 00:02:25,880
+All we did is we went in and we created an alias and gave it a description.
+
+40
+00:02:25,890 --> 00:02:30,180
+We chose our key material options so we use the Amazon provided one.
+
+41
+00:02:30,240 --> 00:02:37,140
+We then defied our administrative permissions which I am users roles can administer the K and then we
+
+42
+00:02:37,140 --> 00:02:43,410
+defined the usage Kamis permissions so which end users or roles can actually use the key to encrypt
+
+43
+00:02:43,780 --> 00:02:45,240
+decrypt data.
+
+44
+00:02:45,420 --> 00:02:48,580
+We then went through all the material options.
+
+45
+00:02:48,780 --> 00:02:54,360
+Again sorry I just repeating myself but we either use the kamis generate a material or your own case
+
+46
+00:02:54,420 --> 00:02:55,320
+material.
+
+47
+00:02:55,320 --> 00:03:00,460
+We do look at how you can employ your own material in the certified security specialty.
+
+48
+00:03:00,750 --> 00:03:03,350
+You will definitely have to know these API calls.
+
+49
+00:03:03,390 --> 00:03:08,700
+So if you want encrypted data using crypt you dont need decrypt your data use decrypt if you want to
+
+50
+00:03:08,700 --> 00:03:15,180
+re-encrypt your data use re-encrypt if you want to rotate ukase enable key rotation.
+
+51
+00:03:15,180 --> 00:03:18,010
+Do not use re-encrypt for key rotation.
+
+52
+00:03:18,030 --> 00:03:22,250
+You always want to just use rotation McCay rotation so bear that in mind.
+
+53
+00:03:22,350 --> 00:03:26,360
+And then finally we looked at you know envelope encryption.
+
+54
+00:03:26,370 --> 00:03:34,140
+So we saw that the customer masticating is essentially what we use to decrypt the data the data.
+
+55
+00:03:34,170 --> 00:03:40,320
+So this is our envelope came within the envelope and we use this to decrypt our actual data.
+
+56
+00:03:40,380 --> 00:03:47,300
+So envelope encryption is just a way you take the K that you use to encrypt data and you encrypt that.
+
+57
+00:03:47,550 --> 00:03:49,250
+So that is it for this section of the coast.
+
+58
+00:03:49,260 --> 00:03:53,450
+You are ready to move on and you are getting very close to the end.
+
+59
+00:03:53,490 --> 00:03:55,250
+So if you go to any questions please let me know.
+
+60
+00:03:55,260 --> 00:03:57,210
+If not feel free to move on to the next section.
+
+61
+00:03:57,210 --> 00:03:57,720
+Thank you.

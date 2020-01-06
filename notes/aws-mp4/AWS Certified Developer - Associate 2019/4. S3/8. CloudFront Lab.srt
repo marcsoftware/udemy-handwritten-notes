@@ -1,0 +1,1115 @@
+1
+00:00:00,550 --> 00:00:07,560
+Hello cloud gurus and welcome to this lecture and this is going to be a lab and we are going to create
+
+2
+00:00:07,650 --> 00:00:15,780
+our own CD and or content delivery network and in the west there in their terminology.
+
+3
+00:00:15,810 --> 00:00:17,940
+This is called a distribution.
+
+4
+00:00:17,940 --> 00:00:23,760
+So it's called a cloud front distribution and for the cloud from origin.
+
+5
+00:00:24,030 --> 00:00:29,990
+So this is the place where the original copies of your files or your content is located.
+
+6
+00:00:30,030 --> 00:00:36,870
+We're going to use an S3 bucket and you can have multiple origins per distribution.
+
+7
+00:00:36,900 --> 00:00:41,570
+You can also have an easy to instance elastic load balance.
+
+8
+00:00:41,700 --> 00:00:46,330
+You can even have a physical server on premise in your own data center.
+
+9
+00:00:46,710 --> 00:00:52,830
+But for the purpose of this lab we're just going to use S3 and to get started you just need to join
+
+10
+00:00:52,830 --> 00:00:54,990
+me in the AWOS console.
+
+11
+00:00:55,110 --> 00:01:02,270
+So here I am in the AWOS console and the first thing that we need to do is we need to create the origin.
+
+12
+00:01:02,490 --> 00:01:04,040
+So we're going to do that in S3.
+
+13
+00:01:04,040 --> 00:01:13,200
+So we go down to S-3 and click on S3 and then go to create bucket.
+
+14
+00:01:13,200 --> 00:01:18,150
+Now we're going to create a pocket in place that's the most furthest away from where we are.
+
+15
+00:01:18,310 --> 00:01:25,000
+So I'm located in London so I'm going to use a bucket in a region that is as far away as I can find
+
+16
+00:01:25,360 --> 00:01:27,320
+which is going to be somewhere in Australia.
+
+17
+00:01:27,320 --> 00:01:35,340
+So we're going to pick Sydney and we're going to call it my Sydney cloud front origin.
+
+18
+00:01:35,770 --> 00:01:38,980
+Go ahead and click next and click next.
+
+19
+00:01:38,980 --> 00:01:44,860
+And we're going to configure this as a public bucket so I'm going to uncheck all of the public access
+
+20
+00:01:44,860 --> 00:01:49,120
+protection just de-select all of these boxes and click next.
+
+21
+00:01:50,720 --> 00:01:52,870
+And then click Create bucket.
+
+22
+00:01:53,000 --> 00:02:00,830
+So the next thing we're going to do is add a file into the bucket or go into the bucket upload and we're
+
+23
+00:02:00,830 --> 00:02:04,240
+going to add an image file.
+
+24
+00:02:04,240 --> 00:02:10,380
+So we go into my images directory and we're going to select a picture of a fairly large image.
+
+25
+00:02:10,380 --> 00:02:13,440
+So three point four make.
+
+26
+00:02:13,520 --> 00:02:15,000
+So open up the image.
+
+27
+00:02:15,100 --> 00:02:21,130
+And the reason we want an image is so that we can actually see it loading so we can see it loading from
+
+28
+00:02:21,190 --> 00:02:22,710
+the other side of the world.
+
+29
+00:02:23,110 --> 00:02:26,650
+So click on next.
+
+30
+00:02:26,730 --> 00:02:30,270
+I'm going to give public access to this image.
+
+31
+00:02:30,510 --> 00:02:33,330
+We want to be able to access it over the Internet.
+
+32
+00:02:34,770 --> 00:02:41,790
+So click on public read access to this object click next.
+
+33
+00:02:41,790 --> 00:02:48,510
+Keep all the rest of the defaults the same and hit upload and you can see down here.
+
+34
+00:02:48,530 --> 00:02:53,610
+It started it's in progress so you can see the percentage progress down here.
+
+35
+00:02:53,820 --> 00:03:00,460
+It's not immediate because we're transferring it over the other side of the world over to Australia.
+
+36
+00:03:00,480 --> 00:03:01,710
+So there we are.
+
+37
+00:03:02,190 --> 00:03:09,520
+OK so that successful and we can click on that file come down to the link down here.
+
+38
+00:03:11,760 --> 00:03:18,130
+And hits on the link to access the file and we can see it just takes ages to load.
+
+39
+00:03:18,570 --> 00:03:24,300
+It's no instant like it would normally be if it was stored in a bucket that was local if I'd selected
+
+40
+00:03:24,390 --> 00:03:29,960
+London as my region for the S-3 bucket it would be pretty much instantaneous.
+
+41
+00:03:30,040 --> 00:03:33,370
+So this is where cloud front distributions come in.
+
+42
+00:03:33,790 --> 00:03:38,890
+So let's go ahead and set up our first cloud from distribution.
+
+43
+00:03:38,990 --> 00:03:47,240
+So if we go back to the services section and scroll down to networking because that's where we find
+
+44
+00:03:47,270 --> 00:03:50,580
+crowdfund under networking and content delivery.
+
+45
+00:03:50,660 --> 00:03:59,500
+So it's like cloud front unclick create distribution.
+
+46
+00:03:59,530 --> 00:04:01,750
+So you've got two different options here.
+
+47
+00:04:01,810 --> 00:04:04,210
+There's two different types of cloud front distribution.
+
+48
+00:04:04,210 --> 00:04:07,360
+We discussed earlier.
+
+49
+00:04:07,720 --> 00:04:14,820
+You've got the Web distribution which is for HMO CSSA ph in graphics.
+
+50
+00:04:15,080 --> 00:04:22,990
+Basically anything that could be distributed using a pay or a CPS.
+
+51
+00:04:23,370 --> 00:04:34,110
+And then we also have RCMP which is Adobe's Flash media server real time messaging parts protocol and
+
+52
+00:04:34,110 --> 00:04:40,320
+this is ready for streaming media is not for your basic web sites or static content.
+
+53
+00:04:40,380 --> 00:04:46,170
+It's just streaming media so you're not going to use an RTM distribution this time we're going to just
+
+54
+00:04:46,170 --> 00:04:49,650
+stick with the regular Web distribution.
+
+55
+00:04:49,650 --> 00:04:56,280
+So click on get started and then straightaway you see a whole load of different parameters so there's
+
+56
+00:04:56,280 --> 00:04:59,170
+loads of different settings for cloud front.
+
+57
+00:04:59,760 --> 00:05:04,710
+And don't worry because you don't need to memorize all of these for the exam you just really need to
+
+58
+00:05:04,710 --> 00:05:13,250
+know theoretically what is cloud from what is it used for how does it work at a high level and there's
+
+59
+00:05:13,250 --> 00:05:15,230
+a few options that you need to know about.
+
+60
+00:05:15,470 --> 00:05:17,920
+But I'm going to tell you about those as we go along.
+
+61
+00:05:20,660 --> 00:05:27,230
+So the first thing we need to do is to tell OUTFRONT what is the name of our origin and if we click
+
+62
+00:05:27,230 --> 00:05:29,260
+in here you'll get a choice.
+
+63
+00:05:29,330 --> 00:05:37,520
+So you'll see the option here and we can see the S3 packet that we created just a moment ago and if
+
+64
+00:05:37,520 --> 00:05:42,770
+we had load balances on our account you'd see the elastic load balances down here you'd be able to select
+
+65
+00:05:42,770 --> 00:05:46,780
+one of those if you wanted to use an AC to instance.
+
+66
+00:05:46,790 --> 00:05:48,950
+You should see that in here as well.
+
+67
+00:05:48,950 --> 00:05:54,500
+And if you wanted to use an on premise servers or your own web server located in your own data center
+
+68
+00:05:55,040 --> 00:05:59,240
+you could just add the IP address or the registered domain name of that server.
+
+69
+00:05:59,240 --> 00:06:02,780
+You could just add that in here under the origin domain name.
+
+70
+00:06:02,810 --> 00:06:06,750
+So we're just going to select the S3 bucket that we just created.
+
+71
+00:06:08,660 --> 00:06:10,020
+Origin path.
+
+72
+00:06:10,080 --> 00:06:13,980
+So this refers to different folders within your origin.
+
+73
+00:06:14,010 --> 00:06:22,080
+For example if you had different photos for images videos and HMO files you could put the folder names
+
+74
+00:06:22,170 --> 00:06:25,170
+onto this origin Paul but we don't have that.
+
+75
+00:06:25,500 --> 00:06:26,880
+So we're just going to leave that blank
+
+76
+00:06:29,660 --> 00:06:30,520
+image in our day.
+
+77
+00:06:30,520 --> 00:06:34,800
+So this is just a description so we can just keep that at the default
+
+78
+00:06:37,580 --> 00:06:39,170
+restrict access.
+
+79
+00:06:39,320 --> 00:06:46,220
+So this is an option that you would use if you wanted to restrict access and enforce ALL ACCESS to come
+
+80
+00:06:46,220 --> 00:06:47,560
+via cloud front.
+
+81
+00:06:47,660 --> 00:06:53,720
+So there would be no direct access directly into the three bucket for all users that want to access
+
+82
+00:06:53,720 --> 00:06:54,360
+the files.
+
+83
+00:06:54,410 --> 00:06:56,440
+They need to come through cloud front.
+
+84
+00:06:56,600 --> 00:07:03,460
+So we're going to click on yes for that and then straight away a few additional options appear.
+
+85
+00:07:03,470 --> 00:07:12,230
+So in order to set up your restricts bucket access we also need to have an origin access identity and
+
+86
+00:07:12,230 --> 00:07:18,230
+this open access identity is a special cloud for us.
+
+87
+00:07:18,580 --> 00:07:24,160
+And this is going to be given permission to access your three buckets.
+
+88
+00:07:24,220 --> 00:07:29,270
+So as we know by default no one can access the bucket apart from the bucket owner.
+
+89
+00:07:29,950 --> 00:07:36,430
+So in order to allow cloud front to access that bucket we need to set up some identity access management
+
+90
+00:07:36,670 --> 00:07:38,140
+to enable that.
+
+91
+00:07:38,140 --> 00:07:38,980
+And that's what they said.
+
+92
+00:07:38,980 --> 00:07:44,510
+So it's creating identity for cloud front to use to access your S-3 buckets.
+
+93
+00:07:44,800 --> 00:07:49,470
+So make sure you select Create new user identity.
+
+94
+00:07:49,600 --> 00:07:54,550
+So the next thing we need to do is actually grant the right permissions for this new user.
+
+95
+00:07:54,550 --> 00:07:57,490
+And if you forget to do this it will not work.
+
+96
+00:07:57,490 --> 00:07:59,240
+So this is a really important step.
+
+97
+00:08:00,440 --> 00:08:05,840
+For some reason they leave the default to no in which case you would have to go in yourself and update
+
+98
+00:08:05,840 --> 00:08:08,270
+the permissions for this user.
+
+99
+00:08:08,360 --> 00:08:11,270
+So we need to remember to click yes.
+
+100
+00:08:11,270 --> 00:08:18,550
+And then that will set up one of the bucket policy and access control that you need the new user then
+
+101
+00:08:18,580 --> 00:08:23,690
+moving down to default case behaviors that sings.
+
+102
+00:08:24,080 --> 00:08:29,260
+We have various different options here around HTP and AC CPS.
+
+103
+00:08:29,660 --> 00:08:40,490
+So you've got the choice to allow both HTP and CPS or you can redirect all HTP to CPS or you can allow
+
+104
+00:08:40,530 --> 00:08:42,430
+HTP only.
+
+105
+00:08:42,590 --> 00:08:45,450
+So we're going to go for redirect.
+
+106
+00:08:45,890 --> 00:08:54,950
+So any request that comes in is HTP it's going to get converted to CPS automatically and then they allow
+
+107
+00:08:54,950 --> 00:08:56,040
+methods.
+
+108
+00:08:56,090 --> 00:09:01,710
+So you've got get head get head options head options put post patch delay.
+
+109
+00:09:02,000 --> 00:09:08,210
+So the important thing to remember here is with cloud front it's not just about reading files accessing
+
+110
+00:09:08,210 --> 00:09:10,970
+files downloading files.
+
+111
+00:09:10,970 --> 00:09:19,420
+You can also put and post so you can also upload your files using the cloud front edge location and
+
+112
+00:09:19,420 --> 00:09:27,010
+then AWOS will manage the transfer of those files from the location into your S-3 pocket or into your
+
+113
+00:09:27,010 --> 00:09:28,200
+origin.
+
+114
+00:09:28,210 --> 00:09:38,110
+Moving down here we have the time to live or TTL and TTL is the minimum amount of time in seconds that
+
+115
+00:09:38,110 --> 00:09:41,770
+you want your objects to stay in the cloud front cage.
+
+116
+00:09:41,860 --> 00:09:47,800
+So it's basically how long is the object going to be cased for before it expires and then gets wiped
+
+117
+00:09:47,800 --> 00:09:49,040
+from the case.
+
+118
+00:09:49,390 --> 00:09:57,750
+And it's expressed in seconds so the maximum is 30 billion seconds which equates to 365 days.
+
+119
+00:09:58,270 --> 00:10:00,340
+But the Dufault is 86000.
+
+120
+00:10:00,370 --> 00:10:03,840
+And that equates to 24 hours.
+
+121
+00:10:03,880 --> 00:10:10,090
+Now the thing to be aware of here is that you might have files which get uploaded much more frequently
+
+122
+00:10:10,090 --> 00:10:11,590
+than 24 hours.
+
+123
+00:10:11,590 --> 00:10:18,250
+So for example if you had files that were getting updated two three four times a day or on an hourly
+
+124
+00:10:18,250 --> 00:10:24,100
+basis that time to live is not going to work for you and you're going to find that your files that are
+
+125
+00:10:24,100 --> 00:10:28,870
+held in the edge locations become out of date pretty quickly.
+
+126
+00:10:28,890 --> 00:10:34,090
+So in that case the thing you want to do is change this number here reduce it down.
+
+127
+00:10:34,200 --> 00:10:40,890
+Think about how frequently your data is changing and you want to set the time to live to a fraction
+
+128
+00:10:41,190 --> 00:10:43,650
+of the refresh frequency.
+
+129
+00:10:43,650 --> 00:10:52,650
+So maybe one half one third or one quarter or less depending on how important it is for your material
+
+130
+00:10:52,710 --> 00:10:54,340
+to be up to date.
+
+131
+00:10:57,540 --> 00:11:05,000
+And this option here code restrict viewer access use signs you arouse or signed cookies.
+
+132
+00:11:05,190 --> 00:11:11,760
+So this option allows you to choose whether you want cloud front to require users to access your content
+
+133
+00:11:11,790 --> 00:11:16,960
+using a signed you Arel or a signed cookie.
+
+134
+00:11:17,140 --> 00:11:23,530
+And the reason that you might want to do that is just imagine that you have a Web site and some of the
+
+135
+00:11:23,530 --> 00:11:27,220
+content on your Web site is paid for content.
+
+136
+00:11:27,220 --> 00:11:34,740
+So what you can do is restrict the access to that content only to users who have assigned you already.
+
+137
+00:11:35,380 --> 00:11:42,690
+The users cannot share you all because it's individual to them and you only released the signs you are
+
+138
+00:11:42,690 --> 00:11:43,170
+well.
+
+139
+00:11:43,280 --> 00:11:49,150
+So users who have actually paid to view the content and that is actually technology that we use here
+
+140
+00:11:49,210 --> 00:11:50,680
+at iCloud.
+
+141
+00:11:52,000 --> 00:11:58,530
+Because we have some content on our site which is took members only and we automatically generate this
+
+142
+00:11:58,530 --> 00:12:02,840
+signed Yeoville to enable them to access the paid for content.
+
+143
+00:12:03,100 --> 00:12:09,970
+So just remember in the exam if you get asked any questions around accessing content that you're selling
+
+144
+00:12:10,030 --> 00:12:16,720
+on a Web site and restricting that only to users who have paid for the content then the way to do that
+
+145
+00:12:16,900 --> 00:12:21,200
+is to use signed Europhiles or signed Cookie's.
+
+146
+00:12:21,480 --> 00:12:25,050
+And it's not something that we're going to Kawika here right now it's not part of this lab.
+
+147
+00:12:25,140 --> 00:12:29,410
+But you just need to really be aware of it and understand what it's used for.
+
+148
+00:12:31,630 --> 00:12:40,810
+Then moving down we also have a web application firewalls or WAF and this provides traffic filtering
+
+149
+00:12:41,170 --> 00:12:46,960
+for well-known attacks like sequel injection or cross-site scripting.
+
+150
+00:12:46,990 --> 00:12:54,080
+So this is going to protect you the application layer unlike confirmer network firewall protects you
+
+151
+00:12:54,080 --> 00:12:55,210
+at the network layer.
+
+152
+00:12:55,220 --> 00:13:00,770
+This actually protects you at the application layer and the web application firewall is tightly integrated
+
+153
+00:13:00,770 --> 00:13:02,350
+with crowdfund.
+
+154
+00:13:02,390 --> 00:13:09,140
+You can also add your own domain name so if you own your own registered domain name and you want to
+
+155
+00:13:09,140 --> 00:13:14,640
+use that as the elf cloud for distribution you can add that in here.
+
+156
+00:13:15,260 --> 00:13:16,690
+But we don't have one of those.
+
+157
+00:13:16,790 --> 00:13:17,510
+It's fine.
+
+158
+00:13:17,510 --> 00:13:24,020
+Once the cloud distribution has been created they will provide you with your own unique domain name.
+
+159
+00:13:24,050 --> 00:13:30,410
+It might not be very user friendly but going can give you an SSL certificates so we selected the option
+
+160
+00:13:30,800 --> 00:13:34,320
+to redirect all pay to HTP.
+
+161
+00:13:34,580 --> 00:13:37,960
+And that means we're going to need to use SSL certificates.
+
+162
+00:13:38,120 --> 00:13:43,580
+So we're just going to keep it so the option to use the default cloud certificate but there is also
+
+163
+00:13:43,580 --> 00:13:49,550
+an option to use your own custom SSL certificate and for that you'd need to store your certificate in
+
+164
+00:13:49,700 --> 00:13:54,580
+WS certificate manager or so you can store in.
+
+165
+00:13:55,110 --> 00:13:59,880
+But for the purposes of this lab we're just going to keep it to the DeFeo.
+
+166
+00:14:00,200 --> 00:14:05,200
+So moving down you also see the different ice GTP versions that are supported.
+
+167
+00:14:05,220 --> 00:14:11,490
+So we just keep it to the Dufault and IPD Sexta is a neighborhood by default.
+
+168
+00:14:11,910 --> 00:14:19,690
+So then just go ahead and create distribution and you get this message just about using cloud fences
+
+169
+00:14:19,700 --> 00:14:21,280
+of private content.
+
+170
+00:14:21,490 --> 00:14:22,520
+We can just ignore this.
+
+171
+00:14:22,550 --> 00:14:29,150
+And if you go to distribution's on your left you'll be able to say that your distribution creation is
+
+172
+00:14:29,150 --> 00:14:31,400
+in progress.
+
+173
+00:14:31,400 --> 00:14:36,680
+And unfortunately with Klout front it does take a while to get the distribution created.
+
+174
+00:14:36,830 --> 00:14:43,010
+It takes around 15 to 20 minutes and I think the reason for that is because it's provisioning to lots
+
+175
+00:14:43,010 --> 00:14:46,180
+of different edgy locations all around the world.
+
+176
+00:14:46,280 --> 00:14:53,420
+It's replicating your distribution set up to all of those locations and at the time of recording they've
+
+177
+00:14:53,440 --> 00:14:59,450
+got around a hundred edge locations located in over 25 countries.
+
+178
+00:15:00,380 --> 00:15:05,140
+So as you can imagine that's a lot of locations to push the configuration to.
+
+179
+00:15:05,450 --> 00:15:09,160
+So it's just one of the things in AWOS that just takes a little bit longer.
+
+180
+00:15:09,200 --> 00:15:13,930
+It's not instant So it's going to be about another 15 minutes.
+
+181
+00:15:13,940 --> 00:15:16,260
+And I think until we can get started again.
+
+182
+00:15:16,280 --> 00:15:19,160
+So it's a good time to take a break have a cup of tea.
+
+183
+00:15:19,220 --> 00:15:24,480
+I'm going to post the video now and hopefully in 15 minutes we should be ready to get started again.
+
+184
+00:15:26,460 --> 00:15:32,750
+So here we are back in the AWOS console and the cloud front distribution is now complete.
+
+185
+00:15:32,790 --> 00:15:36,070
+So you should see a state of enabled.
+
+186
+00:15:36,510 --> 00:15:41,820
+So let's go in and take a look at this distribution and this is our distribution.
+
+187
+00:15:41,880 --> 00:15:42,480
+Id
+
+188
+00:15:45,130 --> 00:15:51,100
+And this view just shows the general parameters that we've chosen for this distribution.
+
+189
+00:15:51,100 --> 00:15:59,080
+We've got our distribution already up here Amazon resource name and the domain name appears down here
+
+190
+00:15:59,380 --> 00:16:05,260
+and this to my name is really important because it's this domain name that we're going to use to access
+
+191
+00:16:05,350 --> 00:16:07,640
+the cloud fund distribution.
+
+192
+00:16:07,660 --> 00:16:10,670
+Let's have a look at some of the other tabs on this few.
+
+193
+00:16:11,080 --> 00:16:17,650
+So we have the origin and of course you can have multiple origins here you can create others.
+
+194
+00:16:17,860 --> 00:16:24,100
+So you could add an easy to instance that was hosting a web site you could add an elastic load balance
+
+195
+00:16:25,060 --> 00:16:31,030
+you could add any other S-3 buckets that you were serving content from and you could also add in the
+
+196
+00:16:31,030 --> 00:16:38,620
+details of a server that you have located in your own data center and behaviors.
+
+197
+00:16:38,840 --> 00:16:44,760
+We've got the path Patersons so many different folders that exist underneath the S3 bucket.
+
+198
+00:16:44,900 --> 00:16:46,300
+The name of your origin.
+
+199
+00:16:46,490 --> 00:16:54,320
+So again our S-3 bucket and our protocol policy so any requests that come in as HTP they're going to
+
+200
+00:16:54,320 --> 00:16:58,810
+get redirected as a CPS and error pages.
+
+201
+00:16:58,860 --> 00:17:08,840
+So you can create your own custom error response so it's going to display your custom error page.
+
+202
+00:17:09,140 --> 00:17:18,770
+Whenever there's an error code whenever the origin returns an HTP 400 or 500 status code under restrictions
+
+203
+00:17:19,320 --> 00:17:24,410
+you can actually prevent users in selected countries from accessing your content.
+
+204
+00:17:24,510 --> 00:17:31,770
+So you specify either a whitelist which is the countries that can access your content or a blacklist
+
+205
+00:17:31,890 --> 00:17:38,490
+which is a list of countries that cannot access your content.
+
+206
+00:17:38,500 --> 00:17:44,740
+So here we are we can either select whitelist or blacklist and we can list out the countries that we
+
+207
+00:17:44,740 --> 00:17:46,870
+want to what list.
+
+208
+00:17:46,870 --> 00:17:49,280
+So for example we can add them into here
+
+209
+00:17:52,910 --> 00:17:57,950
+we can add into the list of countries that we want to what list and that we want to make the content
+
+210
+00:17:57,980 --> 00:18:01,420
+available to all.
+
+211
+00:18:01,420 --> 00:18:05,830
+Similarly you can set it up as a blacklist and just make a list of all the countries that you want to
+
+212
+00:18:05,830 --> 00:18:11,730
+blacklist and by implication any country that you do not blacklist will get access.
+
+213
+00:18:11,740 --> 00:18:18,290
+Any country that you do not whitelist will not get access but we're not going to set that up right now
+
+214
+00:18:18,300 --> 00:18:24,700
+so let's go ahead and cancel and take a look at invalidations.
+
+215
+00:18:24,780 --> 00:18:34,050
+So invalidations is all about removing your files the case in the cloud front edge locations.
+
+216
+00:18:34,080 --> 00:18:40,530
+So for example if the file has changed the file has been updated but you've still got the old copy cased
+
+217
+00:18:40,680 --> 00:18:41,830
+in cloud front.
+
+218
+00:18:43,040 --> 00:18:49,190
+But you don't want to wait the time to live to expire to automatically play the old version out of the
+
+219
+00:18:49,190 --> 00:18:50,090
+case.
+
+220
+00:18:50,090 --> 00:18:56,210
+If you want to remove the object from the case you need to do an invalidation which invalidates the
+
+221
+00:18:56,210 --> 00:19:01,790
+object on the case and effectively clears that object from the case.
+
+222
+00:19:01,790 --> 00:19:03,140
+So it's a manual process.
+
+223
+00:19:03,140 --> 00:19:04,640
+You're going to have to go in and do it.
+
+224
+00:19:04,790 --> 00:19:14,150
+But just remember every time you do it you will be charged a fee.
+
+225
+00:19:14,190 --> 00:19:18,980
+So let's go back to a file and see if we can access it using cloud front.
+
+226
+00:19:22,650 --> 00:19:30,910
+So let's make things easier just by opening another tab so that we have two console windows and I want
+
+227
+00:19:30,910 --> 00:19:32,800
+to go back to S-3
+
+228
+00:19:35,990 --> 00:19:39,760
+and take a look at my file.
+
+229
+00:19:40,030 --> 00:19:43,290
+So we have all linked down here which is using the S-3 Internet.
+
+230
+00:19:43,320 --> 00:19:44,150
+You are.
+
+231
+00:19:44,350 --> 00:19:45,750
+And let's just click on the
+
+232
+00:19:49,030 --> 00:19:56,140
+say all files slowly slowly load but I don't want to be accessing the file in this way.
+
+233
+00:19:56,330 --> 00:20:00,520
+I want to force the users to access using cloud front only.
+
+234
+00:20:00,680 --> 00:20:06,380
+So I'm going to go back and I'm going to change the permissions on this file.
+
+235
+00:20:06,380 --> 00:20:09,490
+So we're changing the access control list on the file.
+
+236
+00:20:09,580 --> 00:20:21,810
+We're going to remove public access click on Save and now when we try to access that file it's still
+
+237
+00:20:21,810 --> 00:20:28,410
+there now because it's in the browser case but we're going to reload and we see the access denied message
+
+238
+00:20:28,500 --> 00:20:32,650
+because we've removed public access.
+
+239
+00:20:32,930 --> 00:20:35,700
+So how do we access it using cloud fonts.
+
+240
+00:20:35,960 --> 00:20:46,370
+Well we need to go back into our distribution hit the general tab and we to get our domain name so we
+
+241
+00:20:46,370 --> 00:20:47,720
+copy that to my name.
+
+242
+00:20:49,860 --> 00:20:53,220
+And we're going to use that as the prefix to our file name.
+
+243
+00:21:04,670 --> 00:21:12,160
+And I'm going to change it to CTP instead of HGT P.S. because if you remember but we selected the option
+
+244
+00:21:12,850 --> 00:21:17,750
+which will redirect any HTP requests to a shitty POS.
+
+245
+00:21:17,980 --> 00:21:22,900
+Let's just hit return and see if that works.
+
+246
+00:21:22,930 --> 00:21:29,770
+So the very first time you access a file using cloud front it's not going to be cased in your education
+
+247
+00:21:30,400 --> 00:21:33,490
+so your request will go to your local education
+
+248
+00:21:36,250 --> 00:21:42,640
+and if the file does not exist there is going to have to pull it down from the S3 bucket.
+
+249
+00:21:43,060 --> 00:21:47,870
+So that means you see a similar response time to accessing the bucket directly.
+
+250
+00:21:49,290 --> 00:21:57,510
+However subsequent attempts to access this follow from the same education should be much quicker because
+
+251
+00:21:57,510 --> 00:22:02,580
+the file will be cased locally at the edge location.
+
+252
+00:22:02,580 --> 00:22:09,750
+And one way you can try this is by trying to access the file using a different browser or using a different
+
+253
+00:22:09,750 --> 00:22:12,610
+device like a mobile phone or a tablet.
+
+254
+00:22:12,900 --> 00:22:16,630
+But let's try it now using a different browser.
+
+255
+00:22:16,960 --> 00:22:19,950
+So first of all I'm just going to copy that link
+
+256
+00:22:23,640 --> 00:22:30,950
+and then I'm going to launch another browser so I'm going to paste that you know into safari and see
+
+257
+00:22:31,100 --> 00:22:33,140
+how quickly we can access that file.
+
+258
+00:22:33,300 --> 00:22:33,560
+Yes.
+
+259
+00:22:33,590 --> 00:22:35,360
+So it comes up really really quickly.
+
+260
+00:22:35,510 --> 00:22:39,210
+It's case locally in the London location.
+
+261
+00:22:39,560 --> 00:22:41,940
+So we get access really very quickly.
+
+262
+00:22:43,150 --> 00:22:50,390
+So that is cloud front distribution and the main thing to remember is that it's possible to play your
+
+263
+00:22:50,390 --> 00:22:53,460
+case by invalidating objects.
+
+264
+00:22:53,960 --> 00:22:59,720
+So that will clear them from the case if you need to remove them from the case and you can't wait for
+
+265
+00:22:59,720 --> 00:23:01,490
+the time to live to expire.
+
+266
+00:23:01,790 --> 00:23:04,120
+But just remember you do get charged for it.
+
+267
+00:23:06,270 --> 00:23:11,430
+And remember that you can post files into edge locations.
+
+268
+00:23:11,480 --> 00:23:13,650
+It's not just for accessing files.
+
+269
+00:23:13,730 --> 00:23:15,800
+So you can also upload content
+
+270
+00:23:18,730 --> 00:23:30,090
+and finally to remember to delete all of this once you finish the lap because you do get charged.
+
+271
+00:23:30,120 --> 00:23:36,300
+So let's go back into the console and delete everything.
+
+272
+00:23:36,340 --> 00:23:44,160
+So the first thing that you need to do is click on your distribution click on disable click yes
+
+273
+00:23:47,030 --> 00:23:56,400
+and once again it does take up to 15 minutes because it's deleting that configuration from all the explications.
+
+274
+00:23:56,540 --> 00:24:02,720
+So as soon as the 15 minutes is up as soon as this is complete all you do is select the distribution
+
+275
+00:24:03,170 --> 00:24:05,250
+and then you'll be able to delete it.
+
+276
+00:24:06,470 --> 00:24:08,380
+And that's the end of this lab.
+
+277
+00:24:08,600 --> 00:24:11,070
+If you have any questions please let me know.
+
+278
+00:24:11,250 --> 00:24:14,590
+Otherwise if you've got time please join me in the next lecture.
+
+279
+00:24:14,750 --> 00:24:15,190
+Thank you.

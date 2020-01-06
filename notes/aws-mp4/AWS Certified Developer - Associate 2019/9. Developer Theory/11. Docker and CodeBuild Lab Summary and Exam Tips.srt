@@ -1,0 +1,115 @@
+1
+00:00:00,210 --> 00:00:06,270
+Hello truckers and welcome to this lecture and this lecture is going to be a doctor and code build lab
+
+2
+00:00:06,330 --> 00:00:09,420
+summary as well as our exam tips.
+
+3
+00:00:09,650 --> 00:00:14,910
+And if you remember in the previous lab we started off with our Docker file and we manually built a
+
+4
+00:00:14,910 --> 00:00:21,000
+Docker image and then ran the manual commands to push the image to the elastic container registry and
+
+5
+00:00:21,000 --> 00:00:26,600
+then we used a plastic container service to launch the docker container using the image in the registry.
+
+6
+00:00:26,610 --> 00:00:30,000
+We then created a source code repository in code commit.
+
+7
+00:00:30,030 --> 00:00:35,640
+We added our Docker file as well as our build spec camel file which contained all the manual commands
+
+8
+00:00:35,640 --> 00:00:42,510
+to build tag and push the Docker image into the plastic container registry and we then used code build
+
+9
+00:00:42,540 --> 00:00:48,720
+to build out our image and we pushed the image to the elastic container registry and we saw the new
+
+10
+00:00:48,720 --> 00:00:51,860
+image appear in the plastic container registry.
+
+11
+00:00:52,200 --> 00:00:55,840
+So let's move onto some of our exam tips for this lab.
+
+12
+00:00:56,580 --> 00:01:03,270
+Well firstly the docker commands to build tag and push your Docker image to the R repository.
+
+13
+00:01:03,270 --> 00:01:09,780
+These are really important commands to understand and remember the first one we have is docker build
+
+14
+00:01:10,370 --> 00:01:14,700
+and that just builds your Docker image for you based on your Docker file.
+
+15
+00:01:14,730 --> 00:01:21,510
+We then have this doc Docker target command which applies an alias to your Docker image and in preparation
+
+16
+00:01:21,510 --> 00:01:23,910
+for pushing it into your repository.
+
+17
+00:01:23,910 --> 00:01:27,780
+So in this case it applies a tag called latest.
+
+18
+00:01:27,900 --> 00:01:33,660
+And then finally we have the docker push command and this simply pushes your Docker image into your
+
+19
+00:01:33,660 --> 00:01:36,010
+ISA or Docker repository.
+
+20
+00:01:36,030 --> 00:01:41,730
+Remember that we use the build spectre Jamil to define all the build commands and settings used by code
+
+21
+00:01:41,730 --> 00:01:43,220
+build to run your build.
+
+22
+00:01:43,260 --> 00:01:48,420
+You can override the settings in the bills backed or Yammer by adding your own commands in the console
+
+23
+00:01:48,450 --> 00:01:49,880
+when you launch the build.
+
+24
+00:01:49,890 --> 00:01:55,980
+And finally if your build fails check the build logs within the code build console and you can also
+
+25
+00:01:55,980 --> 00:01:59,100
+view the full code build log in cloud watch.
+
+26
+00:01:59,160 --> 00:02:00,830
+So that is the end of this lecture.
+
+27
+00:02:00,870 --> 00:02:03,490
+If you have any questions please let me know.
+
+28
+00:02:03,630 --> 00:02:05,970
+If not feel free to move on to the next lecture.
+
+29
+00:02:06,120 --> 00:02:06,630
+Thank you.

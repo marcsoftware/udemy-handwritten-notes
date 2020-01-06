@@ -1,0 +1,867 @@
+1
+00:00:00,670 --> 00:00:06,340
+OK hello cloggers and welcome to this lecture this lecture we're going to look at backups multi-phase
+
+2
+00:00:06,360 --> 00:00:09,390
+Z and read replicas with us.
+
+3
+00:00:09,450 --> 00:00:13,830
+Now it doesn't matter what exam that you're doing whether it's solutions architect associate developer
+
+4
+00:00:13,830 --> 00:00:19,920
+associate or city administrator associate having a clear understanding of the difference between Moltke
+
+5
+00:00:19,990 --> 00:00:27,270
+a Z and read replicas will pick you up at least three or four points on your exam in some exams or pick
+
+6
+00:00:27,270 --> 00:00:32,100
+you up more really depends on the exams you need to have a clear understanding of what that is going
+
+7
+00:00:32,100 --> 00:00:33,230
+into the exam.
+
+8
+00:00:33,330 --> 00:00:36,150
+Before we get onto that though let's just start with some backup.
+
+9
+00:00:36,150 --> 00:00:42,930
+So there's two types of backups for AWOS these automated backups and there's database snapshots now
+
+10
+00:00:42,930 --> 00:00:48,570
+automated backups will allow you to recover your database to any point in time within a retention period
+
+11
+00:00:48,870 --> 00:00:52,850
+and the retention period can be between 1 and 35 days.
+
+12
+00:00:52,890 --> 00:00:59,730
+Automated backups will basically take a full daily snapshot and will also store transaction logs throughout
+
+13
+00:00:59,730 --> 00:01:00,340
+the day.
+
+14
+00:01:00,480 --> 00:01:06,240
+And then when you recover AWOS will first choose the most recent daily backup so choose the snapshot
+
+15
+00:01:06,270 --> 00:01:11,520
+that's most recent and then apply those transaction logs that are relevant to that day.
+
+16
+00:01:11,520 --> 00:01:15,090
+And that's how we do a restore with automated backups.
+
+17
+00:01:15,180 --> 00:01:20,990
+And this basically allows you to do a point in time recovery down to a second within the retention period
+
+18
+00:01:21,000 --> 00:01:25,300
+windows the retention period window is between 1 and 35 days.
+
+19
+00:01:25,350 --> 00:01:30,960
+Now a cool thing about automated backups is they're enabled by default the backup data is stored on
+
+20
+00:01:31,020 --> 00:01:35,570
+S3 and you're going to get free storage space equal to the size of your database.
+
+21
+00:01:35,580 --> 00:01:41,330
+So let's say you have an instance of 10 gigs you going to get 10 gigs worth of storage that's free on
+
+22
+00:01:41,400 --> 00:01:48,270
+S-3 and backout so taken within a defined window during the backup window storage IO may be suspended
+
+23
+00:01:48,270 --> 00:01:53,730
+while your data is being backed up and you may experience some elevated latency and you saw in the last
+
+24
+00:01:53,730 --> 00:01:59,460
+lecture where we basically defined all backup window we left everything as the default values.
+
+25
+00:01:59,460 --> 00:02:03,350
+But when you go and create your database you can define the backup window.
+
+26
+00:02:03,390 --> 00:02:06,400
+You can also edit it for your existing databases.
+
+27
+00:02:06,480 --> 00:02:12,060
+Moving on to snapshot snapshots is simply what you think they are they're basically a snapshot of the
+
+28
+00:02:12,060 --> 00:02:15,440
+database so just like a Polaroid takes snapshots.
+
+29
+00:02:15,450 --> 00:02:20,070
+When we do a database snapshot it's going to take a snapshot of the database.
+
+30
+00:02:20,220 --> 00:02:27,090
+It's always done manually so that always use initiated and they will always be stored even after you
+
+31
+00:02:27,090 --> 00:02:33,450
+delete the original D.S. instance if you delete the original instance your automated backups will also
+
+32
+00:02:33,450 --> 00:02:35,470
+be deleted with it as well.
+
+33
+00:02:35,670 --> 00:02:42,330
+Whereas D-B snapshots basically sit as a standalone file and you can delete the LDS instance without
+
+34
+00:02:42,960 --> 00:02:46,360
+having to worry about those snapshots being deleted as well.
+
+35
+00:02:46,470 --> 00:02:52,260
+So moving on to restoring backups whenever you restore either an automatic backup or a manual snapshot
+
+36
+00:02:52,320 --> 00:02:58,830
+the restored version of the database will be a new D.S. instance within DNS and points when we do a
+
+37
+00:02:58,830 --> 00:02:59,540
+restore.
+
+38
+00:02:59,640 --> 00:03:06,780
+Let's say that this is our DNS end point for the original database we've got original doti hyphen Westhoff
+
+39
+00:03:06,780 --> 00:03:08,760
+and one to D.S.O. Emerson 8.
+
+40
+00:03:08,790 --> 00:03:14,610
+So when we do a restore it's going to have a new DNS endpoint so they basically completely separate
+
+41
+00:03:14,610 --> 00:03:18,390
+databases with completely separate DNS and points.
+
+42
+00:03:18,390 --> 00:03:23,130
+Now before we have a look at how we go and do this I just want to talk a little bit about encryption
+
+43
+00:03:23,430 --> 00:03:27,850
+encryption at rest is supported for my sequel Oracle esque sequel serve a purpose gress.
+
+44
+00:03:27,930 --> 00:03:32,380
+Q Oh Maria D.B and terasa everything now supports encryption at rest.
+
+45
+00:03:32,490 --> 00:03:36,350
+It's done using the AWOS Kamis or key management service.
+
+46
+00:03:36,360 --> 00:03:42,340
+We cover a mess in a awful lot of detail in the certified security specialty course.
+
+47
+00:03:42,360 --> 00:03:48,450
+So if you do want to go on and get a security certified which is really valuable right now definitely
+
+48
+00:03:48,450 --> 00:03:49,620
+check out that course.
+
+49
+00:03:49,620 --> 00:03:56,010
+So once your instance is encrypted the data stored at rest in the underlying storage is encrypted as
+
+50
+00:03:56,280 --> 00:04:00,230
+all of its automated it backups read replicas and Snapshot.
+
+51
+00:04:00,240 --> 00:04:04,680
+So once you encrypt a database anything you do with that database in terms of making a copy of that
+
+52
+00:04:04,680 --> 00:04:07,700
+data is going to be encrypted as well.
+
+53
+00:04:07,860 --> 00:04:12,540
+And at the present time encrypting an existing db instance is not supported.
+
+54
+00:04:12,570 --> 00:04:18,420
+To use ADSI encryption for an existing database you must first create a snapshot and then make a copy
+
+55
+00:04:18,420 --> 00:04:20,540
+of that snapshot and encrypt the copy.
+
+56
+00:04:20,550 --> 00:04:22,240
+And we'll look at how to do that.
+
+57
+00:04:22,440 --> 00:04:24,560
+And General backups right now.
+
+58
+00:04:24,720 --> 00:04:30,870
+OK so here I am in the AWOS console in the audio section which sits under databases and what I want
+
+59
+00:04:30,870 --> 00:04:36,590
+to do is I want to go over to that a database instance that we launched in the very last lecture.
+
+60
+00:04:36,720 --> 00:04:41,860
+So go to a cloud and click in here in here we've got our instance actions.
+
+61
+00:04:41,940 --> 00:04:48,570
+So I in here I can create a replica arrayed replica we can take a snapshot restore to a point in time
+
+62
+00:04:48,660 --> 00:04:51,200
+migrate latest snapshot et cetera et cetera.
+
+63
+00:04:51,210 --> 00:04:55,880
+I'm gonna explain what read replicas and multi Zee's can also modify the database.
+
+64
+00:04:55,880 --> 00:05:01,180
+If you click home modify in here you'll be able to scroll all the way down and change the backup retention
+
+65
+00:05:01,180 --> 00:05:05,890
+period so he can go from seven days all the way down to 35 days.
+
+66
+00:05:05,890 --> 00:05:12,960
+We can also go and change the backup window it is in UTC time so you can say I wanted to start at 2
+
+67
+00:05:12,960 --> 00:05:17,420
+a.m. or 216 a.m. UTC and have a window for half an hour.
+
+68
+00:05:17,430 --> 00:05:19,630
+So you can change that all in there.
+
+69
+00:05:19,820 --> 00:05:25,810
+So let's go and actually let's go click on snapshots in here we can see our automated snapshots.
+
+70
+00:05:25,810 --> 00:05:27,040
+So these are snapshots.
+
+71
+00:05:27,040 --> 00:05:32,170
+This was the first snap that was taken when I first created this database.
+
+72
+00:05:32,170 --> 00:05:38,440
+If I wanted to go and do a point in time I'd go back over to my instances click in here and I can go
+
+73
+00:05:38,440 --> 00:05:42,580
+to instant actions and I can go to restore to a point in time.
+
+74
+00:05:42,640 --> 00:05:47,470
+Essentially what that's going to do if I click in here and go to custom I'll be able to do the date
+
+75
+00:05:47,560 --> 00:05:52,420
+the time and it's all in UTC and I can go right down to the very second.
+
+76
+00:05:52,420 --> 00:05:57,700
+As I said what it's going to do is first restore that snapshot and then it's going to ply with transaction
+
+77
+00:05:57,700 --> 00:06:04,810
+logs to that snapshot and then bring it back to a point in time down to the second so it is really really
+
+78
+00:06:04,810 --> 00:06:05,330
+cool.
+
+79
+00:06:05,350 --> 00:06:09,910
+Let's have a look at one last thing before we move on to regret because this is multi ese.
+
+80
+00:06:09,920 --> 00:06:15,640
+If I click on instances and have a click in here I can go instance actions and I can take a snapshot.
+
+81
+00:06:15,790 --> 00:06:24,880
+Let's go and take a manual snapshot or call it a cloud your manual snap and go ahead and hit take snapshot.
+
+82
+00:06:25,030 --> 00:06:26,990
+That is now creating my snapshot.
+
+83
+00:06:27,010 --> 00:06:29,440
+I'm going to pause the video and just wait for this to come up.
+
+84
+00:06:29,900 --> 00:06:30,150
+OK.
+
+85
+00:06:30,170 --> 00:06:34,400
+So I'm just going to refresh the page hopefully that has finished being created now.
+
+86
+00:06:34,450 --> 00:06:37,210
+And there we go it is now available by click in here.
+
+87
+00:06:37,360 --> 00:06:42,960
+What I can do is I can go to actions and I can go to a copy snapshot when I go to copy snapshot.
+
+88
+00:06:43,000 --> 00:06:46,840
+I can actually scroll down you can see I can enable encryption.
+
+89
+00:06:46,840 --> 00:06:53,380
+So that's how we would turn encryption on and basically create a copy and then from that copy that encrypted
+
+90
+00:06:53,380 --> 00:06:57,930
+copy of the snapshot I would then deploy a new instance.
+
+91
+00:06:57,970 --> 00:06:59,960
+So that's important to remember your exam.
+
+92
+00:06:59,980 --> 00:07:05,290
+Now let's learn the differences between multi a.z and read replicas.
+
+93
+00:07:05,290 --> 00:07:07,160
+So what is multi-phase Z.
+
+94
+00:07:07,180 --> 00:07:12,250
+Well here we've got an elastic load balance so with some E.S. two instances behind it and they're all
+
+95
+00:07:12,250 --> 00:07:17,840
+pointing at an LDS database this database is in USA aist one a.
+
+96
+00:07:18,070 --> 00:07:21,950
+So they see two instances if they make any rights to us one.
+
+97
+00:07:21,980 --> 00:07:24,600
+So any changes to that database.
+
+98
+00:07:24,610 --> 00:07:29,260
+What will happen is those changes will be synchronously replicated to us.
+
+99
+00:07:29,300 --> 00:07:35,620
+East one be and U.S. East one bay will be an exact copy of uss aist one a.
+
+100
+00:07:35,800 --> 00:07:39,720
+Now it's important to understand this is for disaster recovery only.
+
+101
+00:07:39,760 --> 00:07:46,890
+So in the event that we lose U.S. East one way it will automatically fail over to us at least one B.
+
+102
+00:07:46,910 --> 00:07:48,050
+So how does that work.
+
+103
+00:07:48,100 --> 00:07:53,340
+If you remember in the last lecture we had the connect up HP file and we had this thing called the hostname
+
+104
+00:07:53,440 --> 00:08:02,500
+and the hostname simply contained our DNS and points a cloud Garou dot see one x w s a 1 K L x t Daut
+
+105
+00:08:02,550 --> 00:08:07,440
+EU hyphen West hyphen one dot Amazon Dot com.
+
+106
+00:08:07,440 --> 00:08:13,370
+So that is simply a DNS address that DNS address is actually public and publicly available.
+
+107
+00:08:13,450 --> 00:08:18,940
+And what will happen is that if you lose your primary database Amazon will detect that and it will update
+
+108
+00:08:18,970 --> 00:08:25,650
+the DNS address to point to the IP address of your Z copy of your database.
+
+109
+00:08:25,660 --> 00:08:30,440
+So it's really important to understand that you never deal with IP addresses when dealing with D.S.
+
+110
+00:08:30,520 --> 00:08:37,090
+you always just use this DNS endpoint and this day NSA endpoint will fail over automatically to your
+
+111
+00:08:37,440 --> 00:08:45,190
+you know your secondary Malte a Z database azy allows you to have an exact copy of your production database
+
+112
+00:08:45,250 --> 00:08:49,750
+and another availability zone and AWOS handled a replication for you.
+
+113
+00:08:49,750 --> 00:08:54,520
+So when your production database is written to this right will automatically be synchronized to the
+
+114
+00:08:54,520 --> 00:08:55,800
+stand by database.
+
+115
+00:08:55,980 --> 00:09:01,590
+And so in the event of database maintenance or D-B instance failure or an availability zone failure
+
+116
+00:09:01,690 --> 00:09:08,290
+Amazon will automatically follow it to the standby so that the database operations can resume quickly
+
+117
+00:09:08,290 --> 00:09:14,200
+without administrative intervention so files are automatically your downtime is going to be very very
+
+118
+00:09:14,200 --> 00:09:17,000
+limited probably only a minute or so.
+
+119
+00:09:17,080 --> 00:09:22,840
+So it's really really critical to remember the multi Asie is for disaster recovery only.
+
+120
+00:09:22,960 --> 00:09:26,290
+It is not primarily used for improving performance.
+
+121
+00:09:26,350 --> 00:09:31,780
+If you want performance improvement you're going to need read replicas and it's really critical to understand
+
+122
+00:09:31,780 --> 00:09:38,770
+that any of the associate exams and disaster recovery you using multi azy if you want performance improvements
+
+123
+00:09:38,770 --> 00:09:40,330
+you are going to use read replicas.
+
+124
+00:09:40,360 --> 00:09:46,060
+Before we go on what a read replica is just remember that multi azy databases are available for a sequel
+
+125
+00:09:46,060 --> 00:09:47,170
+server.
+
+126
+00:09:47,170 --> 00:09:50,190
+Oracle my Sekou post Q Oh Maria D-B.
+
+127
+00:09:50,350 --> 00:09:52,440
+You could argue or Rore as well.
+
+128
+00:09:52,450 --> 00:09:55,870
+Aurora is actually built into the entire database design.
+
+129
+00:09:55,870 --> 00:10:01,270
+I haven't put it here as a bullet point but it definitely has Rohrer by it is spread across multiple
+
+130
+00:10:01,480 --> 00:10:02,550
+availability zones.
+
+131
+00:10:02,560 --> 00:10:09,460
+You don't need to turn on multiagency for Aurora but the other instances you can definitely turn it
+
+132
+00:10:09,460 --> 00:10:10,000
+on.
+
+133
+00:10:10,000 --> 00:10:13,750
+So moving on to read replicas what is a read replica.
+
+134
+00:10:13,750 --> 00:10:20,460
+Well let's take our lastic Lloyd Belon so without E.C two instances as we had in the last few slides.
+
+135
+00:10:20,650 --> 00:10:24,130
+And they're basically doing a right to an audio database.
+
+136
+00:10:24,130 --> 00:10:30,100
+Now when you set up a raid replica these rights are going to be pushed out to other copies of the database
+
+137
+00:10:30,100 --> 00:10:34,870
+and you can have five read replicas per production database by default.
+
+138
+00:10:34,910 --> 00:10:36,160
+And so why would you do this.
+
+139
+00:10:36,160 --> 00:10:42,490
+Well let's say that 90 percent of your traffic is read traffic and you've got all these easy two instances
+
+140
+00:10:42,730 --> 00:10:46,600
+90 percent of what they're doing is just doing raids from the database.
+
+141
+00:10:46,600 --> 00:10:52,090
+This could be like a very popular Wordpress blog or popular Joomla site or something like that.
+
+142
+00:10:52,330 --> 00:10:54,000
+To be honest it depends on the workload.
+
+143
+00:10:54,010 --> 00:10:59,290
+But a lot of applications a lot of it is read you know people are reading more than they contributing
+
+144
+00:10:59,290 --> 00:11:01,570
+on the Internet generally speaking.
+
+145
+00:11:01,570 --> 00:11:07,600
+So you know you could scale this out by instead of having those two instances going to the production
+
+146
+00:11:07,600 --> 00:11:14,020
+database the primary database they read from the read replicas or you could have it so that one reads
+
+147
+00:11:14,020 --> 00:11:18,260
+from the production and the other to read from read replicas whatever.
+
+148
+00:11:18,280 --> 00:11:23,800
+This is a way of scaling out your database so that you take the load off the primary database and you
+
+149
+00:11:23,800 --> 00:11:28,470
+spread that load across one or more read replicas.
+
+150
+00:11:28,500 --> 00:11:34,540
+You can also have read replicas of Raid replicas you will get some replication latency if you do do
+
+151
+00:11:34,540 --> 00:11:39,760
+that but you could have a read replica in a nother availability zone but you could have a RAID replica
+
+152
+00:11:39,810 --> 00:11:44,830
+in a other availability zone or you could have a read replica in a completely different region.
+
+153
+00:11:44,830 --> 00:11:46,790
+It's completely up to you.
+
+154
+00:11:46,830 --> 00:11:51,100
+So read replicas allow you to have a read only copy of your production database.
+
+155
+00:11:51,100 --> 00:11:56,410
+This is achieved using asynchronous replication for the primary haughtiest instance to the read replica
+
+156
+00:11:56,740 --> 00:12:03,310
+and you use read replicas primarily for very real heavy database workloads so use RAID replicas to scale
+
+157
+00:12:03,370 --> 00:12:04,100
+out.
+
+158
+00:12:04,120 --> 00:12:10,150
+Now I did say earlier the bolt a Z is synchronous whereas read replicas are asynchronous.
+
+159
+00:12:10,180 --> 00:12:14,830
+You don't actually need to worry about that at any of the associate level questions when you start doing
+
+160
+00:12:14,830 --> 00:12:19,660
+the professional level questions so try and confuse you and try and test whether you know which is synchronism
+
+161
+00:12:19,690 --> 00:12:24,680
+which is asynchronous but you won't have that at the associate level.
+
+162
+00:12:24,890 --> 00:12:29,010
+Xrayed replica databases currently available for my sake will serve a purpose.
+
+163
+00:12:29,030 --> 00:12:33,560
+Q Oh Maria de Bay and Aurora so it's available for fall.
+
+164
+00:12:33,590 --> 00:12:35,420
+They are currently not available for sale.
+
+165
+00:12:35,420 --> 00:12:37,260
+Will serve at all for our école.
+
+166
+00:12:37,420 --> 00:12:43,480
+So rate replicas they use for scaling not for disaster recovery if you need to scale out to use read
+
+167
+00:12:43,480 --> 00:12:50,490
+replicas if you need disaster recovery you want multi azy you must have automatic backups turned on
+
+168
+00:12:50,510 --> 00:12:53,450
+in order to deploy a raid replica.
+
+169
+00:12:53,620 --> 00:12:59,570
+You can have up to five raid replica copies of any database and you can have a read replicas overread
+
+170
+00:12:59,620 --> 00:13:05,230
+replicas but watch out for latency E-Trade replica is going to have its own DNS endpoint.
+
+171
+00:13:05,230 --> 00:13:09,250
+You can have read replicas that have multi enabled.
+
+172
+00:13:09,250 --> 00:13:16,240
+This is a very new feature that was released in January 2018 so you can have a RAID replica in a completely
+
+173
+00:13:16,240 --> 00:13:21,760
+different availabilities zone or completely different region that has multi Asie turned on and you can
+
+174
+00:13:21,760 --> 00:13:26,590
+create raid replicas of multi Asie source databases.
+
+175
+00:13:26,770 --> 00:13:32,650
+So in other words if you have multi Asie turned on to your you know to your instance you can still go
+
+176
+00:13:32,650 --> 00:13:39,490
+in and create read replicas doesn't break it at all and then read replicas can be promoted to become
+
+177
+00:13:39,490 --> 00:13:41,260
+their own databases.
+
+178
+00:13:41,260 --> 00:13:47,730
+Now this will break the replication but this can be very very useful if you need a copy of your database
+
+179
+00:13:47,740 --> 00:13:53,140
+maybe you've got too many read replicas you're not using enough of them and you want to do some you
+
+180
+00:13:53,140 --> 00:13:57,640
+know some other sort of work on your databases and you don't want to do this on your production database.
+
+181
+00:13:57,640 --> 00:14:02,590
+You can promote your read replica to become its own database.
+
+182
+00:14:02,590 --> 00:14:04,640
+This will break the replication however.
+
+183
+00:14:04,660 --> 00:14:10,420
+And then finally you can have a read replica in another region it doesn't have to be tied down to the
+
+184
+00:14:10,420 --> 00:14:16,630
+region in which all production database is in let's go have a look at how we can enable multi a.z and
+
+185
+00:14:16,630 --> 00:14:18,730
+read replicas in the console case.
+
+186
+00:14:18,820 --> 00:14:24,610
+Here I am back in the AWOS console if I go down to databases and click on relational database service.
+
+187
+00:14:24,640 --> 00:14:27,080
+So open up the splash screen.
+
+188
+00:14:27,180 --> 00:14:31,620
+I'm going to go and grab the instance that we were using previously.
+
+189
+00:14:31,660 --> 00:14:38,440
+A cloud are going to go in and click on it so it's selected and then go to instance actions straightaway
+
+190
+00:14:38,530 --> 00:14:44,910
+I can click on Create raid replica You can specify the destination here so it can be completely different
+
+191
+00:14:44,920 --> 00:14:45,510
+region.
+
+192
+00:14:45,520 --> 00:14:50,740
+You can specify the subnet groups the availability zones whether it's publicly accessible or not.
+
+193
+00:14:50,830 --> 00:14:56,650
+You can actually enable encryption on your read replicas even if the primary database is not encrypted.
+
+194
+00:14:56,650 --> 00:15:03,440
+You can select your instance classes here you can make Read replica multi a Z and then you just basically
+
+195
+00:15:03,440 --> 00:15:09,140
+can go and set up monitoring you're going to have an enhanced monitoring or you can have logs exported
+
+196
+00:15:09,740 --> 00:15:12,820
+to cloud watch logs from your raid replicas as well.
+
+197
+00:15:12,850 --> 00:15:17,540
+Can Go ahead and hate can so I don't really need to create a raid replica the other way you can turn
+
+198
+00:15:17,540 --> 00:15:24,260
+on multi Asie as you just go over the instance actions go to modify and you can actually just specify
+
+199
+00:15:24,260 --> 00:15:26,580
+that you want multi Asie deployment.
+
+200
+00:15:26,810 --> 00:15:32,540
+And the way this would typically be done is let's say this is my test dev database and my site is almost
+
+201
+00:15:32,540 --> 00:15:38,240
+ready to go live but I didn't want to have multi azy on test and Dev on what I can do is go into my
+
+202
+00:15:38,360 --> 00:15:43,250
+database and make up multi azy and thus promoting it to become a production database.
+
+203
+00:15:43,280 --> 00:15:48,530
+So that is read replicated and multiagency in a nutshell.
+
+204
+00:15:48,860 --> 00:15:54,200
+You do definitely have to have a clear understanding of the two going into any associate exam and pretty
+
+205
+00:15:54,200 --> 00:15:59,020
+much any professional exam you will always get marks for knowing the difference between the two.
+
+206
+00:15:59,150 --> 00:16:06,190
+I remember raid replicas of scaling for performance enhancement whereas multi azy is for disaster recovery.
+
+207
+00:16:06,320 --> 00:16:11,960
+You can go back now and delete this D.S. instance going to be using it anymore so just go to your instance
+
+208
+00:16:11,990 --> 00:16:14,660
+actions and go ahead and hit delete.
+
+209
+00:16:14,660 --> 00:16:16,280
+I'm not going to create a final snapshot.
+
+210
+00:16:16,280 --> 00:16:18,550
+You can if you want.
+
+211
+00:16:18,890 --> 00:16:22,490
+If you aren't going to create a final snapshot it says it.
+
+212
+00:16:22,550 --> 00:16:27,470
+I acknowledge that upon instant solution all my automatic backups including system snapshots some point
+
+213
+00:16:27,470 --> 00:16:32,510
+in time recovery will no longer be available so it will delete all the automatic backups when you delete
+
+214
+00:16:32,510 --> 00:16:33,980
+your yes instance.
+
+215
+00:16:34,130 --> 00:16:37,430
+So that is it for this lecture guys if you have any questions please let me know.
+
+216
+00:16:37,420 --> 00:16:39,260
+If not feel free to move on to the next lecture.
+
+217
+00:16:39,320 --> 00:16:39,790
+Thank you.

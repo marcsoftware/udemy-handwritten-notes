@@ -1,0 +1,763 @@
+1
+00:00:00,300 --> 00:00:00,980
+OK.
+
+2
+00:00:00,990 --> 00:00:06,720
+Hello cloggers and welcome to this lecture this lecture is on simple queue service or Eskew.
+
+3
+00:00:06,870 --> 00:00:11,580
+And if you remember from the history lecture where we're talking about the history of AWOS this was
+
+4
+00:00:11,610 --> 00:00:15,660
+the first ever AWOS service that was publicly available.
+
+5
+00:00:15,660 --> 00:00:22,230
+So this is the oldest AWOS service now where this comes up in the exam is you need to understand what
+
+6
+00:00:22,380 --> 00:00:27,360
+obscurest is at a very high level and then you need to understand various different components of it
+
+7
+00:00:27,390 --> 00:00:31,960
+and it makes sense that this is in the exam because it is the oldest AWOS service.
+
+8
+00:00:32,010 --> 00:00:33,300
+So what is Eske us.
+
+9
+00:00:33,310 --> 00:00:38,490
+Well it's a web service that gives you access to a message queue that can be used to store messages
+
+10
+00:00:38,490 --> 00:00:44,190
+while waiting for a computer to process them as cueist is a distributed queue system that enables web
+
+11
+00:00:44,190 --> 00:00:50,130
+service applications to quickly and reliably queue messages that one component in the application generates
+
+12
+00:00:50,370 --> 00:00:52,960
+to be consumed by another component.
+
+13
+00:00:52,970 --> 00:00:57,000
+AQ is a temporary repository for messages that are awaiting processing.
+
+14
+00:00:57,150 --> 00:00:59,460
+So all that sounds a bit complicated Don't worry.
+
+15
+00:00:59,460 --> 00:01:04,160
+The easiest way to learn what Eskew excuse is is by looking at an example.
+
+16
+00:01:04,320 --> 00:01:07,860
+So let's say you've got a Web site that generates main's.
+
+17
+00:01:07,920 --> 00:01:11,490
+So hey you know you've got your user and they want to upload a photo.
+
+18
+00:01:11,640 --> 00:01:13,620
+So let's say we want to turn this into a main.
+
+19
+00:01:13,680 --> 00:01:20,570
+So we're going to upload this to a Web site and that a Web site might store this photo in S-3.
+
+20
+00:01:20,700 --> 00:01:24,230
+Now as soon as that's finished uploading that might trigger a lambda function.
+
+21
+00:01:24,360 --> 00:01:32,390
+And what lambda does is basically it sends all the data about this particular image to ask us.
+
+22
+00:01:32,430 --> 00:01:33,690
+So what kind of data.
+
+23
+00:01:33,690 --> 00:01:39,030
+Well it's going to send the data as to what's the top of the Maime should say what the bottom of the
+
+24
+00:01:39,030 --> 00:01:40,320
+Mayme should say.
+
+25
+00:01:40,320 --> 00:01:47,880
+It might give date her about the S3 bucket location so which S3 bucket has it been uploaded to.
+
+26
+00:01:47,880 --> 00:01:51,000
+It might pass state her around the user et cetera.
+
+27
+00:01:51,000 --> 00:01:56,300
+And this sits in Eske us as a message while it's waiting to be processed.
+
+28
+00:01:56,310 --> 00:01:58,790
+Then you might have a fleet of two instances.
+
+29
+00:01:58,830 --> 00:02:04,470
+And what they do is they poll the rescue rescue looking for messages looking for jobs to do essentially
+
+30
+00:02:04,710 --> 00:02:07,530
+think of obscurest as yet basically a way of assigning jobs.
+
+31
+00:02:07,530 --> 00:02:13,230
+It's like you put a job into the rescue rescue then you see two instances when they're ready constantly
+
+32
+00:02:13,230 --> 00:02:15,510
+poll that Hugh looking for work.
+
+33
+00:02:15,510 --> 00:02:17,700
+And so they find this message and then.
+
+34
+00:02:17,730 --> 00:02:18,450
+OK great.
+
+35
+00:02:18,450 --> 00:02:20,760
+I'm going to create the main So I'm going to encode it.
+
+36
+00:02:20,790 --> 00:02:21,420
+So here it is.
+
+37
+00:02:21,420 --> 00:02:29,290
+It says Hello cloud jurors and it then stores the two instance then writes that to the same as bucket.
+
+38
+00:02:29,340 --> 00:02:34,800
+Or it could write it to a different S-3 bucket and then once it's finished that job it goes back to
+
+39
+00:02:34,800 --> 00:02:38,280
+the rescue rescue again and looks for work looks for jobs to do.
+
+40
+00:02:38,280 --> 00:02:43,860
+And you can actually have auto scaling groups that sit behind us so that automatically scales based
+
+41
+00:02:43,860 --> 00:02:44,990
+off the rescuers.
+
+42
+00:02:45,000 --> 00:02:51,030
+Q So how many messages are in the queue could trigger you provisioning more and more easy to instances.
+
+43
+00:02:51,030 --> 00:02:57,200
+Now the great thing about this is that if you lose any C-2 instance you're not going to lose that job
+
+44
+00:02:57,210 --> 00:02:59,160
+it's still going to sit in the cueist.
+
+45
+00:02:59,160 --> 00:03:05,400
+Q And another AC to instance can go in and pick that up and we'll talk about that in a couple of slides
+
+46
+00:03:05,430 --> 00:03:05,970
+from now.
+
+47
+00:03:06,000 --> 00:03:11,520
+So to give you another example think of a travel Web site might be something like Skyscanner or Google
+
+48
+00:03:11,520 --> 00:03:17,610
+flights or something and basically or go out and scan a whole bunch of different airlines and get you
+
+49
+00:03:17,610 --> 00:03:18,540
+the best deal.
+
+50
+00:03:18,690 --> 00:03:21,660
+And if you if you actually work at Skyscanner.
+
+51
+00:03:21,660 --> 00:03:24,170
+Big shout out to you guys they use you all the time.
+
+52
+00:03:24,300 --> 00:03:27,660
+So here we are we've got our user and they looking for a holiday.
+
+53
+00:03:27,690 --> 00:03:32,760
+They want a package holiday and they want to get the best possible flights so they type a query into
+
+54
+00:03:32,760 --> 00:03:33,570
+their browser.
+
+55
+00:03:33,690 --> 00:03:35,790
+This then hits in the C-2 instant.
+
+56
+00:03:35,790 --> 00:03:37,880
+So these are easy to web servers.
+
+57
+00:03:38,010 --> 00:03:43,350
+And essentially what they do is they take what the user is looking for and they put package that up
+
+58
+00:03:43,380 --> 00:03:44,940
+as a message in and ask us.
+
+59
+00:03:44,940 --> 00:03:51,010
+Q The q then gets polled by in these two incidents so by polling its polling the message is down and
+
+60
+00:03:51,010 --> 00:03:56,400
+this is really key because some exam questions will say that you need a pool based system rather than
+
+61
+00:03:56,400 --> 00:03:57,790
+a push based system.
+
+62
+00:03:57,880 --> 00:04:03,450
+ESC is always a broad based system if you want to use a push based system you use something like simple
+
+63
+00:04:03,450 --> 00:04:07,500
+notification services which we're going to cover off in a couple of lectures.
+
+64
+00:04:07,650 --> 00:04:09,520
+So you've got your AC two instances here.
+
+65
+00:04:09,520 --> 00:04:14,220
+They constantly polling the rescue queue looking for messages looking for a job to do.
+
+66
+00:04:14,340 --> 00:04:19,710
+They could then get that job and they process it and they say OK this user wants to fly from London
+
+67
+00:04:19,710 --> 00:04:27,450
+to lay eggs so to L.A. for example let's go and interrogate all the you know the airline's servers as
+
+68
+00:04:27,450 --> 00:04:29,850
+to what the best flights are.
+
+69
+00:04:29,890 --> 00:04:35,140
+Once it's got this information it then sends that back to the web server who sends it back to the user.
+
+70
+00:04:35,160 --> 00:04:40,260
+And then they use chooses the best flights for his or her budget or his or her needs.
+
+71
+00:04:40,260 --> 00:04:46,560
+You know I hate flying out really really early in the morning I like to fly out at like 9:30 or something
+
+72
+00:04:46,560 --> 00:04:46,940
+like that.
+
+73
+00:04:46,950 --> 00:04:52,440
+So I want you to think about this if we didn't have ask us and let's say the web server passed the information
+
+74
+00:04:52,470 --> 00:04:53,970
+of to an application server.
+
+75
+00:04:53,990 --> 00:04:57,340
+The application server then queried the airline's servers.
+
+76
+00:04:57,410 --> 00:05:03,190
+And let's say that application server crashes what's going to happen will your user is going to lose
+
+77
+00:05:03,190 --> 00:05:09,160
+that queery great thing about Ask us is that if that application server crashed the message will still
+
+78
+00:05:09,160 --> 00:05:11,470
+be in the queue it'll be marked as invisible.
+
+79
+00:05:11,470 --> 00:05:14,200
+And this is called the visibility timeout window.
+
+80
+00:05:14,530 --> 00:05:21,670
+But as soon as that timeout runs out that message will appear in the queue again and essentially another
+
+81
+00:05:21,760 --> 00:05:25,840
+application server will pick that message up and process that job.
+
+82
+00:05:26,020 --> 00:05:32,080
+So that's the great thing about rescuer's is you're removing dependencies it's a great way of decoupling
+
+83
+00:05:32,320 --> 00:05:33,590
+your infrastructure.
+
+84
+00:05:33,790 --> 00:05:39,340
+So using ex-U.S. you can decouple the components of an application so that they run independently and
+
+85
+00:05:39,340 --> 00:05:45,310
+with the rescuers easing message management between components any component of a distributed application
+
+86
+00:05:45,310 --> 00:05:52,870
+can store messages in a file say queue messages contain up to 256 kilobytes of text in any format so
+
+87
+00:05:52,870 --> 00:05:59,130
+you can have Jason you can have XM now you can have it plaintexts whatever any component can then later
+
+88
+00:05:59,140 --> 00:06:03,800
+retrieve the messages programmatically using the cueist API.
+
+89
+00:06:03,790 --> 00:06:09,520
+Dequeue acts as a buffer between the components producing and saving the data and the component receiving
+
+90
+00:06:09,520 --> 00:06:11,020
+the data for processing.
+
+91
+00:06:11,020 --> 00:06:16,960
+This means the queue resolves issues that arise if the producer is producing work faster than the consumer
+
+92
+00:06:17,200 --> 00:06:18,420
+can process it.
+
+93
+00:06:18,430 --> 00:06:19,940
+So you think about that.
+
+94
+00:06:19,990 --> 00:06:24,520
+The great thing about this is let's say you've only got two E.S. two instances that are polling the
+
+95
+00:06:24,640 --> 00:06:28,000
+cueist Q And suddenly getting a ton of messages.
+
+96
+00:06:28,070 --> 00:06:34,990
+What you can do is you can configure auto scaling groups to monitor the SU rescue and if it goes over
+
+97
+00:06:34,990 --> 00:06:38,820
+a certain number of messages let's say it goes over 10 messages in the queue.
+
+98
+00:06:38,830 --> 00:06:45,280
+You then can start provisioning additional E.C two instances to process the messages in that queue.
+
+99
+00:06:45,280 --> 00:06:50,040
+Likewise you can have cooldowns say the number of messages in the queue drops down to 1.
+
+100
+00:06:50,170 --> 00:06:54,870
+Maybe And they want to have one easy to instance so you can build auto scaling in with this.
+
+101
+00:06:55,000 --> 00:06:59,870
+So this basically brings to city to your application.
+
+102
+00:07:00,040 --> 00:07:01,420
+And so let's move on.
+
+103
+00:07:01,420 --> 00:07:03,620
+So there are two different types of queues.
+
+104
+00:07:03,790 --> 00:07:10,200
+The standard queues and now there's FIFO queues and FIFO queues actually only just came out last year.
+
+105
+00:07:10,270 --> 00:07:15,670
+So it's not a standard to use US office standard as the default queue type.
+
+106
+00:07:15,670 --> 00:07:21,010
+So by default all queues would be a standard queue and extended queue lets you have nearly unlimited
+
+107
+00:07:21,040 --> 00:07:23,290
+number of transactions per second.
+
+108
+00:07:23,290 --> 00:07:26,210
+They guarantee that the messages get delivered at least once.
+
+109
+00:07:26,230 --> 00:07:30,970
+However occasionally because of the highly distributed architecture that allows high throughput more
+
+110
+00:07:30,970 --> 00:07:36,580
+than one copy of the message might be delivered out of order so stand accused don't have any kind of
+
+111
+00:07:36,610 --> 00:07:38,060
+order to them.
+
+112
+00:07:38,080 --> 00:07:43,150
+They provide best effort order adding which ensures that messages are generally delivered in the same
+
+113
+00:07:43,150 --> 00:07:44,310
+order as they are sent.
+
+114
+00:07:44,320 --> 00:07:46,160
+But they can't be guaranteed.
+
+115
+00:07:46,360 --> 00:07:52,290
+OK FIFO queues however do guarantee exactly that.
+
+116
+00:07:52,300 --> 00:07:58,240
+So first in first out the messages will be delivered be sent and received in the order in which they
+
+117
+00:07:58,240 --> 00:07:58,760
+arrive.
+
+118
+00:07:58,870 --> 00:08:04,180
+So the order in which the messages are sent and received strictly preserved and a message is delivered
+
+119
+00:08:04,180 --> 00:08:10,720
+once and remains available until consumer processes and deletes that duplicates are not introduced to
+
+120
+00:08:10,720 --> 00:08:16,090
+the queue so Faith queues also support message groups that allow multiple or message groups within a
+
+121
+00:08:16,090 --> 00:08:17,110
+single queue.
+
+122
+00:08:17,110 --> 00:08:22,060
+Another thing to note about FIFO queues is that they are limited to 300 transactions per second.
+
+123
+00:08:22,090 --> 00:08:25,720
+They have all the same capabilities of standard TOS.
+
+124
+00:08:25,780 --> 00:08:30,460
+Typically you're going to be asked around standard TOS and really where are you going to be quizzed
+
+125
+00:08:30,460 --> 00:08:30,700
+on.
+
+126
+00:08:30,700 --> 00:08:37,360
+Is just understanding what they ask us is at a high level and then these key facts are always remember
+
+127
+00:08:37,360 --> 00:08:45,390
+that Eskew is a poll based not a pushed based system messages 256 kilobytes in size.
+
+128
+00:08:45,490 --> 00:08:51,790
+Messages can be kept in the queue from one minute all the way up to 14 days and the default is four
+
+129
+00:08:51,790 --> 00:08:58,050
+days and then visibility's time out is the amount of time that the message is invisible in the U.S..
+
+130
+00:08:58,060 --> 00:09:01,970
+Q After a reader picks it up so we put a message in the queue.
+
+131
+00:09:02,290 --> 00:09:07,480
+And then the two instance pulls that message down and has a job so it might be to create a Maime it
+
+132
+00:09:07,480 --> 00:09:12,490
+might be to go and query the airline and so that message is still in the US.
+
+133
+00:09:12,490 --> 00:09:18,750
+Q But it's invisible now provided the job is processed before the visibility timeout expires.
+
+134
+00:09:18,760 --> 00:09:24,370
+The message will then be deleted from the queue if the job is not process within that time the message
+
+135
+00:09:24,370 --> 00:09:27,730
+will become visible again and another read a will process it.
+
+136
+00:09:27,730 --> 00:09:30,590
+This could result in the message being delivered twice.
+
+137
+00:09:30,730 --> 00:09:34,580
+So if you have your visibility timeout to let's say 1 minute.
+
+138
+00:09:34,720 --> 00:09:36,740
+But the job that it's doing is something.
+
+139
+00:09:36,760 --> 00:09:40,490
+Let's say it's doing some big data analytics or something like that.
+
+140
+00:09:40,530 --> 00:09:46,630
+What you know what's going to happen is the message is going to come back into the queue because it's
+
+141
+00:09:46,630 --> 00:09:47,740
+going to take over a minute.
+
+142
+00:09:47,740 --> 00:09:51,180
+Let's say it takes five minutes to actually process that big data.
+
+143
+00:09:51,180 --> 00:09:54,910
+The message is going to become visible in the queue I should say not come back to the cube but it's
+
+144
+00:09:54,910 --> 00:09:56,430
+going to come visible in the queue.
+
+145
+00:09:56,440 --> 00:10:01,020
+And then another easy to instance will pick that up so you could be delivering your messages multiple
+
+146
+00:10:01,020 --> 00:10:04,710
+times because your visibility timeout is too low.
+
+147
+00:10:04,920 --> 00:10:09,070
+So you got to think about that when architecting you know your applications.
+
+148
+00:10:09,120 --> 00:10:15,870
+And then finally the visibility timeout maximum is 12 hours so you can only you know the 12 hours is
+
+149
+00:10:15,870 --> 00:10:18,000
+the configuration maximum.
+
+150
+00:10:18,000 --> 00:10:22,740
+So if something is going to take over 12 hours then executes is probably not a good choice for you because
+
+151
+00:10:22,740 --> 00:10:28,470
+you're going to be delivering messages multiple times as cueist guarantees that your messages will be
+
+152
+00:10:28,480 --> 00:10:30,780
+processed at least once.
+
+153
+00:10:30,840 --> 00:10:36,540
+However you have to bear this in mind when architecting could be pro-ISIS a couple of times especially
+
+154
+00:10:36,540 --> 00:10:43,710
+if your visibility's timeout is lower than the amount of time that it takes for that to instance to
+
+155
+00:10:43,710 --> 00:10:44,570
+do the job.
+
+156
+00:10:44,790 --> 00:10:49,680
+And then finally there's a thing called askew long polling and this is a way to retrieve messages from
+
+157
+00:10:49,680 --> 00:10:51,080
+your ask us cues.
+
+158
+00:10:51,120 --> 00:10:55,620
+So normally you've got regular short polling and it returns it immediately so you've got your A.C. to
+
+159
+00:10:55,630 --> 00:10:57,500
+instance sitting there going is there a job.
+
+160
+00:10:57,510 --> 00:10:58,140
+Is there a job.
+
+161
+00:10:58,130 --> 00:11:02,390
+Is there a job and keep doing that even if the message queue is empty.
+
+162
+00:11:02,460 --> 00:11:08,850
+Now long polling doesn't return or responds until a message arrives in the message to all the long pole
+
+163
+00:11:08,880 --> 00:11:09,920
+times out.
+
+164
+00:11:10,140 --> 00:11:14,400
+So the great thing about long polling is it's going to save you money because you're not constantly
+
+165
+00:11:14,400 --> 00:11:15,910
+polling an empty queue.
+
+166
+00:11:16,000 --> 00:11:20,220
+You know poll it is going to wait it's going to wait the time out and then it turns out it was going
+
+167
+00:11:20,220 --> 00:11:25,220
+to return a response saying look there's no messages in the queue if you don't have long polling enabled
+
+168
+00:11:25,260 --> 00:11:30,170
+easy to just consistently hold the cue going is their message is their message is their message.
+
+169
+00:11:30,230 --> 00:11:31,850
+And that can increase your costs.
+
+170
+00:11:32,160 --> 00:11:38,940
+OK so what my exam tips would just remember what cueist is distributed message queuing system that allows
+
+171
+00:11:38,940 --> 00:11:42,990
+you to decouple the components of your application so that they are independent.
+
+172
+00:11:42,990 --> 00:11:45,780
+So let's say in easy to instance files.
+
+173
+00:11:45,990 --> 00:11:50,220
+And while it's trying to process a message another easy to instance we'll pick that up and the message
+
+174
+00:11:50,220 --> 00:11:51,820
+will stay in the queue.
+
+175
+00:11:51,840 --> 00:11:54,610
+Remember that ask us is poll based not push based.
+
+176
+00:11:54,660 --> 00:11:58,430
+You have two types of cues your standard cues which are to folk cues.
+
+177
+00:11:58,760 --> 00:12:03,990
+And that offers best effort ordering and the message is delivered at least once and then you have your
+
+178
+00:12:03,990 --> 00:12:04,990
+FIFO queues.
+
+179
+00:12:05,100 --> 00:12:10,700
+And this is where order is strictly preserved and your messages are only delivered once there's no duplicate.
+
+180
+00:12:10,710 --> 00:12:15,630
+And this could be good for banking transactions with things need to happen in a strict order.
+
+181
+00:12:15,750 --> 00:12:17,340
+We don't have visibility time out.
+
+182
+00:12:17,340 --> 00:12:22,530
+The default is 30 seconds you need to increase this if your task is going to take longer than 30 seconds
+
+183
+00:12:22,530 --> 00:12:23,580
+to complete.
+
+184
+00:12:23,580 --> 00:12:26,800
+Also remember that the maximum is 12 hours.
+
+185
+00:12:26,830 --> 00:12:31,550
+Now we have two types of polling we have short polling which is default and basically returned immediately
+
+186
+00:12:31,560 --> 00:12:33,570
+even if there are no messages in the queue.
+
+187
+00:12:33,690 --> 00:12:39,660
+We then have long polling and early poll the queue periodically and only return a response when a message
+
+188
+00:12:39,660 --> 00:12:42,790
+is in the queue all the time out is reach.
+
+189
+00:12:42,960 --> 00:12:46,020
+So that is it but this actually goes if you have any questions please let me know.
+
+190
+00:12:46,050 --> 00:12:47,870
+If not feel free to move on to the next lecture.
+
+191
+00:12:47,880 --> 00:12:48,420
+Thank you.

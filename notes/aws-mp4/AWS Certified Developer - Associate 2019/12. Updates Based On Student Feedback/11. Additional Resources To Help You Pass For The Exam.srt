@@ -1,0 +1,363 @@
+1
+00:00:00,510 --> 00:00:07,290
+Hello talkers and welcome to this lecture and this lecture is just a recap on all the additional resources
+
+2
+00:00:07,590 --> 00:00:11,570
+that you can use to help you prepare for your exam.
+
+3
+00:00:11,610 --> 00:00:17,550
+So we're going to be talking about the FAA cuz the white papers and the reinvent videos which are all
+
+4
+00:00:17,550 --> 00:00:21,180
+worth reviewing before you do the exam.
+
+5
+00:00:21,180 --> 00:00:28,800
+So first of all with the official AWOL FAA Qs and you can use these to find answers to commonly raised
+
+6
+00:00:28,830 --> 00:00:35,070
+questions about a W S services and they are written in a really concise way.
+
+7
+00:00:35,160 --> 00:00:41,190
+So it's just a really easy way to check your understanding or double check that you've remembered everything
+
+8
+00:00:41,190 --> 00:00:45,290
+correctly about a particular w s service.
+
+9
+00:00:45,300 --> 00:00:51,240
+We're also going to talk about the white papers that you can read and these contain a wealth of information
+
+10
+00:00:51,690 --> 00:00:54,740
+about a W as recommended architectures.
+
+11
+00:00:54,750 --> 00:01:01,160
+Some really good diagrams as well as general guidance and best practices.
+
+12
+00:01:01,440 --> 00:01:07,500
+And then finally we're going to cover some of the reinvent videos which are worth watching and these
+
+13
+00:01:07,560 --> 00:01:15,030
+often contain a lot of information about best practices deep dives as well as demos.
+
+14
+00:01:15,030 --> 00:01:19,220
+So let's take a look at the main cues that you should pay attention to.
+
+15
+00:01:19,320 --> 00:01:24,990
+For the developer associate and I've tried to group them together into loose categories.
+
+16
+00:01:25,020 --> 00:01:28,380
+So first of all we have the surveillance technologies.
+
+17
+00:01:28,500 --> 00:01:34,180
+So basically the main technologies that you would use to build service applications.
+
+18
+00:01:34,230 --> 00:01:41,520
+So think lambda API Gateway dynamo DP and elastic cache and also S3.
+
+19
+00:01:41,550 --> 00:01:48,000
+Secondly the development tools that you'd want to read up on or code commit code pipeline code deploy
+
+20
+00:01:48,030 --> 00:01:50,820
+and code build under security.
+
+21
+00:01:50,820 --> 00:01:57,940
+It's going to be identity access management Cockney toe and K M.S. for automation and monitoring.
+
+22
+00:01:58,080 --> 00:02:02,850
+Make sure you look at Elastic Beanstalk and cloud formation on the automation side.
+
+23
+00:02:02,850 --> 00:02:09,310
+And for monitoring look at cloud watch an x ray for containers you're going to need to know about elastic
+
+24
+00:02:09,420 --> 00:02:12,590
+container service an elastic container registry.
+
+25
+00:02:12,600 --> 00:02:20,170
+So definitely read through the FAA cues for those and for messaging and streaming it's Eskew us and
+
+26
+00:02:20,190 --> 00:02:24,780
+Kenneth this annual find all of the FAA cues on this page.
+
+27
+00:02:24,780 --> 00:02:31,950
+It's a W S dot Amazon dot com forward slash FAA kids and there's a link to this page in the resources
+
+28
+00:02:32,010 --> 00:02:38,460
+section of this lecture so you can basically just come to this page and find the FAA cute that you're
+
+29
+00:02:38,460 --> 00:02:39,090
+looking for.
+
+30
+00:02:39,090 --> 00:02:40,600
+So here's the lander thank you.
+
+31
+00:02:41,130 --> 00:02:46,560
+And you'll see it's just a really simple series of questions and answers and it's something that you
+
+32
+00:02:46,560 --> 00:02:51,330
+can really easily read through if you're having a break at work or if you've just finished listening
+
+33
+00:02:51,330 --> 00:02:59,450
+to a lambda lecture so moving on to the White Papers and here is a list of our favorite white papers.
+
+34
+00:02:59,590 --> 00:03:06,310
+And these are all well worth reading before you take the exam because they're full of a W as best practices
+
+35
+00:03:06,850 --> 00:03:12,900
+and sometimes they'll also just give you a new perspective on the same material.
+
+36
+00:03:13,000 --> 00:03:18,960
+And don't worry there are links to all of these white papers in the resources section of the course.
+
+37
+00:03:19,360 --> 00:03:25,840
+But for developer associate it's mainly white papers to do with continuous integration.
+
+38
+00:03:25,840 --> 00:03:29,110
+Blue green deployments dev ops processes.
+
+39
+00:03:29,200 --> 00:03:32,370
+There's also service architectures with Lambda.
+
+40
+00:03:32,380 --> 00:03:38,620
+There's a really good one which covers Docker on a W S as well as optimizing your architecture using
+
+41
+00:03:38,620 --> 00:03:46,390
+surplus containerized micro services on a W S and of course a w s security best practices and that one
+
+42
+00:03:46,390 --> 00:03:51,260
+is important for all of the associate level certifications.
+
+43
+00:03:51,290 --> 00:03:56,630
+Now you might be thinking please no more white papers and I know they can be a bit long and a bit of
+
+44
+00:03:56,630 --> 00:03:57,150
+a drag.
+
+45
+00:03:57,170 --> 00:04:00,110
+Read some of them or even 100 pages long.
+
+46
+00:04:00,230 --> 00:04:03,620
+But I do have a few tips for getting the most out of them.
+
+47
+00:04:04,190 --> 00:04:10,040
+So first of all when I go to read a white paper first of all I don't just start reading it like a novel.
+
+48
+00:04:10,040 --> 00:04:12,080
+It's definitely not bedtime reading.
+
+49
+00:04:12,560 --> 00:04:18,450
+Instead I just browse through the entire document paying attention to the structure of the document.
+
+50
+00:04:18,540 --> 00:04:26,660
+Any headings tables diagrams etc. and I just try to get a feel for the material and then only once I've
+
+51
+00:04:26,660 --> 00:04:29,620
+finished browsing the document I just revisit this.
+
+52
+00:04:29,630 --> 00:04:35,660
+Only the sections that I think are worth reading so I try not to spend too much time reading over stuff
+
+53
+00:04:35,690 --> 00:04:37,760
+that I already know really really well.
+
+54
+00:04:37,760 --> 00:04:43,130
+For example if you already know identity access management policies really really well then just skip
+
+55
+00:04:43,130 --> 00:04:43,750
+through that bit.
+
+56
+00:04:43,760 --> 00:04:47,790
+Don't read over material that you already know.
+
+57
+00:04:47,970 --> 00:04:51,420
+I also try to keep in mind what I expect to get out of the White Paper.
+
+58
+00:04:51,780 --> 00:04:58,590
+So for example if I'm reading a white paper on security best practices I try not to get too bogged down
+
+59
+00:04:58,770 --> 00:05:05,350
+in the background detail and you really have to have a laser focus on what you expect to get out of
+
+60
+00:05:05,350 --> 00:05:06,090
+the white paper.
+
+61
+00:05:07,240 --> 00:05:14,470
+And then finally I always take notes and I don't mean pages and pages of notes just a few pointers or
+
+62
+00:05:14,470 --> 00:05:17,290
+keywords that you can review later on.
+
+63
+00:05:17,290 --> 00:05:23,170
+So basically anything new or anything that's coming from a slightly different perspective or anything
+
+64
+00:05:23,170 --> 00:05:25,030
+that you're struggling to remember.
+
+65
+00:05:25,060 --> 00:05:29,390
+So I just note that down so that I can review it later on if I need to.
+
+66
+00:05:29,410 --> 00:05:35,930
+And finally if you hate reading there are loads of really good reinvent videos available on the Internet.
+
+67
+00:05:36,190 --> 00:05:38,150
+And these are really good ones to watch.
+
+68
+00:05:38,230 --> 00:05:44,250
+If you really can't stomach reading a white paper and there are so many of these available I've just
+
+69
+00:05:44,250 --> 00:05:48,990
+listed my favorite ones to look out for when you're studying for the developer associate.
+
+70
+00:05:49,740 --> 00:05:53,030
+So you've got become an I am policy master.
+
+71
+00:05:53,190 --> 00:06:00,360
+There's also one on continuous integration best practices moving to dev ops the Amazon way.
+
+72
+00:06:00,360 --> 00:06:08,130
+Getting started with Docker services architecture patterns and best practices and VPC fundamentals and
+
+73
+00:06:08,130 --> 00:06:15,060
+connectivity options and I've included links to all of these in the resources section of the course.
+
+74
+00:06:15,240 --> 00:06:20,340
+But of course you can always just head to YouTube and search for the technology that you're looking
+
+75
+00:06:20,340 --> 00:06:28,790
+for and you'll find loads of official reinvent videos available so I normally just head over to youtube
+
+76
+00:06:29,630 --> 00:06:32,250
+and search for a W.S. reinvent.
+
+77
+00:06:32,340 --> 00:06:39,810
+I and this will bring up all the relevant reinvent videos which are related to continuous integration.
+
+78
+00:06:39,890 --> 00:06:42,980
+So there's our continuous integration best practices.
+
+79
+00:06:42,980 --> 00:06:49,940
+There's also the IAM policy master that's coming up in this search as well for some reason VPC fundamentals
+
+80
+00:06:50,240 --> 00:06:58,140
+moving to dev ops deployment scenarios so you can see there's absolutely loads of official reinvent
+
+81
+00:06:58,140 --> 00:07:03,420
+videos and the great thing about YouTube is that you can watch everything on double speed if you want
+
+82
+00:07:03,420 --> 00:07:10,140
+to and these videos are sort of 40 to 50 minutes long so you can definitely get time to watch those
+
+83
+00:07:10,230 --> 00:07:11,400
+on your lunch hour.
+
+84
+00:07:11,550 --> 00:07:16,800
+So that is all the additional resources that I wanted to let you know about and they are all well worth
+
+85
+00:07:16,800 --> 00:07:17,380
+reviewing.
+
+86
+00:07:17,370 --> 00:07:22,800
+Before you go ahead and take the exam and don't worry there are links to everything in the resources
+
+87
+00:07:22,890 --> 00:07:24,680
+section of the course.
+
+88
+00:07:24,810 --> 00:07:27,060
+So that is the end of this lecture.
+
+89
+00:07:27,240 --> 00:07:29,690
+If you have any questions please let me know.
+
+90
+00:07:29,820 --> 00:07:32,510
+If not feel free to move on to the next lecture.
+
+91
+00:07:32,520 --> 00:07:33,060
+Thank you.

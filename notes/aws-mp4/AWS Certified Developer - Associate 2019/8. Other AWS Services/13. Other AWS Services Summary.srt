@@ -1,0 +1,415 @@
+1
+00:00:00,140 --> 00:00:05,970
+I say hello cloggers and welcome to the summary of Section 8 so we're going to summarize what we've
+
+2
+00:00:05,970 --> 00:00:11,490
+learnt about the other AWOS services so you've done really well you're almost at the end of the course
+
+3
+00:00:11,870 --> 00:00:18,030
+so let's start with QSA SkyWest is a distributed messaging system that allows you to decouple the components
+
+4
+00:00:18,030 --> 00:00:22,890
+of your application so that independent it's pool based it's not pushed based.
+
+5
+00:00:22,890 --> 00:00:27,720
+There's two types of cues you've got your standard Qs which is basically going to give you best effort
+
+6
+00:00:27,750 --> 00:00:33,420
+ordering and your message will be delivered at least once then you have your FIFO queues which is basically
+
+7
+00:00:33,420 --> 00:00:39,290
+the exact opposite ordering is strictly preserved and messages a deliberate once with no duplicate.
+
+8
+00:00:39,290 --> 00:00:45,160
+And this could be good for banking transactions which need to happen in a strict order other ask us
+
+9
+00:00:45,180 --> 00:00:48,430
+things to remember is visibility time out by default.
+
+10
+00:00:48,450 --> 00:00:50,020
+This is 30 seconds.
+
+11
+00:00:50,040 --> 00:00:56,240
+You need to increase this if your task is taking longer than 30 seconds to complete the maximum visibility
+
+12
+00:00:56,250 --> 00:00:59,180
+time out for us is 12 hours.
+
+13
+00:00:59,240 --> 00:01:04,800
+Well so we have two types of polling we have short polling which returned is returned immediately.
+
+14
+00:01:04,800 --> 00:01:07,250
+Even if there are no messages in the queue.
+
+15
+00:01:07,530 --> 00:01:12,720
+But that can be a little bit expensive if you especially if you're not using Yochi as much as you should
+
+16
+00:01:12,720 --> 00:01:13,050
+be.
+
+17
+00:01:13,050 --> 00:01:18,210
+And then we have long polling and this polls the queue periodically and only returns a response when
+
+18
+00:01:18,210 --> 00:01:26,460
+a message is actually in the queue all the time out period is Rached s and s s n s is a scalable and
+
+19
+00:01:26,460 --> 00:01:31,800
+highly available notification service which allows you to send push notifications or S and S is pushed
+
+20
+00:01:31,920 --> 00:01:35,270
+based a variety of message formats are supported.
+
+21
+00:01:35,270 --> 00:01:41,830
+So you've got s.m.m text messages we've got emails we've got ask us QS or any hate TDP and point.
+
+22
+00:01:41,940 --> 00:01:45,560
+It's a pub sub model where users subscribes to topics.
+
+23
+00:01:45,630 --> 00:01:48,380
+It's a push mechanism rather than a pull mechanism.
+
+24
+00:01:48,620 --> 00:01:53,550
+And so example architecture let's say if you go to a company that wants to send notification to multiple
+
+25
+00:01:53,550 --> 00:02:01,800
+customers they could use in essence to fan out multiple messages in s s format and then using a dedicated
+
+26
+00:02:01,860 --> 00:02:04,130
+as cueist Q per customer.
+
+27
+00:02:04,170 --> 00:02:10,350
+If you did it that way you'd always be able to guarantee that each message would be delivered to each
+
+28
+00:02:10,350 --> 00:02:12,520
+customer at least once.
+
+29
+00:02:12,630 --> 00:02:17,510
+So as an s versus s remember that s.c.s is for IMAO only.
+
+30
+00:02:17,520 --> 00:02:21,660
+It can be used for incoming and outgoing emails as well.
+
+31
+00:02:21,840 --> 00:02:28,500
+And it is not subscription base you only need to know the email address whereas S and S Qaeda's various
+
+32
+00:02:28,500 --> 00:02:33,770
+formats so it is for s m s s q SH TDP and points e-mail etc..
+
+33
+00:02:33,930 --> 00:02:41,010
+It is push notification only it does come with the pub submodel So consumers must subscribe to a topic
+
+34
+00:02:41,010 --> 00:02:48,480
+in order to receive emails from as soon and you can fan mass messages and you can fan out messages to
+
+35
+00:02:48,480 --> 00:02:53,340
+large numbers of recipients or multiple clients each with their own us.
+
+36
+00:02:53,340 --> 00:02:59,880
+Q Moving on to Kinesis you need to know the difference between the three core services so we have Kinesis
+
+37
+00:02:59,880 --> 00:03:00,980
+streams.
+
+38
+00:03:01,110 --> 00:03:07,200
+These are videos streams so you can securely stream video from connected devices to AWOS for analytics
+
+39
+00:03:07,200 --> 00:03:08,410
+a machine learning.
+
+40
+00:03:08,550 --> 00:03:10,310
+We then have data streams.
+
+41
+00:03:10,320 --> 00:03:14,740
+This is where you can build custom applications and process data in real time.
+
+42
+00:03:14,790 --> 00:03:17,980
+So those are the two different types of streams Volkan the streams.
+
+43
+00:03:17,980 --> 00:03:19,640
+We then have Canisius firehose.
+
+44
+00:03:19,650 --> 00:03:26,940
+This allows you to capture transform and load data streams into AWOS data stores Phania real time analytics
+
+45
+00:03:27,180 --> 00:03:33,070
+with business intelligence tools and then also remember that you can configure Lamda to subscribe to
+
+46
+00:03:33,070 --> 00:03:39,360
+a can to stream and execute a function on your behalf when a new record is detected before sending the
+
+47
+00:03:39,360 --> 00:03:42,550
+processed data on to its final destination.
+
+48
+00:03:42,570 --> 00:03:47,390
+Moving onto a plastic pane Stoke we did do quite a few labs with the lastic beanstalks.
+
+49
+00:03:47,580 --> 00:03:53,850
+It allows you to deploy and scour your web application including the web server platform where required.
+
+50
+00:03:54,000 --> 00:04:01,440
+It supports a widely used programming languages like Java ph PE Python Ruby go Daka dot net and no genius
+
+51
+00:04:01,770 --> 00:04:08,120
+as well as application server platforms like Tomcat passenger Pluma Apache Isiah's etc..
+
+52
+00:04:08,190 --> 00:04:14,540
+And what provisions the underlying resources for you you can fully manage the two instances your self
+
+53
+00:04:14,760 --> 00:04:21,000
+or elastic beanstalk can take control of it for you and you can apply updates monitoring metrics and
+
+54
+00:04:21,000 --> 00:04:25,230
+health checks as part of your lastic beanstalk environment.
+
+55
+00:04:25,230 --> 00:04:30,600
+Remember that when you're updating elastic Bonestell there four different types of deployment approaches.
+
+56
+00:04:30,600 --> 00:04:35,760
+This is supercritical going into your exam to remember the four different types you will get different
+
+57
+00:04:35,760 --> 00:04:42,230
+scenarios and they will ask you what type of elastic been stalked deployment would best suit your situation.
+
+58
+00:04:42,440 --> 00:04:43,170
+All at once.
+
+59
+00:04:43,170 --> 00:04:49,020
+This is where basically you have a service interruption while you go in and update the entire environment
+
+60
+00:04:49,050 --> 00:04:51,210
+at once and then to roll it back.
+
+61
+00:04:51,210 --> 00:04:53,310
+You have to perform further all at once.
+
+62
+00:04:53,340 --> 00:04:54,920
+Upgrade as well.
+
+63
+00:04:55,140 --> 00:04:58,730
+So do remember that this is probably a good fit test and Dev.
+
+64
+00:04:58,740 --> 00:05:04,610
+Or with the business that you're working for can have downtime when you do an update and then have rolling
+
+65
+00:05:04,670 --> 00:05:09,360
+rolling on its own will have reduced capacity so do up to it.
+
+66
+00:05:09,440 --> 00:05:15,630
+Let's say we've got 10 easy two instances in a fleet rolling might update two of those at a time.
+
+67
+00:05:15,630 --> 00:05:17,450
+So you would only have eight on line.
+
+68
+00:05:17,450 --> 00:05:22,190
+So you are going to have reduced capacity but you're not going to have any downtime rolling with additional
+
+69
+00:05:22,190 --> 00:05:28,880
+Bachche allows you to maintain full capacity so it will add additional AC to instances apply those updates
+
+70
+00:05:28,910 --> 00:05:32,410
+and then delete the older ones and to rollback.
+
+71
+00:05:32,420 --> 00:05:35,700
+You need to perform perform a further rolling update.
+
+72
+00:05:35,700 --> 00:05:36,720
+We then have immutable.
+
+73
+00:05:36,740 --> 00:05:40,300
+This is the best option for mission critical production systems.
+
+74
+00:05:40,310 --> 00:05:42,200
+It allows you to maintain full capacity.
+
+75
+00:05:42,200 --> 00:05:47,000
+It will set up a completely separate orders scaling group and start you know doing the updates.
+
+76
+00:05:47,000 --> 00:05:48,370
+There is a rollback.
+
+77
+00:05:48,380 --> 00:05:54,860
+You just need to delete the new instances and auto scaling group in terms of advance silastic beanstalk.
+
+78
+00:05:54,860 --> 00:06:00,050
+Just remember that you can customize your lastic beanstalk environment by adding configuration files.
+
+79
+00:06:00,050 --> 00:06:02,300
+These files are written in YAML or in Jason.
+
+80
+00:06:02,300 --> 00:06:04,340
+They can have the dot com Ficke extension.
+
+81
+00:06:04,340 --> 00:06:10,940
+You can call them any file name that you want but the config files have to be saved to the Eby extensions
+
+82
+00:06:10,940 --> 00:06:17,020
+folder and the EPA extensions folder must be located in the top level directory of your application
+
+83
+00:06:17,030 --> 00:06:19,030
+source code bundle.
+
+84
+00:06:19,100 --> 00:06:21,470
+Moving onto D.S. and elastic bands.
+
+85
+00:06:21,500 --> 00:06:26,870
+So we have two different options for launching your G-S instance you can launch it with elastic beanstalk
+
+86
+00:06:26,930 --> 00:06:29,650
+or you can launch it outside elastic main stalk.
+
+87
+00:06:29,780 --> 00:06:34,490
+If you launch it within an elastic band Stoke when you terminate the elastic beanstalk environment the
+
+88
+00:06:34,490 --> 00:06:36,720
+database will also be terminated.
+
+89
+00:06:36,740 --> 00:06:41,810
+It makes it quick and easy to add your databases and get started but it's really only suitable for Dev
+
+90
+00:06:41,840 --> 00:06:47,840
+and test environments only if you launch your instance outside of elastic bands.
+
+91
+00:06:48,090 --> 00:06:52,910
+There is going to be some additional configuration steps required you are going to need to add a security
+
+92
+00:06:52,910 --> 00:06:57,500
+group and you're going to need to configure the connection string or the connection information so the
+
+93
+00:06:57,500 --> 00:07:04,940
+user name the password the database and point the database name the table etc etc. and then it's suitable
+
+94
+00:07:04,940 --> 00:07:06,270
+for production environments.
+
+95
+00:07:06,290 --> 00:07:11,760
+Gives you a lot more flexibility and it means that if you terminate a plastic beanstalk environment
+
+96
+00:07:11,910 --> 00:07:16,580
+you know your production instance will not be terminated.
+
+97
+00:07:16,580 --> 00:07:22,970
+It also allows you to have connections from multiple environments as well so bear that in mind.
+
+98
+00:07:23,030 --> 00:07:27,840
+So that is it for this lecture guys and this section of the Course you've done really really well.
+
+99
+00:07:27,860 --> 00:07:29,750
+Hopefully we've covered everything.
+
+100
+00:07:29,750 --> 00:07:35,990
+If you do see something around other application services such as SOSIAS or even simple workplace service
+
+101
+00:07:36,040 --> 00:07:41,300
+which we haven't covered Do let us know and we will update this section of the course.
+
+102
+00:07:41,510 --> 00:07:42,620
+So that's it for me.
+
+103
+00:07:42,620 --> 00:07:45,950
+If you have any questions please let me know if not feel free to move on to the next section.
+
+104
+00:07:45,950 --> 00:07:46,430
+Thank you.

@@ -1,0 +1,235 @@
+1
+00:00:02,250 --> 00:00:07,880
+Hello Cocker's and welcome to this lecture and this lecture is just going to be a really quick lecture
+
+2
+00:00:08,370 --> 00:00:11,570
+introducing dynamo ODP transactions.
+
+3
+00:00:11,580 --> 00:00:18,100
+So what kind of IDB transactions while this is something that was introduced at re-invents 2018.
+
+4
+00:00:18,150 --> 00:00:26,070
+So in late November 2018 and Diana IDB transactions or to support mission critical applications which
+
+5
+00:00:26,070 --> 00:00:33,570
+need an all or nothing approach to that database transactions and you may have heard the term acid before
+
+6
+00:00:33,600 --> 00:00:37,220
+in relation to database transactions.
+
+7
+00:00:37,290 --> 00:00:44,190
+An asset is really is just an acronym it's used to describe the ideal properties of a database transaction
+
+8
+00:00:44,830 --> 00:00:50,130
+on those properties all that each transaction should be a Tolmach so that guarantees that the transaction
+
+9
+00:00:50,160 --> 00:00:52,220
+is treated as a single unit.
+
+10
+00:00:52,410 --> 00:00:59,220
+So basically it's all or nothing and it cannot be partially completed the transaction must also be consistent.
+
+11
+00:00:59,310 --> 00:01:02,430
+And that just means that it must be a valid transaction.
+
+12
+00:01:02,580 --> 00:01:09,810
+It must leave the database in a valid state and that just simply prevents any database corruption or
+
+13
+00:01:10,110 --> 00:01:11,980
+data integrity issues.
+
+14
+00:01:12,000 --> 00:01:18,590
+Transactions must be isolated and that just means that there's no dependency between different transactions.
+
+15
+00:01:18,630 --> 00:01:24,900
+They could either be completed in parallel or sequentially the effect of the transaction is going to
+
+16
+00:01:24,900 --> 00:01:25,830
+be the same.
+
+17
+00:01:25,830 --> 00:01:28,670
+And finally the transactions must be durable.
+
+18
+00:01:28,740 --> 00:01:34,710
+And this just means that when a transaction has been committed it's going to remain committed even after
+
+19
+00:01:34,720 --> 00:01:37,310
+a system failure or a power loss.
+
+20
+00:01:37,320 --> 00:01:42,360
+So once it has been committed that means it's going to be written to disk rather than being held in
+
+21
+00:01:42,360 --> 00:01:42,990
+memory.
+
+22
+00:01:43,200 --> 00:01:49,530
+So the main idea is that transactions which possess these qualities can be treated as a single operation
+
+23
+00:01:49,560 --> 00:01:56,350
+on the data and the jury ability of the operation is guaranteed in the event of a system or power failure.
+
+24
+00:01:56,490 --> 00:01:59,200
+And this is really great for mission critical systems.
+
+25
+00:01:59,220 --> 00:02:05,310
+So for example if you think about a financial transaction if you are transferring money between one
+
+26
+00:02:05,310 --> 00:02:09,960
+account and another that kind of transaction it might involve multiple steps.
+
+27
+00:02:09,960 --> 00:02:15,740
+So for example checking there are sufficient funds in the spending account then debiting the account.
+
+28
+00:02:15,780 --> 00:02:22,470
+And then finally crediting the receiving account and doing that all as one single transaction and for
+
+29
+00:02:22,470 --> 00:02:27,210
+that kind of transaction you really want to as an all or nothing transaction you wouldn't want that
+
+30
+00:02:27,210 --> 00:02:30,300
+kind of transaction to be partially completed.
+
+31
+00:02:30,300 --> 00:02:33,730
+And of course you want it to be durable across system files.
+
+32
+00:02:33,810 --> 00:02:39,520
+So if the system rebates or the application restarts you want that transaction to still be in the system
+
+33
+00:02:39,630 --> 00:02:41,840
+after a reboot or a restart.
+
+34
+00:02:41,850 --> 00:02:45,660
+So let's see how that could really work in practice in DONE MY MY.
+
+35
+00:02:45,960 --> 00:02:52,560
+Imagine you are developing a game where each player can purchase items using virtual coins.
+
+36
+00:02:52,740 --> 00:02:58,280
+You might have two different tables so for example we've got a play table here including the player
+
+37
+00:02:58,290 --> 00:03:02,970
+id any inventory they have so any items they've already purchased.
+
+38
+00:03:03,210 --> 00:03:04,990
+And how many coins they have.
+
+39
+00:03:05,010 --> 00:03:12,230
+We then have an item's table with all the items available to purchase a price whether they are available
+
+40
+00:03:12,240 --> 00:03:15,280
+true or false and who they are owned by.
+
+41
+00:03:15,600 --> 00:03:20,640
+So you could use IDB transactions to run a single atomic transaction.
+
+42
+00:03:20,640 --> 00:03:26,460
+So if my player wants to purchase for example one of the items in the table you can actually create
+
+43
+00:03:26,520 --> 00:03:30,630
+a IDB transaction which will check that an item is available.
+
+44
+00:03:30,630 --> 00:03:35,610
+If I wanted to purchase that Barry I could have gone to my D-B check whether the item is available.
+
+45
+00:03:35,610 --> 00:03:38,240
+So yes it is the availability is true.
+
+46
+00:03:38,310 --> 00:03:41,580
+It can then check whether I have enough coins to purchase the item.
+
+47
+00:03:41,820 --> 00:03:47,490
+And then if those two conditions are satisfied the item can then be marked as owned by me and then kind
+
+48
+00:03:47,490 --> 00:03:49,270
+of in my inventory as well.
+
+49
+00:03:49,320 --> 00:03:53,430
+And that can all be accomplished using a single dynamo IDB transaction.
+
+50
+00:03:53,670 --> 00:03:59,340
+So you can say that this is a really powerful new feature which allows you to implement complex business
+
+51
+00:03:59,340 --> 00:04:01,940
+logic into a single atomic transaction.
+
+52
+00:04:02,130 --> 00:04:09,090
+And as I said this was only announced at reinvent 2018 so the end of November 2018 and we don't expect
+
+53
+00:04:09,090 --> 00:04:14,670
+it's going to appear in the exam for least another six months or so after the announcement.
+
+54
+00:04:14,700 --> 00:04:20,370
+It's just really good to be aware of when you are designing your own Doyne IDB tables but we don't expect
+
+55
+00:04:20,370 --> 00:04:22,440
+it to appear in the exam straightaway.
+
+56
+00:04:22,650 --> 00:04:24,540
+So that is the end of this lecture.
+
+57
+00:04:24,540 --> 00:04:26,760
+If you have any questions please let me know.
+
+58
+00:04:27,060 --> 00:04:29,300
+If not feel free to move on to the next lecture.
+
+59
+00:04:29,400 --> 00:04:29,890
+Thank ye.

@@ -1,0 +1,163 @@
+1
+00:00:02,080 --> 00:00:08,710
+Helen pluckers and welcome to this lecture and this lecture is all about the dynamo D-B on demand capacity
+
+2
+00:00:08,710 --> 00:00:09,980
+pricing option.
+
+3
+00:00:10,210 --> 00:00:13,940
+So let's get started at re-invents 2018.
+
+4
+00:00:13,990 --> 00:00:17,700
+They introduced a new pricing option for Dynamite e-bay.
+
+5
+00:00:18,070 --> 00:00:24,110
+So in addition to the provisioned throughput model which we've already talked about where you specify
+
+6
+00:00:24,110 --> 00:00:30,760
+your read and write capacity units they have also introduced this on demand capacity pricing model as
+
+7
+00:00:30,760 --> 00:00:32,570
+well.
+
+8
+00:00:32,650 --> 00:00:39,850
+So with on demand capacity charges will apply for reading writing and storing your data but the difference
+
+9
+00:00:39,850 --> 00:00:41,060
+is with on demand.
+
+10
+00:00:41,080 --> 00:00:47,200
+You don't need to specify your capacity requirements so you don't need to specify your read and write
+
+11
+00:00:47,260 --> 00:00:49,440
+capacity unit requirements.
+
+12
+00:00:49,580 --> 00:00:55,530
+Time in my database will instantly scale up and down based on the activity of your application.
+
+13
+00:00:55,540 --> 00:01:02,400
+So based on the number of reads and writes that your application is making to the database and this
+
+14
+00:01:02,400 --> 00:01:06,380
+is going to be really great for unpredictable workloads.
+
+15
+00:01:06,390 --> 00:01:12,120
+So for example if you don't know the capacity requirements of your application if your application traffic
+
+16
+00:01:12,120 --> 00:01:19,770
+is difficult to predict or your workload has large spikes which are short lived or if it's a brand new
+
+17
+00:01:19,860 --> 00:01:23,860
+application where the workload is not really very well understood.
+
+18
+00:01:24,060 --> 00:01:28,480
+And it's also really good if you only want to pay for what you use when you use it.
+
+19
+00:01:28,500 --> 00:01:35,250
+So a pay per request model and this is going to be great for service stocks which have that pay per
+
+20
+00:01:35,250 --> 00:01:36,800
+use pricing model.
+
+21
+00:01:38,020 --> 00:01:41,700
+So I know what you're thinking which pricing model should I use.
+
+22
+00:01:41,740 --> 00:01:47,560
+Well the workloads where you have unpredictable application traffic you don't know what the workload
+
+23
+00:01:47,560 --> 00:01:50,650
+is going to look like if you want a pay per use model.
+
+24
+00:01:50,650 --> 00:01:56,530
+So for example if the rest of your stack is service and you're paying per use for everything else or
+
+25
+00:01:56,530 --> 00:02:02,230
+if you have spiky and short lived peaks then under those circumstances you should go for the on demand
+
+26
+00:02:02,230 --> 00:02:03,020
+capacity.
+
+27
+00:02:03,030 --> 00:02:09,130
+However if you have predictable application traffic you can easily forecast your read and write capacity
+
+28
+00:02:09,130 --> 00:02:15,280
+requirements or if your application traffic is consistent or it's increasing gradually.
+
+29
+00:02:15,640 --> 00:02:21,790
+Then under those circumstances it's more cost effective to use the provision to capacity and you can
+
+30
+00:02:21,790 --> 00:02:29,130
+actually change your Deiner IDB table from provisioned capacity to on demand once per day.
+
+31
+00:02:29,230 --> 00:02:33,070
+So they actually let you switch between the two pricing models.
+
+32
+00:02:33,100 --> 00:02:37,670
+Now this new on demand option it was only introduced right at the end of November.
+
+33
+00:02:37,720 --> 00:02:44,500
+So it was announced at re-invents 2018 and they do wait at least six months before introducing a new
+
+34
+00:02:44,500 --> 00:02:46,130
+feature into the exams.
+
+35
+00:02:46,420 --> 00:02:51,550
+And in practice it can be much longer than six months before they actually update the exams.
+
+36
+00:02:51,550 --> 00:02:57,100
+So right now we don't think this is going to feature in the exam in any detail but it's just good to
+
+37
+00:02:57,100 --> 00:03:00,830
+be aware of when you are designing your dining ID the tables.
+
+38
+00:03:00,850 --> 00:03:02,490
+So that's the end of this lecture.
+
+39
+00:03:02,620 --> 00:03:05,080
+If you have any questions please let me know.
+
+40
+00:03:05,140 --> 00:03:07,690
+If not feel free to move on to the next lecture.
+
+41
+00:03:07,810 --> 00:03:08,310
+Thank ye.

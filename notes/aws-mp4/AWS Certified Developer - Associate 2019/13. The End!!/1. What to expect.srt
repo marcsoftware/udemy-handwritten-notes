@@ -1,0 +1,191 @@
+1
+00:00:00,220 --> 00:00:02,760
+KLA cloggers Welcome to the very last lecture.
+
+2
+00:00:02,790 --> 00:00:06,660
+In the course hopefully you've really enjoyed it and you've learnt an awful lot.
+
+3
+00:00:06,660 --> 00:00:08,580
+It is now ready to book your exam.
+
+4
+00:00:08,660 --> 00:00:11,090
+So let's go ahead and have a look how you can do that.
+
+5
+00:00:11,370 --> 00:00:15,290
+OK so here I am at the AWOS training landing page.
+
+6
+00:00:15,280 --> 00:00:18,310
+So the address is just AWOS dot training.
+
+7
+00:00:18,570 --> 00:00:23,760
+And I want you to click up here and go sign in then ask you to sign in using your credentials so I'm
+
+8
+00:00:23,760 --> 00:00:24,880
+just going to do that now.
+
+9
+00:00:24,990 --> 00:00:30,480
+So I've now signed in I'm just going to go over to certification and click up here then I'm going to
+
+10
+00:00:30,510 --> 00:00:37,980
+click AWOS certification account and in here it's launched me into my AWOS certification account.
+
+11
+00:00:38,130 --> 00:00:39,150
+You can see here.
+
+12
+00:00:39,420 --> 00:00:43,110
+So all I need to do now is go over to Szechwan you exams.
+
+13
+00:00:43,260 --> 00:00:49,170
+They used to be to assessment bodies webisodes the old one PSII is the new one you want to do it through
+
+14
+00:00:49,170 --> 00:00:53,570
+PSII but just go ahead and hit should you and your exam you can't do it through Websense or any more
+
+15
+00:00:53,970 --> 00:01:00,960
+it will redirect you to the pier side training site and you can see here you can go ahead and shed all
+
+16
+00:01:00,960 --> 00:01:01,700
+your exams.
+
+17
+00:01:01,700 --> 00:01:05,320
+So here is the A.W. a certified developer associate.
+
+18
+00:01:05,320 --> 00:01:06,750
+Do you read it carefully.
+
+19
+00:01:06,750 --> 00:01:11,300
+There will be one that says for the 2018 this is actually the old one.
+
+20
+00:01:11,370 --> 00:01:14,170
+And eventually they'll get rid of this one entirely.
+
+21
+00:01:14,250 --> 00:01:19,910
+So go ahead and hit Cheryl your exam and you should be able to find an exam center near you and show
+
+22
+00:01:19,910 --> 00:01:20,610
+use your exam.
+
+23
+00:01:20,610 --> 00:01:22,050
+So really really good luck.
+
+24
+00:01:22,050 --> 00:01:25,660
+So once you pause please I've learned the difficult feelings in an attack.
+
+25
+00:01:25,830 --> 00:01:30,570
+And this just lets us know how many people are pulsing and so that we can congratulate you or you can
+
+26
+00:01:30,570 --> 00:01:32,500
+also tweet us the ticket and tag us.
+
+27
+00:01:32,520 --> 00:01:35,950
+You can also actually upload your certificate to the A Calgary phone.
+
+28
+00:01:36,000 --> 00:01:41,850
+This will unlock your badges and it will also allow you to show off your certificates to other uses.
+
+29
+00:01:42,000 --> 00:01:42,990
+So what are the next steps.
+
+30
+00:01:42,990 --> 00:01:46,430
+Well there are still the solutions architect associate if you haven't already done it.
+
+31
+00:01:46,470 --> 00:01:48,260
+Assistants administrators are shit.
+
+32
+00:01:48,380 --> 00:01:53,220
+I would recommend doing those too before going on and trying something like solutions architect professional.
+
+33
+00:01:53,220 --> 00:01:58,450
+We also have the specialty certificate so we've got security at big data or events networking the certificate
+
+34
+00:01:58,480 --> 00:02:02,480
+of follows directly after the developer associate certificate is dev ops.
+
+35
+00:02:02,580 --> 00:02:07,310
+So soon as you pass your developer or associate you will be able to go and sit the developer.
+
+36
+00:02:07,400 --> 00:02:12,030
+I would recommend however that you do sit ups administrators sociate first before going on to doing
+
+37
+00:02:12,030 --> 00:02:13,260
+the Devil's prayer.
+
+38
+00:02:13,500 --> 00:02:18,580
+If you're sick of that's vacations check out all platforms other great content including release Rudi's
+
+39
+00:02:18,800 --> 00:02:21,080
+may collapse and AWOS this week.
+
+40
+00:02:21,140 --> 00:02:26,300
+Yes remember that getting certified is just the first step in your journey to cloud AWOS changes all
+
+41
+00:02:26,300 --> 00:02:29,340
+the time and there are other clouds out there like as you and Google.
+
+42
+00:02:29,340 --> 00:02:35,160
+So it's really important to keep up and a great way to keep up on the go is by getting our mobile app.
+
+43
+00:02:35,160 --> 00:02:39,160
+It's available on the Apple app store as well as the Google Play store.
+
+44
+00:02:39,180 --> 00:02:44,010
+You'll be able to go ahead and watch all our content and you'll be able to download it and watch it
+
+45
+00:02:44,040 --> 00:02:46,640
+online so you don't need an internet connection.
+
+46
+00:02:46,830 --> 00:02:48,290
+We really hope you enjoyed the course.
+
+47
+00:02:48,290 --> 00:02:53,490
+We've had lots of fun teaching you we hope to see you in one of our other courses so keeping all somehow
+
+48
+00:02:53,520 --> 00:02:54,150
+yours.

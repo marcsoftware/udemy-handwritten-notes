@@ -1,0 +1,567 @@
+1
+00:00:00,240 --> 00:00:07,220
+Hello clunkers and welcome to this lecture and this lecture is going to introduce dynamo D.B. TTL.
+
+2
+00:00:07,230 --> 00:00:09,060
+It's also known as dynamo D.B..
+
+3
+00:00:09,060 --> 00:00:10,410
+Time to Live.
+
+4
+00:00:10,410 --> 00:00:15,770
+And this is a topic that has been coming up in the exams recently based on student feedback.
+
+5
+00:00:15,810 --> 00:00:21,810
+So this lecture is going to just cover off TTL so you know exactly what it is for the exam.
+
+6
+00:00:21,810 --> 00:00:23,790
+So let's get started.
+
+7
+00:00:23,790 --> 00:00:26,760
+So what is dynamo DB TTL.
+
+8
+00:00:26,760 --> 00:00:28,930
+Well TTL or time to live.
+
+9
+00:00:29,040 --> 00:00:37,570
+It's an attribute which defines an expiry time for your data so you define an expiry time and expired
+
+10
+00:00:37,600 --> 00:00:43,750
+items are automatically marked for deletion and once an item has been marked for deletion that means
+
+11
+00:00:43,750 --> 00:00:47,670
+it's going to be deleted within the next 48 hours.
+
+12
+00:00:47,740 --> 00:00:52,370
+And this is really good for removing any irrelevant or old data.
+
+13
+00:00:52,540 --> 00:00:56,120
+So data that's no longer useful to your application.
+
+14
+00:00:56,200 --> 00:01:04,330
+So think session data event logs any temporary data so any data that's no longer useful to your application.
+
+15
+00:01:04,330 --> 00:01:10,870
+After a certain period of time and this is going to really help to reduce costs for storing data in
+
+16
+00:01:10,870 --> 00:01:16,060
+dynamo IDB because it automatically removes data which you no longer need.
+
+17
+00:01:16,090 --> 00:01:17,580
+So the data is no longer relevant.
+
+18
+00:01:17,620 --> 00:01:22,240
+So it just does that housekeeping for you and automatically deletes the data.
+
+19
+00:01:22,240 --> 00:01:25,870
+So let's take a look at how that actually works within dynamo ADP.
+
+20
+00:01:25,930 --> 00:01:32,830
+And I've got an example session data table here so we're just storing the user I.D. such an idea session
+
+21
+00:01:32,830 --> 00:01:35,620
+creation time and the time to live.
+
+22
+00:01:35,620 --> 00:01:40,570
+And then finally the session data itself and the first thing you're probably going to notice is that
+
+23
+00:01:40,570 --> 00:01:44,340
+time to live is expressed in a pretty strange format.
+
+24
+00:01:44,380 --> 00:01:50,830
+It's expressed in the epoch time format and if you haven't heard of that before it's also known as Unix
+
+25
+00:01:50,830 --> 00:01:54,430
+time and it's also known as politics time as well.
+
+26
+00:01:54,430 --> 00:02:00,430
+And epoch time or Unix time or politics time that is a numerical value and it represents the number
+
+27
+00:02:00,430 --> 00:02:06,540
+of seconds which have elapsed since twelve a.m. on January the 1st 1970.
+
+28
+00:02:06,550 --> 00:02:11,800
+So even before I was born in fact a long time before I was born and probably a long time before a lot
+
+29
+00:02:11,800 --> 00:02:13,320
+of you were born as well.
+
+30
+00:02:13,360 --> 00:02:20,350
+So that is just the way that Unix systems see time and that's how they express time as a numerical value.
+
+31
+00:02:20,350 --> 00:02:27,250
+Now in this example I'm setting the expiration time on item and I'm setting it for two hours after the
+
+32
+00:02:27,250 --> 00:02:29,410
+session originally began.
+
+33
+00:02:29,650 --> 00:02:33,820
+And don't worry you can just use one of these really useful translation websites.
+
+34
+00:02:34,030 --> 00:02:37,870
+And I've got one to show you I'm just going to head over there now.
+
+35
+00:02:37,870 --> 00:02:41,140
+So this is the website I normally use is just called epoch converter.
+
+36
+00:02:41,260 --> 00:02:46,540
+I'm sure you can find one just by Googling or use your favorite one and you can just go in and set the
+
+37
+00:02:46,540 --> 00:02:54,180
+day set the hour to what you want to and then just translate it into an epoch timestamp.
+
+38
+00:02:54,190 --> 00:02:57,940
+So that's the kind of thing you can use if you are defining your TTL.
+
+39
+00:02:58,060 --> 00:03:05,170
+And it's this epoch time number which actually allows dynamo DP to easily compare your time to live
+
+40
+00:03:05,260 --> 00:03:07,270
+to the current time right now.
+
+41
+00:03:07,270 --> 00:03:14,650
+And in this example the expiration of this item is set for two hours after the session originally began.
+
+42
+00:03:14,650 --> 00:03:21,760
+And so when the current time is greater than the TTL the item is going to be expired and it gets marked
+
+43
+00:03:21,760 --> 00:03:26,290
+for deletion and then within the next 48 hours it's actually going to be deleted.
+
+44
+00:03:26,290 --> 00:03:31,870
+So that's actually quite a long window between being marked for deletion and actually getting deleted.
+
+45
+00:03:31,900 --> 00:03:38,660
+So in order to cater for that you can actually filter out any expired items from your queries and scans.
+
+46
+00:03:38,710 --> 00:03:43,870
+But let's take a look at how this actually works within the dynamo DB console.
+
+47
+00:03:43,870 --> 00:03:50,410
+But first of all we're going to need to create our own dynamo db table and I prepared a couple of commands
+
+48
+00:03:50,440 --> 00:03:51,490
+that we're going to run.
+
+49
+00:03:51,490 --> 00:03:58,330
+And before we do that you just need to make sure of course that your NWS CLIA is configured with credentials
+
+50
+00:03:58,330 --> 00:04:04,860
+of a user who has the correct permissions to go ahead and create dynamo DB tables.
+
+51
+00:04:04,900 --> 00:04:13,800
+So the first thing I'm gonna do is I'm going to type AWOL as I am get hyphen user and this is just going
+
+52
+00:04:13,800 --> 00:04:20,940
+to tell us which user we have used when we configured the IWC and I saw when we ran a s configure.
+
+53
+00:04:21,080 --> 00:04:23,960
+This is the user credentials that I used originally.
+
+54
+00:04:23,990 --> 00:04:30,090
+So I'm just gonna come back to my console and just double check the credentials of that particular user.
+
+55
+00:04:30,110 --> 00:04:41,160
+So I'm gonna go to services and then I am gonna find my user so it was FE and I'm just going to check
+
+56
+00:04:41,160 --> 00:04:44,170
+that that user has the correct permissions.
+
+57
+00:04:44,280 --> 00:04:50,280
+So my users actually got administrator access but if you don't have any dynamo DP access you don't if
+
+58
+00:04:50,280 --> 00:04:54,990
+you didn't have administrator access on that account then you can just go ahead and add permissions.
+
+59
+00:04:54,990 --> 00:05:02,250
+Go to attach existing policies and then just search for Dynamo DP and you can add dynamo IDB full access
+
+60
+00:05:02,250 --> 00:05:06,930
+to that user and that will make sure that you have access and to use dynamo DP.
+
+61
+00:05:07,740 --> 00:05:11,820
+So once you're happy with that I'm going to come back to the console and I've actually prepared a couple
+
+62
+00:05:11,820 --> 00:05:13,340
+of commands that were going to run.
+
+63
+00:05:13,410 --> 00:05:18,510
+So we're going to run one command to firstly create on your table and then we're going to run another
+
+64
+00:05:18,510 --> 00:05:20,550
+command to populate the table.
+
+65
+00:05:20,760 --> 00:05:23,130
+So I'll show you those commands before we run them.
+
+66
+00:05:23,250 --> 00:05:27,930
+And these are going to be included in a text file in the resources of the course.
+
+67
+00:05:27,990 --> 00:05:30,620
+So you'll be able to just copy and paste these.
+
+68
+00:05:31,050 --> 00:05:32,820
+So the first command is this one.
+
+69
+00:05:32,820 --> 00:05:35,800
+And this actually creates our session data table.
+
+70
+00:05:35,850 --> 00:05:39,300
+So first of all it runs the CREATE TABLE command.
+
+71
+00:05:39,300 --> 00:05:46,110
+It provides a table name of session data and then it defines our primary key which it calls it the hash
+
+72
+00:05:46,110 --> 00:05:46,470
+key.
+
+73
+00:05:46,470 --> 00:05:51,880
+And that's just an alternative name that they use for the primary key or the partition key.
+
+74
+00:05:51,900 --> 00:05:57,750
+So we're going to define our hash key as being the user I.D. and the attribute type is going to be of
+
+75
+00:05:57,750 --> 00:05:58,880
+type number.
+
+76
+00:05:58,890 --> 00:06:03,330
+And then finally the last thing we'd stipulate in this command is the provision throughput read capacity
+
+77
+00:06:03,330 --> 00:06:07,200
+units of five and write capacity units of five.
+
+78
+00:06:07,200 --> 00:06:12,110
+So you just copy that command and don't worry you don't need to understand all of the different options.
+
+79
+00:06:12,150 --> 00:06:16,400
+You don't need to understand the donor IDB commands the CLIA commands for the exam.
+
+80
+00:06:16,410 --> 00:06:17,760
+They're not going to test you on that.
+
+81
+00:06:18,150 --> 00:06:22,440
+It's just the quickest way to create the table for the purposes of this lecture.
+
+82
+00:06:22,440 --> 00:06:29,250
+So then just come back to the console and I'm just going to paste that into my console hit enter and
+
+83
+00:06:29,250 --> 00:06:34,350
+hopefully if that's been successful you should see this kind of output summarizing what we've done in
+
+84
+00:06:34,350 --> 00:06:41,280
+diner IDB and then the next command we're going to run is going to perform a batch right item and this
+
+85
+00:06:41,280 --> 00:06:46,540
+is going to write a number of items into our new table and it takes as input.
+
+86
+00:06:46,550 --> 00:06:52,150
+This this request items file which is going to be a file called items not Jason.
+
+87
+00:06:52,260 --> 00:06:56,560
+And you're going to need to download this from the resources section of the course.
+
+88
+00:06:56,580 --> 00:07:03,570
+So if I show you items not Jason it's simply a Jason File which is going to create these items in our
+
+89
+00:07:03,570 --> 00:07:05,340
+session data table.
+
+90
+00:07:05,340 --> 00:07:10,500
+So the first thing it does is it stipulates the name of the table which is set session data and then
+
+91
+00:07:10,500 --> 00:07:16,490
+it defines a number of put requests and the items that we're actually going to put into that table.
+
+92
+00:07:16,500 --> 00:07:22,980
+So we've got our user I.D. it's going to be a number this number here is the actual user I.D. then we've
+
+93
+00:07:22,980 --> 00:07:28,980
+got the session creation time expiration time and a session I.D. as well.
+
+94
+00:07:28,980 --> 00:07:33,880
+So it just creates three different items which it's going to put into the table.
+
+95
+00:07:33,900 --> 00:07:38,010
+So if we come back to our command just going to copy and paste that
+
+96
+00:07:41,110 --> 00:07:45,880
+okay and if that's successful we can come back to a console or we can just check whether that table
+
+97
+00:07:45,880 --> 00:07:55,670
+got created successfully so come to services dynamo DP and make sure that you are in the correct region
+
+98
+00:07:55,730 --> 00:07:57,870
+where you have run a W S configure.
+
+99
+00:07:57,890 --> 00:07:59,450
+So on my system
+
+100
+00:08:02,610 --> 00:08:10,150
+I mean us e 1 so I just need to make sure that I am looking at the U.S. e one region which I am and
+
+101
+00:08:10,150 --> 00:08:14,140
+then if we go to tables and there is our session data table.
+
+102
+00:08:14,140 --> 00:08:20,130
+So if you click on the table click on items and that should be the items that we have just populated.
+
+103
+00:08:20,140 --> 00:08:26,380
+So if that has run successfully for you you should have three items in your table with a user I.D. creation
+
+104
+00:08:26,380 --> 00:08:30,170
+time expiry time and a session I.D..
+
+105
+00:08:30,310 --> 00:08:35,670
+And I've just set this expiry time to midnight tonight and today is the 6th of December.
+
+106
+00:08:35,680 --> 00:08:42,210
+So I have set the expiration time for these items to be the 6th of December at midnight.
+
+107
+00:08:42,310 --> 00:08:48,250
+So you might want to update this set it to midnight tonight for whatever date it is when you are watching
+
+108
+00:08:48,250 --> 00:08:49,270
+this lecture.
+
+109
+00:08:49,300 --> 00:08:55,490
+So if you want to do that once again just go back to the Epoch converter and you can create an epoch
+
+110
+00:08:55,580 --> 00:08:58,290
+timestamp using whatever date you want to.
+
+111
+00:08:58,300 --> 00:09:04,910
+So let's say February the 2nd 2019 you can just configure the date that you want and then grab the epoch
+
+112
+00:09:04,990 --> 00:09:11,170
+timestamp and you can set it to whatever hour minute and second you want as well and set whatever the
+
+113
+00:09:11,170 --> 00:09:13,660
+local time is for wherever you are located.
+
+114
+00:09:13,930 --> 00:09:20,250
+So feel free to go in and update at expiration time if you want to follow along on this lecture.
+
+115
+00:09:20,260 --> 00:09:24,850
+So once you're happy with all of that we can actually go ahead and stop playing around with the time
+
+116
+00:09:24,850 --> 00:09:27,090
+to live for these items.
+
+117
+00:09:27,130 --> 00:09:34,720
+So if you had two actions click on manage TTL and the first thing it's going to ask you to do is define
+
+118
+00:09:34,810 --> 00:09:41,740
+which attribute you are basing the time to live on and we are going to be using this expiration time
+
+119
+00:09:41,860 --> 00:09:48,060
+as are TTL attributes so you need to just type in the name of your attribute
+
+120
+00:09:50,940 --> 00:09:57,770
+and dynamo D.B. actually allows you to preview TTL before you actually go ahead and apply it so we can
+
+121
+00:09:57,770 --> 00:10:05,420
+first of all we can run a preview based on previewing items expiring by 330 on today's date.
+
+122
+00:10:05,420 --> 00:10:10,480
+So I'm just going to run preview and that's what we should expect to see.
+
+123
+00:10:10,480 --> 00:10:17,830
+We shouldn't expect to see any items expiring by three thirty today because all of these items are set
+
+124
+00:10:17,860 --> 00:10:19,780
+to expire at midnight tonight.
+
+125
+00:10:20,200 --> 00:10:31,670
+So let's just change that to December the 7th and midnight and we can run the preview again and there
+
+126
+00:10:31,670 --> 00:10:32,120
+we are.
+
+127
+00:10:32,120 --> 00:10:38,450
+It should catch all three of those items because they are due to expire at midnight.
+
+128
+00:10:38,450 --> 00:10:44,000
+So if you want to go ahead and configure that time to lift all of these items you can hit continue.
+
+129
+00:10:44,000 --> 00:10:50,430
+And then if we go back to overview you should see under the table details of the time to live attribute.
+
+130
+00:10:50,550 --> 00:10:53,830
+It's configured as the attribute that we defined earlier.
+
+131
+00:10:53,930 --> 00:10:55,790
+So the expiration time.
+
+132
+00:10:55,790 --> 00:10:57,180
+So that is dynamo DB.
+
+133
+00:10:57,230 --> 00:10:58,250
+TTL.
+
+134
+00:10:58,250 --> 00:11:04,130
+The main thing to remember is that you can use it to define expiration times for your data.
+
+135
+00:11:04,130 --> 00:11:09,970
+It will mark your data for expiration as soon as the current time is greater than the TTL.
+
+136
+00:11:10,100 --> 00:11:15,260
+The item will then be expired marked for deletion and then deleted within 48 hours.
+
+137
+00:11:15,260 --> 00:11:20,060
+And just remember you can filter out the expired items from your queries and scans so that you don't
+
+138
+00:11:20,060 --> 00:11:22,580
+see them when you query and scan your data.
+
+139
+00:11:22,640 --> 00:11:25,820
+So that is everything you need to know about TTL.
+
+140
+00:11:25,820 --> 00:11:28,470
+If you have any questions please let me know.
+
+141
+00:11:28,640 --> 00:11:30,890
+If not feel free to move on to the next lecture.
+
+142
+00:11:31,370 --> 00:11:31,900
+Thank you.

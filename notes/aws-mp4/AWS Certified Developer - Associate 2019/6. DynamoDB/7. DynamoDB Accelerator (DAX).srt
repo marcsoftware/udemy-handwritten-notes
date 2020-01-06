@@ -1,0 +1,239 @@
+1
+00:00:00,180 --> 00:00:06,810
+Hello Clockers and welcome to this lecture and this lecture is called TOYNE MIDP accelerator and it's
+
+2
+00:00:06,810 --> 00:00:08,980
+also known as tax.
+
+3
+00:00:09,000 --> 00:00:10,750
+So let's get started.
+
+4
+00:00:12,220 --> 00:00:20,500
+So what is daks Well dynamite D-B accelerator or tax is a fully managed clustered in-memory cache for
+
+5
+00:00:20,500 --> 00:00:28,390
+doin MIDP and it really gives you a massive performance improvement for your dynamo D-B tables but only
+
+6
+00:00:28,390 --> 00:00:30,430
+for read performance.
+
+7
+00:00:30,700 --> 00:00:34,440
+And they claim that it can deliver up to 10 times read performance.
+
+8
+00:00:34,450 --> 00:00:36,750
+That really is significant.
+
+9
+00:00:36,820 --> 00:00:39,200
+So it gives you micro-second performance.
+
+10
+00:00:39,400 --> 00:00:41,900
+And for millions of requests per second.
+
+11
+00:00:41,950 --> 00:00:51,310
+So it's ideal for read heavy and also bursty read workloads for example auction applications gaming
+
+12
+00:00:51,310 --> 00:00:58,890
+applications and retail sites specifically during Black Friday promotions or at Christmas time or any
+
+13
+00:00:58,890 --> 00:01:02,230
+time when they have a special promotion on.
+
+14
+00:01:02,250 --> 00:01:07,250
+So for example just think of a retail Web site and they're running a big promotion.
+
+15
+00:01:07,290 --> 00:01:13,560
+They've got all their product catalog data in Dynamo DP of course while those promotions are on and
+
+16
+00:01:13,560 --> 00:01:17,820
+while there's really good bargains to be had a lot of people are going to be wanting to look at their
+
+17
+00:01:17,820 --> 00:01:18,650
+Web site.
+
+18
+00:01:18,700 --> 00:01:22,560
+Look all the information about their products and decide which products they're going to buy.
+
+19
+00:01:22,560 --> 00:01:27,380
+So in that situation I don't know IDB would get really hit really hard.
+
+20
+00:01:27,450 --> 00:01:33,180
+There will be many many read operations and that's a really good example of when you could use tax to
+
+21
+00:01:33,180 --> 00:01:36,650
+improve the read performance for all of those different cores.
+
+22
+00:01:36,720 --> 00:01:37,620
+So how does it work.
+
+23
+00:01:37,630 --> 00:01:44,430
+Well DAX is right through caching service and this means that data is written to the cache as well as
+
+24
+00:01:44,430 --> 00:01:47,390
+the back backend store at the same time.
+
+25
+00:01:47,400 --> 00:01:53,970
+So that means that any time the dining Modibo table gets updated you add a new item or you modify an
+
+26
+00:01:53,970 --> 00:01:57,810
+item as well as writing that change into its own MIDP.
+
+27
+00:01:57,900 --> 00:02:00,310
+It also gets written to tax as well.
+
+28
+00:02:01,530 --> 00:02:05,540
+It also allows you to point your IP Miko's at the tax cluster.
+
+29
+00:02:05,550 --> 00:02:13,570
+So instead of having your application query doin MIDP it will try and query the tax cluster first and
+
+30
+00:02:13,610 --> 00:02:16,570
+if the item you're looking for is in the cash.
+
+31
+00:02:16,790 --> 00:02:24,610
+And that's a cash hit tax will then return the result to the application however if the item is not
+
+32
+00:02:24,610 --> 00:02:31,060
+available and that's the Kashmir's then tax performs and eventually consistent get autem operation against
+
+33
+00:02:31,150 --> 00:02:32,580
+Doyne MIDP.
+
+34
+00:02:32,800 --> 00:02:37,630
+So it gets the item out of dynamite pain it writes into its cash.
+
+35
+00:02:37,660 --> 00:02:44,880
+And it also hands it back to the application side retrieval of data from daks reduces the rate load
+
+36
+00:02:44,970 --> 00:02:52,990
+on your Dhanam IDB typos and in some cases you might even be able to reduce the provision to read capacity
+
+37
+00:02:53,350 --> 00:02:54,770
+on your tables.
+
+38
+00:02:55,180 --> 00:02:58,750
+So that means you can save some money on your Dhanam IDB bill.
+
+39
+00:02:59,590 --> 00:03:01,480
+But what is it not suitable for.
+
+40
+00:03:01,630 --> 00:03:05,710
+Well it caters for eventually consistent rates only.
+
+41
+00:03:05,950 --> 00:03:11,290
+So it's not going to be suitable for applications that require a strongly consistent raids.
+
+42
+00:03:11,320 --> 00:03:16,660
+So if your application really requires strongly consistent rates tax is not going to be a benefit in
+
+43
+00:03:16,660 --> 00:03:17,780
+that situation.
+
+44
+00:03:19,200 --> 00:03:23,040
+It's also not really suitable for write intensive applications.
+
+45
+00:03:23,070 --> 00:03:28,060
+So you're not going to get a benefit from using daks because it only helps with Reed operations.
+
+46
+00:03:29,490 --> 00:03:36,800
+Also applications that don't perform that many read operations are not really going to see a benefit
+
+47
+00:03:36,800 --> 00:03:44,240
+from configuring daks and the same goes for applications that don't require a microsecond response times.
+
+48
+00:03:44,240 --> 00:03:48,590
+There's no point in configuring it if you don't need that low latency.
+
+49
+00:03:49,160 --> 00:03:51,620
+So what are our exam tips.
+
+50
+00:03:51,830 --> 00:03:55,440
+Well just remember Duc's provides in-memory caching.
+
+51
+00:03:55,460 --> 00:04:04,950
+So dine in my db tables improves the response times for eventually consistent reads only you point your
+
+52
+00:04:04,950 --> 00:04:09,200
+API calls at the docs cluster instead of your table.
+
+53
+00:04:09,360 --> 00:04:12,920
+If the item you're querying is on the cash tax will return it.
+
+54
+00:04:13,140 --> 00:04:19,140
+Otherwise it is going to perform and eventually consistent get item operation to your dynamo D-B table
+
+55
+00:04:20,310 --> 00:04:27,000
+and it is not suitable for write intensive applications or applications that require strongly consistent
+
+56
+00:04:27,000 --> 00:04:27,810
+rates.
+
+57
+00:04:29,150 --> 00:04:30,690
+So that's the end of this lecture.
+
+58
+00:04:30,770 --> 00:04:33,030
+If you have any questions please let me know.
+
+59
+00:04:33,200 --> 00:04:35,940
+If not please feel free to move on to the next lecture.
+
+60
+00:04:36,020 --> 00:04:36,400
+Thank you.

@@ -1,0 +1,551 @@
+1
+00:00:00,180 --> 00:00:07,470
+Hello caregivers and welcome to this lecture and this lecture is all about cloud front which is Amazon's
+
+2
+00:00:07,470 --> 00:00:11,950
+content delivery network and this is a theoretical lecture.
+
+3
+00:00:11,970 --> 00:00:18,390
+It's just to introduce the main concepts so that you have a good understanding before we go ahead and
+
+4
+00:00:18,390 --> 00:00:22,390
+build our own cloud front distribution in the next lab.
+
+5
+00:00:23,230 --> 00:00:25,500
+So let's get started.
+
+6
+00:00:25,510 --> 00:00:33,130
+So what is a CD and well a CD and or a content delivery network is a system of distributed servers or
+
+7
+00:00:33,190 --> 00:00:40,570
+a network of distributed servers that deliver web pages on other web content to users based on the geographical
+
+8
+00:00:40,570 --> 00:00:42,090
+location of the user.
+
+9
+00:00:42,190 --> 00:00:46,000
+The origin of the web page and a content delivery server.
+
+10
+00:00:46,060 --> 00:00:47,030
+So what does that mean.
+
+11
+00:00:47,050 --> 00:00:53,710
+Well it's really a web service which speeds up the distribution of your static and dynamic web content.
+
+12
+00:00:53,710 --> 00:00:57,610
+So you think HMO javascript's image files.
+
+13
+00:00:57,640 --> 00:00:59,330
+So any web content.
+
+14
+00:00:59,470 --> 00:01:04,960
+And it's a much more efficient way for geographically distributed users to access your content.
+
+15
+00:01:04,960 --> 00:01:11,560
+So imagine you are running a Web site located in the UK and you have a lot of users based all around
+
+16
+00:01:11,560 --> 00:01:12,040
+the world.
+
+17
+00:01:12,040 --> 00:01:18,340
+So you've got users in USA South America Africa India and Australia.
+
+18
+00:01:18,640 --> 00:01:24,610
+And when a user purchases to your Web site their request is routed through many different networks to
+
+19
+00:01:24,610 --> 00:01:31,000
+reach your server and the number of network caps and the distance that a request needs to travel has
+
+20
+00:01:31,060 --> 00:01:37,720
+a significant impact on the performance and the responsiveness of your website and the network latency
+
+21
+00:01:37,720 --> 00:01:40,330
+is going to be different for each different location.
+
+22
+00:01:40,330 --> 00:01:42,950
+So it's not going to be consistent geographically.
+
+23
+00:01:43,060 --> 00:01:47,920
+So for those users who are further away they're going to experience worse performance they're going
+
+24
+00:01:47,920 --> 00:01:50,060
+to experience greater latency.
+
+25
+00:01:50,080 --> 00:01:56,200
+So for example for users based in Australia they might experience worst performance greater latency
+
+26
+00:01:56,200 --> 00:02:01,850
+or they might think that the web site seems less responsive and uses based in say India for example.
+
+27
+00:02:01,900 --> 00:02:08,200
+So this is where the use of a content delivery network comes in and we're going to use the same diagram
+
+28
+00:02:08,200 --> 00:02:10,810
+that we used for transfer acceleration.
+
+29
+00:02:10,810 --> 00:02:16,370
+So if you remember transfer acceleration utilizes cloud technology.
+
+30
+00:02:16,600 --> 00:02:19,270
+But there is a difference between the two.
+
+31
+00:02:19,540 --> 00:02:24,940
+And the main thing to remember is that cloud front is focused on content delivery.
+
+32
+00:02:25,030 --> 00:02:33,550
+So I think allowing more efficient leads and downloads whereas transfer acceleration is all about enabling
+
+33
+00:02:33,580 --> 00:02:36,450
+faster uploads into S3.
+
+34
+00:02:36,550 --> 00:02:43,000
+So once again imagine you are running your website from London and you have your users all geographically
+
+35
+00:02:43,000 --> 00:02:44,710
+dispersed all around the world.
+
+36
+00:02:44,710 --> 00:02:50,800
+So instead of each user accessing the files directly between their geographical location and London
+
+37
+00:02:51,250 --> 00:02:57,730
+instead we introduced this concept called Edge locations and an education is simply a collection of
+
+38
+00:02:57,730 --> 00:03:03,940
+servers which are in a geographically dispersed data centers and these applications are used by cloud
+
+39
+00:03:03,940 --> 00:03:12,340
+front to keep a case of copies of your object so copies of your DML files your your images your content
+
+40
+00:03:12,340 --> 00:03:13,340
+that you're serving.
+
+41
+00:03:13,360 --> 00:03:19,120
+And this means that instead of requesting content from your server located in London users can access
+
+42
+00:03:19,120 --> 00:03:22,130
+that content from the edge location.
+
+43
+00:03:22,150 --> 00:03:28,030
+So instead of making the request to the London server the user is making the request directly to the
+
+44
+00:03:28,030 --> 00:03:33,180
+edge location which is much closer geographically than the main server in London.
+
+45
+00:03:33,220 --> 00:03:39,010
+So once the request is made the location puts the request on to the server in London.
+
+46
+00:03:39,040 --> 00:03:42,940
+So it downloads the files and it Keisha's them locally.
+
+47
+00:03:42,940 --> 00:03:49,180
+So that means that next time they user or if another user comes along and wants to access the same object
+
+48
+00:03:49,180 --> 00:03:53,200
+they can then access that directly from the edge location.
+
+49
+00:03:53,200 --> 00:03:55,800
+So this provides a much faster response time.
+
+50
+00:03:55,810 --> 00:03:59,910
+It means that your requests are only going to that local edge location.
+
+51
+00:03:59,920 --> 00:04:01,660
+They're not going all the way to London.
+
+52
+00:04:01,660 --> 00:04:07,450
+It dramatically reduces the number of network hops for each of your requests which again improves the
+
+53
+00:04:07,450 --> 00:04:12,540
+performance time it gives you lower latency and higher transfer rights as well.
+
+54
+00:04:12,580 --> 00:04:17,870
+So objects at Kiesha and that case for a period of time and after that period of time is up.
+
+55
+00:04:17,980 --> 00:04:21,310
+It's called A Time to live after that time to live is up.
+
+56
+00:04:21,310 --> 00:04:23,770
+The object automatically cleared from the case.
+
+57
+00:04:23,800 --> 00:04:29,890
+Now you can click objects yourself for example if you had a new version of an object and the version
+
+58
+00:04:29,890 --> 00:04:34,780
+of an image or new version of a file you can actually go in there and clear that case yourself to make
+
+59
+00:04:34,780 --> 00:04:38,570
+sure that when your users try to access that file they get the latest version.
+
+60
+00:04:38,620 --> 00:04:42,280
+So you can clear the case yourself but you will be charged for doing that.
+
+61
+00:04:42,280 --> 00:04:46,040
+So let's take a look at some of the key cloud front terminology.
+
+62
+00:04:46,210 --> 00:04:52,660
+So education and this is the location where content is cased you can case content that you're trying
+
+63
+00:04:52,660 --> 00:04:55,340
+to access from the Web site or from S3.
+
+64
+00:04:55,360 --> 00:04:59,240
+But you can also write content into the edge location as well.
+
+65
+00:04:59,260 --> 00:05:01,030
+So it's a two way thing.
+
+66
+00:05:01,060 --> 00:05:05,780
+They are separate to an AWOS region or availability zone.
+
+67
+00:05:06,190 --> 00:05:12,710
+And actually there are a lot more locations than there are AWOS regions and availabilities.
+
+68
+00:05:12,850 --> 00:05:14,050
+Now origin.
+
+69
+00:05:14,050 --> 00:05:20,720
+So this is really just the origin of all the files that the content delivery network is going to distribute.
+
+70
+00:05:20,800 --> 00:05:26,640
+So it could be an S-3 it it could be an easy to instance running a website.
+
+71
+00:05:26,930 --> 00:05:33,800
+It could be an elastic load balance or it could be route 53 but usually more often than not is an S3
+
+72
+00:05:33,800 --> 00:05:38,020
+bucket or it's an easy to instance running a Web site distribution.
+
+73
+00:05:38,150 --> 00:05:45,200
+So this is the term given to the name of the content distribution network and that consists of a collection
+
+74
+00:05:45,290 --> 00:05:50,240
+of edgy locations and there are two types of distribution.
+
+75
+00:05:50,240 --> 00:05:55,240
+So firstly we have Web distribution so that's used just for Web sites.
+
+76
+00:05:55,310 --> 00:06:04,730
+So I think HTC pay HTP s and we also have ATI MP which is realtime messaging protocol and that is used
+
+77
+00:06:04,730 --> 00:06:08,930
+for streaming audio video and data over the Internet.
+
+78
+00:06:08,930 --> 00:06:10,610
+So I just think media streaming.
+
+79
+00:06:10,640 --> 00:06:17,150
+So cut from that can be used to deliver your entire web site including dynamic static streaming and
+
+80
+00:06:17,240 --> 00:06:23,210
+interactive content using a WSS global network of edge locations.
+
+81
+00:06:23,210 --> 00:06:29,840
+So that means requests for content they are automatically routed to your nearest edge location and content
+
+82
+00:06:29,870 --> 00:06:32,870
+gets delivered to you with the best possible performance.
+
+83
+00:06:32,870 --> 00:06:37,380
+So as we talked about it could be used to optimize performance for users.
+
+84
+00:06:37,490 --> 00:06:43,970
+So geographically distributed uses all accessing the same web site in London backed by S3.
+
+85
+00:06:44,000 --> 00:06:49,760
+So instead of sending requests to that Web site in London users will access their local edge location
+
+86
+00:06:49,850 --> 00:06:52,260
+and hopefully the Web site will be there.
+
+87
+00:06:52,280 --> 00:06:58,490
+And if it isn't then the location will use Amazon's network to grab the files that have been requested
+
+88
+00:06:58,550 --> 00:07:03,380
+and the next time the user tries to access them they will be caged within the education.
+
+89
+00:07:03,390 --> 00:07:08,240
+So platform is optimized to work with lots of other AWOS services.
+
+90
+00:07:08,240 --> 00:07:11,880
+So as we've already talked about E.C too.
+
+91
+00:07:11,900 --> 00:07:15,460
+So you could use easy to to run your own web site if you wanted to.
+
+92
+00:07:15,470 --> 00:07:19,720
+It's also optimized to work with elastic load balancing and 53.
+
+93
+00:07:19,730 --> 00:07:23,650
+And it also works seamlessly with any non AWOS origins.
+
+94
+00:07:23,720 --> 00:07:28,610
+So that means you could just really use your own server within your own data center and cloud front
+
+95
+00:07:28,610 --> 00:07:32,390
+would still work with that for the tudes cloud front distribution types.
+
+96
+00:07:32,380 --> 00:07:34,980
+We have the Web distribution used for web sites.
+
+97
+00:07:35,000 --> 00:07:37,630
+So that's HTP and HTP.
+
+98
+00:07:37,670 --> 00:07:43,820
+S for a Web distribution the origin or the place where your original files are stored can be either
+
+99
+00:07:43,880 --> 00:07:48,100
+an S3 packet or an h t t p h t t p s server.
+
+100
+00:07:48,110 --> 00:07:53,390
+You cannot serve Adobe Flash multimedia content from a Web distribution.
+
+101
+00:07:53,390 --> 00:07:57,290
+And for that you're going to need an ATI MP distribution.
+
+102
+00:07:57,290 --> 00:08:04,550
+So that allows you to stream media files using the Adobe media server and the Adobe realtime messaging
+
+103
+00:08:04,550 --> 00:08:05,230
+protocol.
+
+104
+00:08:05,240 --> 00:08:11,600
+So streaming audio video and data over the Internet and we can also use cloud front to accelerate the
+
+105
+00:08:11,600 --> 00:08:19,820
+transfer of files into S3 and that is called S3 transfer acceleration and transfer acceleration enables
+
+106
+00:08:19,820 --> 00:08:27,740
+fast easy and secure transfers of your files over long distances between your end users and an S3 bucket.
+
+107
+00:08:27,770 --> 00:08:32,900
+So this takes advantage of cloud fronts globally distributed educations.
+
+108
+00:08:33,110 --> 00:08:39,240
+And as the data arrives at an education it is then routed into S-3 over an optimized network.
+
+109
+00:08:39,250 --> 00:08:44,520
+Paul So its a much faster way for you to upload your files into S3.
+
+110
+00:08:44,570 --> 00:08:46,580
+So lets just have a look at an example.
+
+111
+00:08:46,580 --> 00:08:54,530
+So in this example we have our S3 packet located here in London and again we've got our users geographically
+
+112
+00:08:54,530 --> 00:08:55,480
+distributed.
+
+113
+00:08:55,490 --> 00:09:01,320
+And just imagine all these users need to upload a load of files into this three bucket.
+
+114
+00:09:01,670 --> 00:09:07,190
+So instead of uploading directly to the back in London which could take a long time for some of the
+
+115
+00:09:07,190 --> 00:09:13,340
+users who are furthest away they can upload that file into the cloud fund education and then from there
+
+116
+00:09:13,400 --> 00:09:17,220
+the education will transfer that file into the London bucket.
+
+117
+00:09:17,270 --> 00:09:22,530
+Using an optimized network so using the fast networks within AWOS.
+
+118
+00:09:22,580 --> 00:09:24,860
+So let's take a look at some of our exam tips.
+
+119
+00:09:24,860 --> 00:09:30,620
+Firstly remember the terminology the edge location and this is the location where your content is going
+
+120
+00:09:30,620 --> 00:09:36,680
+to be cased it seperate to an AWOS region or AWOS availability zone.
+
+121
+00:09:36,680 --> 00:09:38,010
+It's not the same thing.
+
+122
+00:09:38,120 --> 00:09:43,850
+And in fact we have many more applications than we do regions and availabilities owns the origin.
+
+123
+00:09:43,850 --> 00:09:49,280
+So remember that the location of where we are files the origin of all the files that the CDN is going
+
+124
+00:09:49,280 --> 00:09:56,030
+to be distributing and this might be a necessary bucket and we see two instance a load balance or route
+
+125
+00:09:56,070 --> 00:09:58,490
+53 distribution.
+
+126
+00:09:58,490 --> 00:10:03,920
+So this is the name given to the content delivery network and that consists of a collection of different
+
+127
+00:10:04,000 --> 00:10:08,410
+edge locations and we have two different types of distribution.
+
+128
+00:10:08,450 --> 00:10:15,170
+We have the Web distribution which is used for web sites and ATI MP which is used for media streaming
+
+129
+00:10:15,360 --> 00:10:16,060
+education.
+
+130
+00:10:16,140 --> 00:10:22,100
+And not just read only IAU can put an object to them and have that transferred into S3 locations are
+
+131
+00:10:22,130 --> 00:10:28,780
+also used by S-3 transfer acceleration to reduce latency for S-3 uploads and objects a case.
+
+132
+00:10:28,790 --> 00:10:32,110
+So that case for the lifetime of a time to live value.
+
+133
+00:10:32,300 --> 00:10:38,960
+And when that type of value expires then the object is wiped from the case and you can clear cased objects
+
+134
+00:10:38,990 --> 00:10:40,100
+at any time.
+
+135
+00:10:40,280 --> 00:10:41,960
+But you will be challenged.
+
+136
+00:10:42,050 --> 00:10:47,210
+So that's the end of the cloud front lecture and next lecture is going to be a lab and we are going
+
+137
+00:10:47,210 --> 00:10:50,490
+to be setting up our own cloud front content delivery network.
+
+138
+00:10:50,510 --> 00:10:53,090
+So if you've got time please join me in the next lecture.

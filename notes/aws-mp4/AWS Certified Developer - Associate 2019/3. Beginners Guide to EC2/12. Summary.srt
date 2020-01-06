@@ -1,0 +1,587 @@
+1
+00:00:00,300 --> 00:00:06,420
+OK hello cloggers and welcome to the very last lecture in this section of the course the true summary
+
+2
+00:00:06,420 --> 00:00:10,630
+lecture in here we're just going to summarize everything we've learnt in this section of the course.
+
+3
+00:00:10,650 --> 00:00:15,870
+Now if you have done our solutions architect associate course you will notice that the easy to section
+
+4
+00:00:15,870 --> 00:00:21,840
+of the developers so cost is quite a bit shorter and that's because the new developer you know associate
+
+5
+00:00:22,080 --> 00:00:25,230
+exam is actually really Servilius focused.
+
+6
+00:00:25,240 --> 00:00:29,820
+So they're really trying to get away from easy to so you don't need to know anywhere near as much about
+
+7
+00:00:29,850 --> 00:00:34,620
+E.S. too as you did when you were doing the solutions architect course.
+
+8
+00:00:34,670 --> 00:00:38,260
+And we will have a whole section on service coming up.
+
+9
+00:00:38,430 --> 00:00:45,140
+So let's go through my exam tips and we will start with the different types of revenue models for easy
+
+10
+00:00:45,140 --> 00:00:47,980
+to or pricing models for easy to see on demand.
+
+11
+00:00:47,970 --> 00:00:52,120
+This allows you to pay a fixed rate by the hour by the second with no commitment.
+
+12
+00:00:52,200 --> 00:00:57,570
+We've got reserved which provides you with the capacity reservation and you have basically one to three
+
+13
+00:00:57,570 --> 00:01:03,600
+year contracts if you pay the more you pay upfront and the longer the term the better right that you're
+
+14
+00:01:03,600 --> 00:01:04,020
+going to get.
+
+15
+00:01:04,020 --> 00:01:08,550
+So if you get three years upfront and you pay at all upfront you're going to get the best rate possible
+
+16
+00:01:08,960 --> 00:01:14,400
+then have this enables you to bid whatever price you want for an instance capacity providing even greater
+
+17
+00:01:14,400 --> 00:01:17,860
+savings if your applications have flexible start and end time.
+
+18
+00:01:17,860 --> 00:01:20,250
+So it moves around just like stock market.
+
+19
+00:01:20,250 --> 00:01:26,430
+And then we have dedicated a host of physical easy to servers that are actually dedicated for use the
+
+20
+00:01:26,430 --> 00:01:33,120
+use cases for this would either be to allow you to do things with licensing or it could be your regulatory
+
+21
+00:01:33,120 --> 00:01:34,310
+requirements.
+
+22
+00:01:34,380 --> 00:01:38,150
+Some governments don't want multitenant virtualization.
+
+23
+00:01:38,240 --> 00:01:42,750
+Remember that if a spot instance is terminated by Amazon easy to you're not going to be charged for
+
+24
+00:01:42,750 --> 00:01:44,610
+the partial hour of usage.
+
+25
+00:01:44,610 --> 00:01:49,410
+However if you terminate the instance yourself you'll be charged for the complete hour in which the
+
+26
+00:01:49,410 --> 00:01:50,720
+instance ran.
+
+27
+00:01:50,750 --> 00:01:54,330
+We then learned about our different easy to instance type.
+
+28
+00:01:54,330 --> 00:02:00,670
+So you Monnick that we are going to use to remember all the different types is fight Doctor picks.
+
+29
+00:02:00,720 --> 00:02:07,630
+So I want you to think of Edward Norton fighting a Scottish doc who likes to hand out pictures of Scotland's
+
+30
+00:02:07,650 --> 00:02:13,720
+and that way you will remember every single instance type going into this exam at the social level.
+
+31
+00:02:13,830 --> 00:02:18,390
+Typically you don't need to know all the instances but definitely when you go on to do the specialties
+
+32
+00:02:18,390 --> 00:02:23,010
+or if you go on to do the professional levels it is really useful and if you are going to work with
+
+33
+00:02:23,010 --> 00:02:28,270
+AWOS anyway is pretty useful to know the different E.C to instance types.
+
+34
+00:02:28,470 --> 00:02:34,020
+We then moved on and we looked at the different abs volume's so we had SSD so we had general purpose
+
+35
+00:02:34,020 --> 00:02:35,210
+SSD.
+
+36
+00:02:35,250 --> 00:02:40,020
+This is what we've been using throughout most of the costs that have provisioned the IOPS.
+
+37
+00:02:40,020 --> 00:02:43,240
+And this is for mission critical low latency workloads.
+
+38
+00:02:43,240 --> 00:02:47,680
+So basically anything over 10000 IOPS you want provisioned IOPS anything below.
+
+39
+00:02:48,000 --> 00:02:50,700
+You can go with a general purpose SSD.
+
+40
+00:02:50,730 --> 00:02:55,050
+We then had magnetics we had throughput optimized remember this comp be a boot volume.
+
+41
+00:02:55,050 --> 00:03:00,240
+And this is designed basically frequently accessed throughput intensive workloads.
+
+42
+00:03:00,290 --> 00:03:06,440
+We then had cold hard disk drives this could be designed for things like you know file servers et cetera.
+
+43
+00:03:06,450 --> 00:03:09,450
+Neither of those can be boot volumes.
+
+44
+00:03:09,450 --> 00:03:16,260
+And then we have magnetic this can be a boot volume it's previous generation and it still exists in
+
+45
+00:03:16,260 --> 00:03:16,970
+the console.
+
+46
+00:03:16,980 --> 00:03:21,530
+Moving onto elastic load balance as we learnt about the three different types of load balances.
+
+47
+00:03:21,580 --> 00:03:25,990
+So the application load balances network load balances and classic load balances.
+
+48
+00:03:26,100 --> 00:03:32,070
+If you do see the word elastic load balance Typically they will be talking about classic load balances.
+
+49
+00:03:32,250 --> 00:03:36,120
+We learnt that we get a five or four ERA on our classic load balances.
+
+50
+00:03:36,120 --> 00:03:38,100
+This means that Gateway's timed out.
+
+51
+00:03:38,100 --> 00:03:42,660
+Why is the gateway timed out was not because the AOB is broken.
+
+52
+00:03:42,660 --> 00:03:46,830
+Essentially it's timing out means there's something wrong with the application stack so it could be
+
+53
+00:03:46,830 --> 00:03:51,810
+a web applications it could be a database server something is not working in there and that gateway
+
+54
+00:03:51,810 --> 00:03:52,820
+is timing out.
+
+55
+00:03:52,860 --> 00:03:55,660
+So we need to go and troubleshoot your applications stack.
+
+56
+00:03:55,680 --> 00:04:02,170
+We also learn that if you need the IP for Address end user then you going to do this through the Axford
+
+57
+00:04:02,180 --> 00:04:03,540
+forehead up.
+
+58
+00:04:03,720 --> 00:04:09,060
+Moving on to route 53 We basically learned that this is Amazon's DNS service and allows you to map your
+
+59
+00:04:09,080 --> 00:04:16,380
+domain names to two instances or to load balances or two three buckets then looked at the command line.
+
+60
+00:04:16,380 --> 00:04:21,240
+So we learned about least privilege you always want to give your users the minimum amount of access
+
+61
+00:04:21,240 --> 00:04:22,100
+required.
+
+62
+00:04:22,260 --> 00:04:25,390
+You may not want to give your devs administrator access.
+
+63
+00:04:25,500 --> 00:04:27,890
+You may want to restrict it a little bit more.
+
+64
+00:04:27,890 --> 00:04:30,030
+It's entirely up to your organization.
+
+65
+00:04:30,030 --> 00:04:35,010
+We also learned that we should create groups say should assign users to groups and your users will automatically
+
+66
+00:04:35,010 --> 00:04:40,560
+inherit the permissions of the group the group permissions are signed using policy documents.
+
+67
+00:04:40,560 --> 00:04:42,480
+We learn about.
+
+68
+00:04:42,780 --> 00:04:46,140
+In terms of the command line interface that we have a secret access.
+
+69
+00:04:46,950 --> 00:04:49,670
+So we learn that you're only ever going to say this once.
+
+70
+00:04:49,680 --> 00:04:54,020
+If you don't say that you can delete the K and then just regenerate it.
+
+71
+00:04:54,210 --> 00:04:58,410
+And if you do do that you are going to need to run the AWOS configure again.
+
+72
+00:04:58,710 --> 00:05:02,460
+And we also learned that you shouldn't use just one access.
+
+73
+00:05:02,680 --> 00:05:06,780
+So don't share one access came across all your developers that's just stupid.
+
+74
+00:05:06,850 --> 00:05:11,310
+Create one secret access Kaon access key ID per developer.
+
+75
+00:05:11,410 --> 00:05:16,300
+That way if somebody leaves a company on bad terms you only need to delete that one key rather than
+
+76
+00:05:16,300 --> 00:05:21,520
+having to delete it across all of your developers across all of the stack.
+
+77
+00:05:21,520 --> 00:05:23,690
+So always create one key pad.
+
+78
+00:05:23,750 --> 00:05:30,190
+Her developers and remember that you can use the Selye on your PC so you can install this on Mac Linux
+
+79
+00:05:30,190 --> 00:05:31,550
+or Windows.
+
+80
+00:05:31,570 --> 00:05:35,680
+I actually use this you know to store my files in S3.
+
+81
+00:05:35,680 --> 00:05:37,900
+So go ahead if you haven't done that already.
+
+82
+00:05:37,900 --> 00:05:39,510
+I definitely suggest Googling.
+
+83
+00:05:39,700 --> 00:05:45,340
+You know depending on what OS you using and you'll be able to run the installer once it's installed
+
+84
+00:05:45,370 --> 00:05:51,010
+all you need to do is type AWOS configure and enter in your Access Key ID and secret access.
+
+85
+00:05:51,010 --> 00:05:51,670
+OK.
+
+86
+00:05:51,970 --> 00:05:58,630
+Moving on if you want to get away from access key and secret access keys you can use roles but of course
+
+87
+00:05:58,660 --> 00:06:04,080
+you would only use a role within your own AWOS environment you can't you know Graham's Horo to your
+
+88
+00:06:04,510 --> 00:06:06,640
+Mac or your PC or anything like that.
+
+89
+00:06:06,850 --> 00:06:11,740
+But they are definitely preferred from a security perspective if you have a scenario question where
+
+90
+00:06:11,740 --> 00:06:16,510
+people are saying should you use a row or should you use an access key idea or secret access key.
+
+91
+00:06:16,630 --> 00:06:21,760
+So long as we're talking about in the context of within your A.W. environment always choose roles and
+
+92
+00:06:21,830 --> 00:06:24,930
+roles controlled by policies you can change a policy on a role.
+
+93
+00:06:24,940 --> 00:06:30,640
+It's going to take immediate effect and you can attach and detach roles to running a C two instances
+
+94
+00:06:30,640 --> 00:06:36,580
+without having to stop or terminate these instances then learnt about encryption or root device volume's
+
+95
+00:06:36,580 --> 00:06:42,830
+Sweetland you can encrypt the root device volume which is simply the operating system that the volume
+
+96
+00:06:42,830 --> 00:06:43,510
+is stored on.
+
+97
+00:06:43,510 --> 00:06:49,990
+So the ABS you know volume that your operating system is stored on and you can do this using operating
+
+98
+00:06:50,080 --> 00:06:53,700
+system level encryption so things like windows bit lock up for example.
+
+99
+00:06:53,700 --> 00:06:57,760
+You can also encrypt the device volume by first taking a snapshot of that volume.
+
+100
+00:06:57,760 --> 00:07:01,030
+We then created a copy of that snap with encryption.
+
+101
+00:07:01,030 --> 00:07:06,550
+We then basically took that snap and created an Amazon machine image out of that snap and deployed it
+
+102
+00:07:06,910 --> 00:07:09,730
+and that basically encrypted the root device volume.
+
+103
+00:07:09,730 --> 00:07:13,800
+And you can also encrypt additional attach volumes just simply using the console.
+
+104
+00:07:13,810 --> 00:07:15,910
+The Seelye or the API.
+
+105
+00:07:16,150 --> 00:07:22,020
+We then went onto databases we learned about D.S. which is basically for online transaction processing.
+
+106
+00:07:22,210 --> 00:07:27,470
+We use D.S. for things or as has the following technologies Seiko server.
+
+107
+00:07:27,480 --> 00:07:28,980
+My sequel postscripts.
+
+108
+00:07:28,980 --> 00:07:32,350
+Q Well Oracle Aurora and Maria de Bay.
+
+109
+00:07:32,650 --> 00:07:36,270
+And then we have dynamo D-B which is Amazon's no secret service.
+
+110
+00:07:36,400 --> 00:07:42,730
+We have it redshift which is Amazon's sort of online analytics processing site data warehousing service
+
+111
+00:07:43,120 --> 00:07:48,770
+and then we have elastic cash which is out in memory cations engine and that consists of memcached D
+
+112
+00:07:49,090 --> 00:07:54,030
+and it also consists of read us in terms of Amazon.
+
+113
+00:07:54,670 --> 00:08:01,420
+We learnt that LDS instances can be multiple availability zones and that is only for disaster recovery.
+
+114
+00:08:01,420 --> 00:08:02,700
+Its not foolproof.
+
+115
+00:08:02,830 --> 00:08:08,400
+Improving performance for performance improvement you going to need read replicas read replicas are
+
+116
+00:08:08,400 --> 00:08:10,600
+used for scaling not video.
+
+117
+00:08:10,750 --> 00:08:14,700
+You must have automatic backups turned on in order to deploy a raid replica.
+
+118
+00:08:14,710 --> 00:08:18,480
+You can have up to five replicas copies of any database.
+
+119
+00:08:18,610 --> 00:08:24,340
+You can have RAID replicas of Raid replicas but you gotta watch out for latency Atri replica is going
+
+120
+00:08:24,340 --> 00:08:26,110
+to have its own DNS endpoint.
+
+121
+00:08:26,170 --> 00:08:32,170
+You can have a RAID replica now that has multiple availability zones and you can create replicas of
+
+122
+00:08:32,170 --> 00:08:34,440
+multi source databases.
+
+123
+00:08:34,660 --> 00:08:37,910
+Regrip like is can also be promoted to their own databases.
+
+124
+00:08:37,930 --> 00:08:43,590
+But this then breaks the replication and you can have a RAID replica in a second region for my sake.
+
+125
+00:08:43,630 --> 00:08:50,250
+And Maria de Bame moving on to a less to cache typically you're going to be given a scenario where databases
+
+126
+00:08:50,280 --> 00:08:56,020
+are under a lot of stress you know alert and you will be asked which service you should use to alleviate
+
+127
+00:08:56,020 --> 00:08:57,150
+this noise.
+
+128
+00:08:57,230 --> 00:08:58,930
+Always depends on the scenario.
+
+129
+00:08:59,140 --> 00:09:04,340
+You choose the last to cache if you databases particularly read heavy and not prone to frequent changing
+
+130
+00:09:04,900 --> 00:09:07,300
+but if that's not the case redshifts are a good answer.
+
+131
+00:09:07,300 --> 00:09:13,270
+If your database is getting stressed because management K-8 running online analytic processing transactions
+
+132
+00:09:13,270 --> 00:09:17,210
+on it and then it is really important to understand the difference.
+
+133
+00:09:17,380 --> 00:09:21,000
+Use cases between memcached and read us going into this exam.
+
+134
+00:09:21,400 --> 00:09:24,820
+You need to use memcached if object cation is a primary goal.
+
+135
+00:09:24,830 --> 00:09:31,210
+You want to keep things as simple as possible and you want to be able to scale out your you know your
+
+136
+00:09:31,210 --> 00:09:32,490
+cache horizontally.
+
+137
+00:09:32,550 --> 00:09:35,850
+You'd use rattus if you have much more advanced data types.
+
+138
+00:09:35,920 --> 00:09:40,780
+If you're doing things like sorting and ranking such as leaderboards definitely use read us if data
+
+139
+00:09:40,780 --> 00:09:46,080
+persistence and multiple availability zones is important to you then you want to use read us.
+
+140
+00:09:46,210 --> 00:09:50,710
+And if you need pub sub capabilities then you also want to use read us.
+
+141
+00:09:50,860 --> 00:09:53,570
+Well congratulations you've done really really well.
+
+142
+00:09:53,680 --> 00:09:55,100
+I hope you've learnt a lot.
+
+143
+00:09:55,300 --> 00:10:00,130
+So that is it for this section of the course in the next section we're going to learn all about three
+
+144
+00:10:00,130 --> 00:10:06,250
+going to hand over to Faye Ellis who will be teaching you that once you've cut it off S-3 you come back
+
+145
+00:10:06,250 --> 00:10:12,940
+to me and learn all about service and serious architecture so I hope you go ahead take a break make
+
+146
+00:10:13,000 --> 00:10:15,230
+Sophia coffee and we'll see in the next section of the course.
+
+147
+00:10:15,250 --> 00:10:15,610
+Thank you.

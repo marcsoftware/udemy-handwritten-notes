@@ -1,0 +1,415 @@
+1
+00:00:00,670 --> 00:00:03,970
+Helen Clark is welcome to this lecture.
+
+2
+00:00:03,990 --> 00:00:06,200
+So in this lecture this is going to be a lab.
+
+3
+00:00:06,270 --> 00:00:11,930
+And we are going to be setting up encryption on an as bucket so if you'd like to join me in the console
+
+4
+00:00:11,930 --> 00:00:13,050
+so let's get started.
+
+5
+00:00:13,050 --> 00:00:18,690
+So here we are in the AWOS console and the first thing that we're going to do in this lab is we're going
+
+6
+00:00:18,690 --> 00:00:26,640
+to create a new S3 packet then we're going to add a policy to enforce the use of server side encryption.
+
+7
+00:00:26,640 --> 00:00:28,530
+Then we're going to test that policy works.
+
+8
+00:00:28,530 --> 00:00:33,620
+So we're going to test it by attempting to upload a file without using the encryption option.
+
+9
+00:00:33,780 --> 00:00:39,870
+So first of all we need to select S-3 in the main console and we go to create bucket.
+
+10
+00:00:40,080 --> 00:00:45,660
+And we just create on your back here and I'm just going to keep the region as Frankfurt and click next.
+
+11
+00:00:45,660 --> 00:00:50,700
+And there are two ways to enable encryption so you can either enable it at the console which is the
+
+12
+00:00:50,700 --> 00:00:59,130
+easiest way and all you do is check the default encryption box and you can choose between the 256 which
+
+13
+00:00:59,130 --> 00:01:04,730
+is S3 managed Ks or the AWOS camis which is that K.M. is managed chaos.
+
+14
+00:01:04,920 --> 00:01:07,760
+And both of those are server side encryption.
+
+15
+00:01:08,040 --> 00:01:14,890
+But you can also enforce encryption on your S-3 packet by using an S3 bucket policy and for this lapse
+
+16
+00:01:14,900 --> 00:01:16,540
+that's exactly what we're going to do.
+
+17
+00:01:16,560 --> 00:01:18,000
+So we're not going to enable it.
+
+18
+00:01:18,030 --> 00:01:23,010
+So I'm just going to de-select that we're actually going to enable using a package policy.
+
+19
+00:01:23,130 --> 00:01:27,780
+So just go ahead and click next next and create bucket.
+
+20
+00:01:27,780 --> 00:01:28,370
+There we go.
+
+21
+00:01:28,500 --> 00:01:35,120
+So if we go into the pocket hit permissions and go to bucket policies.
+
+22
+00:01:35,130 --> 00:01:40,500
+So now we need to create the bucket policy that's going to enforce encryption on all files.
+
+23
+00:01:40,680 --> 00:01:43,420
+So let's go to policy generator.
+
+24
+00:01:43,830 --> 00:01:45,870
+And this is why we're going to build our policy.
+
+25
+00:01:46,200 --> 00:01:54,450
+So the type of policy is going to be an S3 bucket policy and the effect is going to be deny.
+
+26
+00:01:54,740 --> 00:01:58,880
+We're going to be denying requests which do you know enforce encryption.
+
+27
+00:01:58,920 --> 00:02:05,160
+So the principle will be stopped that will apply to any request keep the IWM service as Amazon as it
+
+28
+00:02:05,160 --> 00:02:14,270
+may and then for action just scroll down until you find out about object.
+
+29
+00:02:14,280 --> 00:02:15,650
+So it's what down here
+
+30
+00:02:18,420 --> 00:02:23,920
+that we put objects and just select that as resource name.
+
+31
+00:02:23,930 --> 00:02:26,440
+So that is the name of your pocket.
+
+32
+00:02:26,480 --> 00:02:38,990
+So if you just come back to your console screen copy the bucket I are an and at the end and then we
+
+33
+00:02:38,990 --> 00:02:40,400
+need to add a condition
+
+34
+00:02:43,130 --> 00:02:48,220
+so the condition is going to be string Oh.
+
+35
+00:02:48,460 --> 00:02:51,970
+So it's going to catch when the string does not a whole
+
+36
+00:02:55,130 --> 00:02:58,730
+Am I M.Z. server side encryption.
+
+37
+00:02:58,730 --> 00:03:02,710
+And then your family will pay the type of encryption that way of specifying.
+
+38
+00:03:02,720 --> 00:03:14,390
+So let's let's use K M-S such as just enter AWOS colon Kamis and then you hit that condition and then
+
+39
+00:03:14,390 --> 00:03:18,600
+go ahead and hit add statement and generate policy.
+
+40
+00:03:18,620 --> 00:03:23,590
+So this is the gyse on code that the policy generator has created for us.
+
+41
+00:03:23,600 --> 00:03:29,390
+So here you can see in the policy document we've got a policy ID a policy version and then the statement
+
+42
+00:03:29,450 --> 00:03:33,370
+which is the action guide that the policy is going to enforce.
+
+43
+00:03:33,380 --> 00:03:39,630
+So we've got statement ID and then the action which relates to the put of new objects so every time
+
+44
+00:03:39,630 --> 00:03:46,130
+we upload a new file then the effect will be denie for this resource for this bucket name so deny any
+
+45
+00:03:46,130 --> 00:03:53,600
+request to put new objects where the string does not equal x M.Z. server side encryption AWOS Calamus
+
+46
+00:03:53,880 --> 00:04:00,170
+and then Principal astore So that means anybody who tries to upload a file into this bucket without
+
+47
+00:04:00,170 --> 00:04:03,140
+using server side encryption is going to be denied.
+
+48
+00:04:03,140 --> 00:04:11,130
+So we need to copy this code that's been generated by the policy generator and go back to our console
+
+49
+00:04:11,580 --> 00:04:13,230
+and add in the code here
+
+50
+00:04:16,500 --> 00:04:22,720
+it's safe and OK and straight away we've seen an error message and I want to show you this message because
+
+51
+00:04:22,720 --> 00:04:29,140
+this is something that you see sometimes when you create new policies using the policy editor.
+
+52
+00:04:29,140 --> 00:04:35,050
+So the error that we've got here is saying action does not apply to resources in statement.
+
+53
+00:04:35,050 --> 00:04:41,650
+So we look at the resource section which is here where we've added our our Amazon resource name so it's
+
+54
+00:04:41,650 --> 00:04:44,850
+complaining that the action does not apply to this resource.
+
+55
+00:04:44,860 --> 00:04:52,000
+So this happens sometimes just because some services do not let you specify specific actions for individual
+
+56
+00:04:52,000 --> 00:04:53,140
+resources.
+
+57
+00:04:53,230 --> 00:04:58,030
+And in this case you need to usually need to add a wildcard to the resource element.
+
+58
+00:04:58,240 --> 00:05:02,780
+So that just means that the action will apply to all resources within that service.
+
+59
+00:05:02,800 --> 00:05:03,930
+Not just that bucket.
+
+60
+00:05:04,060 --> 00:05:05,430
+So everything within the bucket.
+
+61
+00:05:05,440 --> 00:05:10,300
+So if you do see this message you can normally resolve it just by adding a wild card.
+
+62
+00:05:10,300 --> 00:05:11,580
+So we'll do that now.
+
+63
+00:05:11,830 --> 00:05:17,510
+So we're just at forward slash and star and that should fix our problem.
+
+64
+00:05:17,770 --> 00:05:18,180
+Yep.
+
+65
+00:05:18,520 --> 00:05:20,850
+So it's accepted that policy now.
+
+66
+00:05:21,790 --> 00:05:25,580
+And we are ready to go ahead and test that policy is working correctly.
+
+67
+00:05:25,660 --> 00:05:34,670
+So go back to your pocket and we're going to try and upload an object scope to add files and I'm just
+
+68
+00:05:34,670 --> 00:05:37,220
+going to select a text file from my machine.
+
+69
+00:05:37,220 --> 00:05:40,340
+You can just select any file that you have on your local machine.
+
+70
+00:05:41,340 --> 00:05:46,070
+And click next next.
+
+71
+00:05:46,320 --> 00:05:51,870
+And if we scroll down on this set properties section will find the encryption failed here.
+
+72
+00:05:52,040 --> 00:05:54,270
+And we're just going to keep encryption to none.
+
+73
+00:05:54,270 --> 00:06:00,180
+So you've got the choice where you can either use encryption with an Esrey most a key or the camps managed
+
+74
+00:06:00,190 --> 00:06:01,090
+mosta key.
+
+75
+00:06:01,170 --> 00:06:05,820
+So you have the two options there but we're just going to keep it's anon and click next.
+
+76
+00:06:07,390 --> 00:06:09,130
+And then upload.
+
+77
+00:06:09,550 --> 00:06:14,560
+And we should see that that has actually filed so it's file to upload the object and what's at the bottom
+
+78
+00:06:14,560 --> 00:06:16,620
+you can see that we've got one error.
+
+79
+00:06:16,720 --> 00:06:21,800
+So if you click on the error and then click on upload it will give us the message and it just says that
+
+80
+00:06:21,820 --> 00:06:23,720
+this was a bit in action.
+
+81
+00:06:25,450 --> 00:06:30,550
+OK so let's try again and we're going to try and upload another file and this time we're going to use
+
+82
+00:06:30,580 --> 00:06:31,530
+encryption.
+
+83
+00:06:31,540 --> 00:06:36,200
+So just click on upload and you can just choose any file from your machine.
+
+84
+00:06:36,200 --> 00:06:44,780
+I'm just going to select one for my documents open next next and then scroll down to encryption.
+
+85
+00:06:45,020 --> 00:06:50,490
+I'm going to select I ws M-S and just select AWOS S3.
+
+86
+00:06:50,510 --> 00:06:55,350
+Then click on next and upload and then we all that should be successful.
+
+87
+00:06:55,370 --> 00:07:01,760
+So let's try and upload another file and use a different method of encryption.
+
+88
+00:07:01,860 --> 00:07:06,550
+So I'm just going to select another file from my documents.
+
+89
+00:07:06,800 --> 00:07:09,290
+Click next next.
+
+90
+00:07:09,320 --> 00:07:14,720
+Scroll down to the encryption section and I'm going to select using the Amazon as three most tickey
+
+91
+00:07:16,760 --> 00:07:19,910
+click next and upload.
+
+92
+00:07:19,970 --> 00:07:23,000
+So once again that should show you the same error message.
+
+93
+00:07:23,030 --> 00:07:30,450
+So if I click on the error message click on upload once again it shows me that that was forbidden.
+
+94
+00:07:30,590 --> 00:07:32,170
+So that is the end of this line.
+
+95
+00:07:32,210 --> 00:07:34,520
+So we've created our S-3 buckets.
+
+96
+00:07:34,670 --> 00:07:37,390
+We enforced the use of server side encryption.
+
+97
+00:07:37,670 --> 00:07:42,500
+And just remember there's two ways to do that so you can do it really easily on the console just using
+
+98
+00:07:42,500 --> 00:07:46,610
+the checkbooks or you can also enforce it using a policy.
+
+99
+00:07:46,670 --> 00:07:52,910
+And when we enforce server side encryption within S-3 This means the S3 will forbid any attempts to
+
+100
+00:07:52,910 --> 00:07:57,800
+upload a file without using the specified method of encryption.
+
+101
+00:07:58,220 --> 00:07:59,920
+So that is the end of this lecture.
+
+102
+00:07:59,960 --> 00:08:02,210
+If you have any questions please let me know.
+
+103
+00:08:02,390 --> 00:08:04,690
+If not feel free to move on to the next lecture.
+
+104
+00:08:04,760 --> 00:08:05,270
+Thank you.

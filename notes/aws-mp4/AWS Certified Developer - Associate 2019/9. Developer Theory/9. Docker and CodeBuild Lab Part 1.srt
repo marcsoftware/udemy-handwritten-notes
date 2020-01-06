@@ -1,0 +1,991 @@
+1
+00:00:01,170 --> 00:00:07,950
+Hello bloggers and welcome to this lecture and this lecture is going to be a doctor and code build lab.
+
+2
+00:00:08,400 --> 00:00:09,360
+So what is Doctor.
+
+3
+00:00:09,600 --> 00:00:16,500
+Well Doc is an open source technology and it allows you to create applications based on either Linux
+
+4
+00:00:16,830 --> 00:00:24,510
+or Windows containers and a container is a lightweight standalone executable software package which
+
+5
+00:00:24,510 --> 00:00:27,990
+includes everything that the software needs to run.
+
+6
+00:00:27,990 --> 00:00:36,790
+So for example that includes the code any runtime environment libraries environment settings etc. and
+
+7
+00:00:36,850 --> 00:00:44,220
+AWB provides the elastic container service as a fully managed clustered platform which allows you to
+
+8
+00:00:44,220 --> 00:00:46,890
+run your Docker images in the cloud.
+
+9
+00:00:46,890 --> 00:00:49,290
+But what does that have to do with code build.
+
+10
+00:00:49,320 --> 00:00:55,590
+Well we can use code build as a fully managed build service and this will run a set of commands that
+
+11
+00:00:55,590 --> 00:00:56,370
+you define.
+
+12
+00:00:56,460 --> 00:01:02,880
+So for example it will compile your code for you run tests and produce artifacts which are ready to
+
+13
+00:01:02,880 --> 00:01:03,790
+deploy.
+
+14
+00:01:03,790 --> 00:01:09,720
+And in this lab we're going to start off by creating our own docker container manually using the command
+
+15
+00:01:09,720 --> 00:01:15,210
+line and we're then going to learn how to use code build to build our Docker image as well.
+
+16
+00:01:15,210 --> 00:01:20,820
+So we're going to take source code from code commit code build is going to retrieve that source code
+
+17
+00:01:20,850 --> 00:01:27,180
+and it's going to use the instructions within the source code to build out a Docker image.
+
+18
+00:01:27,180 --> 00:01:29,380
+So if you're ready let's get started.
+
+19
+00:01:29,400 --> 00:01:31,710
+And please join me in the console now.
+
+20
+00:01:31,710 --> 00:01:35,610
+Now the first thing that we're going to do is we're going to install Docker.
+
+21
+00:01:35,610 --> 00:01:42,130
+So if you go to this Web site it's docks dot Docker dot com forward slash install.
+
+22
+00:01:42,210 --> 00:01:44,570
+And the community addition is fine.
+
+23
+00:01:44,580 --> 00:01:46,080
+It's open source.
+
+24
+00:01:46,080 --> 00:01:48,270
+That's going to give you everything you need.
+
+25
+00:01:48,420 --> 00:01:53,360
+And there's different instructions depending on which operating system you're running locally.
+
+26
+00:01:53,370 --> 00:01:55,220
+So I'm working from a Mac.
+
+27
+00:01:55,830 --> 00:01:59,710
+So there's an image that I need to download from the docker store.
+
+28
+00:01:59,790 --> 00:02:07,340
+So I just click on Download get Docker and it's going to download this Docker dot TMG file and it's
+
+29
+00:02:07,350 --> 00:02:08,960
+really simple to install.
+
+30
+00:02:09,060 --> 00:02:13,700
+Once you've downloaded that file you just click on the image and follow the instructions.
+
+31
+00:02:13,900 --> 00:02:18,960
+But of course if you're running Windows there are separate instructions for Microsoft Windows.
+
+32
+00:02:18,960 --> 00:02:24,630
+Once again you just download the executable install file from the docker store and then just run it
+
+33
+00:02:24,660 --> 00:02:27,030
+and follow the instructions.
+
+34
+00:02:27,030 --> 00:02:32,760
+So once you've done that you can just come back to the terminal window and I'm just going to type Docker
+
+35
+00:02:32,790 --> 00:02:39,360
+minus minus version and that will confirm that you've got Docker installed and you can also run Docker
+
+36
+00:02:40,230 --> 00:02:43,330
+run Hello dash world.
+
+37
+00:02:44,880 --> 00:02:49,240
+And that will also confirmed that Docker is correctly installed on your machine.
+
+38
+00:02:49,260 --> 00:02:54,900
+So now we're going to create our very first Docker image and I've already got a file created.
+
+39
+00:02:54,900 --> 00:02:56,540
+And it's called Docker file.
+
+40
+00:02:56,550 --> 00:03:01,650
+So let's just have a look at that file now and this file is gonna be in the resources section of the
+
+41
+00:03:01,660 --> 00:03:06,150
+court so you can just download it and it's a really very simple file.
+
+42
+00:03:06,150 --> 00:03:10,200
+All it does is instruct Docker that we're using Ubuntu image.
+
+43
+00:03:10,230 --> 00:03:16,950
+It runs this app to get update minus Y command which is similar to a young update for you to it then
+
+44
+00:03:16,950 --> 00:03:18,390
+installs Apache.
+
+45
+00:03:18,480 --> 00:03:24,180
+It creates a really simple Web page which is going to be followed up laptop index to HMO.
+
+46
+00:03:24,220 --> 00:03:31,560
+It then configure Apache so it sets a few variables it exposes port 80 and finally it starts Apache.
+
+47
+00:03:31,590 --> 00:03:37,550
+So that is all talk of file and that's all the information needed in order to create our Docker image.
+
+48
+00:03:37,560 --> 00:03:40,320
+Now we need somewhere to store our source code.
+
+49
+00:03:40,320 --> 00:03:43,060
+So I'm going to store this source code in code commit.
+
+50
+00:03:43,080 --> 00:03:44,970
+So let's go back to the console.
+
+51
+00:03:45,150 --> 00:03:53,970
+Go to services and find code commit under the developer tools then create repository and we need to
+
+52
+00:03:53,970 --> 00:03:55,630
+give our repository a name.
+
+53
+00:03:55,720 --> 00:04:01,290
+And I'm just going to call it my source code repo hit create.
+
+54
+00:04:01,320 --> 00:04:07,770
+And in order to connect to a code commit repository you're going to need to have installed get 1 7 9
+
+55
+00:04:07,830 --> 00:04:10,330
+or later on your local machine.
+
+56
+00:04:10,590 --> 00:04:14,380
+And they actually give you this link to go ahead and install it.
+
+57
+00:04:14,490 --> 00:04:19,650
+But if you've already done all code commit lab already you will have downloaded get as part of that
+
+58
+00:04:19,650 --> 00:04:20,010
+lab.
+
+59
+00:04:20,220 --> 00:04:23,350
+So you should already have it configured on your local machine.
+
+60
+00:04:23,570 --> 00:04:28,530
+But if you don't you can just view this get downloads page and get that installed on your local machine
+
+61
+00:04:28,770 --> 00:04:34,290
+and then the second prerequisite is that you need to set up the AWB CLIA credential helper.
+
+62
+00:04:34,620 --> 00:04:42,090
+So you will also need to have configured your NWS CLIA on your local machine using the A W W configure
+
+63
+00:04:42,090 --> 00:04:48,000
+command and you'll need to have done that with the user credentials for a user who has access to interact
+
+64
+00:04:48,000 --> 00:04:49,020
+with code commit.
+
+65
+00:04:49,020 --> 00:04:55,080
+And once again if you've already done code commit lab you will already have a user who has access to
+
+66
+00:04:55,080 --> 00:04:56,720
+interact with code commit.
+
+67
+00:04:56,790 --> 00:05:01,740
+But I'm just going to go to the identity access management console now and show you how to create that
+
+68
+00:05:01,740 --> 00:05:02,380
+user.
+
+69
+00:05:02,430 --> 00:05:10,330
+So let's click on services identity access management users add user and I'm just gonna call my user
+
+70
+00:05:10,390 --> 00:05:15,360
+C.C. user I'm gonna give them programmatic access click next.
+
+71
+00:05:15,480 --> 00:05:22,030
+And I want to attach an existing policy directly and I want to add code commit and I'm just going to
+
+72
+00:05:22,030 --> 00:05:25,750
+give them code commit full access click on Next and create user.
+
+73
+00:05:26,260 --> 00:05:29,230
+So it's created this access key and secret access key.
+
+74
+00:05:29,320 --> 00:05:30,930
+So I'm just going to copy that access key.
+
+75
+00:05:30,930 --> 00:05:39,160
+Now go to my terminal window and I'm gonna run a W S configure and when asked me for that access key
+
+76
+00:05:39,160 --> 00:05:42,190
+I'm just going to hit control V.
+
+77
+00:05:42,190 --> 00:05:48,700
+Now it's asking for the Secret Access Key copy that secret access key and paste it.
+
+78
+00:05:48,780 --> 00:05:50,990
+Now it's asking for the default region name.
+
+79
+00:05:51,030 --> 00:05:52,820
+So it's got you central one.
+
+80
+00:05:52,830 --> 00:05:55,770
+And that's the correct region for me because I'm working in Frankfurt.
+
+81
+00:05:56,100 --> 00:06:01,080
+So I'm just going to hit enter and default output format is Jason so I'm just going to keep that as
+
+82
+00:06:01,080 --> 00:06:01,650
+the default.
+
+83
+00:06:01,740 --> 00:06:12,580
+So hit Enter so let's come back to our console window back to services code commit click on our repository.
+
+84
+00:06:12,740 --> 00:06:17,630
+Now in order to connect to the repository there are a couple of commands that we need to run and if
+
+85
+00:06:17,630 --> 00:06:24,230
+we scroll down it actually gives you a link to the documentation and there's a couple of different links
+
+86
+00:06:24,290 --> 00:06:28,220
+but for the purposes of this lab the commands are going to be exactly the same.
+
+87
+00:06:28,220 --> 00:06:32,570
+So you can click on this link and it will take you through some of the configuration steps that we've
+
+88
+00:06:32,570 --> 00:06:33,410
+already done.
+
+89
+00:06:33,530 --> 00:06:38,090
+And then it's this set up the credential helper and connecting and cloning the repository.
+
+90
+00:06:38,090 --> 00:06:39,930
+Those are the commands that we're going to run now.
+
+91
+00:06:39,950 --> 00:06:47,720
+So you'll find the first two commands are here and then further down the page in step four it gives
+
+92
+00:06:47,720 --> 00:06:49,560
+you this get clone command.
+
+93
+00:06:49,730 --> 00:06:55,010
+But don't worry because I've added these commands to a text file so you can just cut and paste them
+
+94
+00:06:55,100 --> 00:06:56,150
+from the text file.
+
+95
+00:06:56,270 --> 00:06:57,970
+So here are the commands.
+
+96
+00:06:57,980 --> 00:07:02,420
+So the first one is the conflict command to configure the credential helper.
+
+97
+00:07:02,420 --> 00:07:07,320
+So I'm just going to copy that and paste that into my terminal window.
+
+98
+00:07:07,490 --> 00:07:13,310
+Come back to my text file and copy the second command and paste that into my terminal window and then
+
+99
+00:07:13,310 --> 00:07:14,360
+with the third command.
+
+100
+00:07:14,360 --> 00:07:18,930
+This is the get clone command and you're going to need to replace this repository.
+
+101
+00:07:18,950 --> 00:07:22,150
+You or I with your own you or L from your repository.
+
+102
+00:07:22,160 --> 00:07:24,010
+And I'm just gonna show you how to find that.
+
+103
+00:07:24,050 --> 00:07:29,690
+So if you scroll to the top of your repo you'll find this button this clone you are all button just
+
+104
+00:07:29,690 --> 00:07:32,630
+hit that select clone 18 yes.
+
+105
+00:07:32,720 --> 00:07:35,440
+And that will copy the you are right to your clipboard.
+
+106
+00:07:35,480 --> 00:07:38,410
+So just replace my you arrive with your own.
+
+107
+00:07:38,540 --> 00:07:43,160
+And then you should be good to go to copy that command and paste it into your terminal window.
+
+108
+00:07:44,920 --> 00:07:48,340
+And we have cloned an empty repository because there's no files in there yet.
+
+109
+00:07:48,370 --> 00:07:53,620
+So just hit Alice and you should have a new directory called my source code repo.
+
+110
+00:07:54,490 --> 00:07:57,460
+So now we're going to put our files into that repository.
+
+111
+00:07:57,520 --> 00:08:07,640
+So I'm just going to copy my Docker file into my source code repo and I'm also going to copy the build
+
+112
+00:08:08,120 --> 00:08:14,840
+spec so Yammer into the source code repo as well and I'm going to change directory into the source code
+
+113
+00:08:14,840 --> 00:08:15,830
+repo.
+
+114
+00:08:15,830 --> 00:08:17,240
+My files are in there.
+
+115
+00:08:17,240 --> 00:08:23,810
+I'm just going to run the get commands to add these files into our code commit repository.
+
+116
+00:08:23,840 --> 00:08:36,050
+So I'm just going to type get at DOT and get commit minus M adding Docker file and build spec dot Yemen
+
+117
+00:08:36,290 --> 00:08:39,180
+and then finally run get push.
+
+118
+00:08:39,430 --> 00:08:39,710
+Okay.
+
+119
+00:08:39,710 --> 00:08:44,520
+So that has successfully pushed those two files into all source code repository.
+
+120
+00:08:44,630 --> 00:08:50,810
+And if we go back to the console we should be able to see those files in the repository now and we can
+
+121
+00:08:50,810 --> 00:08:56,960
+see our two files in there now and you can see the doctor file and the contents of the file if you click
+
+122
+00:08:56,960 --> 00:08:58,510
+on the file name.
+
+123
+00:08:58,520 --> 00:09:04,250
+Now the next thing we're gonna do is we're going to create an easy s plastic container service cluster
+
+124
+00:09:05,090 --> 00:09:08,510
+and that's where we're going to be able to run our Docker image.
+
+125
+00:09:08,510 --> 00:09:12,020
+So come up to services under compute.
+
+126
+00:09:12,050 --> 00:09:14,070
+You'll find a plastic container service.
+
+127
+00:09:14,090 --> 00:09:21,980
+So click on a plastic container service and click on clusters create cluster and you have a choice of
+
+128
+00:09:21,980 --> 00:09:28,490
+different cluster templates and they'll build all this out for you using cloud formation and we want
+
+129
+00:09:28,490 --> 00:09:31,570
+to use the AC to Linux and networking template.
+
+130
+00:09:32,150 --> 00:09:39,110
+So the resources that is going to create for you are the cluster VPC various subnets and an auto scanning
+
+131
+00:09:39,110 --> 00:09:41,110
+group with a Linux EMI.
+
+132
+00:09:41,120 --> 00:09:46,980
+So just make sure that is selected and hit next.
+
+133
+00:09:47,590 --> 00:09:50,680
+And the first thing we need to do is give our cluster a name.
+
+134
+00:09:51,640 --> 00:09:57,220
+So I'm just going to call it my cluster for provisioning instance types.
+
+135
+00:09:57,220 --> 00:10:05,140
+I'm just going to stick with on demand and for the size of instance you can select the one that you
+
+136
+00:10:05,140 --> 00:10:06,170
+want to use.
+
+137
+00:10:06,220 --> 00:10:08,880
+This is just going to be running a really small web page.
+
+138
+00:10:08,890 --> 00:10:16,270
+So I'm just going to select the T2 micro so that instance type will be on within your free tier number
+
+139
+00:10:16,270 --> 00:10:17,140
+of instances.
+
+140
+00:10:17,140 --> 00:10:18,630
+I'm going to keep it as one.
+
+141
+00:10:18,700 --> 00:10:24,460
+However if you were in production or even if you were in non production even if you were using this
+
+142
+00:10:24,460 --> 00:10:28,840
+for test or development you'd want to have more than one instance of course.
+
+143
+00:10:28,900 --> 00:10:32,260
+So if one instance went down you wouldn't lose your service.
+
+144
+00:10:32,350 --> 00:10:39,290
+However for the sake of this demo we can just keep that as one and this is the ABI that's going to create
+
+145
+00:10:39,290 --> 00:10:45,860
+for you and we can just keep to the default storage of 22 gig and all of the other defaults we can just
+
+146
+00:10:45,860 --> 00:10:47,300
+keep those as they are.
+
+147
+00:10:48,380 --> 00:10:54,320
+So it's going to create a brand new VPC with this side a range and a couple of subnets as well.
+
+148
+00:10:54,620 --> 00:11:00,620
+And it's going to create the basic security group with public access to port 80.
+
+149
+00:11:00,620 --> 00:11:06,830
+So we just keep all of those defaults and hit create and is just running this cloud formation stack
+
+150
+00:11:06,830 --> 00:11:13,130
+for you doing all the heavy lifting for you is going to build out your ECM cluster and it does just
+
+151
+00:11:13,130 --> 00:11:14,250
+take a few minutes.
+
+152
+00:11:14,270 --> 00:11:17,450
+So I'm just going to pause the video here and come back when that's completed.
+
+153
+00:11:17,630 --> 00:11:19,460
+So now the cluster has been created.
+
+154
+00:11:19,460 --> 00:11:24,880
+And if you click on clusters it will show you your cluster so click on the name of your cluster.
+
+155
+00:11:24,890 --> 00:11:33,350
+So just click on my cluster easy s instances and you can see down here where we have a container instance
+
+156
+00:11:33,710 --> 00:11:37,030
+and also the underlying easy to instance as well.
+
+157
+00:11:37,190 --> 00:11:43,460
+And we can click on that instance and it will take us to easy to dashboard and you can see it's the
+
+158
+00:11:43,460 --> 00:11:44,670
+T2 micro.
+
+159
+00:11:44,750 --> 00:11:49,910
+This is the public IP address and it's just a basic T2 microbe that it's created for you.
+
+160
+00:11:49,940 --> 00:11:54,960
+Now the next thing we need to do is create a repository to hold our Docker images.
+
+161
+00:11:55,010 --> 00:12:01,710
+So let's come back to elastic container service click on repositories and click on Create repository.
+
+162
+00:12:01,910 --> 00:12:04,180
+So the first thing that we need to do is give it a name.
+
+163
+00:12:04,220 --> 00:12:10,040
+And I'm going to call it my Docker repo and click Create repository.
+
+164
+00:12:10,040 --> 00:12:11,570
+So that's created a repository.
+
+165
+00:12:11,570 --> 00:12:17,750
+And if you select the repository name and then click on this view push commands button it will show
+
+166
+00:12:17,750 --> 00:12:24,110
+you a set of commands that you need to use in order to push Docker images into your repository and these
+
+167
+00:12:24,110 --> 00:12:28,550
+commands are really important to remember because they can come up in the exam.
+
+168
+00:12:28,640 --> 00:12:33,710
+There's a different set of commands whether you are running Windows or Mac or Linux.
+
+169
+00:12:33,860 --> 00:12:36,250
+And it actually builds out the commands for you.
+
+170
+00:12:36,260 --> 00:12:38,950
+So you all you have to do is cut and paste them.
+
+171
+00:12:38,960 --> 00:12:42,840
+So this first command is just going to authenticate your Docker cloud to your registry.
+
+172
+00:12:42,840 --> 00:12:50,060
+So I'm just going to copy that head over to my terminal window and paste and straightaway I'm seeing
+
+173
+00:12:50,060 --> 00:12:57,200
+this access denied exception when calling the get authorization token and this is because my user account
+
+174
+00:12:57,420 --> 00:12:58,060
+a user.
+
+175
+00:12:58,070 --> 00:13:04,580
+So the user that we created earlier is not authorized to perform this ECI command get authorization
+
+176
+00:13:04,610 --> 00:13:05,840
+token.
+
+177
+00:13:05,840 --> 00:13:10,640
+So in order to fix this I'm just going to head over to identity access management in the console had
+
+178
+00:13:10,640 --> 00:13:18,200
+to I am going to find my user and permissions attach existing policy and I'm just going to search for
+
+179
+00:13:18,230 --> 00:13:19,430
+registry.
+
+180
+00:13:19,430 --> 00:13:26,690
+So this is going to pull up all of the predefined policies relating to easy to contain a registry and
+
+181
+00:13:26,690 --> 00:13:34,100
+I'm going to go in and add the easy to container registry power user to my user hit next and add permissions
+
+182
+00:13:35,210 --> 00:13:40,100
+then I'm going to come back to my terminal window and try that command again hit up arrow
+
+183
+00:13:44,220 --> 00:13:46,690
+and I actually had to run that come on twice.
+
+184
+00:13:46,690 --> 00:13:51,050
+So you may find that you have to run the command a couple of times before it actually picks it up.
+
+185
+00:13:51,100 --> 00:13:57,160
+Then I'm gonna grab my next command which is to build our Docker image so it's going to build the image
+
+186
+00:13:57,160 --> 00:14:01,130
+using the docker file which is located in our docket repo.
+
+187
+00:14:01,200 --> 00:14:03,650
+I'm just gonna copy that command and paste.
+
+188
+00:14:03,770 --> 00:14:09,520
+So that has successfully built the image we are then going to tag the image so that we can easily identify
+
+189
+00:14:09,520 --> 00:14:09,640
+it.
+
+190
+00:14:09,640 --> 00:14:14,940
+So just copy that command and it's going to target as the latest image.
+
+191
+00:14:14,940 --> 00:14:20,820
+So just copy that command and hit enter and then the final command is to push this image into our newly
+
+192
+00:14:20,820 --> 00:14:22,610
+created repository.
+
+193
+00:14:22,650 --> 00:14:27,720
+So just copy that command and paste and that will push the image into our repository.
+
+194
+00:14:27,720 --> 00:14:33,480
+Okay so that has successfully pushed all Docker image into our E S registry.
+
+195
+00:14:33,630 --> 00:14:37,020
+So let's go back to the registry now and see if we can find it in the
+
+196
+00:14:40,100 --> 00:14:42,010
+and there is on new image.
+
+197
+00:14:42,020 --> 00:14:47,860
+So now the image has been created and we can see it in our AC Our repository.
+
+198
+00:14:47,900 --> 00:14:51,230
+So this means we're ready to now launch or docker container.
+
+199
+00:14:51,410 --> 00:15:02,410
+So in order to do that we come over to clusters and task definitions create new task definition and
+
+200
+00:15:02,400 --> 00:15:04,620
+the launch type is going to be easy too.
+
+201
+00:15:04,620 --> 00:15:09,150
+So just make sure that is selected and click on Next we need to enter a name
+
+202
+00:15:12,860 --> 00:15:14,310
+and we don't need to select a roll.
+
+203
+00:15:14,310 --> 00:15:19,470
+Keep to the defaults for networking for task size.
+
+204
+00:15:19,590 --> 00:15:21,760
+It's only going to be running a small web page.
+
+205
+00:15:21,760 --> 00:15:27,060
+So I'm just gonna put 512 for both CPSU and ram.
+
+206
+00:15:27,400 --> 00:15:32,490
+And so this task size allows you to specify a fixed size for your task.
+
+207
+00:15:32,500 --> 00:15:35,560
+So the next thing we need to do is add a container.
+
+208
+00:15:35,560 --> 00:15:41,200
+So the container name I'm going to call it my container and for the image.
+
+209
+00:15:41,210 --> 00:15:46,810
+This is going to be the brand new Docker image that we've added to our our repository.
+
+210
+00:15:47,180 --> 00:15:50,030
+So we need to find the registry.
+
+211
+00:15:50,030 --> 00:15:51,060
+You are well.
+
+212
+00:15:51,200 --> 00:16:00,140
+So in order to find that we can come back to the console go to ACARS and repositories select your repository
+
+213
+00:16:00,200 --> 00:16:02,330
+and just take the euro from here.
+
+214
+00:16:02,330 --> 00:16:05,180
+For the memory limits we can just keep that as the default.
+
+215
+00:16:05,270 --> 00:16:07,090
+And then this bit here is important.
+
+216
+00:16:07,100 --> 00:16:08,800
+The port mappings.
+
+217
+00:16:08,870 --> 00:16:17,780
+So this actually maps your host and container ports so it will map if we want to access port 80 we need
+
+218
+00:16:17,780 --> 00:16:22,280
+to make sure that we've mapped the host port 80 with the container port 80.
+
+219
+00:16:22,280 --> 00:16:31,900
+So I'm just going to add 80 and 80 for the health check information can just leave that blank.
+
+220
+00:16:31,900 --> 00:16:34,490
+Same for environment and network settings.
+
+221
+00:16:34,510 --> 00:16:42,830
+We can just keep all of this as the defaults and then click add and then create.
+
+222
+00:16:42,830 --> 00:16:51,510
+Now in order to launch our task we need to create a service so click on actions create service and it's
+
+223
+00:16:51,510 --> 00:16:53,930
+already found our task definition.
+
+224
+00:16:54,960 --> 00:17:01,970
+So we need to select the launch type of easy to it's found our cluster name as well so it's for service
+
+225
+00:17:01,970 --> 00:17:02,270
+name.
+
+226
+00:17:02,270 --> 00:17:11,500
+I'm just going to call it my service number of tasks it's going to be one we can keep the task placement
+
+227
+00:17:11,560 --> 00:17:17,590
+as a balance spread across ages but you can there's a few different options you can have you can have
+
+228
+00:17:17,590 --> 00:17:22,600
+one task per host for example or custom but we don't need to change that and it's actually beyond the
+
+229
+00:17:22,600 --> 00:17:28,750
+scope of this course and the exam so we don't need to really delve into that in any more detail.
+
+230
+00:17:28,750 --> 00:17:31,140
+I'm going to click on Next for load balancing.
+
+231
+00:17:31,140 --> 00:17:32,800
+We're just going to keep it as the default.
+
+232
+00:17:32,800 --> 00:17:33,910
+Which is none.
+
+233
+00:17:33,910 --> 00:17:38,650
+So we've only got one container and one hosts so we're not we don't need to load ballots across those
+
+234
+00:17:39,100 --> 00:17:41,630
+so click on Next service auto scaling.
+
+235
+00:17:41,650 --> 00:17:47,320
+Again we're just going to keep that as the default so click on Next and create service.
+
+236
+00:17:47,320 --> 00:17:53,880
+So now our service has been created and you can just click on my service to view it and you'll see that
+
+237
+00:17:53,890 --> 00:18:00,850
+the task definition is running you can click on the task and see the details of it click on events and
+
+238
+00:18:00,850 --> 00:18:01,420
+you'll see.
+
+239
+00:18:01,480 --> 00:18:04,390
+You should see that your service has reached a steady state.
+
+240
+00:18:04,630 --> 00:18:12,220
+So in order to actually view your service we need to head back to ar e s console go to clusters click
+
+241
+00:18:12,220 --> 00:18:18,580
+on your cluster find easy two instances and head over to your easy to instance and grab your public
+
+242
+00:18:18,580 --> 00:18:19,240
+IP.
+
+243
+00:18:19,420 --> 00:18:25,990
+Paste your IP and there is our Web page so that is a web page running in a docker container on our ECM
+
+244
+00:18:26,180 --> 00:18:26,850
+cluster.
+
+245
+00:18:26,890 --> 00:18:33,490
+So we now have our Docker image running in ECF and we've built our using those Docker commands.
+
+246
+00:18:33,490 --> 00:18:39,540
+But what if we want to automate all of those docker build commands and have a W W do it all for us.
+
+247
+00:18:39,580 --> 00:18:44,320
+Well we can actually do that using code build and that is the next part of this lab.
+
+248
+00:18:44,410 --> 00:18:48,310
+So let's see if we can get code build to build our image for us.

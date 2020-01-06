@@ -1,0 +1,231 @@
+1
+00:00:00,510 --> 00:00:05,970
+Hello caulkers and welcome to this lecture and this lecture is all about the provisioned throughput
+
+2
+00:00:06,000 --> 00:00:10,140
+exceeded exception and exponential back off.
+
+3
+00:00:10,140 --> 00:00:11,250
+So let's get started.
+
+4
+00:00:13,600 --> 00:00:20,350
+Now the proficient throughput exceeded exception is one that you might see on your dynamo db table if
+
+5
+00:00:20,350 --> 00:00:22,720
+your request rate is too high.
+
+6
+00:00:22,720 --> 00:00:27,760
+For the read and write capacity provisioned on the dynamo IDB table.
+
+7
+00:00:28,030 --> 00:00:34,830
+So for example if your application is making too many requests into the dynamo D.B. table so too many.
+
+8
+00:00:34,830 --> 00:00:41,210
+Read and write requests for the table to handle based on its read and write capacity provision.
+
+9
+00:00:41,230 --> 00:00:49,510
+Now if you're using the W.S. SDK it's going to automatically retry the requests until they are successful.
+
+10
+00:00:49,510 --> 00:00:55,780
+However if you're not using the SDK you're going to have to configure your application to do one or
+
+11
+00:00:55,780 --> 00:00:57,790
+both of the following things.
+
+12
+00:00:57,820 --> 00:01:04,600
+So firstly you can reduce the request frequency so reduce the number of concurrent requests that are
+
+13
+00:01:04,630 --> 00:01:10,810
+being sent to the dynamo db table reduce the frequency of the requests that being sent to the table
+
+14
+00:01:11,990 --> 00:01:16,370
+and the second thing you can do is to implement exponential back off.
+
+15
+00:01:16,480 --> 00:01:17,910
+Now what is exponential.
+
+16
+00:01:17,910 --> 00:01:19,240
+Back off.
+
+17
+00:01:19,330 --> 00:01:25,870
+While many components in a network or in a given that system can generate errors due to being overloaded
+
+18
+00:01:25,900 --> 00:01:31,960
+by too many requests all coming in at the same time and that could be any component that you can think
+
+19
+00:01:31,960 --> 00:01:32,380
+of.
+
+20
+00:01:32,530 --> 00:01:40,900
+So maybe network switches DNS servers load balances etc. Pretty much any part of the network can experience
+
+21
+00:01:41,080 --> 00:01:47,710
+overloading due to too many concurrent requests and the usual way of dealing with this is to implement
+
+22
+00:01:47,720 --> 00:01:50,790
+retrials from the client application.
+
+23
+00:01:50,830 --> 00:01:57,550
+So for example for the client to keep on trying to send a request until it gets a response and all of
+
+24
+00:01:57,550 --> 00:02:04,060
+the AWB SSD case they all implement automatic re choice which simply send the request again until it
+
+25
+00:02:04,060 --> 00:02:05,080
+is successful.
+
+26
+00:02:05,200 --> 00:02:08,560
+But in addition to these simple retry is all AWOL.
+
+27
+00:02:08,630 --> 00:02:13,180
+SDK is also use exponential back off and with exponential back off.
+
+28
+00:02:13,180 --> 00:02:19,710
+This means that the requester will implement progressively longer waits between consecutive retrials
+
+29
+00:02:19,750 --> 00:02:27,190
+of a failed request after the first failed request it might wait for example 50 milliseconds before
+
+30
+00:02:27,190 --> 00:02:34,960
+trying again and then if that retry fails it then might wait 100 milliseconds until trying again and
+
+31
+00:02:34,960 --> 00:02:41,680
+then if that retry fails it might wait 200 milliseconds before trying again so it will continue like
+
+32
+00:02:41,680 --> 00:02:44,260
+that until the request is successful.
+
+33
+00:02:44,260 --> 00:02:50,350
+And this gives significantly improved flow control in the hope that at some point the traffic is going
+
+34
+00:02:50,350 --> 00:02:54,780
+to start flowing freely again and requests will start to be fulfilled again.
+
+35
+00:02:55,240 --> 00:03:02,110
+But if after about one minute this doesn't work it might be instead that your request size is actually
+
+36
+00:03:02,110 --> 00:03:07,170
+exceeding the throughput for your read and write capacity on the dynamo db table.
+
+37
+00:03:07,180 --> 00:03:14,080
+So in this case it may be worth investigating your provisioned throughput and if your workload is mainly
+
+38
+00:03:14,080 --> 00:03:21,670
+get requests you might be able to improve performance using either dynamo DP accelerator or Dax or using
+
+39
+00:03:21,730 --> 00:03:22,600
+elastic Ash.
+
+40
+00:03:22,810 --> 00:03:28,540
+However if it's mainly right requests that are causing the issue then maybe take a look at increasing
+
+41
+00:03:28,540 --> 00:03:31,270
+your right capacity for the dynamo DC table.
+
+42
+00:03:31,870 --> 00:03:34,030
+So what are exam tips.
+
+43
+00:03:34,030 --> 00:03:40,300
+Well if you see the provisioned throughput exceeded error this means that the number of requests into
+
+44
+00:03:40,300 --> 00:03:42,600
+your dynamo db table is too high.
+
+45
+00:03:42,640 --> 00:03:49,240
+Exponential back off can be used to improve the flow control by retrying the requests using progressively
+
+46
+00:03:49,270 --> 00:03:50,620
+longer waits.
+
+47
+00:03:50,620 --> 00:03:55,390
+However if your weight is getting up to around one minute it's definitely worth checking your read and
+
+48
+00:03:55,390 --> 00:03:59,550
+write capacity unit settings and seeing if they need to be adjusted.
+
+49
+00:03:59,590 --> 00:04:06,460
+And just remember that exponential back off it doesn't only apply to dynamo D.B. it's actually a feature
+
+50
+00:04:06,460 --> 00:04:14,800
+of every single AWP SDK and it applies to many services within a W S for example S3 Buckets.
+
+51
+00:04:14,860 --> 00:04:21,970
+If you're using cloud formation heavily and SPSS etc and if you're not using the IWC SDK then you're
+
+52
+00:04:21,970 --> 00:04:26,830
+going to need to handle this yourself in your application settings or in your application code.
+
+53
+00:04:27,100 --> 00:04:32,950
+So the way to do that is just to reduce the frequency of your requests and implement exponential back
+
+54
+00:04:32,950 --> 00:04:34,090
+off yourself.
+
+55
+00:04:34,180 --> 00:04:35,850
+So that is the end of this lecture.
+
+56
+00:04:35,920 --> 00:04:37,990
+If you have any questions please let me know.
+
+57
+00:04:38,440 --> 00:04:40,930
+If not feel free to move on to the next lecture.
+
+58
+00:04:40,930 --> 00:04:41,380
+Thank you.

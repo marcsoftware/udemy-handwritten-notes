@@ -1,0 +1,441 @@
+1
+00:00:01,330 --> 00:00:06,870
+Helicopters and welcome to this section of the course and in this section of the course we're going
+
+2
+00:00:06,870 --> 00:00:12,670
+to be talking all about the different methods that are available for S-3 encryption.
+
+3
+00:00:12,720 --> 00:00:17,670
+So all the different ways that you can in your data that you are storing in S3.
+
+4
+00:00:17,670 --> 00:00:19,520
+So let's get started.
+
+5
+00:00:19,890 --> 00:00:22,860
+So there are two different types of encryption.
+
+6
+00:00:22,860 --> 00:00:29,880
+So firstly there is encryption in transit and that really means encrypting the data that you are sending
+
+7
+00:00:29,970 --> 00:00:31,890
+to and from your packets.
+
+8
+00:00:31,890 --> 00:00:37,620
+So when you're uploading files from your PC into your pocket and also when you're if you're downloading
+
+9
+00:00:37,620 --> 00:00:42,260
+files from the bucket into your PC that's where we need to use encryption in transit.
+
+10
+00:00:42,360 --> 00:00:45,180
+And that is done using SSL Ortelius.
+
+11
+00:00:45,240 --> 00:00:51,450
+And for those who are not familiar t ls or transport layer security is really going to be replacing
+
+12
+00:00:51,480 --> 00:00:52,490
+SSL.
+
+13
+00:00:52,500 --> 00:00:58,590
+Sometimes the terms are used interchangeably so if you see SSL slashed TS You just know that that's
+
+14
+00:00:59,160 --> 00:01:01,080
+encryption in transit.
+
+15
+00:01:01,110 --> 00:01:09,210
+And typically that means we're using CPS to upload and download of files between the PC or between our
+
+16
+00:01:09,210 --> 00:01:11,940
+local system and the S3 bucket.
+
+17
+00:01:11,970 --> 00:01:19,140
+So moving on to encryption at rest and there are three different types of encryption at rest for server
+
+18
+00:01:19,140 --> 00:01:20,090
+side encryption.
+
+19
+00:01:20,100 --> 00:01:28,230
+Firstly we have S S E 3 which is the S3 managed caes and this means that each object is encrypted with
+
+20
+00:01:28,230 --> 00:01:33,330
+its own unique K using strong multi-factor encryption.
+
+21
+00:01:33,410 --> 00:01:40,410
+But as an additional step they also encrypt the key itself with the masticate which then they then regularly
+
+22
+00:01:40,440 --> 00:01:42,040
+rotate for you.
+
+23
+00:01:42,140 --> 00:01:44,750
+So take care of the case.
+
+24
+00:01:44,760 --> 00:01:52,140
+They manage the keys for you don't need to worry about managing your own case and it's all a 256 bit
+
+25
+00:01:52,140 --> 00:01:58,770
+so Advanced Encryption Standard 256 bit encryption and it's very easy to enable as we saw in the lab
+
+26
+00:01:58,810 --> 00:02:04,680
+previously previously you can just select your objects and select encryption and select the encryption
+
+27
+00:02:04,680 --> 00:02:10,230
+type you want to use within the properties of your object and you can do that when you're uploading
+
+28
+00:02:10,590 --> 00:02:14,580
+and you can also do it on existing objects within your packets.
+
+29
+00:02:14,580 --> 00:02:22,220
+Now the second method of encryption they offer is called S S E KMOX and this is with the s s a case
+
+30
+00:02:22,290 --> 00:02:23,510
+management service.
+
+31
+00:02:23,520 --> 00:02:30,890
+Once again I manage the keys for you but came as it comes with some additional benefits.
+
+32
+00:02:30,890 --> 00:02:37,680
+So firstly you get a separate permission for the use of an additional key called an envelope key.
+
+33
+00:02:37,700 --> 00:02:41,660
+And that is a key which actually encrypts your data is encryption key.
+
+34
+00:02:41,810 --> 00:02:46,860
+So it gives you that added level of protection against unauthorized access.
+
+35
+00:02:46,880 --> 00:02:53,150
+You also get an audit trail which records the use of your encryption keys so you can see when your key
+
+36
+00:02:53,150 --> 00:02:55,680
+has been used who used it and why.
+
+37
+00:02:55,730 --> 00:03:01,910
+So you get that you have any encryption or decryption related activities happening within your Esrey
+
+38
+00:03:01,910 --> 00:03:02,570
+bucket.
+
+39
+00:03:02,570 --> 00:03:07,790
+You also get the option to use your own key or you can use the default key which they provide which
+
+40
+00:03:07,790 --> 00:03:09,400
+is still unique to you.
+
+41
+00:03:09,470 --> 00:03:15,070
+You also have server side encryption with custom provided Keys also known as AC dash.
+
+42
+00:03:15,080 --> 00:03:22,370
+See and this is where AWOS managed the encryption and decryption activities but you manage your own
+
+43
+00:03:22,370 --> 00:03:23,130
+case.
+
+44
+00:03:23,390 --> 00:03:27,740
+So that means you're in charge of administering those caves or rotating them.
+
+45
+00:03:27,800 --> 00:03:29,910
+And the life cycle of those keys.
+
+46
+00:03:29,930 --> 00:03:34,610
+So really the most important thing to remember is that we have encryption in-transit transit encryption
+
+47
+00:03:34,610 --> 00:03:39,040
+at rest and the three different types of encryption at rest that are available.
+
+48
+00:03:39,080 --> 00:03:45,350
+And then lastly we have client side encryption which is why you encrypt the files yourself before you
+
+49
+00:03:45,440 --> 00:03:50,490
+upload them into S-3 so you can choose your own encryption methodology.
+
+50
+00:03:50,510 --> 00:03:56,480
+You can you can choose your own application to encrypt your files and you encrypt the files before uploading
+
+51
+00:03:56,480 --> 00:03:58,040
+them into S3.
+
+52
+00:03:58,040 --> 00:04:03,460
+So how can we enforce encryption for all the files that we upload into S3.
+
+53
+00:04:03,710 --> 00:04:08,330
+Well every time a file is uploaded or put request is initiated.
+
+54
+00:04:08,540 --> 00:04:11,060
+So this is what a put request looks like.
+
+55
+00:04:11,210 --> 00:04:16,610
+So the first line it just stays put so we know that it's a request and then it states the file name.
+
+56
+00:04:16,610 --> 00:04:23,150
+So in this example the file is called My file and it states the way that the file is going to be transmitted
+
+57
+00:04:23,540 --> 00:04:27,590
+into S3 So in this case it's going to go via HTP.
+
+58
+00:04:27,620 --> 00:04:30,190
+Next we have the name of the bucket.
+
+59
+00:04:30,200 --> 00:04:33,080
+So in this case it's called my bucket.
+
+60
+00:04:33,110 --> 00:04:40,180
+The date of the upload the method of authorization so in this case is using an authorization string.
+
+61
+00:04:40,730 --> 00:04:42,430
+Then the content type.
+
+62
+00:04:42,440 --> 00:04:49,210
+So in this case it's just plain text the content length so the length of the file in bytes.
+
+63
+00:04:49,520 --> 00:04:52,370
+And then the next section just shows us some meta data.
+
+64
+00:04:52,390 --> 00:04:56,840
+So just some user defined message data that's been included to describe the file.
+
+65
+00:04:56,840 --> 00:05:03,280
+So in this case it just states the author of the file and the author's name and then they expect 100
+
+66
+00:05:03,320 --> 00:05:04,280
+continue.
+
+67
+00:05:04,310 --> 00:05:12,190
+So expect 100 continue just tells S-3 not to send your request until it receives an acknowledgement.
+
+68
+00:05:12,200 --> 00:05:18,290
+So this means the S-3 can actually reject your message based on the contents of your header.
+
+69
+00:05:18,500 --> 00:05:23,300
+So if the message is rejected based on the contents of the header that means the body is the message
+
+70
+00:05:23,300 --> 00:05:24,640
+will not be sent.
+
+71
+00:05:24,650 --> 00:05:30,170
+Now if the file is going to be encrypted to upload time then there's a special parameter that gets included
+
+72
+00:05:30,170 --> 00:05:37,160
+within the request header and that parameter is called X I M.Z. server side encryption.
+
+73
+00:05:37,160 --> 00:05:40,100
+And there are two options currently available.
+
+74
+00:05:40,130 --> 00:05:48,110
+So there's one option available for the SSA S3 So the S3 managed case and that option is called abs
+
+75
+00:05:48,110 --> 00:05:49,190
+
+76
+2:56.
+
+77
+00:05:49,190 --> 00:05:59,430
+So remember with the SS A S3 you've got a 256 bit encryption and then the other option cases for the
+
+78
+00:05:59,530 --> 00:06:01,200
+SS 3 k m s.
+
+79
+00:06:01,230 --> 00:06:03,670
+So that is the k m s managed KS.
+
+80
+00:06:03,840 --> 00:06:06,960
+So using the AWOS key management service
+
+81
+00:06:09,540 --> 00:06:15,860
+and when this parameter is included in the header of the request it simply tells S-3 to encrypt the
+
+82
+00:06:15,860 --> 00:06:22,420
+object at the time of upload and using the specified encryption method.
+
+83
+00:06:22,550 --> 00:06:27,130
+So this means it's really easy to enforce the use of server side encryption.
+
+84
+00:06:27,260 --> 00:06:33,530
+All you need to do is create a packet policy which denies any S-3 put request which does not include
+
+85
+00:06:33,560 --> 00:06:34,220
+this.
+
+86
+00:06:34,350 --> 00:06:41,390
+X I am server side encryption parameter within the request header.
+
+87
+00:06:41,410 --> 00:06:48,070
+So here we just have an example of the same request header but just including that server side encryption
+
+88
+00:06:48,070 --> 00:06:48,830
+parameter.
+
+89
+00:06:48,940 --> 00:06:57,570
+So we've just added it at the bottom of the header to let s 3 Know that we want to use SS as 3 or is
+
+90
+00:06:57,580 --> 00:07:04,510
+256 encryption at the time when this file is uploaded and then we'll just simply create that bucket
+
+91
+00:07:04,510 --> 00:07:12,040
+policy to inspect every S-3 header every S-3 put request to make sure the x and z server side encryption
+
+92
+00:07:12,040 --> 00:07:14,970
+parameter is included in every single header.
+
+93
+00:07:15,220 --> 00:07:19,240
+So let's take a look at some of our exam tips for S-3 encryption.
+
+94
+00:07:19,240 --> 00:07:22,900
+So just remember there are two different methods of encryption.
+
+95
+00:07:23,080 --> 00:07:27,280
+We have encryption in-transit and also encryption at rest.
+
+96
+00:07:27,280 --> 00:07:30,670
+So encryption in-transit encrypt the data over the network.
+
+97
+00:07:30,820 --> 00:07:39,700
+So between your PC and S3 and that is SSL Ortelius and typically it uses the HTP as protocol.
+
+98
+00:07:39,700 --> 00:07:41,650
+We also have encryption at rest.
+
+99
+00:07:41,710 --> 00:07:47,440
+So that is either server side encryption or client side encryption and we have the three server side
+
+100
+00:07:47,440 --> 00:07:51,240
+encryption options which are SSD S3.
+
+101
+00:07:51,520 --> 00:07:59,200
+So with S-3 managed KS SS aka a mess with Amazon managed case or using the case management case management
+
+102
+00:07:59,200 --> 00:08:04,090
+service and SSD see which is customer managed KS.
+
+103
+00:08:04,420 --> 00:08:07,160
+And then finally we have client side encryption.
+
+104
+00:08:07,180 --> 00:08:12,420
+So this is where you encrypt your files locally before uploading into S-3.
+
+105
+00:08:12,430 --> 00:08:17,740
+And just remember if you want to enforce the use of encryption for your files stored in S-3 use a bucket
+
+106
+00:08:17,740 --> 00:08:25,450
+policy to deny any request that does not include the X I server side encryption parameter within the
+
+107
+00:08:25,450 --> 00:08:26,220
+request header.
+
+108
+00:08:26,230 --> 00:08:27,710
+So that's the end of this lecture.
+
+109
+00:08:27,740 --> 00:08:32,140
+And as always the best way to learn is to actually start using it.
+
+110
+00:08:32,140 --> 00:08:37,360
+And that's exactly what we're going to be doing in the next lecture which is ALAP so if you've got time
+
+111
+00:08:37,390 --> 00:08:39,110
+please join me in the next lecture.

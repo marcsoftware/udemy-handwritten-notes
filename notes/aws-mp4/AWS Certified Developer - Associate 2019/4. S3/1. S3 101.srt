@@ -1,0 +1,1115 @@
+1
+00:00:01,080 --> 00:00:04,240
+Hello Congress and welcome to this lecture.
+
+2
+00:00:04,290 --> 00:00:07,500
+So this lecture is going to be all about S-3.
+
+3
+00:00:07,500 --> 00:00:12,930
+It's s 3 1 0 1 and we're going to go through all the fundamentals of S-3.
+
+4
+00:00:13,200 --> 00:00:17,250
+And it's one of the very first services that AWOS launched.
+
+5
+00:00:17,250 --> 00:00:24,390
+So it can be a massive topic for the exam and it's really important that you understand how ESRI works
+
+6
+00:00:24,920 --> 00:00:27,350
+and that you understand the S-3 terminology.
+
+7
+00:00:27,540 --> 00:00:29,270
+So let's get started.
+
+8
+00:00:29,430 --> 00:00:38,850
+So what is S-3 so S-3 stands for simple storage service and it provides developers and I.T. teams with
+
+9
+00:00:38,850 --> 00:00:43,080
+secure durable highly scalable objects storage.
+
+10
+00:00:43,080 --> 00:00:45,890
+So the key here is that it's object's storage.
+
+11
+00:00:45,900 --> 00:00:50,650
+It's really for files images the pages it's not.
+
+12
+00:00:50,650 --> 00:00:59,760
+So operating systems and not for databases it's really easy to use with a simple webservices interface
+
+13
+00:00:59,880 --> 00:01:05,510
+and it allows you to store and retrieve any amount of data from anywhere on the web.
+
+14
+00:01:05,640 --> 00:01:08,900
+So S3 is a safe place to store your files.
+
+15
+00:01:09,060 --> 00:01:11,280
+It's object by storage only.
+
+16
+00:01:11,280 --> 00:01:11,850
+It's not.
+
+17
+00:01:11,850 --> 00:01:12,810
+BLOCK storage.
+
+18
+00:01:12,840 --> 00:01:17,400
+And the data is spread across multiple devices and multiple facilities.
+
+19
+00:01:17,400 --> 00:01:24,180
+So that means that there is an element of high availability or disaster recovery already built into
+
+20
+00:01:24,180 --> 00:01:25,860
+the AWOS service.
+
+21
+00:01:25,860 --> 00:01:31,800
+And what that means is that Amazon could lose one of their devices or one of their facilities and the
+
+22
+00:01:31,800 --> 00:01:34,760
+S3 service will still be available.
+
+23
+00:01:34,770 --> 00:01:41,670
+So a faulty device or a faulty datacenter or a faulty availability so it should not take down the S3
+
+24
+00:01:41,670 --> 00:01:47,900
+service so you should still be able to access your files in the event of a minor fall.
+
+25
+00:01:47,910 --> 00:01:50,270
+So let's have a look at some of the basics.
+
+26
+00:01:50,340 --> 00:01:56,980
+So S-3 is object based and that means it allows you to upload object files into the cloud.
+
+27
+00:01:57,060 --> 00:02:04,860
+The files can be from 0 0 bytes to 5 terabytes in size and there is unlimited storage.
+
+28
+00:02:04,880 --> 00:02:11,060
+So this means that you don't have to worry about allocating space or predicting how many terabytes of
+
+29
+00:02:11,060 --> 00:02:13,130
+space you're going to need in S3.
+
+30
+00:02:13,160 --> 00:02:18,980
+You could just go ahead and upload the files that you need to they will take care of the capacity management
+
+31
+00:02:19,040 --> 00:02:21,250
+and capacity planning on your behalf.
+
+32
+00:02:21,380 --> 00:02:24,580
+So you can just go ahead and upload the files that you need to.
+
+33
+00:02:24,770 --> 00:02:32,000
+So within as three files is stored in buckets and bucket is similar to a folder it's the name that I
+
+34
+00:02:32,030 --> 00:02:37,210
+ws uses for the location where you're storing your files and the night with the bucket is user defined
+
+35
+00:02:37,220 --> 00:02:45,750
+so you can set your own bucket name so just really say it as similar to Fodor and S3 has a universal
+
+36
+00:02:45,750 --> 00:02:46,830
+namespace.
+
+37
+00:02:47,070 --> 00:02:53,520
+And that means that names or bucket names must be unique globally and it's similar to a DNS or an Internet
+
+38
+00:02:53,520 --> 00:02:54,400
+address.
+
+39
+00:02:54,660 --> 00:02:56,920
+So let's take a look at an example.
+
+40
+00:02:57,450 --> 00:03:05,610
+So this is our example bucket called a cloud Garou and you'll see at the beginning we have HTP s and
+
+41
+00:03:05,610 --> 00:03:07,850
+then S3 EU West 1.
+
+42
+00:03:07,850 --> 00:03:11,470
+So that just denotes that it's the S3 service.
+
+43
+00:03:11,490 --> 00:03:14,970
+It tells us it's in the region EU West one.
+
+44
+00:03:15,390 --> 00:03:23,120
+And then after Amazon AWOS dot com we see Ford slash iCloud Garou and that is the name of our bucket.
+
+45
+00:03:23,130 --> 00:03:27,220
+So once again as this is an Internet address it must be unique.
+
+46
+00:03:27,390 --> 00:03:31,840
+You can't have another bucket with the same name even if it's in a different region.
+
+47
+00:03:32,010 --> 00:03:33,990
+It must be unique globally.
+
+48
+00:03:33,990 --> 00:03:39,790
+Finally when you upload a file into S3 you're going to receive an HTP 200 code.
+
+49
+00:03:39,960 --> 00:03:46,500
+If the upload was successful Now this is not a code that you're going to see on your browser on your
+
+50
+00:03:46,500 --> 00:03:52,860
+web page if you're uploading something using the AWOS console you will not say that HTP code you'll
+
+51
+00:03:52,860 --> 00:03:58,650
+only see this code if you're uploading using the API or the command line interface but it's just good
+
+52
+00:03:58,650 --> 00:04:02,810
+to know that that is the code that you see if it's a successful upload.
+
+53
+00:04:05,230 --> 00:04:09,520
+So let's take a look at the data consistency model for S3.
+
+54
+00:04:09,820 --> 00:04:15,040
+And we have two different approaches to data consistency within S-3.
+
+55
+00:04:15,670 --> 00:04:22,930
+Firstly for Puts of brand new objects when we say Put that means when you initially upload an objects
+
+56
+00:04:23,020 --> 00:04:25,560
+into S3 for the first time.
+
+57
+00:04:26,080 --> 00:04:33,580
+So for Puts of new objects we have read off to right consistency and this just means that as soon as
+
+58
+00:04:33,580 --> 00:04:41,400
+you add your objects into S-3 as soon as you upload your file the file is available to read.
+
+59
+00:04:41,950 --> 00:04:47,900
+So straight away you can access your file as soon as you've uploaded it into S-3.
+
+60
+00:04:47,920 --> 00:04:54,180
+However if you want to change a file if you are going to overwrite the file with a new version or if
+
+61
+00:04:54,180 --> 00:05:01,610
+you are going to delete that file it can actually take some time to propagate around S-3.
+
+62
+00:05:01,710 --> 00:05:09,730
+So it's not going to be immediate and this consistency model is cold if unsure consistency.
+
+63
+00:05:09,810 --> 00:05:15,120
+So just remember that when you add the new object into history you can read it immediately you can read
+
+64
+00:05:15,120 --> 00:05:16,240
+it straightaway.
+
+65
+00:05:16,380 --> 00:05:21,540
+But then if you wanted to make a modification or delete that file it can just take a little bit of time
+
+66
+00:05:21,540 --> 00:05:22,490
+to propagate.
+
+67
+00:05:23,450 --> 00:05:26,400
+So S3 is a simple key value store.
+
+68
+00:05:26,420 --> 00:05:27,840
+And what does that mean.
+
+69
+00:05:28,190 --> 00:05:34,340
+Well S3 is object based and objects consist of the following.
+
+70
+00:05:34,340 --> 00:05:41,640
+The key which is simply the name of the object or the file name and the value.
+
+71
+00:05:41,930 --> 00:05:46,990
+And this is really just the data which is made up of a sequence of bytes.
+
+72
+00:05:47,000 --> 00:05:53,870
+There's also a version of ID which is important for versioning and S-3 does support version control.
+
+73
+00:05:53,990 --> 00:06:00,260
+So you can you can keep multiple versions of the same file within S-3 and that allows you to really
+
+74
+00:06:00,260 --> 00:06:03,810
+just go back into previous versions if you wanted to.
+
+75
+00:06:03,830 --> 00:06:07,760
+There's also meta data and if you haven't heard that term before.
+
+76
+00:06:07,910 --> 00:06:11,120
+Better data just really means data about data.
+
+77
+00:06:11,240 --> 00:06:15,290
+And when you upload a file into S-3 you can add your own message data.
+
+78
+00:06:15,290 --> 00:06:19,940
+So for example you could add the name of the team that owns that file.
+
+79
+00:06:19,970 --> 00:06:23,280
+You could add the project that the file is related to.
+
+80
+00:06:23,450 --> 00:06:26,210
+Or any other data that's meaningful to you.
+
+81
+00:06:26,390 --> 00:06:31,970
+We also have some resources and this is really pocket specific configuration.
+
+82
+00:06:32,330 --> 00:06:38,060
+So we have things like bucket policies an access control lists and we're going to go through these in
+
+83
+00:06:38,060 --> 00:06:43,940
+a lot more detail later on in the course but bucket policies and access control lists are really just
+
+84
+00:06:43,940 --> 00:06:48,130
+ways to control access to the contents of your pocket.
+
+85
+00:06:48,140 --> 00:06:52,690
+There's also cross origin resource sharing also known as cause.
+
+86
+00:06:52,880 --> 00:06:55,370
+And again we're going to go through this in more detail.
+
+87
+00:06:55,370 --> 00:06:59,810
+We're actually going to have a lab on cross origin resource sharing later on.
+
+88
+00:06:59,900 --> 00:07:07,880
+And what this is is really setting up the capability for files that were located in one bucket to access
+
+89
+00:07:07,880 --> 00:07:15,380
+the files within another bucket and transfer acceleration is really just a service which allows you
+
+90
+00:07:15,380 --> 00:07:23,180
+to accelerate file transfer speeds when you're uploading lots of files into S-3.
+
+91
+00:07:23,190 --> 00:07:26,200
+So let's take a look at some of the basics of S-3.
+
+92
+00:07:26,490 --> 00:07:30,200
+So it's built for the ninety nine point ninety nine percent availability.
+
+93
+00:07:30,220 --> 00:07:31,880
+The S3 platform.
+
+94
+00:07:31,950 --> 00:07:33,420
+So what does that mean.
+
+95
+00:07:33,420 --> 00:07:37,030
+So availability refers simply to the uptime.
+
+96
+00:07:37,050 --> 00:07:43,340
+So the amount of time the service is actually available and when we say ninety nine point nine nine
+
+97
+00:07:43,340 --> 00:07:47,460
+percent availability what we really mean is that it's available.
+
+98
+00:07:47,480 --> 00:07:48,780
+The service is there.
+
+99
+00:07:49,070 --> 00:07:50,140
+It's accessible.
+
+100
+00:07:50,240 --> 00:07:56,390
+Ninety nine point ninety nine percent of the time solo it's designed for ninety nine point ninety nine
+
+101
+00:07:56,390 --> 00:07:57,850
+percent availability.
+
+102
+00:07:58,050 --> 00:08:03,230
+Amazon actually guarantee ninety nine point nine percent availability.
+
+103
+00:08:03,260 --> 00:08:07,530
+They also guarantee 11 nines durability S3.
+
+104
+00:08:07,940 --> 00:08:09,900
+So what does your ability mean.
+
+105
+00:08:10,160 --> 00:08:16,600
+Well this really corresponds to the amount of data that you can expect to lose over a given year.
+
+106
+00:08:17,840 --> 00:08:21,890
+So we want that your ability to be as close to 100 percent as possible.
+
+107
+00:08:21,890 --> 00:08:28,460
+So we don't lose all files say for example you add to store 10 million objects within S3 with 11 nines
+
+108
+00:08:28,510 --> 00:08:34,790
+your ability on average you could expect to incur a loss of a single object once every ten thousand
+
+109
+00:08:34,790 --> 00:08:35,490
+years.
+
+110
+00:08:35,510 --> 00:08:41,300
+So thats what they mean when they say that it's a really safe place to store your data with any environment
+
+111
+00:08:41,360 --> 00:08:45,050
+the best practice is to always have a backup of your data.
+
+112
+00:08:45,050 --> 00:08:46,980
+Don't just keep it in one place.
+
+113
+00:08:47,020 --> 00:08:49,340
+And for us three there's a number of things we can do.
+
+114
+00:08:49,340 --> 00:08:52,240
+For example we can enable version control.
+
+115
+00:08:52,460 --> 00:08:57,320
+So that means we keep multiple versions historical versions of the same file.
+
+116
+00:08:57,410 --> 00:09:03,030
+So you could roll back if you lost your file you could roll back to a previous version.
+
+117
+00:09:03,080 --> 00:09:09,020
+You can also put in safeguards to prevent accidental deletions so you can prevent certain uses from
+
+118
+00:09:09,110 --> 00:09:14,550
+deleting your files and you can also replicate your data.
+
+119
+00:09:14,560 --> 00:09:19,510
+There are different tiers of storage available to cater for different requirements or different types
+
+120
+00:09:19,510 --> 00:09:22,420
+of data that you might be storing.
+
+121
+00:09:22,480 --> 00:09:28,510
+There is lifecycle management so that allows you to set rules around moving your data between different
+
+122
+00:09:28,510 --> 00:09:29,670
+storage tears.
+
+123
+00:09:29,770 --> 00:09:34,120
+There's also versioning so allowing you to enable version control.
+
+124
+00:09:34,120 --> 00:09:35,310
+We have encryption.
+
+125
+00:09:35,350 --> 00:09:41,190
+So there's a few different ways that you can actually encrypt your data to protect it from unauthorized
+
+126
+00:09:41,230 --> 00:09:41,840
+access.
+
+127
+00:09:41,890 --> 00:09:48,130
+And this is something we're going to go through in much more detail later on in this section and you
+
+128
+00:09:48,130 --> 00:09:53,820
+can secure access to your data using Access Control lists and bucket policies.
+
+129
+00:09:53,830 --> 00:09:57,120
+And again that's something we're going to go through in more detail later.
+
+130
+00:09:57,130 --> 00:09:59,990
+And we've actually got a lab all about that as well.
+
+131
+00:10:01,210 --> 00:10:08,140
+So let's take a look at the different S3 storage tears or storage clauses.
+
+132
+00:10:08,260 --> 00:10:15,400
+So the regular S3 which is suitable for most workloads and that has the ninety nine point ninety nine
+
+133
+00:10:15,400 --> 00:10:23,260
+percent availability 11:09 durability and it stores the data redundantly across multiple devices and
+
+134
+00:10:23,350 --> 00:10:31,550
+in multiple facilities and it's also designed to sustain the loss of two facilities concurrently.
+
+135
+00:10:31,570 --> 00:10:39,850
+So this means the S3 can sustain for example a hardware failure a device failure but not just in one
+
+136
+00:10:39,910 --> 00:10:46,810
+location it can actually sustain that kind of failure across multiple facilities and it can actually
+
+137
+00:10:46,810 --> 00:10:50,860
+sustain the loss of two data centers or two facilities.
+
+138
+00:10:50,860 --> 00:10:55,780
+So it's really really high availability and it means that you don't need to worry about building in
+
+139
+00:10:55,780 --> 00:10:58,050
+high availability for your data.
+
+140
+00:10:58,060 --> 00:11:02,900
+So there's also S3 I which stands for infrequently accessed.
+
+141
+00:11:03,310 --> 00:11:09,690
+And this is for data that is accessed less frequently but still requires rapid access when needed.
+
+142
+00:11:10,030 --> 00:11:13,960
+So it's data that you don't need to access on a daily basis.
+
+143
+00:11:14,140 --> 00:11:20,170
+Maybe could be for data that you only need to access once a year or once a quarter you pay a lot of
+
+144
+00:11:20,160 --> 00:11:25,090
+faith in as three but you are charged every time you retrieve that data.
+
+145
+00:11:25,150 --> 00:11:29,030
+So you want to make sure it really is your infrequently access data.
+
+146
+00:11:29,110 --> 00:11:32,770
+Otherwise you could start to see some higher charges for it.
+
+147
+00:11:32,770 --> 00:11:37,660
+There's also S-3 one zone I which is the same as I.
+
+148
+00:11:37,660 --> 00:11:42,380
+However data is stored only in a single availability sign.
+
+149
+00:11:42,400 --> 00:11:49,920
+Now it's still the 11:9 billeting but it's only ninety nine point five percent availability.
+
+150
+00:11:50,500 --> 00:11:57,180
+So that means if they lose one availability zone that means you're going to lose access to your data.
+
+151
+00:11:57,190 --> 00:12:02,560
+So when the availability zone comes back online you should get access to the data but you would have
+
+152
+00:12:02,560 --> 00:12:09,040
+lost access for the time that that availability zone was off line and the cost is 20 percent less than
+
+153
+00:12:09,040 --> 00:12:10,970
+the regular S-3 I.
+
+154
+00:12:11,250 --> 00:12:16,360
+But just be aware that you don't have that same level of availability.
+
+155
+00:12:16,390 --> 00:12:23,130
+There's also reduced redundancy storage and this is designed to provide a lower level of durability
+
+156
+00:12:23,140 --> 00:12:29,050
+so you only have ninety nine point nine nine percent and ninety nine point nine nine percent availability
+
+157
+00:12:29,080 --> 00:12:31,680
+of objects over a given year.
+
+158
+00:12:32,440 --> 00:12:37,830
+So this is really used for data that could be easily recreated if you lost it.
+
+159
+00:12:38,910 --> 00:12:44,760
+It's not for your mission critical data it's not for data that's going to cause a problem and you can't
+
+160
+00:12:44,820 --> 00:12:46,760
+recreate it if it got lost.
+
+161
+00:12:46,770 --> 00:12:53,960
+So a good example of the kind of data that is a good candidate for reduced redundancy storage is thumbnails.
+
+162
+00:12:53,970 --> 00:13:00,180
+So for example imagine you had a load of images and you wanted a place to store thumbnails of those
+
+163
+00:13:00,180 --> 00:13:01,170
+images.
+
+164
+00:13:01,170 --> 00:13:06,990
+You could store the thumbnails in the reduced redundancy storage and store the original images somewhere
+
+165
+00:13:06,990 --> 00:13:11,580
+more durable such as the regular S3.
+
+166
+00:13:11,580 --> 00:13:17,300
+Now it's worth noting that reduce redundancy storage is not actually offered in some regions.
+
+167
+00:13:17,880 --> 00:13:24,550
+And we have also noticed that Amazon and now recommending that you do not use this storage class they're
+
+168
+00:13:24,570 --> 00:13:31,260
+actually recommending that you use the standard S3 offering and they have even adjusted the pricing
+
+169
+00:13:31,260 --> 00:13:38,520
+so that the standard class is now more cost effective than using that would use redundancy storage.
+
+170
+00:13:38,540 --> 00:13:43,850
+So there's a possibility that at some point in the future they might be looking to phase out reduce
+
+171
+00:13:43,850 --> 00:13:46,120
+redundancy storage as an offering.
+
+172
+00:13:46,310 --> 00:13:50,790
+But for now we still think it's good for you to be aware of reduce redundancy storage.
+
+173
+00:13:50,840 --> 00:13:53,000
+It may still come up in the exam.
+
+174
+00:13:53,120 --> 00:13:57,690
+So it's definitely worth knowing what is and what it's used for.
+
+175
+00:13:57,700 --> 00:14:02,430
+Finally there's Lycia and glitzier is used for archiving.
+
+176
+00:14:02,530 --> 00:14:09,730
+It's very very cheap in comparison to the other three offerings and it's really optimized for data that
+
+177
+00:14:09,730 --> 00:14:16,660
+is very infrequently accessed because it actually takes between three and five hours to restore your
+
+178
+00:14:16,660 --> 00:14:19,290
+data from glossier.
+
+179
+00:14:19,300 --> 00:14:23,860
+So you don't want to put data in there that you think that you're going to be accessing it on a frequent
+
+180
+00:14:23,890 --> 00:14:25,640
+or regular basis.
+
+181
+00:14:25,660 --> 00:14:31,510
+It's really much more suitable for archives maybe historical files that you're not going to access very
+
+182
+00:14:31,510 --> 00:14:39,660
+frequently so let's take a look at this table and this table really just compares the characteristics
+
+183
+00:14:39,720 --> 00:14:46,440
+of the different storage classes and the main thing to remember really is the standard S3 has the highest
+
+184
+00:14:46,680 --> 00:14:50,760
+ability and the highest availability with standard.
+
+185
+00:14:50,760 --> 00:14:56,310
+I remember it as a retrieval Fav for all objects for the ones I own.
+
+186
+00:14:56,320 --> 00:14:59,110
+I it's only one availability zones.
+
+187
+00:14:59,130 --> 00:15:02,950
+That means it's not going to be resilient to the loss of unavailability.
+
+188
+00:15:03,180 --> 00:15:06,190
+If we lose the azy that means we lose the service.
+
+189
+00:15:06,210 --> 00:15:08,920
+Violacea there's no real time access.
+
+190
+00:15:09,060 --> 00:15:12,480
+It takes four to five hours to access your data.
+
+191
+00:15:13,050 --> 00:15:18,690
+And for the reduced redundancy storage that has the lowest Europe in NC and the lowest availability
+
+192
+00:15:18,840 --> 00:15:26,130
+and it's really for files that you can recreate if they ever got lost and there is one additional as
+
+193
+00:15:26,160 --> 00:15:28,520
+three storage class I want to tell you about.
+
+194
+00:15:28,680 --> 00:15:31,610
+And it was announced at re-invents 2018.
+
+195
+00:15:31,740 --> 00:15:37,320
+So at the end of November 2018 and it's called S3 intelligent taring.
+
+196
+00:15:37,650 --> 00:15:45,120
+And this is really most suitable for data which has an unknown or unpredictable access pattern and there
+
+197
+00:15:45,120 --> 00:15:48,800
+are two different tiers with S-3 intelligent taring.
+
+198
+00:15:48,960 --> 00:15:54,370
+So they have a frequent access taring and an infrequent access as well.
+
+199
+00:15:54,570 --> 00:16:00,750
+And it will automatically move your data to the most cost effective tier based on how frequently you
+
+200
+00:16:00,810 --> 00:16:03,320
+access each object within your bucket.
+
+201
+00:16:03,390 --> 00:16:09,500
+And of course the frequently access to is a little bit more expensive than the infrequently accessed
+
+202
+00:16:09,510 --> 00:16:10,110
+here.
+
+203
+00:16:10,350 --> 00:16:17,160
+So it works out as more cost effective if you can keep it frequently accessed data or infrequently accessed
+
+204
+00:16:17,220 --> 00:16:20,440
+storage in the infrequent access tier.
+
+205
+00:16:20,880 --> 00:16:22,100
+So how does it work.
+
+206
+00:16:22,230 --> 00:16:29,970
+Well if an object is not accessed for 30 consecutive days then it gets moved automatically to the infrequent
+
+207
+00:16:30,030 --> 00:16:31,040
+access here.
+
+208
+00:16:31,140 --> 00:16:37,410
+But then as soon as an object which is in the infrequent access to is accessed it gets automatically
+
+209
+00:16:37,410 --> 00:16:44,220
+moved to the frequently accessed here and S-3 intelligent tiering has the same level of jury ability
+
+210
+00:16:44,520 --> 00:16:50,150
+and availability as you would expect for the normal S-3 infrequently accessed.
+
+211
+00:16:50,160 --> 00:16:56,740
+So you've got 11 nines your ability and ninety nine point nine percent availability over a given year.
+
+212
+00:16:56,850 --> 00:16:59,930
+And it's a really good way to optimize your cost.
+
+213
+00:16:59,940 --> 00:17:04,970
+There are no fees for accessing your data or for moving the data in between tears.
+
+214
+00:17:05,100 --> 00:17:11,130
+But they do charge you a really small monthly fee for monitoring and automation and it's zero point
+
+215
+00:17:11,130 --> 00:17:15,070
+zero zero to five dollars per 1000 objects.
+
+216
+00:17:15,090 --> 00:17:17,340
+So it's a really small monthly fee.
+
+217
+00:17:17,340 --> 00:17:19,620
+So that is S-3 intelligent tiering.
+
+218
+00:17:19,890 --> 00:17:25,280
+As I said it was announced in November 2018 but it's just really good to be aware of.
+
+219
+00:17:25,320 --> 00:17:32,010
+If you are storing lots of data in S3 and you have unpredictable access patterns then the S3 intelligent
+
+220
+00:17:32,010 --> 00:17:33,900
+taring is one to consider.
+
+221
+00:17:33,900 --> 00:17:38,080
+So let's take a look at what actually charge you for in S3.
+
+222
+00:17:38,220 --> 00:17:45,480
+So you get charged for the amount of storage in gigabytes the number of requests you do so a get request
+
+223
+00:17:45,560 --> 00:17:48,790
+or put to request a copy request etc..
+
+224
+00:17:48,870 --> 00:17:56,520
+And there's also a fee for storage management and this includes things like inventory analytics object
+
+225
+00:17:56,520 --> 00:18:03,510
+tags so you can actually tag your objects according to what project they relate to or what team they
+
+226
+00:18:03,510 --> 00:18:04,440
+relate to.
+
+227
+00:18:04,500 --> 00:18:09,540
+And that really just helps with cross charging if you are going to charge that department or that team
+
+228
+00:18:09,600 --> 00:18:13,170
+or that project for the S3 storage that they were using.
+
+229
+00:18:14,060 --> 00:18:21,560
+There's also data management pricing and this really refers to data transferred out of S-3 because it's
+
+230
+00:18:21,560 --> 00:18:24,420
+free to transfer your data into S3.
+
+231
+00:18:24,800 --> 00:18:27,380
+But they do charge you when you transfer data out.
+
+232
+00:18:27,410 --> 00:18:34,940
+So for example if you download a file from a story you will be charged for that you also get charged
+
+233
+00:18:34,970 --> 00:18:40,070
+for transfer acceleration and transfer acceleration is something we're going to be talking about in
+
+234
+00:18:40,160 --> 00:18:41,770
+a later lecture.
+
+235
+00:18:42,440 --> 00:18:48,780
+But just remember transfer acceleration is something that's used to accelerate your file transfer speeds.
+
+236
+00:18:48,920 --> 00:18:54,560
+When you upload files into S3 it uses something called Cloud front which we're going to go into in much
+
+237
+00:18:54,560 --> 00:19:00,140
+more detail in a later lecture but it uses comfort front to optimize those transfers so you get a really
+
+238
+00:19:00,140 --> 00:19:01,550
+good upload speed.
+
+239
+00:19:01,550 --> 00:19:05,430
+But it is something that they charge you for.
+
+240
+00:19:05,450 --> 00:19:09,110
+So let's have a look at the exam tips for S-3.
+
+241
+00:19:09,110 --> 00:19:11,340
+Remember the S-3 is object based.
+
+242
+00:19:11,360 --> 00:19:20,100
+So it allows you to upload files and object files only not operating systems and not databases.
+
+243
+00:19:20,810 --> 00:19:24,620
+The files can be from 0 bytes to five terabytes.
+
+244
+00:19:24,620 --> 00:19:31,170
+There's unlimited storage so you don't need to allocate storage and you don't need to worry if AWOS
+
+245
+00:19:31,170 --> 00:19:33,480
+is going to run out of storage.
+
+246
+00:19:33,480 --> 00:19:41,210
+The files are stored in buckets or folders S3 is a universal namespace so that means that the packet
+
+247
+00:19:41,250 --> 00:19:43,420
+names need to be unique globally.
+
+248
+00:19:43,740 --> 00:19:46,990
+And here's the example of S-3 packet You're all around.
+
+249
+00:19:47,280 --> 00:19:54,630
+So we see HTP s and then S-3 EU west one site that just lets us know that it's in S-3 and the region
+
+250
+00:19:54,660 --> 00:19:59,180
+is US 1 and then forward slash.
+
+251
+00:19:59,430 --> 00:20:03,060
+The end just tells us that that is the packet name.
+
+252
+00:20:03,210 --> 00:20:06,510
+Remember the 2 data consistency model for S3.
+
+253
+00:20:06,780 --> 00:20:14,740
+So we have read off the right consistency for Puts of new objects and eventual consistency for either
+
+254
+00:20:14,740 --> 00:20:16,330
+right puts into place.
+
+255
+00:20:16,350 --> 00:20:24,660
+So I remember that overwrites a change to a file or a deletion of a file can take some time to propagate.
+
+256
+00:20:24,660 --> 00:20:26,920
+Remember the different storage classes.
+
+257
+00:20:27,000 --> 00:20:35,100
+So we have the regular S-3 for immediately available frequently accessed and durable storage.
+
+258
+00:20:35,100 --> 00:20:44,390
+We have S-3 I which is for infrequently accessed files we have the run zone I which is the same as I.
+
+259
+00:20:44,400 --> 00:20:52,140
+However the data is stored in a single availability zone only then there's reduced redundancy storage.
+
+260
+00:20:52,140 --> 00:20:58,670
+So this is for data that is easy to reproduce such as thumbnails and there's a place here for the archive
+
+261
+00:20:58,670 --> 00:21:04,810
+data where it's acceptable to wait between 3 and 5 hours before accessing your data.
+
+262
+00:21:05,640 --> 00:21:08,880
+Remember the core fundamentals of unnecessary object.
+
+263
+00:21:08,880 --> 00:21:16,100
+So we have the key which is the name of the file the value which is the data stored in the file version
+
+264
+00:21:16,110 --> 00:21:23,330
+Id met the data which is data about data and that can be user defined tasks.
+
+265
+00:21:23,460 --> 00:21:28,110
+Then we have said resources which is the packet specific configuration.
+
+266
+00:21:28,290 --> 00:21:34,800
+So things like bucket policies access control lists all this we're going to go into much more detail
+
+267
+00:21:34,800 --> 00:21:36,630
+later on in the course.
+
+268
+00:21:36,840 --> 00:21:42,930
+We have the cross origin resource sharing and transfer acceleration and all those things we're going
+
+269
+00:21:42,930 --> 00:21:46,630
+to go in a much more detail we're going to do labs about all three of those.
+
+270
+00:21:46,770 --> 00:21:54,310
+So don't worry if it doesn't make sense to you right now successful uploads would generate and TTP 200
+
+271
+00:21:54,390 --> 00:21:59,140
+status code and that's only when you use the say ally or the API.
+
+272
+00:21:59,190 --> 00:22:04,520
+Not when you use the browser and finally make sure you read the S-3 AFAIK.
+
+273
+00:22:04,560 --> 00:22:09,930
+And we've given the link here but it's really worth reading that because it will really help consolidate
+
+274
+00:22:09,930 --> 00:22:14,970
+your knowledge and it's also a really good one to read just before going into the exam or the day before
+
+275
+00:22:14,970 --> 00:22:15,920
+the exam.
+
+276
+00:22:16,080 --> 00:22:17,760
+Just to refresh your memory.
+
+277
+00:22:17,820 --> 00:22:22,860
+So that's the end of this lecture and our next lecture is on S-3 security.
+
+278
+00:22:22,860 --> 00:22:25,840
+So if you've got time please join me in the next lecture.
+
+279
+00:22:25,860 --> 00:22:26,500
+Thank you.

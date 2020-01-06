@@ -1,0 +1,467 @@
+1
+00:00:00,870 --> 00:00:07,680
+Hello Clockers and well see this section of the course and this section of the Course is all about developer
+
+2
+00:00:07,740 --> 00:00:15,310
+best practices and the development tools that AWOS provide to enable users to build and deploy their
+
+3
+00:00:15,360 --> 00:00:18,200
+applications in AWOS.
+
+4
+00:00:19,080 --> 00:00:25,860
+So this lecture is going to be all about C and C D and the various tools that they provide to enable
+
+5
+00:00:25,860 --> 00:00:31,040
+you to create your CIIC pipeline completely in the cloud.
+
+6
+00:00:32,390 --> 00:00:34,780
+So what is C and C D.
+
+7
+00:00:35,150 --> 00:00:44,120
+Well C stands for continuous integration and C D stands for either continuous delivery or continuous
+
+8
+00:00:44,120 --> 00:00:45,090
+deployment.
+
+9
+00:00:45,960 --> 00:00:49,570
+And those terms can sometimes be used interchangeably.
+
+10
+00:00:49,930 --> 00:00:55,790
+However there is a difference and we're going to go through the difference later on in this lecture.
+
+11
+00:00:56,930 --> 00:01:04,680
+But ultimately C R and C D are best practices for software development and software deployment and they
+
+12
+00:01:04,680 --> 00:01:12,360
+enable frequent software changes to be applied whilst maintaining system and service stability.
+
+13
+00:01:12,900 --> 00:01:21,420
+So companies like AWOS Netflix Google and Facebook have really pioneered this approach to releasing
+
+14
+00:01:21,420 --> 00:01:27,780
+code and those companies are successfully applying thousands of changes per day.
+
+15
+00:01:27,930 --> 00:01:36,660
+So for example for the last few years AWOS have seamlessly handled over 50 million deployments per year.
+
+16
+00:01:37,720 --> 00:01:42,850
+And that equates to at least one deployment taking place every single second.
+
+17
+00:01:43,070 --> 00:01:48,670
+And this is all done without impacting their service and without any service outages.
+
+18
+00:01:49,070 --> 00:01:50,780
+So how are they doing this.
+
+19
+00:01:53,110 --> 00:01:58,780
+Well one of the ways they do this is by automating their software deployment process or their software
+
+20
+00:01:58,780 --> 00:02:04,210
+release process using C.I. and seedy practices.
+
+21
+00:02:04,660 --> 00:02:10,190
+So let's take a look at an example see work flow.
+
+22
+00:02:10,530 --> 00:02:17,280
+Imagine you have multiple developers and they're all working on different features or bug fixes of the
+
+23
+00:02:17,280 --> 00:02:20,000
+same application.
+
+24
+00:02:20,490 --> 00:02:27,690
+So they are all contributing to the same application and they are sharing the same application code
+
+25
+00:02:27,750 --> 00:02:29,020
+repository.
+
+26
+00:02:29,490 --> 00:02:31,820
+So for example if you've ever heard of it.
+
+27
+00:02:31,920 --> 00:02:40,290
+So that is an industry standard code repository often used by development teams and the developers frequently
+
+28
+00:02:40,290 --> 00:02:47,160
+push that code updates into this shared repository at least once a day but often multiple times per
+
+29
+00:02:47,160 --> 00:02:47,800
+day.
+
+30
+00:02:49,280 --> 00:02:56,260
+And the next stage of the process is that the coder pulse actually is integrated with the build management
+
+31
+00:02:56,260 --> 00:02:57,100
+system.
+
+32
+00:02:58,860 --> 00:03:07,590
+And this boat management system automatically triggers an automated build every time a developer commits
+
+33
+00:03:07,590 --> 00:03:11,530
+code into the master repository.
+
+34
+00:03:11,610 --> 00:03:17,340
+So this means that even for the smallest change that gets committed an automated build is triggered
+
+35
+00:03:18,180 --> 00:03:21,310
+to ensure that the code will still build successfully.
+
+36
+00:03:22,370 --> 00:03:29,420
+Following each commit however we also need a way to ensure that the new code does not break the build
+
+37
+00:03:29,480 --> 00:03:32,690
+or introduce any new bugs into the application.
+
+38
+00:03:32,690 --> 00:03:34,100
+So how do we do that.
+
+39
+00:03:34,400 --> 00:03:42,110
+Well the last thing we need to do here is introduce a test framework and this test framework runs a
+
+40
+00:03:42,110 --> 00:03:50,210
+set of automated tests on a newly built application so it might run tests like for example integration
+
+41
+00:03:50,210 --> 00:03:52,670
+tests unit tests.
+
+42
+00:03:54,540 --> 00:04:05,890
+Functional tests etc. and these tests help to identify any bugs and prevent any issues being introduced
+
+43
+00:04:05,890 --> 00:04:08,180
+into the most code.
+
+44
+00:04:09,070 --> 00:04:15,310
+And finally see our focus is on very small code changes which get committed frequently into the main
+
+45
+00:04:15,310 --> 00:04:16,250
+repository.
+
+46
+00:04:16,420 --> 00:04:22,830
+Once they have been successfully tested so there is continuous integration
+
+47
+00:04:26,120 --> 00:04:31,240
+and the next stage in this process is the continuous delivery and the continuous deployment process.
+
+48
+00:04:31,250 --> 00:04:38,580
+So lets take a look at that is so Saidie can mean either continuous delivery or continuous deployment.
+
+49
+00:04:38,860 --> 00:04:40,100
+There is a difference.
+
+50
+00:04:40,240 --> 00:04:47,650
+So continuous delivery is the development practice where the much changes are automatically built tested
+
+51
+00:04:47,940 --> 00:04:54,370
+and prepared for release into staging and eventually production environments.
+
+52
+00:04:54,430 --> 00:05:01,980
+However there's usually a manual decision process to actually initiate the deployment of the new code.
+
+53
+00:05:02,390 --> 00:05:05,810
+So what does that look like in terms of our diagram.
+
+54
+00:05:06,590 --> 00:05:14,600
+So we still have all shared code repository why all the kids Stuart build management system builds that
+
+55
+00:05:14,600 --> 00:05:18,870
+code into an executable application.
+
+56
+00:05:19,040 --> 00:05:27,180
+We have an automated test framework to test that newly built code and finally we have a deployable packaged
+
+57
+00:05:27,270 --> 00:05:28,130
+application
+
+58
+00:05:30,770 --> 00:05:40,860
+and a user can then take that deployable package application and actually deploy it into their environments.
+
+59
+00:05:41,260 --> 00:05:43,320
+And that is continuous delivery.
+
+60
+00:05:45,030 --> 00:05:49,560
+But there's one more part of this process which is the continuous deployment element.
+
+61
+00:05:49,740 --> 00:05:57,330
+So what is continuous deployment well continuous deployment takes this idea of automation one step further
+
+62
+00:05:58,200 --> 00:06:01,100
+and it automatically deploys the new code.
+
+63
+00:06:01,230 --> 00:06:08,370
+Following the successful testing and it completely eliminates any manual steps.
+
+64
+00:06:08,410 --> 00:06:15,100
+So this means that the new code is automatically released as soon as it passes through the stages of
+
+65
+00:06:15,100 --> 00:06:16,690
+your release process.
+
+66
+00:06:17,170 --> 00:06:26,410
+So as soon as the code is successfully built tested and packaged up for release is then automatically
+
+67
+00:06:26,410 --> 00:06:28,420
+released into your environments.
+
+68
+00:06:30,150 --> 00:06:34,140
+So once again small changes are released early and frequently
+
+69
+00:06:36,890 --> 00:06:40,620
+rather than grouping multiple changes into a much larger release
+
+70
+00:06:44,960 --> 00:06:51,230
+and also the build test deployment and release processes are all fully automated.
+
+71
+00:06:53,380 --> 00:07:01,530
+So let's take a look at that in terms of ideogram and the big change here is that there is no human
+
+72
+00:07:01,530 --> 00:07:07,710
+intervention to actually go ahead and deploy the package application into our environments
+
+73
+00:07:10,690 --> 00:07:16,240
+so this means we don't need someone to initiate the release and the decision to actually release the
+
+74
+00:07:16,240 --> 00:07:26,230
+code is built into the automated logic of your continuous integration and continuous deployment pipeline.
+
+75
+00:07:26,240 --> 00:07:34,190
+So let's take a look at some of the toes the AWOS provide to enable you to run Yosi ICD pipeline within
+
+76
+00:07:34,190 --> 00:07:35,030
+the cloud.
+
+77
+00:07:37,420 --> 00:07:43,990
+So firstly we have a W-S code commit and this is their code depositary service
+
+78
+00:07:46,740 --> 00:07:55,290
+and it's a managed source control service enabling you to create your own private repository within
+
+79
+00:07:55,290 --> 00:07:56,150
+AWOS
+
+80
+00:07:58,690 --> 00:08:07,430
+we then have code build which is a fully managed build service which compiles your source code.
+
+81
+00:08:07,570 --> 00:08:13,720
+It can run some basic tests for you and it creates software packages that are ready to deploy into your
+
+82
+00:08:13,720 --> 00:08:14,440
+environment.
+
+83
+00:08:15,950 --> 00:08:23,900
+And they also provide code to deploy which is an automated application deployment service and it can
+
+84
+00:08:23,900 --> 00:08:30,880
+actually deploy your code to either easy to instances on premise systems solecisms within your data
+
+85
+00:08:30,880 --> 00:08:31,590
+center.
+
+86
+00:08:32,000 --> 00:08:35,680
+And even lambda functions.
+
+87
+00:08:35,830 --> 00:08:45,560
+And finally they also provide ws code pipeline which is a continuous deployment service and it allows
+
+88
+00:08:45,560 --> 00:08:51,950
+you to Mahto visualize and automate your entire release process.
+
+89
+00:08:52,880 --> 00:09:00,140
+So you can use pipeline to orchestrate all of these activities and completely automate the release of
+
+90
+00:09:00,140 --> 00:09:07,230
+new software in your environments and that at a high level is everything that you need to know about
+
+91
+00:09:07,230 --> 00:09:10,270
+continuous integration and continuous deployment.
+
+92
+00:09:11,440 --> 00:09:16,720
+And don't worry if it doesn't make too much sense to you right now we are going to be doing some laps
+
+93
+00:09:16,720 --> 00:09:19,170
+later on in the course for code.
+
+94
+00:09:19,170 --> 00:09:22,600
+Commit code build and code deploy.
+
+95
+00:09:22,600 --> 00:09:26,080
+So let's take a look at some of our exam tips.
+
+96
+00:09:26,590 --> 00:09:29,950
+So it's definitely worth a few points in the exam.
+
+97
+00:09:29,950 --> 00:09:35,590
+These tools are quite new but we are expecting to see some questions about them and AWOS have a really
+
+98
+00:09:35,590 --> 00:09:36,710
+good white paper.
+
+99
+00:09:36,770 --> 00:09:43,390
+Is definitely worth reading all about dev ops and best practices around continuous integration and continuous
+
+100
+00:09:43,390 --> 00:09:44,270
+deployment.
+
+101
+00:09:45,350 --> 00:09:48,640
+So I would definitely recommend reading that white paper.
+
+102
+00:09:49,520 --> 00:09:57,230
+And just remember continuous integration is all about integrating or merging your code changes frequently
+
+103
+00:09:58,220 --> 00:10:00,120
+at least once today.
+
+104
+00:10:00,650 --> 00:10:05,300
+And it enables multiple developers to work on the same application.
+
+105
+00:10:06,580 --> 00:10:12,850
+Continuous delivery is all about automating the build test and deployment functions.
+
+106
+00:10:14,350 --> 00:10:20,690
+However human intervention is usually needed to actually trigger the deployment into our environments.
+
+107
+00:10:22,480 --> 00:10:28,930
+Whereas continuous deployment fully automates the entire release process.
+
+108
+00:10:29,440 --> 00:10:36,300
+So your code is deployed into production as soon as it is successfully passed through your release pipeline.
+
+109
+00:10:38,890 --> 00:10:44,540
+And remember the main tools that they provide to enable you to get up and running with the CD within
+
+110
+00:10:44,600 --> 00:10:51,890
+AWOS there's the code commit which is also control service and that is get as a service.
+
+111
+00:10:52,810 --> 00:11:01,570
+Then code build which allows you to compile run tests and package your code then code deploy which provides
+
+112
+00:11:01,600 --> 00:11:10,540
+automated deployment easy to on premise systems and lambda and finally code pipeline which is the orchestration
+
+113
+00:11:10,790 --> 00:11:19,840
+C ICD workflow to which fully automates your end to end release process.
+
+114
+00:11:20,040 --> 00:11:26,430
+So that is the end of this lecture and the rest of this section we're going to dig a bit deeper into
+
+115
+00:11:26,580 --> 00:11:32,030
+all these different tools and we're going to have some lapse on the code commit code deploy as well.
+
+116
+00:11:33,170 --> 00:11:36,260
+So if you've got time please join me in the next lecture.
+
+117
+00:11:36,320 --> 00:11:37,080
+Thank you.

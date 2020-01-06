@@ -1,0 +1,507 @@
+1
+00:00:00,260 --> 00:00:06,600
+OK hello cloggers and welcome to this lecture this lecture is on Kinesis and this is a high level overview
+
+2
+00:00:06,600 --> 00:00:12,730
+of the consensus consensus has started appearing in the certified solutions architect associate exempt.
+
+3
+00:00:12,780 --> 00:00:18,660
+So we've created this section to give you a high level overview and then some practical hands on experience
+
+4
+00:00:18,660 --> 00:00:20,150
+with the Kinesis.
+
+5
+00:00:20,160 --> 00:00:22,250
+So what is streaming data.
+
+6
+00:00:22,260 --> 00:00:23,860
+Let's start with streaming data.
+
+7
+00:00:23,880 --> 00:00:28,890
+Because in order to understand consensus you have to understand streaming data so streaming data is
+
+8
+00:00:28,890 --> 00:00:35,070
+data that is generated continuously by thousands of data sources which typically send the data records
+
+9
+00:00:35,070 --> 00:00:39,890
+simultaneously and in small sizes and we're talking about kilobytes.
+
+10
+00:00:39,930 --> 00:00:42,900
+So this could be purchases from online stores for example.
+
+11
+00:00:42,900 --> 00:00:49,020
+So think of Amazon Dot Com people buying stuff on there every single second and that generates streaming
+
+12
+00:00:49,020 --> 00:00:49,560
+data.
+
+13
+00:00:49,560 --> 00:00:53,380
+So that would be the transaction that will be the product that they've bought.
+
+14
+00:00:53,430 --> 00:00:54,170
+Cetera.
+
+15
+00:00:54,480 --> 00:00:58,800
+Stock prices could be an example of streaming data Game data.
+
+16
+00:00:58,800 --> 00:01:05,040
+So this could be like Angry Birds as the player is playing Angry Birds that device so that application
+
+17
+00:01:05,040 --> 00:01:10,890
+could be streaming data back you know to the central servers about what the user is doing and what their
+
+18
+00:01:10,890 --> 00:01:12,920
+scores are etc..
+
+19
+00:01:12,960 --> 00:01:16,440
+Social Network Dator is another example of the streaming data.
+
+20
+00:01:16,470 --> 00:01:21,390
+So every time you go onto Facebook can you update your status so you post something to your friends
+
+21
+00:01:21,390 --> 00:01:22,150
+Wolds.
+
+22
+00:01:22,440 --> 00:01:28,980
+That data could then be streamed and then a really good example of streaming data is geospatial data.
+
+23
+00:01:28,980 --> 00:01:30,620
+So just think of the dot com.
+
+24
+00:01:30,750 --> 00:01:35,220
+I'm actually recording this right out the front of his offices in San Francisco right now.
+
+25
+00:01:35,220 --> 00:01:39,070
+I'm in town for a tech conference and I'm staying right next door to them.
+
+26
+00:01:39,110 --> 00:01:43,300
+I'm actually looking at that building right now so geospatial data.
+
+27
+00:01:43,410 --> 00:01:49,710
+If you think about when you are using your devices connected the Internet and it's constantly saying
+
+28
+00:01:49,710 --> 00:01:55,740
+where your driver is and where you and then it's you know interrogating the maps to give you the fastest
+
+29
+00:01:55,740 --> 00:01:58,110
+route possible to where it is you want to go.
+
+30
+00:01:58,110 --> 00:02:01,920
+So that is another good example of streaming data.
+
+31
+00:02:01,920 --> 00:02:04,880
+Another fine example be Io.
+
+32
+00:02:04,950 --> 00:02:07,980
+And the sensor data that I O.T. collects.
+
+33
+00:02:07,980 --> 00:02:11,920
+So this could be sensors all around the world monitoring temperatures for example.
+
+34
+00:02:12,130 --> 00:02:18,320
+So what is Kinesis well can exist as a platform on J-ws that you send your streaming data to.
+
+35
+00:02:18,450 --> 00:02:23,760
+It makes it easy to load and analyze streaming data and also provides you the ability to build your
+
+36
+00:02:23,760 --> 00:02:27,240
+own custom applications for your business needs.
+
+37
+00:02:27,240 --> 00:02:33,150
+So this three call can access services can access streams this can a cease fire hose and then there's
+
+38
+00:02:33,150 --> 00:02:38,200
+Kinesis analytics and in the exam you're going to be given a whole bunch of different scenario questions
+
+39
+00:02:38,230 --> 00:02:43,800
+and you have to identify which service you should use in order to best fit the scenario.
+
+40
+00:02:43,800 --> 00:02:49,770
+So you need to have a key understanding of the different aspects of the Kinney's to service.
+
+41
+00:02:49,770 --> 00:02:54,900
+So why don't we start with Kenenisa streams because it's the easiest place to start down off to the
+
+42
+00:02:54,900 --> 00:02:55,200
+left.
+
+43
+00:02:55,200 --> 00:03:00,660
+We've got an easy to instance we've got mobile phones we've got laptops we have physical computers we've
+
+44
+00:03:00,660 --> 00:03:07,170
+got IPTA And these are data produces so these are the ones that are producing the data for us.
+
+45
+00:03:07,200 --> 00:03:11,370
+They are then sending this data over to Kinny streams.
+
+46
+00:03:11,370 --> 00:03:14,910
+Now Kenny says streams basically stores this data.
+
+47
+00:03:14,930 --> 00:03:22,050
+By default it's stored for 24 hours but you can increase this for seven days.
+
+48
+00:03:22,510 --> 00:03:28,090
+Now this data is actually stored in these things called shards and explain what they are in the next
+
+49
+00:03:28,090 --> 00:03:31,190
+slide but basically your data is sent to aces.
+
+50
+00:03:31,300 --> 00:03:32,770
+It's stored in shards.
+
+51
+00:03:32,860 --> 00:03:36,200
+And by default it's stored in those shards for 24 hours.
+
+52
+00:03:36,270 --> 00:03:39,430
+But you can increase that to seven day retention.
+
+53
+00:03:39,430 --> 00:03:45,620
+Once the data is stored in the shop you don't have a fleet of two instances which you called your data
+
+54
+00:03:45,640 --> 00:03:51,010
+consumers and they basically take the data from the shot and turned it into something useful.
+
+55
+00:03:51,010 --> 00:03:56,610
+So it might be aggregating the data or it might be running sentiment analysis on social media feeds
+
+56
+00:03:56,610 --> 00:04:02,920
+it might be some kind of algorithm you've got to predict the you know the stock market or to predict
+
+57
+00:04:02,920 --> 00:04:04,980
+the cost of commodities et cetera.
+
+58
+00:04:05,020 --> 00:04:10,510
+And once your data consumers have done their calculations they can then send that data to be stored
+
+59
+00:04:10,510 --> 00:04:18,760
+in a variety of AWOS services so things like Dynamo D-B S-3 elastic that produce redshift etc. so quickly
+
+60
+00:04:18,790 --> 00:04:26,380
+just on streams so it can easy to stream's consists of shards and Achad basically gives you five transactions
+
+61
+00:04:26,380 --> 00:04:33,640
+per seconds for reads and up to a maximum total data read rate to make it bytes per second and up to
+
+62
+00:04:33,640 --> 00:04:38,480
+1000 records per second ferrites and up to a total data right.
+
+63
+00:04:38,490 --> 00:04:38,900
+Right.
+
+64
+00:04:38,920 --> 00:04:42,600
+A one megabyte per second and that includes you partition case.
+
+65
+00:04:42,700 --> 00:04:47,950
+Don't worry you don't need to remember those figures going into the exams but just understand what a
+
+66
+00:04:47,950 --> 00:04:55,030
+shard is and you can have multiple shards in a stream so the data capacity of a stream is basically
+
+67
+00:04:55,030 --> 00:05:00,160
+a function of the number of shares that you specify for the stream where the total capacity of the stream
+
+68
+00:05:00,160 --> 00:05:04,770
+is the sum of all of the shots that you have within that string.
+
+69
+00:05:05,050 --> 00:05:08,110
+So that's the architecture of Kenenisa streams.
+
+70
+00:05:08,110 --> 00:05:09,910
+So what does a cease fire hose.
+
+71
+00:05:09,990 --> 00:05:15,880
+Well can I specify hose is very similar in that we have our data producers we've got our E.S. two instances
+
+72
+00:05:16,420 --> 00:05:23,650
+that could be a web fleet of Acey two instances like Amazon Dot com for example could be a mobile devices
+
+73
+00:05:23,860 --> 00:05:30,340
+when you using Uber it could be your laptop it could be either way and they're sending the data into
+
+74
+00:05:30,550 --> 00:05:32,090
+the system firehose.
+
+75
+00:05:32,110 --> 00:05:36,310
+So the cool thing about Kinney's this firehose is that you don't have to worry about shards.
+
+76
+00:05:36,310 --> 00:05:41,380
+You don't have to worry about streams you don't have to worry about manually adding in shards to keep
+
+77
+00:05:41,380 --> 00:05:42,940
+up with your data et cetera.
+
+78
+00:05:42,940 --> 00:05:49,450
+It's completely automated and you don't even have to worry about data consumers going in and mining
+
+79
+00:05:49,450 --> 00:05:50,680
+that data.
+
+80
+00:05:50,830 --> 00:05:55,190
+You can analyze that data using lambda in real time.
+
+81
+00:05:55,330 --> 00:06:01,330
+And once that data has been analyzed You can then send it over directly to S3.
+
+82
+00:06:01,330 --> 00:06:05,560
+Now the actual analytics of that data is completely optional.
+
+83
+00:06:05,560 --> 00:06:11,530
+The other thing about Kinney's has firehose is that you know you'd like data to automatic data retention
+
+84
+00:06:11,530 --> 00:06:12,410
+window.
+
+85
+00:06:12,520 --> 00:06:18,760
+So in cases streams you can retain data by default for 24 hours but you can extend that up to seven
+
+86
+00:06:18,760 --> 00:06:19,440
+days.
+
+87
+00:06:19,490 --> 00:06:21,130
+Five hours doesn't work like that.
+
+88
+00:06:21,130 --> 00:06:27,370
+Essentially as soon as the data comes into firehose it's either analyzed using lambda or it's sent directly
+
+89
+00:06:27,400 --> 00:06:31,510
+on to S3 or other locations.
+
+90
+00:06:31,510 --> 00:06:37,450
+So what other locations Well it could be things like redshift if you are sending data to redshift via
+
+91
+00:06:37,510 --> 00:06:44,890
+the firehose you have to write to S-3 first and then that data is then copied in to red shifted from
+
+92
+00:06:44,950 --> 00:06:45,950
+S3.
+
+93
+00:06:46,000 --> 00:06:51,720
+You can also use Kinesis firehose to send things over to elastics search cluster.
+
+94
+00:06:51,730 --> 00:06:58,540
+So you can also write your data directly into elastics search cluster so hers is a very automated way
+
+95
+00:06:58,540 --> 00:07:00,820
+of doing Canisius.
+
+96
+00:07:00,940 --> 00:07:02,280
+So it would just compare.
+
+97
+00:07:02,410 --> 00:07:03,970
+This is Kinney's to stream again.
+
+98
+00:07:03,970 --> 00:07:10,220
+So you've got your data produces the sending the data into the streams the streams consists of shards.
+
+99
+00:07:10,330 --> 00:07:16,200
+The data itself is contained for between 24 hours or up to seven days.
+
+100
+00:07:16,210 --> 00:07:18,460
+But by default it's 24 hours.
+
+101
+00:07:18,470 --> 00:07:25,690
+Your consumers then go in and consume that data analyze it do whatever it is that you need to do to
+
+102
+00:07:25,690 --> 00:07:32,450
+transform that data and then your consumers can send that data on to things like Dynamo D-B S3 elastic
+
+103
+00:07:32,450 --> 00:07:34,360
+map reduced or red shift.
+
+104
+00:07:34,630 --> 00:07:40,570
+But if one were using fire hose for example we it's completely automated so you don't need to worry
+
+105
+00:07:40,570 --> 00:07:45,940
+about your day to consume as you just send it to firehose Fairhurst then sends it to S3.
+
+106
+00:07:46,030 --> 00:07:52,180
+You can optionally go ahead and analyze that data using lambda but it's a lot more automated and you
+
+107
+00:07:52,180 --> 00:07:54,820
+don't have to worry about the management of shards.
+
+108
+00:07:55,080 --> 00:07:59,310
+And you know data retention within Kinesis itself.
+
+109
+00:07:59,350 --> 00:08:01,430
+So let's move on to consensus analytics.
+
+110
+00:08:01,480 --> 00:08:05,410
+This can come up just as a high level concept as to what it is.
+
+111
+00:08:05,410 --> 00:08:11,770
+So down here we've got Al can says fire hose and we've got our Canisius streams can ysis analytics allows
+
+112
+00:08:11,770 --> 00:08:18,400
+you to run sequel queries of that data as it exists within firehose all streams and then you can use
+
+113
+00:08:18,400 --> 00:08:25,660
+that Sakal query to store that data inside S-3 redshift or elastics search cluster.
+
+114
+00:08:25,910 --> 00:08:33,470
+So it's essentially a way of analyzing the data that's inside Kinesis using Sakal type querying languages.
+
+115
+00:08:33,590 --> 00:08:40,070
+And you can use it above across both Kinesis streams as well as can a cease fire is sort of my exam
+
+116
+00:08:40,070 --> 00:08:44,570
+tips going into the exam about Kinesis what you need to know the difference between Canossa streams
+
+117
+00:08:44,570 --> 00:08:45,820
+and Kinesis firehose.
+
+118
+00:08:45,860 --> 00:08:50,290
+You're going to be given scenario questions and you must choose the most relevant service.
+
+119
+00:08:50,330 --> 00:08:55,760
+So just remember the core architectural differences if you say a question talking about shards you know
+
+120
+00:08:55,760 --> 00:09:01,700
+straight away that that's going to be Kinny streams because firehose doesn't have shards whereas if
+
+121
+00:09:01,700 --> 00:09:08,780
+it's talking about analyzing data automatically using Alamdar and not having to worry about data consumers
+
+122
+00:09:08,780 --> 00:09:11,410
+then that's going to be Kinney's this firehose.
+
+123
+00:09:11,570 --> 00:09:16,400
+Also I understand at a high level just what can access analytics is not we're just going to quickly
+
+124
+00:09:16,400 --> 00:09:19,890
+do a hands on lab so you can see consensus in action.
+
+125
+00:09:19,890 --> 00:09:23,390
+We're going to use a cloud formation template to build this out.
+
+126
+00:09:23,390 --> 00:09:25,350
+So if you've got the time join me in the next lecture.
+
+127
+00:09:25,400 --> 00:09:25,790
+Thank you.

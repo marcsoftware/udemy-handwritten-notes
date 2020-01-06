@@ -1,0 +1,383 @@
+1
+00:00:00,420 --> 00:00:03,090
+OK hello cloggers and welcome to this lecture.
+
+2
+00:00:03,090 --> 00:00:08,280
+So this lecture is on cloud watch and cloud watch is basically is one of the most important services
+
+3
+00:00:08,280 --> 00:00:12,360
+that you need to understand inside out when going to sit your exam.
+
+4
+00:00:12,360 --> 00:00:15,870
+So we're going to look at cloud watch and how we can do monitoring and reporting.
+
+5
+00:00:15,870 --> 00:00:21,930
+So start with cloud which is basically it's monitoring service to monitor your AWOS resources as well
+
+6
+00:00:21,930 --> 00:00:27,780
+as the applications that you run on well yes and cloud watch can monitor things like computer monitors
+
+7
+00:00:27,780 --> 00:00:32,410
+things like your auto Schelling groups your elastic load balances route 53 health checks.
+
+8
+00:00:32,510 --> 00:00:38,970
+You can do storage and content delivery so abs volume storage gateway cloud from cetra can also monitor
+
+9
+00:00:38,970 --> 00:00:44,210
+things like your database and analytics so these are things like dynamite Bay or less cache nodes are
+
+10
+00:00:44,340 --> 00:00:50,670
+instances where lastic that produce job flows redshift et cetera and it can also monitor other things
+
+11
+00:00:50,670 --> 00:00:53,600
+such as this and estop access and eschewed ops works.
+
+12
+00:00:53,590 --> 00:00:58,860
+Cloud watch logs estimated charges on your AWOS bills et cetera.
+
+13
+00:00:58,920 --> 00:01:05,040
+So the most fundamental important thing to understand going into your exam is what it monitors by default
+
+14
+00:01:05,100 --> 00:01:08,880
+when it comes to E.S. to and then what you need custom metrics for.
+
+15
+00:01:08,880 --> 00:01:14,610
+So by default it meannesses these things called Host level metrics and they consist of basically four
+
+16
+00:01:14,610 --> 00:01:18,720
+different things three different things from a physical point of view and then a status check.
+
+17
+00:01:18,720 --> 00:01:20,450
+So the three different things.
+
+18
+00:01:20,780 --> 00:01:27,420
+You network and disk so components are things like CPQ utilization or network throughput or disk IO
+
+19
+00:01:27,420 --> 00:01:28,410
+for example.
+
+20
+00:01:28,710 --> 00:01:35,060
+And then it can also monitor the actual health of both the PC to host as well as the PC to instance.
+
+21
+00:01:35,070 --> 00:01:37,220
+These are known as status checks.
+
+22
+00:01:37,330 --> 00:01:39,260
+What it can't monitor is things.
+
+23
+00:01:39,270 --> 00:01:44,860
+So if you think about it holistically it can see its disk as a whole as a physical piece of hardware.
+
+24
+00:01:44,880 --> 00:01:47,520
+What it can't see is the individual.
+
+25
+00:01:47,570 --> 00:01:53,640
+Let's say we go down to the individual virtual disk it see how much storage space is left or is still
+
+26
+00:01:53,640 --> 00:01:54,410
+available.
+
+27
+00:01:54,450 --> 00:01:57,470
+It can't see Ram utilization can't see things like that.
+
+28
+00:01:57,480 --> 00:01:59,870
+What it can see is the C.P utilization.
+
+29
+00:01:59,970 --> 00:02:07,440
+It can see things like the network utilization and the overall disk activity so the overall disk throughput
+
+30
+00:02:07,920 --> 00:02:10,010
+but that's where it stops.
+
+31
+00:02:10,110 --> 00:02:12,480
+And then it can also do things like your status checks.
+
+32
+00:02:12,600 --> 00:02:18,360
+So anything else that falls out of CPQ network disk will status check is a custom metric.
+
+33
+00:02:18,390 --> 00:02:24,350
+So things like Ram utilization for example how much memory is your easy to instance currently utilizing
+
+34
+00:02:24,360 --> 00:02:26,710
+all of which has provision to it.
+
+35
+00:02:26,880 --> 00:02:31,920
+And so that is what we call a custom metric and we will have a lab coming up which will show you how
+
+36
+00:02:31,920 --> 00:02:32,700
+to monitor this.
+
+37
+00:02:32,700 --> 00:02:37,590
+We're going to use a postscript to go in and configure it on R-S.C. to it since then we're going to
+
+38
+00:02:37,590 --> 00:02:41,070
+start pushing this these metrics to cloud watch.
+
+39
+00:02:41,340 --> 00:02:47,430
+So just remember going into your exam if it's not CPQ network or disk or the actual status of the PC
+
+40
+00:02:47,430 --> 00:02:48,680
+to hardware.
+
+41
+00:02:48,750 --> 00:02:54,780
+Sorry the easy to host as well as the PC to instance then it's going to be a custom metric and you will
+
+42
+00:02:54,780 --> 00:02:57,850
+be tested on this through out the exam.
+
+43
+00:02:57,930 --> 00:03:02,350
+Also it's really important to understand how long cloud watch metrics are stored.
+
+44
+00:03:02,370 --> 00:03:08,290
+You can retrieve data using the get metrics statistic API or by using third party tools offered by AWOS
+
+45
+00:03:08,310 --> 00:03:14,560
+partners and you can store your lock data in cloud watch logs for as long as you want by default Lovelock's
+
+46
+00:03:14,580 --> 00:03:20,010
+logs will store you'll log data indefinitely so you can change the retention for low group at any time.
+
+47
+00:03:20,010 --> 00:03:25,460
+You could just say ok for my age obeys I only want you know data for the next.
+
+48
+00:03:25,470 --> 00:03:26,710
+For the last two weeks.
+
+49
+00:03:26,910 --> 00:03:31,770
+But for my you see two instances I want to go all the way back to six months so you can change it but
+
+50
+00:03:31,770 --> 00:03:39,120
+by default it is logged indefinitely and you can also retrieve data from any terminated E.S. to or less
+
+51
+00:03:39,240 --> 00:03:46,410
+load balance instance after its terminations do bear that in mind as well in terms of metric granularity
+
+52
+00:03:46,410 --> 00:03:50,220
+it really depends on the AWOS service many metrics.
+
+53
+00:03:50,370 --> 00:03:55,560
+For many default services a one minute but it could also be three minutes or five minutes depending
+
+54
+00:03:55,560 --> 00:03:56,810
+on the service.
+
+55
+00:03:56,820 --> 00:04:01,970
+Now you will get a you get basically normal monitoring and detailed monitoring normal monitoring is
+
+56
+00:04:01,980 --> 00:04:08,070
+every five minutes detailed monitoring is ever a one minute and custom metrics so things like Ram utilization
+
+57
+00:04:08,070 --> 00:04:13,640
+which we'll see coming up the minimum granularity that you can have is one minute.
+
+58
+00:04:13,650 --> 00:04:19,020
+Now one important thing to note here is if you have just your default cloud watch settings on for say
+
+59
+00:04:19,020 --> 00:04:23,340
+AC 2 you're only ever going to get five minute data points.
+
+60
+00:04:23,340 --> 00:04:29,640
+That's even if you do have a script that's pushing data to cloud watch every one minute cloud watch
+
+61
+00:04:29,640 --> 00:04:31,870
+will actually aggregate that over the five minutes.
+
+62
+00:04:31,860 --> 00:04:37,320
+And again we're going to see that in the lab coming up terms of alarms you can create an alarm to monitor
+
+63
+00:04:37,320 --> 00:04:43,350
+any Amazon Cloud watch metrics in your account and this can include easy to CPQ utilization elastic
+
+64
+00:04:43,350 --> 00:04:49,410
+load balance and latency or even the charges on your AWOS bill and you can set the appropriate thresholds
+
+65
+00:04:49,410 --> 00:04:54,300
+in which to trigger the alarms and also what kind of action should be taken if an alarm state is reached
+
+66
+00:04:54,690 --> 00:04:57,420
+and we're going to cover this off in a subsequent lecture.
+
+67
+00:04:57,540 --> 00:05:04,000
+But you could just tell it to an S and S notification saying oh look up the owner of a $10 Oh my NWS
+
+68
+00:05:04,010 --> 00:05:05,150
+account for this month.
+
+69
+00:05:05,270 --> 00:05:10,190
+Or you could even have it trigger lambda function which goes through and just starts deleting all your
+
+70
+00:05:10,190 --> 00:05:12,290
+infrastructure it's entirely up to you.
+
+71
+00:05:12,380 --> 00:05:19,420
+But Cloud watch alarms can basically trigger an action to be taken which you would go in and configure.
+
+72
+00:05:19,460 --> 00:05:22,340
+And yeah it's really really powerful stuff.
+
+73
+00:05:22,550 --> 00:05:27,470
+So onto my exam tips just remember what cloud watches it's a monitoring service to monitor your AWOS
+
+74
+00:05:27,470 --> 00:05:34,120
+resources as well as applications that you run on AWOS your host liberal metrics oyes consist of Seip
+
+75
+00:05:34,120 --> 00:05:41,500
+you network disk and your status check if it's asking you about a metric outside of this such as Ram
+
+76
+00:05:41,600 --> 00:05:46,250
+utilization or even the amount of storage space left on a virtual hard disk.
+
+77
+00:05:46,250 --> 00:05:50,970
+You're going to need custom metrics or ram utilization is a custom metric.
+
+78
+00:05:50,990 --> 00:05:56,370
+I remember that full custom metrics the minimum granularity is one minute.
+
+79
+00:05:56,510 --> 00:06:02,180
+So moving on terminated instances you can retrieve data from any terminated AC two or elastic load balancing
+
+80
+00:06:02,190 --> 00:06:08,370
+instance after its termination and cloud watch Loeb's by default a stored indefinitely.
+
+81
+00:06:08,540 --> 00:06:13,820
+And then finally just remember with your metric granularity So you have one minute for detailed monitoring
+
+82
+00:06:13,880 --> 00:06:16,130
+and five minutes for standard monitoring.
+
+83
+00:06:16,280 --> 00:06:21,410
+You may get some scenario based questions just asking you for two minute monitoring.
+
+84
+00:06:21,410 --> 00:06:22,940
+And how would you achieve that.
+
+85
+00:06:22,940 --> 00:06:27,200
+Well you're going to need to use detailed monitoring rather than standard monitoring.
+
+86
+00:06:27,440 --> 00:06:29,840
+And one thing I didn't really cover off in this lecture.
+
+87
+00:06:29,840 --> 00:06:34,520
+But one thing you should definitely be aware of is that cloud watch can be used on premise as well.
+
+88
+00:06:34,520 --> 00:06:38,150
+It's not restricted to just AWOS resources.
+
+89
+00:06:38,150 --> 00:06:44,120
+You can definitely use this inside your or your own data center and you can have the metrics being reported
+
+90
+00:06:44,120 --> 00:06:51,710
+back to your cloud watch dashboard you know inside AWOS from your own data center and the way you do
+
+91
+00:06:51,710 --> 00:06:55,270
+this is you need to download and install the SS agent.
+
+92
+00:06:55,310 --> 00:06:58,980
+Then once that's installed you need to download and install the cloud watch agent.
+
+93
+00:06:59,000 --> 00:07:03,110
+So that is it the dyslexic guys in the next lecture we're going to go ahead and start getting our hands
+
+94
+00:07:03,110 --> 00:07:03,960
+dirty with cloud.
+
+95
+00:07:03,970 --> 00:07:06,130
+So if you've got the time please join me in the next lecture.
+
+96
+00:07:06,140 --> 00:07:06,450
+Thank you.

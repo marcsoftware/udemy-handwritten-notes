@@ -1,0 +1,215 @@
+1
+00:00:00,530 --> 00:00:07,440
+Hello Clockers and welcome to this lecture and this lecture is code pipelined 1 0 1 and it's a really
+
+2
+00:00:07,470 --> 00:00:12,280
+quick summary lecture and it's just going to go through the theory of code pipeline.
+
+3
+00:00:12,420 --> 00:00:15,450
+So let's get started.
+
+4
+00:00:15,450 --> 00:00:17,000
+So what is code pipeline.
+
+5
+00:00:17,190 --> 00:00:25,020
+Well it's a fully managed continuous integration and continuous delivery service and it can orchestrate
+
+6
+00:00:25,080 --> 00:00:32,120
+the build test and even the deployment of your application every single time there is a change to your
+
+7
+00:00:32,130 --> 00:00:38,760
+code all based on a user defined software release process.
+
+8
+00:00:38,760 --> 00:00:47,190
+Now traditional manual approaches to code delivery can be slow and prone to human error whereas an automated
+
+9
+00:00:47,190 --> 00:00:54,900
+process like code pipeline allows developers to frequently release new features and bug fixes in a fast
+
+10
+00:00:54,990 --> 00:00:56,840
+reliable and consistent way.
+
+11
+00:00:59,840 --> 00:01:03,930
+So let's take a look at a really simple release process workflow
+
+12
+00:01:08,320 --> 00:01:15,870
+C-code pipelined allows you to model your release process as a pipeline made up of different tasks such
+
+13
+00:01:15,870 --> 00:01:20,600
+as the simple workflow represented in this diagram.
+
+14
+00:01:20,620 --> 00:01:27,950
+So in this workflow the code gets updated then the next stage is for the code to be built.
+
+15
+00:01:29,970 --> 00:01:33,060
+Then a set of automated tests would be run.
+
+16
+00:01:33,120 --> 00:01:40,670
+And finally once the tests have successfully been run the code can be deployed so the age of these different
+
+17
+00:01:40,670 --> 00:01:42,250
+stages of the work flow.
+
+18
+00:01:42,530 --> 00:01:45,420
+You define exactly what happens.
+
+19
+00:01:45,600 --> 00:01:54,730
+And this can all be modeled using the code pipeline interface all the Seelye and Co pipeline can also
+
+20
+00:01:54,730 --> 00:02:02,980
+integrate with code commit which is a source code repository within AWOS also code build which is the
+
+21
+00:02:02,980 --> 00:02:10,650
+code building service in WS as well as code deploy which is the code deployment service
+
+22
+00:02:13,460 --> 00:02:21,350
+and it can deploy to Lamda plus elastic beanstalk use cloud formation the plastic container service
+
+23
+00:02:21,650 --> 00:02:28,990
+as well as integrating with third party tools like get hub and Jenkin's And when you configure code
+
+24
+00:02:28,990 --> 00:02:36,770
+pipeline within the IWM console it's automatically configured so that every code change pushed into
+
+25
+00:02:36,770 --> 00:02:38,300
+your code repository.
+
+26
+00:02:38,710 --> 00:02:47,090
+If it's S-3 or code commit that will cause code pipelined to automatically trigger the work flow and
+
+27
+00:02:47,090 --> 00:02:54,030
+begin the set of actions defined for each stage of your pipeline and the pipeline will automatically
+
+28
+00:02:54,030 --> 00:02:54,480
+stop.
+
+29
+00:02:54,480 --> 00:02:56,580
+If one of these stages fails.
+
+30
+00:02:56,910 --> 00:03:05,120
+For example if one of your automated unit test files the entire pipeline will stop and any changes will
+
+31
+00:03:05,120 --> 00:03:06,140
+be rolled back.
+
+32
+00:03:07,090 --> 00:03:12,820
+And this means that any software issues are caught really early before the code gets deployed into your
+
+33
+00:03:12,820 --> 00:03:13,960
+environment.
+
+34
+00:03:14,020 --> 00:03:20,100
+So the issue is a core stage where they're still really easy to fix.
+
+35
+00:03:20,230 --> 00:03:26,370
+So here is an example of a work flow within AWOS code pipeline.
+
+36
+00:03:26,420 --> 00:03:32,970
+We have our user on the left hand side updating her source code which is located in an S-3 bucket's
+
+37
+00:03:34,510 --> 00:03:37,560
+every time she updates the source code in the bucket.
+
+38
+00:03:37,560 --> 00:03:45,160
+This triggers an alert in cloud watch which in turn triggers code pipelined to begin the work flow.
+
+39
+00:03:46,330 --> 00:03:54,110
+So in this example code pipeline is using code deploy to fetch the updated source code and then deploy
+
+40
+00:03:54,110 --> 00:04:00,590
+it to the instances on the right hand side and code deploy can actually deploy to on premise instances
+
+41
+00:04:00,590 --> 00:04:02,730
+in your own data center.
+
+42
+00:04:03,320 --> 00:04:04,340
+Easy.
+
+43
+00:04:04,960 --> 00:04:06,290
+And also lambda
+
+44
+00:04:09,720 --> 00:04:13,370
+So let's take a look at some of our code pipeline exam tips.
+
+45
+00:04:13,380 --> 00:04:20,100
+Firstly it's a continuous integration and continuous delivery service and this means it automates your
+
+46
+00:04:20,100 --> 00:04:27,480
+end to end software release process all based on your own user defined workflow.
+
+47
+00:04:27,560 --> 00:04:32,990
+It can be configured to automatically trigger your pipeline as soon as it changes detected in your source
+
+48
+00:04:32,990 --> 00:04:34,180
+code repository.
+
+49
+00:04:34,520 --> 00:04:44,070
+So whether that's S3 or code commit and also integrates with other services from AWOS like code build
+
+50
+00:04:44,130 --> 00:04:48,870
+code deploy code commit as well as third party and custom plugins
+
+51
+00:04:51,940 --> 00:04:55,360
+so that they end this lecture later on in this part of the course.
+
+52
+00:04:55,360 --> 00:04:59,190
+We do have a code pipelined lab.
+
+53
+00:04:59,390 --> 00:05:02,480
+So if you got time please join me in the next lecture.
+
+54
+00:05:02,480 --> 00:05:03,030
+Thank ye.

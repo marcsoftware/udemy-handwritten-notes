@@ -1,0 +1,1143 @@
+1
+00:00:00,440 --> 00:00:00,960
+Okay.
+
+2
+00:00:00,960 --> 00:00:05,850
+Hello clunkers and welcome to this lecture and this lecture we're going to build our very first service
+
+3
+00:00:05,850 --> 00:00:10,670
+web site with Route 53 API Gateway lambda and S3.
+
+4
+00:00:10,680 --> 00:00:12,370
+Let's have a look at how it's going to work.
+
+5
+00:00:12,430 --> 00:00:13,560
+We've got our user.
+
+6
+00:00:13,560 --> 00:00:19,470
+They want to go ahead and get the IP address for help me study AWOL Polycom which is domain I'm about
+
+7
+00:00:19,470 --> 00:00:21,410
+to register with the route 253.
+
+8
+00:00:21,590 --> 00:00:25,590
+Route 53 will return that IP address to the user's web browser.
+
+9
+00:00:25,590 --> 00:00:29,860
+They then want to go ahead and actually get the web page from S3.
+
+10
+00:00:30,030 --> 00:00:33,650
+So they're going to be able to navigate to that S3 bucket.
+
+11
+00:00:33,660 --> 00:00:38,850
+It's going to return a web page but the actual web page has static and dynamic content and they need
+
+12
+00:00:38,850 --> 00:00:45,420
+to get the dynamic content the dynamic content will simply be my name or your name and it will then
+
+13
+00:00:45,480 --> 00:00:52,780
+their browser will then send a GET request over to API Gateway API Gateway it will then send that over
+
+14
+00:00:52,800 --> 00:00:59,250
+for that get request on to Lambda Lambda will then respond and then we will send that user's name back
+
+15
+00:00:59,250 --> 00:00:59,580
+to them.
+
+16
+00:00:59,580 --> 00:01:02,130
+So really really simple site.
+
+17
+00:01:02,280 --> 00:01:06,140
+And it's going to use basically three or four different components.
+
+18
+00:01:06,150 --> 00:01:10,620
+So API Gateway Route 53 S S3 and lambda.
+
+19
+00:01:10,710 --> 00:01:14,210
+So let's go ahead and get started and log into the obvious console.
+
+20
+00:01:14,240 --> 00:01:17,400
+The code for this is all in the resources section of the course.
+
+21
+00:01:17,400 --> 00:01:20,490
+So please download the code now and unzip it.
+
+22
+00:01:21,020 --> 00:01:21,300
+Okay.
+
+23
+00:01:21,300 --> 00:01:23,280
+So I'm here in the aid of US console.
+
+24
+00:01:23,280 --> 00:01:29,880
+Now when we're registering a domain name and using static web sites for in S3 you need to check two
+
+25
+00:01:29,880 --> 00:01:32,580
+things you need to check that the domain name is available.
+
+26
+00:01:32,580 --> 00:01:37,320
+You also need to check that the bucket name is available and the bucket name and the domain name have
+
+27
+00:01:37,320 --> 00:01:38,250
+to be the same.
+
+28
+00:01:38,280 --> 00:01:44,220
+So I'm going to register help me Polly help me study AWOL Polly dot com first thing I'm going to do
+
+29
+00:01:44,220 --> 00:01:50,190
+is make sure that's available in S3 you check S3 first because it's free to register bucket names with
+
+30
+00:01:50,190 --> 00:01:51,630
+domain names it's not free.
+
+31
+00:01:51,620 --> 00:02:00,330
+So help me study Adobe us Polly dot com and I'm going to create that in the Northern Virginia region
+
+32
+00:02:00,390 --> 00:02:05,670
+and I'm just gonna go ahead and hit create and that is available so if providers available on Route
+
+33
+00:02:05,670 --> 00:02:07,650
+53 this is all going to work.
+
+34
+00:02:07,740 --> 00:02:12,720
+So I'm just going to click in here and I'm gonna go over to properties and I'm going to enable static
+
+35
+00:02:12,720 --> 00:02:14,620
+web site hosting for this bucket.
+
+36
+00:02:14,730 --> 00:02:17,620
+So use this bucket to host a Web site.
+
+37
+00:02:17,640 --> 00:02:19,950
+Quickly just go over and have a look at our code.
+
+38
+00:02:20,160 --> 00:02:21,750
+So this is where I've unzipped the code.
+
+39
+00:02:21,750 --> 00:02:26,340
+It's just index dot hated him out an error dot hasty to melt this python is what we're going to use
+
+40
+00:02:26,340 --> 00:02:27,320
+for our lambda function.
+
+41
+00:02:27,420 --> 00:02:34,500
+So we're gonna type in here index each temple and then era dot HMO.
+
+42
+00:02:34,770 --> 00:02:39,250
+We're gonna go ahead and hit save and that has now created our bucket.
+
+43
+00:02:39,270 --> 00:02:44,200
+Now I can't do anything yet because we do need to edit our code the very next thing I need to do.
+
+44
+00:02:44,250 --> 00:02:50,430
+I can't upload our Qatar S3 bucket yet because I'm going to need to put in my API Gateway endpoint into
+
+45
+00:02:50,430 --> 00:02:51,540
+that code at some point.
+
+46
+00:02:51,810 --> 00:02:55,280
+Okay so that is now an S3 static website bucket.
+
+47
+00:02:55,350 --> 00:03:00,750
+The next thing we need to do is go over to Route 53 so you go over to services and we scroll down we'll
+
+48
+00:03:00,750 --> 00:03:04,370
+see Route 53 here under network and content delivery.
+
+49
+00:03:04,560 --> 00:03:08,670
+And then what I'm going to go ahead and do is going to register this as a domain.
+
+50
+00:03:08,670 --> 00:03:15,780
+Help me study AWOL is Polly and just check that that's available.
+
+51
+00:03:15,780 --> 00:03:16,730
+Hopefully it is.
+
+52
+00:03:16,830 --> 00:03:17,700
+And yes it is.
+
+53
+00:03:17,700 --> 00:03:21,650
+So you have to make sure that the bucket name is available and the domain name is available if they're
+
+54
+00:03:21,660 --> 00:03:26,670
+different it's not going to work your bucket name always must be the same as the domain name.
+
+55
+00:03:26,730 --> 00:03:31,470
+And by that I just mean that this this top level you don't have to have the bucket name with dot com
+
+56
+00:03:32,090 --> 00:03:37,770
+but the top you know this this level here not top level but then the next level down so help me study
+
+57
+00:03:37,810 --> 00:03:42,900
+AWOL Polly after I have that is the bucket name as well as the domain name is going to add that to my
+
+58
+00:03:42,920 --> 00:03:47,610
+cart I'm just gonna go ahead and register this now it's gonna cost me 12 dollars.
+
+59
+00:03:47,610 --> 00:03:52,860
+This is completely optional if you want to do this or not you can just use the S3 you are all for the
+
+60
+00:03:52,860 --> 00:03:56,700
+rest of this course if you don't want to spend the money simply go ahead and register this now and just
+
+61
+00:03:56,700 --> 00:03:57,590
+pause the video.
+
+62
+00:03:58,260 --> 00:03:58,550
+Okay.
+
+63
+00:03:58,590 --> 00:04:05,340
+Now have registered that sometimes it says it can take up to three days to complete that really you
+
+64
+00:04:05,430 --> 00:04:11,850
+know some very rare cases it takes that long usually should have it in about 10 or 15 minutes or sometimes
+
+65
+00:04:11,850 --> 00:04:12,580
+even less.
+
+66
+00:04:12,630 --> 00:04:19,890
+So pause the video and just updated it and my helped me study AWOL Polly is now registered so with configured
+
+67
+00:04:19,950 --> 00:04:27,900
+our S3 bucket as a Web site we have gone in and configured route 53 or bought a domain name and we've
+
+68
+00:04:27,900 --> 00:04:33,570
+made sure that our bucket name is the exact same as our route 53 domain name including the top level
+
+69
+00:04:34,230 --> 00:04:37,610
+domain so help me study Polly dot com.
+
+70
+00:04:37,710 --> 00:04:39,810
+Help me study AWOL Polly dot com.
+
+71
+00:04:39,810 --> 00:04:42,680
+Next thing we need to do is configure our lambda functions.
+
+72
+00:04:42,700 --> 00:04:47,400
+Let's go over to services and we'll go into the lambda which is under compute.
+
+73
+00:04:47,520 --> 00:04:52,920
+If you haven't had a lambda function before you're going to see this splash screen just click on Create
+
+74
+00:04:52,980 --> 00:04:54,140
+a lambda function.
+
+75
+00:04:54,240 --> 00:04:59,990
+So we're going to be using this author from scratch later on when we go and build our Alexa skill using
+
+76
+00:04:59,990 --> 00:05:06,500
+the service application repository so there's three ways of doing lambda functions author from scratch
+
+77
+00:05:06,560 --> 00:05:12,170
+blueprints which are pre configured templates as a starting point for lambda functions so these are
+
+78
+00:05:12,170 --> 00:05:15,480
+just lambda functions that are pre configured.
+
+79
+00:05:15,590 --> 00:05:18,110
+And then we have the service application repository.
+
+80
+00:05:18,110 --> 00:05:24,770
+And this is basically cloud formation templates that builds service applications automatically for you.
+
+81
+00:05:24,770 --> 00:05:32,530
+So we're going to use some Alexa service application repository skills later on or at least one.
+
+82
+00:05:32,540 --> 00:05:38,280
+And if you do are interested in learning more about Alexa development we do have a course on the cloud
+
+83
+00:05:38,270 --> 00:05:41,000
+guru platform where we'll teach you how to build three skills.
+
+84
+00:05:41,000 --> 00:05:44,630
+And again we use the service application repository for that as well.
+
+85
+00:05:45,020 --> 00:05:45,530
+So in here.
+
+86
+00:05:45,560 --> 00:05:51,320
+Let's call this my server lists Web site.
+
+87
+00:05:51,590 --> 00:05:55,820
+So that's gonna be our function name gonna be using Python three point six.
+
+88
+00:05:55,820 --> 00:06:00,320
+If you haven't used lambda before we're going to have to create a new role and the role is essentially
+
+89
+00:06:00,320 --> 00:06:03,340
+just allowing lambda the permission to execute.
+
+90
+00:06:03,350 --> 00:06:04,640
+So we'll call this.
+
+91
+00:06:04,640 --> 00:06:10,880
+I like to call up my lambda role and we're just going to use a policy template and the policy template
+
+92
+00:06:10,910 --> 00:06:13,330
+you want is simple micros service permissions.
+
+93
+00:06:13,330 --> 00:06:19,460
+So this allows lambda to execute that's all it does.
+
+94
+00:06:19,460 --> 00:06:20,120
+So there we go.
+
+95
+00:06:20,160 --> 00:06:26,910
+Go ahead and hit create function and that should now create our function and we should be ready to go.
+
+96
+00:06:27,080 --> 00:06:27,350
+Okay.
+
+97
+00:06:27,350 --> 00:06:29,790
+So my function has now been created.
+
+98
+00:06:29,870 --> 00:06:34,190
+Now if we scroll down this is the this is what lambda looks like.
+
+99
+00:06:34,190 --> 00:06:37,190
+So we've got our configuration in here we've got our monitoring.
+
+100
+00:06:37,190 --> 00:06:38,480
+Here's our designer.
+
+101
+00:06:38,540 --> 00:06:41,290
+If we scroll down we'll be able to see our function code.
+
+102
+00:06:41,290 --> 00:06:43,190
+So here's our actual function.
+
+103
+00:06:43,250 --> 00:06:49,180
+This is an acquisition Amazon made which you used to be called Cloud 9 which is a Integra.
+
+104
+00:06:49,180 --> 00:06:53,070
+It's basically a cloud integrated development environment or ADT.
+
+105
+00:06:53,150 --> 00:06:57,740
+So you can actually write your code now directly into lambda which is really really cool.
+
+106
+00:06:57,830 --> 00:07:02,090
+And what we're going to be doing is we're going to be changing this code here to our own code.
+
+107
+00:07:02,090 --> 00:07:05,990
+So all we need to do is just go over to where you downloaded your code.
+
+108
+00:07:06,020 --> 00:07:06,230
+Okay.
+
+109
+00:07:06,240 --> 00:07:10,940
+So in the directory where I've unzipped my code hopefully you've done that in the resources section.
+
+110
+00:07:10,940 --> 00:07:13,940
+I'm just gonna go ahead and open that up with my favorite.
+
+111
+00:07:13,990 --> 00:07:14,620
+Nope.
+
+112
+00:07:14,850 --> 00:07:15,100
+Yep.
+
+113
+00:07:15,110 --> 00:07:20,210
+My favorite text editor which is text wrangler on Windows I use Notepad plus plus.
+
+114
+00:07:20,390 --> 00:07:22,100
+And in here we've got our function.
+
+115
+00:07:22,100 --> 00:07:25,540
+So basically all you want to do is change the name.
+
+116
+00:07:25,580 --> 00:07:28,700
+My name at the moment is the body is Ryan Kronenberg.
+
+117
+00:07:28,700 --> 00:07:31,040
+You want to change this to your own name.
+
+118
+00:07:31,040 --> 00:07:36,020
+Once you've done that copy it into your clipboard and go back over to lambda and here we are back in
+
+119
+00:07:36,020 --> 00:07:36,650
+the console.
+
+120
+00:07:36,650 --> 00:07:40,850
+I'm just going to delete all these lines and paste in my own.
+
+121
+00:07:40,850 --> 00:07:42,670
+So make sure it is your own name.
+
+122
+00:07:42,740 --> 00:07:47,220
+Go ahead and click up here and go save and that will now save our function.
+
+123
+00:07:47,270 --> 00:07:50,770
+If we scroll all the way back up the top we're almost ready to go.
+
+124
+00:07:50,960 --> 00:07:56,570
+What we need to do is add in our triggers now triggers a really popular exam topics in both Solutions
+
+125
+00:07:56,570 --> 00:08:00,260
+Architect associate as well as developer associate.
+
+126
+00:08:00,290 --> 00:08:03,420
+So triggers are API Gateway AWB society.
+
+127
+00:08:03,440 --> 00:08:09,530
+The Alexa skills care the Alexa smart home cloud front cloud watch events cloud watch logs code commit
+
+128
+00:08:09,830 --> 00:08:16,730
+cognitive sync trigger dynamo DB can access S3 and S.A. seriously you will probably get a question saying
+
+129
+00:08:16,940 --> 00:08:22,430
+which of the following is not a lambda trigger c it is worth trying to memorize or memorize all this
+
+130
+00:08:22,430 --> 00:08:23,580
+going into your exam.
+
+131
+00:08:23,750 --> 00:08:26,210
+So we gonna add API gateway as a trigger.
+
+132
+00:08:26,210 --> 00:08:32,560
+It says in here configuration required if you scroll down you can see here configure triggers so it
+
+133
+00:08:32,570 --> 00:08:35,960
+says we'll set up an API Gateway endpoint will.
+
+134
+00:08:36,080 --> 00:08:37,960
+Which will trigger your integration.
+
+135
+00:08:38,180 --> 00:08:42,450
+And in here pick an existing API or create a new one.
+
+136
+00:08:42,650 --> 00:08:49,830
+We're going to create a new API the API name just enter it in here so I'm going to call my API my server
+
+137
+00:08:49,860 --> 00:08:53,570
+this website may maybe my service.
+
+138
+00:08:53,900 --> 00:08:55,420
+Why not website.
+
+139
+00:08:55,790 --> 00:08:57,160
+And then the deployment stage.
+
+140
+00:08:57,170 --> 00:09:05,000
+This is going to be in production and in here says configure the security mechanism for your API endpoint.
+
+141
+00:09:05,020 --> 00:09:07,540
+So do you want it to have IAM.
+
+142
+00:09:07,550 --> 00:09:08,650
+Do you want it to be open.
+
+143
+00:09:08,660 --> 00:09:13,130
+Or do you want it to be open but you have to supply an access key before you can use it.
+
+144
+00:09:13,130 --> 00:09:17,750
+I'm just gonna make mine open and it gives you a warning here saying your API and point will be publicly
+
+145
+00:09:17,750 --> 00:09:20,060
+available and can be invoked by all users.
+
+146
+00:09:20,060 --> 00:09:22,990
+That's fine for this particular one.
+
+147
+00:09:23,220 --> 00:09:28,370
+You could if you wanted a little bit extra security to open with access key but we're not going to keep
+
+148
+00:09:28,370 --> 00:09:33,980
+this anyway we're going to delete this once we go onto the poly lab anyway so just go ahead and do open.
+
+149
+00:09:33,980 --> 00:09:41,810
+Go ahead and hit add that has now created our API you click up here and just save your function it's
+
+150
+00:09:41,810 --> 00:09:48,080
+going to you know save everything so click this little button here we're actually going to get the invoke
+
+151
+00:09:48,110 --> 00:09:53,000
+U.R.L. you can try copying paste that into your browser but it's not going to work just yet.
+
+152
+00:09:53,030 --> 00:09:57,800
+So we need to go in and configure what you can do is click on my service web site and that is going
+
+153
+00:09:57,800 --> 00:10:03,960
+to open up the API Gateway page and you can see or API Gateway is in here.
+
+154
+00:10:03,960 --> 00:10:06,220
+So what we now need to do is go ahead and configure this.
+
+155
+00:10:06,270 --> 00:10:11,190
+First thing I want you to note are round the API gateway as this UI and I really like this UI.
+
+156
+00:10:11,220 --> 00:10:13,860
+Cause it actually helps you visualize exactly what's going on.
+
+157
+00:10:13,920 --> 00:10:16,110
+You got your client which is our little user.
+
+158
+00:10:16,110 --> 00:10:21,290
+They're going to send a method request at the moment it could be any but we want to make it only a get.
+
+159
+00:10:21,370 --> 00:10:23,020
+So they're going to send a get request.
+
+160
+00:10:23,070 --> 00:10:28,830
+This is then going to be basically proxy it over to Lambda here's our lambda function in here we could
+
+161
+00:10:28,830 --> 00:10:33,570
+click on this on and open up our lambda function and then that lambda function is going to process that
+
+162
+00:10:33,570 --> 00:10:35,790
+request and then do a response.
+
+163
+00:10:35,810 --> 00:10:41,100
+So then going to send that back to API Gateway and API Gateway is going to send a method response back
+
+164
+00:10:41,100 --> 00:10:43,760
+to our client which will hopefully be our name.
+
+165
+00:10:43,770 --> 00:10:47,910
+So what we want to do is we're going to change this over to a get request let's just start by deleting
+
+166
+00:10:47,910 --> 00:10:48,710
+this method.
+
+167
+00:10:48,780 --> 00:10:54,420
+So I'm gonna go ahead and delete this and then I'm gonna go and create a new method and the method is
+
+168
+00:10:54,420 --> 00:10:55,570
+going to be a get.
+
+169
+00:10:55,830 --> 00:11:00,180
+So these these are all our valid email methods.
+
+170
+00:11:00,200 --> 00:11:03,310
+So I'm going to make mine a get in and click the little tick.
+
+171
+00:11:03,390 --> 00:11:05,950
+And that's going to give us our setup.
+
+172
+00:11:05,950 --> 00:11:08,880
+So in here we've got the integration point for a new method.
+
+173
+00:11:08,880 --> 00:11:14,180
+So what do we want to connect this method to do we want it to be to a lambda function or to hate CTP
+
+174
+00:11:14,190 --> 00:11:20,640
+do we want to give it a mock response maybe this is a development you know API that we're testing.
+
+175
+00:11:20,640 --> 00:11:22,650
+Do we want another aided AWOL service.
+
+176
+00:11:22,650 --> 00:11:24,510
+Do we want to link this into a VPC.
+
+177
+00:11:24,630 --> 00:11:29,550
+We're gonna select lambda functions and then we're going to use proxy integration.
+
+178
+00:11:29,550 --> 00:11:35,280
+So we're going to allow it to proxy this across to lambda and here's your region if you actually type
+
+179
+00:11:35,280 --> 00:11:40,910
+in your function here and it's only going to be the functions that exist within that region.
+
+180
+00:11:40,940 --> 00:11:44,460
+So make sure you note to the region in which your lambda function exists.
+
+181
+00:11:44,460 --> 00:11:50,050
+So mine's in USD one click on my services website and I'm gonna go ahead and hit save.
+
+182
+00:11:50,160 --> 00:11:55,320
+And this then says you're about to give API Gateway permission to invoke your lambda function and here
+
+183
+00:11:55,320 --> 00:12:00,540
+is the R N of our lambda functions so the Amazon rule resource name of Alameda function going to go
+
+184
+00:12:00,540 --> 00:12:02,170
+ahead and click Okay.
+
+185
+00:12:02,280 --> 00:12:04,880
+And that has now set it all up.
+
+186
+00:12:04,900 --> 00:12:07,190
+So it will be almost ready to go.
+
+187
+00:12:07,430 --> 00:12:13,410
+And next thing we need to do is go ahead and deploy our API so let's click in here and go deploy deployment
+
+188
+00:12:13,410 --> 00:12:13,850
+stage.
+
+189
+00:12:13,860 --> 00:12:21,150
+I'm going to deploy this into production and this deployment description will be my first prod deployment
+
+190
+00:12:21,390 --> 00:12:22,320
+something like that.
+
+191
+00:12:22,830 --> 00:12:27,020
+I'm gonna go ahead and hit deploy and you'll see now that we're in stages.
+
+192
+00:12:27,090 --> 00:12:32,490
+So if you ever need to get back to this screen go over two stages click on prod and then click on get
+
+193
+00:12:32,820 --> 00:12:34,460
+you will have your invoked you arrow.
+
+194
+00:12:34,470 --> 00:12:38,160
+So if we click on this we should hopefully be able to get our name and there we go.
+
+195
+00:12:38,190 --> 00:12:44,580
+It's its API Gateway is triggering a lambda function and lambda function is responding with my name
+
+196
+00:12:45,000 --> 00:12:50,940
+and you can see it there if you click back and you want to get that you are L again just click on stages
+
+197
+00:12:50,940 --> 00:12:56,340
+and then prod grab the arrow quickly show you what it looks like as well if we were to do a call command
+
+198
+00:12:56,640 --> 00:12:58,880
+in you know an easy to instance.
+
+199
+00:12:58,890 --> 00:13:02,100
+So here I am in an easy to instance I'm just going to CO.
+
+200
+00:13:02,250 --> 00:13:07,540
+And then that and then I'm going to output it into something like My name dot Tex T.
+
+201
+00:13:07,590 --> 00:13:08,640
+Let's say.
+
+202
+00:13:08,870 --> 00:13:17,400
+So if we nano my name dot Tex t there we go we can see it's my easy to instance has called API Gateway.
+
+203
+00:13:17,640 --> 00:13:21,930
+It has gotten my name and it has then saved that to a text file.
+
+204
+00:13:22,050 --> 00:13:27,690
+So now that we've done all this we're ready to upload or edit our code and then upload it to S3 so go
+
+205
+00:13:27,690 --> 00:13:29,670
+to where you downloaded your code.
+
+206
+00:13:29,750 --> 00:13:34,080
+Case I'm here where I downloaded it my code or we want to do is open up indexed each to mail with our
+
+207
+00:13:34,080 --> 00:13:37,560
+favorite text editor so Tex wrangler or notepad plus plus.
+
+208
+00:13:37,560 --> 00:13:42,750
+And so we've opened it up or we need to do is change this line of code here from your API Gateway link
+
+209
+00:13:42,750 --> 00:13:46,380
+here and just paste in your API Gateway and hit save.
+
+210
+00:13:46,460 --> 00:13:50,360
+And quickly just go through what it is this code does so it's reached UML.
+
+211
+00:13:50,420 --> 00:13:55,650
+I've got our header here in our header we've got some of JavaScript which has a function called my function
+
+212
+00:13:56,080 --> 00:13:59,430
+and then we've got the body in here we've got a header which says hello.
+
+213
+00:13:59,460 --> 00:14:07,350
+And then it says the ideas my demo cloud gurus and then we've got a button and on click it's going to
+
+214
+00:14:07,350 --> 00:14:08,970
+execute this function.
+
+215
+00:14:08,970 --> 00:14:12,000
+And the button says Click me and we're going to end our button.
+
+216
+00:14:12,000 --> 00:14:18,510
+So the function in here you can see the function basically what we're going to do is a heap TTP request
+
+217
+00:14:18,780 --> 00:14:21,830
+the TTP request is going to be a get request.
+
+218
+00:14:21,840 --> 00:14:29,430
+It's going to go to our API Gateway U.R.L. and if it's successful so if the status is 200 then it's
+
+219
+00:14:29,430 --> 00:14:34,920
+going to display the response and then we've got an image and you'll see what this images at the end
+
+220
+00:14:34,920 --> 00:14:37,890
+of the lecture it's one of my favorite photos in the whole wide world.
+
+221
+00:14:38,160 --> 00:14:41,280
+So let's go ahead and save this and go back over to the database console.
+
+222
+00:14:41,370 --> 00:14:46,290
+So back in the adobe s console I'm going to go over to services and I'm going to go down to S3 which
+
+223
+00:14:46,290 --> 00:14:48,890
+is under storage so down in here.
+
+224
+00:14:48,930 --> 00:14:52,850
+So I mean S3 there is a slight UI has changed since I first started recording this.
+
+225
+00:14:52,860 --> 00:14:56,820
+But if you just scroll down and go to your bucket says help me study Polly.
+
+226
+00:14:56,970 --> 00:15:00,850
+You can see in here it says objects but and objects are not public.
+
+227
+00:15:00,860 --> 00:15:01,910
+We need to change that.
+
+228
+00:15:01,910 --> 00:15:05,090
+You need to click in here and go edit public access settings.
+
+229
+00:15:05,220 --> 00:15:08,980
+Then you just need to make sure these four checkboxes are unchecked.
+
+230
+00:15:09,050 --> 00:15:15,650
+Go ahead and hit save and go ahead and hit can type confirm and then that means that objects in this
+
+231
+00:15:15,650 --> 00:15:17,220
+bucket can now be public.
+
+232
+00:15:17,240 --> 00:15:18,530
+You see that has changed.
+
+233
+00:15:18,530 --> 00:15:20,160
+Objects can now be public.
+
+234
+00:15:20,240 --> 00:15:26,150
+So if you ever have access or if you ever have permissions issues trying to do stuff with S3 make sure
+
+235
+00:15:26,150 --> 00:15:28,570
+you edit your public access settings.
+
+236
+00:15:28,580 --> 00:15:31,610
+Let's go ahead and click in this bucket and want to go over to upload.
+
+237
+00:15:31,630 --> 00:15:34,790
+Going to upload my files so let's add our files in here.
+
+238
+00:15:34,790 --> 00:15:41,330
+So it's era and index reached here all going I'll go ahead and hit upload and then the very last thing
+
+239
+00:15:41,330 --> 00:15:43,060
+we need to do is make these public.
+
+240
+00:15:43,070 --> 00:15:49,640
+So if we just go more and click on make public and make public that will now make our each team able
+
+241
+00:15:49,640 --> 00:15:55,490
+file public and our index dot each team out and our arrow dot each team all the very last thing we need
+
+242
+00:15:55,490 --> 00:15:58,540
+to do is we need to go over to Route 53.
+
+243
+00:15:58,570 --> 00:16:06,260
+So go down to networking Route 53 Route 53 and click on hosted zones and in here I've got my hosting
+
+244
+00:16:06,260 --> 00:16:12,860
+zones help me study AWB stop poly and I'm going to create a record set and this record set is going
+
+245
+00:16:12,860 --> 00:16:14,330
+to be an alias record.
+
+246
+00:16:14,330 --> 00:16:16,410
+So it's just gonna be the naked domain name.
+
+247
+00:16:17,030 --> 00:16:19,830
+So it's not going to have a W WW or anything like that.
+
+248
+00:16:19,900 --> 00:16:21,340
+So just click on Alias.
+
+249
+00:16:21,500 --> 00:16:22,910
+And in here you've got your target.
+
+250
+00:16:22,920 --> 00:16:27,260
+So if we click in here you should be able to see your S3 Web site in here.
+
+251
+00:16:27,470 --> 00:16:34,640
+If you can't if it says no targets available it means that your S3 bucket name and your your route 53
+
+252
+00:16:34,640 --> 00:16:36,290
+a domain name are not the same.
+
+253
+00:16:36,290 --> 00:16:40,780
+And it does include the top level domain name as well so you do definitely need that.
+
+254
+00:16:40,850 --> 00:16:44,180
+Let's go ahead and click in here and go ahead and hit create.
+
+255
+00:16:44,360 --> 00:16:51,880
+And that has now created my my a record and it's an alias and it's pointing back to my S3 Buckets.
+
+256
+00:16:51,890 --> 00:16:58,040
+The next thing I need to do is just go over to help me study at AWB stop Polly case.
+
+257
+00:16:58,130 --> 00:17:02,270
+I'm just going to type and help me study Adobe stock Polly dot com and I'm going to go ahead and hit
+
+258
+00:17:02,270 --> 00:17:05,360
+enter and there we go it says hello cloud gurus.
+
+259
+00:17:05,360 --> 00:17:11,180
+And it says click me click me that will then send a request off to API Gateway which will trigger a
+
+260
+00:17:11,180 --> 00:17:17,000
+lambda function which will return the our name back to API Gateway which should hopefully come back
+
+261
+00:17:17,000 --> 00:17:18,230
+to our browser.
+
+262
+00:17:18,230 --> 00:17:18,710
+There we go.
+
+263
+00:17:18,710 --> 00:17:22,190
+Hello Ryan Kronenberg and you might be wondering what this picture is.
+
+264
+00:17:22,190 --> 00:17:26,270
+This is my favorite photo in this whole wide world so this is my son Ethan.
+
+265
+00:17:26,270 --> 00:17:27,540
+This is me.
+
+266
+00:17:27,550 --> 00:17:35,540
+It's the sixth of February 2000 and 18 and that is the Falcon Heavy taking off sending a Tesla to Mars.
+
+267
+00:17:35,570 --> 00:17:42,410
+So I was lucky enough to take a week off to go see that we're at Cape Canaveral and we watched the Falcon
+
+268
+00:17:42,410 --> 00:17:45,520
+Heavy which is the world's largest rocket ship.
+
+269
+00:17:45,530 --> 00:17:51,110
+In terms of thrust take a Tesla into space it's seriously was one of the my favorite days of my whole
+
+270
+00:17:51,110 --> 00:17:51,410
+life.
+
+271
+00:17:51,410 --> 00:17:56,900
+So I figured I'd just chuck that up there and we do have any Space X engineers or Tesla engineers watching
+
+272
+00:17:56,900 --> 00:17:57,320
+the course.
+
+273
+00:17:57,320 --> 00:17:59,450
+Big shout out to you please tweet me.
+
+274
+00:17:59,540 --> 00:18:00,570
+Massive fan.
+
+275
+00:18:00,710 --> 00:18:02,690
+Anyway you have done really really well.
+
+276
+00:18:02,690 --> 00:18:06,320
+You've taken your first step into a service world.
+
+277
+00:18:06,320 --> 00:18:08,410
+This was a very very basic Web site.
+
+278
+00:18:08,420 --> 00:18:10,550
+You can configure it any way that you want.
+
+279
+00:18:10,550 --> 00:18:16,100
+So before we go on and build our Alexa scale using the service application repository there's one thing
+
+280
+00:18:16,100 --> 00:18:19,710
+I want to show you which is how to use version control in LAMBDA.
+
+281
+00:18:19,730 --> 00:18:23,680
+This is a very popular exam topic it will come up an awful lot in your exams.
+
+282
+00:18:23,700 --> 00:18:28,910
+We're gonna do that and then we're gonna go ahead and build our Lexus skill which uses the service application
+
+283
+00:18:28,910 --> 00:18:32,730
+repository and we're going to convert our notes using the police service.
+
+284
+00:18:32,750 --> 00:18:35,600
+Store them in as three and get Alexa to play them.
+
+285
+00:18:35,600 --> 00:18:37,640
+So if you've got the time please join me in the next lecture.
+
+286
+00:18:37,640 --> 00:18:37,990
+Thank you.

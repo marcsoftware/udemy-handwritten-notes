@@ -1,0 +1,103 @@
+1
+00:00:00,390 --> 00:00:03,140
+OK hello pluggers and welcome to this lecture.
+
+2
+00:00:03,150 --> 00:00:07,920
+So this lecture is one of the last lectures in this section of the coast and it's just to remind you
+
+3
+00:00:07,920 --> 00:00:11,230
+the difference between cloud watch cloud trail and config.
+
+4
+00:00:11,300 --> 00:00:16,440
+So learning the difference between these three different services will get you marks or ground as you
+
+5
+00:00:16,440 --> 00:00:18,120
+go and study AWOS.
+
+6
+00:00:18,150 --> 00:00:22,830
+So if we remember cloud watch monitors performance so that's where you're going to monitor things like
+
+7
+00:00:22,830 --> 00:00:26,400
+C-p utilization ramp utilization et cetera.
+
+8
+00:00:26,550 --> 00:00:32,110
+You can either use custom metrics or use the metrics that a builtin member they built him metrics for
+
+9
+00:00:32,460 --> 00:00:39,810
+to things like just GCP disk network and then the status checks and then if you need something different
+
+10
+00:00:39,810 --> 00:00:45,570
+such as Ram utilization you need custom metrics so cloud watch is all about performance monitoring cloud
+
+11
+00:00:45,570 --> 00:00:52,830
+trail monitors your API calls Supai provision in a to instance or an S3 barcode or dynamo D-B table
+
+12
+00:00:53,130 --> 00:00:58,400
+that will be recorded in Cloud trial told me the time it was provisioned what resource was provisioned
+
+13
+00:00:58,410 --> 00:01:03,090
+whether it was provisioned successfully supervision that what the IP address is et cetera.
+
+14
+00:01:03,210 --> 00:01:09,540
+So this is used for auditing and then we have AWOS come fake and this is basically a way I like to think
+
+15
+00:01:09,540 --> 00:01:11,430
+of it as a CCTV system.
+
+16
+00:01:11,430 --> 00:01:17,120
+So it's going to require the state of your AWOS environment and it will notify you of changes.
+
+17
+00:01:17,250 --> 00:01:22,710
+So if you want to know what your the rules were on your security groups from three weeks ago you can
+
+18
+00:01:22,710 --> 00:01:27,870
+use config for that cloud watching cloud trail wouldn't tell you that if you wanted to know who provisioned
+
+19
+00:01:27,870 --> 00:01:33,510
+the security groups two or three weeks ago that would be cloud trail if you wanted to know the C-p utilization
+
+20
+00:01:33,510 --> 00:01:36,280
+of your AC two instances that would be cloud watch.
+
+21
+00:01:36,420 --> 00:01:40,350
+So in your exam you're going to get a whole bunch of different scenario questions and I'll ask you what
+
+22
+00:01:40,350 --> 00:01:42,960
+the appropriate service is to do something.
+
+23
+00:01:42,980 --> 00:01:48,530
+So is it really important to know the difference between cloud watch cloud trail and AWOS config.
+
+24
+00:01:48,600 --> 00:01:50,810
+So we're almost at the end of this section.
+
+25
+00:01:50,880 --> 00:01:53,110
+So if you've got the time please join me in the next lecture.
+
+26
+00:01:53,110 --> 00:01:53,320
+Think.

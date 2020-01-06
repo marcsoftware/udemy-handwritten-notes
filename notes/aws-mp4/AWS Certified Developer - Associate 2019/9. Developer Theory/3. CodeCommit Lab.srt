@@ -1,0 +1,511 @@
+1
+00:00:00,630 --> 00:00:06,700
+Helike hookers and welcome to this lecture and this lecture is going to be all about code commit and
+
+2
+00:00:06,720 --> 00:00:08,160
+it's going to be a lab.
+
+3
+00:00:08,160 --> 00:00:15,300
+So first we're going to create a new repository in code commits we're going to add a file into the repository.
+
+4
+00:00:15,300 --> 00:00:20,850
+We're going to create a new branch which is like a new working area in the repository.
+
+5
+00:00:20,850 --> 00:00:22,520
+We're then going to update our file.
+
+6
+00:00:22,530 --> 00:00:28,290
+And then finally we're going to merge all changes from a branch back into the most repo.
+
+7
+00:00:28,740 --> 00:00:32,350
+So if you've got time please join me in the AWOS console.
+
+8
+00:00:32,730 --> 00:00:40,640
+So here I am in the console and you will find code commit it's down on the developer tools.
+
+9
+00:00:40,680 --> 00:00:48,550
+So just click on code commit click on get started and they have recently updated the console for code
+
+10
+00:00:48,550 --> 00:00:52,790
+commit to make it easier and it much more user friendly than it used to be.
+
+11
+00:00:52,990 --> 00:00:58,000
+So that's why you can see this banner up here saying do I want to return to the old experience.
+
+12
+00:00:58,000 --> 00:00:59,010
+Well I definitely don't.
+
+13
+00:00:59,070 --> 00:01:01,150
+I'm going to stick with that new experience.
+
+14
+00:01:01,300 --> 00:01:04,010
+So this lab uses the new console.
+
+15
+00:01:04,150 --> 00:01:09,460
+So the first thing we're going to do is create our new repository and we're going to start by giving
+
+16
+00:01:09,460 --> 00:01:10,260
+it a name.
+
+17
+00:01:10,300 --> 00:01:13,780
+And I'm just going to call this CC repo.
+
+18
+00:01:13,810 --> 00:01:16,120
+You can add an optional description
+
+19
+00:01:22,600 --> 00:01:24,430
+and then click Create.
+
+20
+00:01:24,540 --> 00:01:30,640
+So that has successfully created all repository and it gives you a description of the different types
+
+21
+00:01:30,730 --> 00:01:36,810
+of connection you can have in your repository so you can have either CPS or S-sh.
+
+22
+00:01:37,030 --> 00:01:41,100
+And this just describes the different connection types from your clients.
+
+23
+00:01:41,200 --> 00:01:46,870
+So whenever you connect to the repository it's always done in a secure way and your connections will
+
+24
+00:01:46,870 --> 00:01:51,070
+be encrypted in transit using either CPS or S-sh.
+
+25
+00:01:51,190 --> 00:01:55,600
+But we're not going to configure those kind of connections right now we're just going to interact with
+
+26
+00:01:55,660 --> 00:01:57,790
+our repository using the console.
+
+27
+00:01:57,790 --> 00:02:00,650
+So I'm just going to close that section down.
+
+28
+00:02:00,880 --> 00:02:04,600
+And now we're going to add our very first file into the repository.
+
+29
+00:02:04,600 --> 00:02:09,830
+So click on that file and we're going to create a new file.
+
+30
+00:02:09,940 --> 00:02:23,320
+So we're just going to create a really simple text file.
+
+31
+00:02:23,490 --> 00:02:24,980
+We need to give it a name.
+
+32
+00:02:27,440 --> 00:02:34,790
+The name of the author and an e-mail address associated with this change that we're making.
+
+33
+00:02:35,060 --> 00:02:39,850
+And we can also add an optional commit message as we commit or change into the master
+
+34
+00:02:44,490 --> 00:02:46,520
+and then select commit changes.
+
+35
+00:02:48,250 --> 00:02:52,810
+So that fine has now been committed to the master and you can say that we can view the file from the
+
+36
+00:02:52,810 --> 00:02:56,210
+console if we click on the name of our repository.
+
+37
+00:02:56,230 --> 00:03:02,150
+We can see the file is located there and we can see that it's located in the Mostert branch.
+
+38
+00:03:02,260 --> 00:03:06,990
+And of course the most a branch that's all open source or almost a source of our code.
+
+39
+00:03:07,120 --> 00:03:11,400
+But just imagine that you needed to make a change you needed to update a file.
+
+40
+00:03:11,410 --> 00:03:17,800
+For example if you are developing a new feature or if you are fixing a bug in an existing piece of code
+
+41
+00:03:18,210 --> 00:03:22,060
+Well you wouldn't want to make that change on the master copy of your data.
+
+42
+00:03:22,120 --> 00:03:24,340
+So that is where branches come in.
+
+43
+00:03:24,520 --> 00:03:30,100
+And what you would do instead is you would create a new branch and you would make those updates on your
+
+44
+00:03:30,190 --> 00:03:37,600
+own branch and a new branch is simply a new working area and it's a copy or a clone of the original
+
+45
+00:03:37,660 --> 00:03:39,040
+master branch.
+
+46
+00:03:39,040 --> 00:03:42,060
+So let's go ahead and create a new branch.
+
+47
+00:03:42,130 --> 00:03:46,550
+So let's click on braunches create branch and we're going to give it a name.
+
+48
+00:03:46,550 --> 00:03:54,260
+I'm just going to call it my branch and we're going to select to create the branch from the master.
+
+49
+00:03:54,280 --> 00:03:56,620
+So it's going to be a clone of the Master.
+
+50
+00:03:56,620 --> 00:04:01,480
+So click on Create branch so that Sawhney Brawns created.
+
+51
+00:04:01,480 --> 00:04:05,730
+And if we click on the branch it has exactly the same file and we click on the file.
+
+52
+00:04:05,740 --> 00:04:07,270
+It looks exactly the same.
+
+53
+00:04:07,270 --> 00:04:09,680
+So now we can go ahead and add a file.
+
+54
+00:04:09,700 --> 00:04:17,670
+So I'm just going to click on it and add another line to the file.
+
+55
+00:04:18,010 --> 00:04:21,400
+Once again we need to add the author name so he might get it.
+
+56
+00:04:21,400 --> 00:04:24,410
+What's the email address and we can add an optional message.
+
+57
+00:04:24,430 --> 00:04:24,910
+Again
+
+58
+00:04:35,250 --> 00:04:38,570
+and click on commit changes.
+
+59
+00:04:38,580 --> 00:04:44,990
+So now we've updated the file but we've only updated it in my branch and if we go to branches We've
+
+60
+00:04:44,990 --> 00:04:46,860
+got two different branches there.
+
+61
+00:04:46,950 --> 00:04:50,870
+And you can say that we lost comment made a comment on my branch just now.
+
+62
+00:04:51,270 --> 00:04:54,980
+But the original branch is still three minutes out of date.
+
+63
+00:04:55,050 --> 00:04:59,680
+And at this stage in practice you'd probably want to get your updates peer reviewed.
+
+64
+00:04:59,940 --> 00:05:06,060
+You might want to run some tests say some automated tests preferably or some manual tests to make sure
+
+65
+00:05:06,060 --> 00:05:10,320
+that you're happy with the changes and that they're good to go and that you're confident that you want
+
+66
+00:05:10,320 --> 00:05:12,230
+to merge them into the master.
+
+67
+00:05:12,240 --> 00:05:15,860
+So once you're happy and you're ready to merge your changes into the master.
+
+68
+00:05:16,020 --> 00:05:19,350
+The next thing you need to do is create a pull request.
+
+69
+00:05:19,560 --> 00:05:24,450
+And this is going to apply the changes that we made in our branch into the Mostert repository.
+
+70
+00:05:24,450 --> 00:05:28,740
+So it's going to merge the change we made into that mosta branch.
+
+71
+00:05:28,740 --> 00:05:34,530
+So in order to do that we click on Create pull request and we need to define the source and destination
+
+72
+00:05:34,910 --> 00:05:40,620
+so the destination is going to be the Mahsa and the source is going to be my branch.
+
+73
+00:05:40,620 --> 00:05:44,700
+So select your branch and then click on compare.
+
+74
+00:05:44,820 --> 00:05:50,430
+And what this does is it runs a number of tests to make sure that there's no conflict between my branch
+
+75
+00:05:50,490 --> 00:05:51,440
+and the mosta.
+
+76
+00:05:51,570 --> 00:05:56,220
+So for example one of the checks it would do is it would check that the mosta has not been updated by
+
+77
+00:05:56,220 --> 00:05:59,720
+somebody else while you were preparing your own changes.
+
+78
+00:05:59,790 --> 00:06:03,470
+And if that has happened that means your own branch is going to be out of date.
+
+79
+00:06:03,540 --> 00:06:08,520
+And if your branch is out of sight then you're going to have to clone the code from the most to gain
+
+80
+00:06:08,880 --> 00:06:12,100
+and add your changes into the brand new copy of the code.
+
+81
+00:06:12,210 --> 00:06:16,490
+But for us right now there shouldn't be any conflicts between your branch and the master.
+
+82
+00:06:16,590 --> 00:06:21,090
+So we should be able to go ahead and much change into the most branch.
+
+83
+00:06:21,120 --> 00:06:25,400
+So first of all we need to give Amerge a title to describe what we're doing.
+
+84
+00:06:26,840 --> 00:06:34,240
+So I'm just going to type merging my branch into the mosta And if we scroll down it shows you this visual
+
+85
+00:06:34,240 --> 00:06:39,940
+representation of the changes that we're actually making is compared to two files and it's detected
+
+86
+00:06:39,970 --> 00:06:41,770
+that we're adding this line here.
+
+87
+00:06:41,800 --> 00:06:46,780
+And if you ever used Get help before it's very similar you get the same view and get hardware where
+
+88
+00:06:46,780 --> 00:06:52,450
+it will show you if you've deleted something changed something or added something and it would color
+
+89
+00:06:52,450 --> 00:06:54,910
+code that the differences between the two files.
+
+90
+00:06:54,930 --> 00:07:00,220
+So it makes it really easy to identify the changes that are going to be made especially if somebody
+
+91
+00:07:00,220 --> 00:07:01,980
+else is reviewing your code.
+
+92
+00:07:01,990 --> 00:07:06,940
+So let's go ahead and click Create and that will create a pull request.
+
+93
+00:07:06,940 --> 00:07:12,250
+So now a pull request has been created and the next thing which needs to do is click on much and that
+
+94
+00:07:12,250 --> 00:07:15,320
+will merge or branch into the monster repository.
+
+95
+00:07:15,490 --> 00:07:21,160
+And it gives you the option of deleting the source branch off to the much so do you want to delete my
+
+96
+00:07:21,160 --> 00:07:23,860
+branch off the merge has been completed or not.
+
+97
+00:07:23,860 --> 00:07:29,140
+And generally you would want it to delete that source branch off to you has merged at a later date if
+
+98
+00:07:29,140 --> 00:07:33,880
+you want to do another change and it's best practice to just create another branch and start again with
+
+99
+00:07:33,880 --> 00:07:35,230
+a clean branch.
+
+100
+00:07:35,240 --> 00:07:40,240
+So let's go ahead and click merge pull request and hopefully that should be successful.
+
+101
+00:07:40,240 --> 00:07:45,340
+So it says my branch has been merged into monster and if we click through these tabs it just gives you
+
+102
+00:07:45,340 --> 00:07:47,940
+an overview of the events that happened.
+
+103
+00:07:47,980 --> 00:07:50,750
+So she created our pull request.
+
+104
+00:07:51,040 --> 00:07:53,670
+We merged the pool request.
+
+105
+00:07:53,890 --> 00:08:01,000
+We can take a look at the changes and we can also view the commits as well and if we go back to our
+
+106
+00:08:01,030 --> 00:08:04,460
+branches you can see that my branch has now been deleted.
+
+107
+00:08:04,480 --> 00:08:10,150
+So we only have the most branch if we click on the most a branch click on the file and you can see a
+
+108
+00:08:10,150 --> 00:08:11,490
+file has been updated.
+
+109
+00:08:11,530 --> 00:08:15,200
+So it's very similar to get hub if you ever use that before.
+
+110
+00:08:15,220 --> 00:08:20,020
+And in addition to working in the console You can also work with code commit from your local machine
+
+111
+00:08:20,140 --> 00:08:25,270
+and you can interact with the repository using the standard get commands and you don't really need to
+
+112
+00:08:25,270 --> 00:08:29,880
+know that for the exam you don't need to memorize any get commands or anything like that.
+
+113
+00:08:29,890 --> 00:08:34,930
+The main thing you need to know for the exam is that code commit is a source control system enables
+
+114
+00:08:34,930 --> 00:08:40,150
+collaboration between different teams in different users working on the same project and it's secure
+
+115
+00:08:40,240 --> 00:08:46,630
+allowing you to connect using HGT B.S. and S-sh So your data is always protected in transit.
+
+116
+00:08:46,630 --> 00:08:52,940
+So I really just remember that the exam what code commit is and what it is used for and there's just
+
+117
+00:08:53,000 --> 00:08:59,650
+one last thing I want to show you on code commit which is under settings and you can actually configure
+
+118
+00:08:59,780 --> 00:09:07,850
+notifications using S and S and cloud watch to send notifications to subscribers when certain events
+
+119
+00:09:07,850 --> 00:09:08,990
+happen in your code.
+
+120
+00:09:08,990 --> 00:09:10,080
+Commit repository.
+
+121
+00:09:10,130 --> 00:09:16,160
+So for example you can send a notification when somebody does a pull request or closes a pull request
+
+122
+00:09:16,190 --> 00:09:19,400
+or when somebody comments on a poll request as well.
+
+123
+00:09:19,580 --> 00:09:23,380
+And this is why you would set it up so you can set up a cloud watch event roll.
+
+124
+00:09:23,570 --> 00:09:31,260
+And also an SNF topic for people to subscribe to that notifications for people to subscribe to the notifications.
+
+125
+00:09:31,700 --> 00:09:33,730
+So that is the end of this lecture.
+
+126
+00:09:33,890 --> 00:09:36,120
+If you have any questions please let me know.
+
+127
+00:09:36,350 --> 00:09:38,620
+If not feel free to move on to the next lecture.
+
+128
+00:09:38,690 --> 00:09:39,170
+Thank you.

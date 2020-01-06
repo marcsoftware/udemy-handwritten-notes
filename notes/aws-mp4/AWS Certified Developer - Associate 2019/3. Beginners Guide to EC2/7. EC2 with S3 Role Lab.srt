@@ -1,0 +1,627 @@
+1
+00:00:00,310 --> 00:00:06,750
+OK hello cloggers and welcome to this lecture this lecture we're going to look at easy to with as three
+
+2
+00:00:06,800 --> 00:00:07,680
+roles.
+
+3
+00:00:07,710 --> 00:00:13,230
+So you might remember in the last lecture we created our secret access key access key ID.
+
+4
+00:00:13,260 --> 00:00:19,540
+We then ran AWOS configure and we were able to provision a bucket and a copy a file up to that packet.
+
+5
+00:00:19,560 --> 00:00:27,750
+We then basically went into the I-AM console and we went and deleted that Secret Access Key ID and our
+
+6
+00:00:27,750 --> 00:00:28,540
+access.
+
+7
+00:00:28,540 --> 00:00:32,780
+So now we are no longer able to communicate with the S3.
+
+8
+00:00:32,900 --> 00:00:37,590
+And so the next thing we're going to do is we're going to create a role and we're going to give that
+
+9
+00:00:37,680 --> 00:00:42,810
+S3 admin access and then we're going to apply that role to a running a C to instance.
+
+10
+00:00:42,810 --> 00:00:46,690
+So this is a lab and you will need to look into the AWOS console.
+
+11
+00:00:47,230 --> 00:00:51,800
+OK so I've looked into the AWOS code so I'm going to go over to services and I'm going to go down to
+
+12
+00:00:51,810 --> 00:00:55,860
+security identity and compliance and click on I am.
+
+13
+00:00:55,890 --> 00:01:01,970
+Now we've got our user in here and our users in our group we have a look at our user could develop one
+
+14
+00:01:02,490 --> 00:01:08,160
+and we can see if we click on developer one that they're inheriting the administrator access from the
+
+15
+00:01:08,160 --> 00:01:08,950
+group.
+
+16
+00:01:09,060 --> 00:01:15,090
+Click on security credentials we'll see actually generated an Access Key ID just for consistency.
+
+17
+00:01:15,090 --> 00:01:16,480
+Just go ahead and delete that.
+
+18
+00:01:16,480 --> 00:01:20,100
+So this you said no longer has any kind of access.
+
+19
+00:01:20,100 --> 00:01:23,020
+So what I want to do now is I want to go ahead and create a role.
+
+20
+00:01:23,040 --> 00:01:30,360
+So if we click on roles it says what roles have roles or a secure way to grant permissions to entities
+
+21
+00:01:30,360 --> 00:01:31,450
+that you trust.
+
+22
+00:01:31,590 --> 00:01:40,410
+Basically you allow you to row two resources within AWOS so you could give your E.C to instance you
+
+23
+00:01:40,410 --> 00:01:45,900
+know you basically create a role that allows you to instance to talk to S-3 where you create a role
+
+24
+00:01:45,900 --> 00:01:51,950
+that allows Lamda to execute or you create a role that allows Lamda to write things to S-3 or to dynamite
+
+25
+00:01:51,950 --> 00:01:52,610
+D-B.
+
+26
+00:01:52,770 --> 00:01:57,360
+If you don't know what Lamda dynamo Bay or any of that is just yet to worry we are going to cover it
+
+27
+00:01:57,420 --> 00:01:58,760
+in the course.
+
+28
+00:01:58,770 --> 00:02:01,570
+So what I'm going to do is going to go over here and create a row.
+
+29
+00:02:01,800 --> 00:02:05,580
+And in here we're going to create a role for an AWOS service.
+
+30
+00:02:05,580 --> 00:02:08,540
+You can create a role for another AWOS account.
+
+31
+00:02:08,580 --> 00:02:11,130
+You can also use it for web identity's.
+
+32
+00:02:11,280 --> 00:02:16,900
+So this be things like cognito or any open ID provide us like Facebook for example.
+
+33
+00:02:17,100 --> 00:02:21,410
+And then you can also allow your roles to interact with active directory.
+
+34
+00:02:21,420 --> 00:02:25,520
+So Semmel two federations so this would be your corporate directory.
+
+35
+00:02:25,680 --> 00:02:29,310
+We're going to do this for the AWOS service and we're going to do this for AC too.
+
+36
+00:02:29,310 --> 00:02:30,870
+This is the most common roles.
+
+37
+00:02:31,170 --> 00:02:36,540
+Let's go ahead and click on A.C. 2 and go ahead and hit next on our permissions and in here we've got
+
+38
+00:02:36,540 --> 00:02:37,980
+all our different policy types.
+
+39
+00:02:37,980 --> 00:02:44,430
+Now we could give our easy to instance administrator access but that would be pretty insane because
+
+40
+00:02:44,430 --> 00:02:50,310
+if that is easy to instance was compromised and somebody managed to hack it and they could then go in
+
+41
+00:02:50,310 --> 00:02:53,100
+and start provisioning stuff inside Al cloud.
+
+42
+00:02:53,130 --> 00:02:58,180
+They could go and create other E.C two instances they could go and delete things.
+
+43
+00:02:58,260 --> 00:03:02,060
+So we don't want to do that we want to have a policy of least privilege certain here.
+
+44
+00:03:02,110 --> 00:03:08,570
+We don't want to do is just type in S-3 and in here we can see that with a policy that is Amazon S3
+
+45
+00:03:08,640 --> 00:03:10,670
+full access so we can click on that.
+
+46
+00:03:10,750 --> 00:03:12,570
+You don't actually see what the policies look like.
+
+47
+00:03:12,570 --> 00:03:16,320
+You can click on the link and you can go in and look at that Jason.
+
+48
+00:03:16,470 --> 00:03:18,480
+And essentially this is a policy document.
+
+49
+00:03:18,480 --> 00:03:24,630
+It's all a whole bunch of just keep his so get a version and then we've got our statement and our statement
+
+50
+00:03:24,630 --> 00:03:26,240
+has some nested rules inside.
+
+51
+00:03:26,250 --> 00:03:30,580
+So we've got effect allow action S-3 resorts everything.
+
+52
+00:03:30,600 --> 00:03:38,050
+So essentially this Jason is saying are going to allow basically this row to do anything inside S-3.
+
+53
+00:03:38,190 --> 00:03:43,830
+So we're just going to go up here and close that and come back over so you can you definitely have to
+
+54
+00:03:43,830 --> 00:03:49,970
+understand how to read roles going into this exam so do be aware of that or how to read Jason policies.
+
+55
+00:03:50,010 --> 00:03:52,860
+So Amazon S3 full access is the one that we want.
+
+56
+00:03:52,890 --> 00:03:54,290
+Let's go ahead and hit next.
+
+57
+00:03:54,390 --> 00:03:59,200
+I'm going to call this my three admin access.
+
+58
+00:03:59,550 --> 00:04:05,610
+So that's my real name and the role description allows Acey two instances to code A.W. services on your
+
+59
+00:04:05,610 --> 00:04:06,060
+behalf.
+
+60
+00:04:06,060 --> 00:04:13,140
+You might want to change that to call AWOS S-3 on your behalf because that this row or only allow us
+
+61
+00:04:13,140 --> 00:04:16,710
+to interact with x ray we can't do anything else.
+
+62
+00:04:16,710 --> 00:04:18,370
+So let's go ahead and hit create.
+
+63
+00:04:18,570 --> 00:04:20,540
+And that has now created our role.
+
+64
+00:04:20,550 --> 00:04:24,960
+I've got a whole bunch of other roles in here from other courses just ignore that.
+
+65
+00:04:25,050 --> 00:04:26,250
+You can see the road down here.
+
+66
+00:04:26,250 --> 00:04:32,800
+My S-3 admin access so don't want to do now is I want to go over again too easy too.
+
+67
+00:04:32,830 --> 00:04:39,470
+So I'm going to go to compute and click on E.S. too and what I want to do is apply this row to my Acey
+
+68
+00:04:39,480 --> 00:04:40,390
+to instance.
+
+69
+00:04:40,440 --> 00:04:46,110
+But before we do that let's just look back into the two instance and make sure that we definitely cannot
+
+70
+00:04:46,200 --> 00:04:53,580
+access S-3 case here I am in my terminal window going to S-sh over to my Acey to instance going to elevate
+
+71
+00:04:53,580 --> 00:04:54,860
+my privileges to root.
+
+72
+00:04:54,900 --> 00:04:58,660
+And I'm going to clear the screen and just type abs s s.
+
+73
+00:04:58,690 --> 00:05:04,850
+LS get an error message saying invalid access ID when calling the list bucket action.
+
+74
+00:05:05,010 --> 00:05:11,400
+Now I could go in and type AWOS configure and do a whole bunch of new you know secret access case an
+
+75
+00:05:11,400 --> 00:05:12,520
+Access Key IDs.
+
+76
+00:05:12,660 --> 00:05:13,450
+I'm not going to do that.
+
+77
+00:05:13,470 --> 00:05:17,150
+What I'm going to do is just tap back over to the AWOS console.
+
+78
+00:05:17,200 --> 00:05:23,160
+So I'm back in the E.S. to console for eight of us are going to click on my little AC to instance I'm
+
+79
+00:05:23,160 --> 00:05:28,350
+going to go to actions and I'm going to go over to instant settings and you can see just over here a
+
+80
+00:05:28,350 --> 00:05:35,880
+touch replace a roll soon click in here and I'm going to go ahead and add my S-3 admin access road.
+
+81
+00:05:35,880 --> 00:05:42,600
+Now note that this box will earn the order to populate with two rolls we can't see any of my Lamda rolls
+
+82
+00:05:42,600 --> 00:05:43,340
+for example.
+
+83
+00:05:43,560 --> 00:05:47,570
+So my S-3 admin access I need to go ahead and hit apply.
+
+84
+00:05:47,970 --> 00:05:50,010
+So that operation has now succeeded.
+
+85
+00:05:50,010 --> 00:05:54,240
+I didn't need to stop my instance or return to it or terminate it or anything like that.
+
+86
+00:05:54,270 --> 00:05:56,130
+I just applied it to the instance.
+
+87
+00:05:56,130 --> 00:05:58,080
+Let's go back over to our terminal window.
+
+88
+00:05:58,240 --> 00:05:59,630
+OK so I'm back in my terminal window.
+
+89
+00:05:59,650 --> 00:06:05,520
+If I type in AWOS s three Ls I'm going to get the same error message and the reason for this is because
+
+90
+00:06:05,520 --> 00:06:12,750
+it still has access key ID and secret access keys saved in a little hidden directory inside our Linux
+
+91
+00:06:12,810 --> 00:06:15,400
+instance and it would do the same in Windows as well.
+
+92
+00:06:15,540 --> 00:06:22,710
+So in order to stop this just go see a search change directory and you want to go to your home directory
+
+93
+00:06:22,950 --> 00:06:24,770
+and then it's for Slashdot.
+
+94
+00:06:24,810 --> 00:06:25,830
+AWOS.
+
+95
+00:06:25,830 --> 00:06:30,660
+And that's a little hidden directory if you type in ls in here you can see the configuration and you
+
+96
+00:06:30,660 --> 00:06:32,750
+can see your credentials.
+
+97
+00:06:32,760 --> 00:06:38,980
+And in order to stop it from doing this just go in and remove credentials.
+
+98
+00:06:39,630 --> 00:06:43,590
+Are him credentials that will say remove regular file credentials.
+
+99
+00:06:43,590 --> 00:06:49,600
+Yes and then you may also just want to do the same with the COM fix or remove config.
+
+100
+00:06:49,800 --> 00:06:53,780
+Yes if we type Ellefson now will say that there's nothing in there.
+
+101
+00:06:53,970 --> 00:07:00,360
+So if we go back to our root directory and just clear the screen what we'll do now is just type AWOS
+
+102
+00:07:00,450 --> 00:07:03,840
+S-3 else it will see that it doesn't have any credentials.
+
+103
+00:07:03,840 --> 00:07:07,820
+But now the role has kicked in and we can see our S-3 buckets.
+
+104
+00:07:07,830 --> 00:07:14,970
+We've got a cloud Guri one two three four minus k and we can actually go in and have a look at the contents
+
+105
+00:07:14,970 --> 00:07:15,360
+of that.
+
+106
+00:07:15,380 --> 00:07:20,220
+So yes S-3 less than three and then a cloud Gary.
+
+107
+00:07:20,370 --> 00:07:27,160
+One two three four hyphen and then our K and you'll be able to see our Hello 0.60.
+
+108
+00:07:27,180 --> 00:07:30,800
+Then again we could go to an echo.
+
+109
+00:07:31,080 --> 00:07:35,640
+So hello cloud gurus too.
+
+110
+00:07:35,970 --> 00:07:38,980
+And we're going to put that out to help too.
+
+111
+00:07:39,040 --> 00:07:51,640
+It takes t takes t and them what we want to do is AWOS S-3 then copy hello to takes t over two three
+
+112
+00:07:52,110 --> 00:07:53,520
+and then a cloud Gary.
+
+113
+00:07:53,850 --> 00:07:56,060
+One two three four.
+
+114
+00:07:56,350 --> 00:07:58,530
+OK that should hopefully copy it up.
+
+115
+00:07:58,530 --> 00:07:59,110
+There you go.
+
+116
+00:07:59,120 --> 00:08:00,430
+It's been successful.
+
+117
+00:08:00,510 --> 00:08:05,250
+And again if we just run that command A.W. S S3 ls and have a look at the contents you'll be able to
+
+118
+00:08:05,250 --> 00:08:07,890
+see our second text file in there.
+
+119
+00:08:07,890 --> 00:08:14,670
+Now for Windows users if you want to locate way your configuration credential file is in your user profile
+
+120
+00:08:14,940 --> 00:08:18,420
+and then forwards Slashdot AWOS and you can go.
+
+121
+00:08:18,450 --> 00:08:23,790
+If you just go to Dacosta AWOS Amazon Dot com for slushed Zelaya for slushed latest vote Sless user
+
+122
+00:08:23,790 --> 00:08:24,150
+guide.
+
+123
+00:08:24,180 --> 00:08:27,770
+And then it's on to Selye hyphen com fake hyphen files start.
+
+124
+00:08:27,850 --> 00:08:29,510
+T l.
+
+125
+00:08:29,750 --> 00:08:32,730
+So what are my exam tips let's go over and have a look.
+
+126
+00:08:32,730 --> 00:08:38,430
+So my exam tips will roles allow you not to use Access Key IDs and Secret Access case.
+
+127
+00:08:38,610 --> 00:08:41,530
+And if you do lose your access key ideal secret access.
+
+128
+00:08:41,550 --> 00:08:45,410
+Maybe you accidently save it to a file that you publish and get hub.
+
+129
+00:08:45,510 --> 00:08:52,950
+Anyone can access your AWOS account and if you've given that account administrator access they can literally
+
+130
+00:08:53,010 --> 00:08:54,180
+do anything.
+
+131
+00:08:54,330 --> 00:08:55,770
+So they're not very secure.
+
+132
+00:08:55,770 --> 00:08:57,440
+They're difficult to manage.
+
+133
+00:08:57,450 --> 00:09:02,880
+You have to go and install them on every single easy to instance whereas roles are universal and you
+
+134
+00:09:02,880 --> 00:09:09,570
+can apply them across multiple E.C two instances and you can't compromise the roles or roles are always
+
+135
+00:09:09,570 --> 00:09:10,200
+preferred.
+
+136
+00:09:10,200 --> 00:09:16,960
+From a security perspective if you are given a choice in a US an exam scenario or between Access Key
+
+137
+00:09:17,010 --> 00:09:24,210
+ID and Secret Access case versus rolls always choose roles are also controlled by policies so we saw
+
+138
+00:09:24,530 --> 00:09:31,290
+we added the S-3 admin access policy policies just basically a whole bunch of Jason and it basically
+
+139
+00:09:31,290 --> 00:09:34,930
+has keypads and it states what you can and can't do.
+
+140
+00:09:34,950 --> 00:09:39,290
+You can change a policy on a row and it's going to take immediate effect.
+
+141
+00:09:39,300 --> 00:09:47,880
+So I could go in there and go into my S-3 admin access policy and start tweaking the Jason and that
+
+142
+00:09:47,880 --> 00:09:49,050
+will take immediate effect.
+
+143
+00:09:49,050 --> 00:09:53,970
+I could say OK I want to be only able to read from history I don't want that person to do any writes
+
+144
+00:09:54,240 --> 00:09:56,530
+As soon as you save that policy.
+
+145
+00:09:56,700 --> 00:10:02,710
+That would take immediate effect and then most improved that you can attach and detach roles to running
+
+146
+00:10:02,950 --> 00:10:07,480
+two instances without having to stop or terminate these instances.
+
+147
+00:10:07,480 --> 00:10:10,320
+It was certainly quite a recent thing.
+
+148
+00:10:10,360 --> 00:10:13,260
+Many many years that was a very popular exam topic.
+
+149
+00:10:13,260 --> 00:10:19,120
+You used to have to terminate your AC to instance and then recreate it with the role attached but now
+
+150
+00:10:19,120 --> 00:10:23,270
+you can attach and detach roles to running two instances.
+
+151
+00:10:23,350 --> 00:10:24,940
+So that is it for this lecture guys.
+
+152
+00:10:24,940 --> 00:10:29,500
+Remember if you do have a scenario question where you've got roles versus access key IDs and secret
+
+153
+00:10:29,500 --> 00:10:30,120
+access.
+
+154
+00:10:30,120 --> 00:10:32,210
+Kids always choose roles.
+
+155
+00:10:32,230 --> 00:10:33,750
+Do you have any questions please let me know.
+
+156
+00:10:33,750 --> 00:10:35,540
+If not feel free to move on to the next lecture.
+
+157
+00:10:35,560 --> 00:10:36,060
+Thank you.

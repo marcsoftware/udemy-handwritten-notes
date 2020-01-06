@@ -1,0 +1,251 @@
+1
+00:00:00,110 --> 00:00:05,910
+OK hello cloggers and welcome to this lecture and this lecture we're going to look at S.N. s or simple
+
+2
+00:00:05,970 --> 00:00:07,320
+notification service.
+
+3
+00:00:07,320 --> 00:00:13,260
+Now we have used this before we use this in the X-ray lecture that was part of our surplus application
+
+4
+00:00:13,260 --> 00:00:19,020
+that was broken but we're just going to go into the theory behind S and S So what is S and S basically
+
+5
+00:00:19,020 --> 00:00:24,260
+it's a web service that makes it easy to set up operate and send notifications from the cloud and it
+
+6
+00:00:24,270 --> 00:00:30,360
+provides developers a highly scalable flexible and cost effective capability to publish messages from
+
+7
+00:00:30,360 --> 00:00:35,680
+an application and immediately deliver them to subscribers or to other applications.
+
+8
+00:00:35,700 --> 00:00:40,560
+So you can have push notifications to all your different devices so it could go to Apple devices Google
+
+9
+00:00:40,560 --> 00:00:48,030
+devices fire iOS devices Windows devices as well as Android devices and devices in China with Baidoo
+
+10
+00:00:48,060 --> 00:00:49,330
+cloud push.
+
+11
+00:00:49,350 --> 00:00:55,770
+So besides pushing cloud notifications directly to mobile devices you can use s and s to deliver notifications
+
+12
+00:00:55,770 --> 00:01:04,410
+via SML text messages or to email or to ask us or to any hige TDP and point and S and S notifications
+
+13
+00:01:04,410 --> 00:01:10,020
+can also trigger a lambda functions and when a message is published to an S and S topic that has a lambda
+
+14
+00:01:10,020 --> 00:01:11,520
+function subscribe to it.
+
+15
+00:01:11,610 --> 00:01:16,950
+The lambda function is invoked with the payload of the published message and we saw this when we created
+
+16
+00:01:17,430 --> 00:01:18,980
+this web site using poly.
+
+17
+00:01:19,000 --> 00:01:26,040
+We're actually using as soon as to pass the actual text to another lambda function which then basically
+
+18
+00:01:26,040 --> 00:01:31,370
+went in and used the poly service and then took it and stored it in S3.
+
+19
+00:01:31,380 --> 00:01:36,600
+See Lenda function receives the payload as an input parameter can manipulate the information in the
+
+20
+00:01:36,600 --> 00:01:43,200
+message publish the message to another Asinus topic or send the message to other A.W. services such
+
+21
+00:01:43,200 --> 00:01:48,090
+as Polly or S-3 which is what we did in the poly section of the course.
+
+22
+00:01:48,180 --> 00:01:54,480
+So as n s allows you to group multiple recipients using topics and a topic is an access point for allowing
+
+23
+00:01:54,480 --> 00:02:00,530
+recipients to dynamically subscribe for identity copies of the same notification.
+
+24
+00:02:00,540 --> 00:02:06,690
+So one topic can support deliveries to multiple types So for example you can group together iOS Android
+
+25
+00:02:06,720 --> 00:02:08,440
+and SS recipients.
+
+26
+00:02:08,610 --> 00:02:14,820
+And when you publish once to a topic as NSA is going to deliver the appropriate Eely formatted copies
+
+27
+00:02:14,880 --> 00:02:21,760
+of the message to each subscriber so you can have multiple subscribers to a topic using different technologies.
+
+28
+00:02:21,890 --> 00:02:28,200
+Now to prevent messages from being lost all messages publish to S and S are stored redundantly across
+
+29
+00:02:28,200 --> 00:02:34,240
+multiple availability zones and some of the benefits that you get from essence is that you'd get instant
+
+30
+00:02:34,240 --> 00:02:36,270
+tannish push based delivery.
+
+31
+00:02:36,280 --> 00:02:40,460
+So there's no polling required as soon as you you know send that out.
+
+32
+00:02:40,470 --> 00:02:48,330
+It will go out to all devices yet simple API eyes and easy integration with applications flexible message
+
+33
+00:02:48,340 --> 00:02:50,910
+slavery over multiple transpo protocols.
+
+34
+00:02:50,910 --> 00:02:58,020
+So like I said before you know we could send it to as curious as we could send it by a text and then
+
+35
+00:02:58,020 --> 00:03:01,380
+using push notifications to multiple mobile devices.
+
+36
+00:03:01,550 --> 00:03:09,030
+We get Nick we get inexpensive pay as you go model with no upfront costs and you get a web based a AWOS
+
+37
+00:03:09,030 --> 00:03:13,340
+management console and office the simplicity of a point and click interface.
+
+38
+00:03:13,350 --> 00:03:19,860
+So what is the difference between and S and S Q S will both a messaging services in AWOS S and S is
+
+39
+00:03:19,860 --> 00:03:23,070
+push whereas as s polls or polls.
+
+40
+00:03:23,220 --> 00:03:28,950
+So just bear that in mind if you see some scenario questions asking if you want to implement a push
+
+41
+00:03:28,950 --> 00:03:35,180
+based one you want unless the one poll based one you want ask us in terms of the pricing the user pays
+
+42
+00:03:35,190 --> 00:03:40,050
+50 cents per one million Amazon s and s requests so it's incredibly cheap.
+
+43
+00:03:40,050 --> 00:03:48,120
+You also charge 6 cents per 100000 notifications deliveries or behave TDP and 75 cents per 100 notification
+
+44
+00:03:48,120 --> 00:03:54,730
+deliveries over S and then $2 per 100000 notification deliveries over email.
+
+45
+00:03:54,810 --> 00:04:01,710
+So Amazon s s follows the Publish subscribe or sub messaging paradigm with notifications being delivered
+
+46
+00:04:01,740 --> 00:04:07,890
+to clients using a push mechanism that eliminates the need to periodically check or poll for new information.
+
+47
+00:04:07,890 --> 00:04:08,820
+So that's the difference.
+
+48
+00:04:08,820 --> 00:04:15,260
+Like I said between Essence and ask us with simple API is required minimal upfront development effort
+
+49
+00:04:15,360 --> 00:04:21,360
+no maintenance or management overheads and pay as you go pricing as an S gives you as a developer easy
+
+50
+00:04:21,360 --> 00:04:25,780
+mechanisms to incorporate powerful for notification systems within your application.
+
+51
+00:04:25,800 --> 00:04:32,070
+So onto my exam tips so just remember what in essence is it's scalable and highly available notification
+
+52
+00:04:32,070 --> 00:04:35,920
+service which allows you to send push space notifications from the cloud.
+
+53
+00:04:35,930 --> 00:04:39,900
+You have a variety of message formats so you've got to mass text messages.
+
+54
+00:04:39,900 --> 00:04:47,400
+You've got e-mails you've got ex-U.S. and any HDTV endpoint it's a pub submodel where users subscribe
+
+55
+00:04:47,400 --> 00:04:51,730
+to topics and it's a push based mechanism rubrum pole base mechanism.
+
+56
+00:04:51,780 --> 00:04:57,790
+So you have to use s and s twice in this course so far we've used it when we were creating poly poly
+
+57
+00:04:57,810 --> 00:05:02,200
+Web site and we used it when we were doing X so it is in the services section.
+
+58
+00:05:02,300 --> 00:05:07,540
+If you do want to go and create an S and S topic you can but really you just need to know what it is
+
+59
+00:05:07,540 --> 00:05:12,160
+at a high level and how it's different from us as soon as it is pushed base.
+
+60
+00:05:12,180 --> 00:05:14,010
+Q As is pool based.
+
+61
+00:05:14,150 --> 00:05:17,030
+So is it that this lecture guys if you have any questions please let me know.
+
+62
+00:05:17,030 --> 00:05:18,720
+If not feel free to move on to the next lecture.
+
+63
+00:05:18,740 --> 00:05:19,250
+Thank you.

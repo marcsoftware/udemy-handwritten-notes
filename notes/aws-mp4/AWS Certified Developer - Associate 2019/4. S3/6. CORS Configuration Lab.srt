@@ -1,0 +1,535 @@
+1
+00:00:00,750 --> 00:00:05,980
+Hello cloud gurus and welcome to this lecture and this lecture is going to be a lab.
+
+2
+00:00:06,000 --> 00:00:11,810
+And in this lab we are going to set up cross origin resource sharing also known as cause.
+
+3
+00:00:12,200 --> 00:00:16,790
+And this can come up in the exam so it's really important for you to know what it is.
+
+4
+00:00:16,800 --> 00:00:24,440
+So basically it's just a way of allowing code that is in one S3 pocket to access or reference code that
+
+5
+00:00:24,450 --> 00:00:27,330
+is in another S3 bucket.
+
+6
+00:00:27,480 --> 00:00:33,300
+So really we were just allowing one resource to access another resource and that's why it's called Cross
+
+7
+00:00:33,330 --> 00:00:35,430
+origin resource sharing.
+
+8
+00:00:35,460 --> 00:00:39,360
+So if you've got time please join me in the W console.
+
+9
+00:00:39,420 --> 00:00:45,270
+So here I am in the W W console and we're just gonna go down to S3 which is on the left hand side under
+
+10
+00:00:45,270 --> 00:00:54,470
+storage so we're going to create a new bucket and we're going to call it my index website and click
+
+11
+00:00:54,470 --> 00:00:58,150
+next and we're going to configure this as a public bucket.
+
+12
+00:00:58,160 --> 00:01:04,640
+So I'm going to uncheck all of the public access protection just select all of these boxes and click
+
+13
+00:01:04,640 --> 00:01:14,510
+next and then click Create bucket and then we go into that bucket and we go to properties and we hit
+
+14
+00:01:14,630 --> 00:01:16,400
+static website hosting.
+
+15
+00:01:16,400 --> 00:01:20,860
+So this allows you to host a static Web site from within S3.
+
+16
+00:01:20,960 --> 00:01:27,780
+So we go in and select that and we select use this bucket to host a website.
+
+17
+00:01:28,270 --> 00:01:34,870
+And when we use S3 to host a website they provide you with this website endpoint you are L and it's
+
+18
+00:01:34,870 --> 00:01:38,550
+this website endpoint that we use to access the website.
+
+19
+00:01:38,560 --> 00:01:44,740
+And when we configure cores between 1 S3 website and another the access request is linked to this end
+
+20
+00:01:44,740 --> 00:01:45,950
+point your url.
+
+21
+00:01:45,970 --> 00:01:52,540
+So it's this end point you are that we can figure the access for between the two S3 Buckets and you'll
+
+22
+00:01:52,540 --> 00:01:53,650
+see that later on.
+
+23
+00:01:54,310 --> 00:02:00,370
+So next it's going to ask you the name of your index and error or H2 AML documents.
+
+24
+00:02:00,370 --> 00:02:08,740
+So we have to actually explicitly type this in so we are indexed to each demo error.
+
+25
+00:02:08,750 --> 00:02:11,910
+Dot H T M O and hit save.
+
+26
+00:02:13,000 --> 00:02:15,900
+So then we go back to that S3 bucket.
+
+27
+00:02:16,000 --> 00:02:19,840
+So we have a few files that we've prepared which we're going to be using in this lab and we're just
+
+28
+00:02:19,840 --> 00:02:22,140
+gonna upload these files into our bucket.
+
+29
+00:02:22,480 --> 00:02:24,090
+So let's take a look at those.
+
+30
+00:02:24,130 --> 00:02:26,310
+So we've got indexed to each Timo here.
+
+31
+00:02:26,390 --> 00:02:31,150
+And don't worry these are all going to be available in the resources section of the course for you to
+
+32
+00:02:31,150 --> 00:02:32,080
+download.
+
+33
+00:02:32,080 --> 00:02:37,870
+So this is just a simple Web page which just says Welcome to the index page and then it just runs this
+
+34
+00:02:37,900 --> 00:02:41,960
+simple script which loads up the contents of another page.
+
+35
+00:02:41,980 --> 00:02:45,220
+And this is the page that we're going to be storing in another S3 bucket.
+
+36
+00:02:45,220 --> 00:02:50,520
+So it's just using this script to get that each Timo from the other S3 bucket.
+
+37
+00:02:50,630 --> 00:02:56,320
+So let's take a look at load page to HMO and again it's just a really very simple piece of HMO code
+
+38
+00:02:56,350 --> 00:02:59,740
+just displaying the page has successfully loaded telcos.
+
+39
+00:02:59,770 --> 00:03:06,130
+So when you load your indexed HMO what you should see on the screen is you should see the welcome message.
+
+40
+00:03:06,130 --> 00:03:11,560
+And then underneath you should see the message that says this page has successfully loaded cloud gurus.
+
+41
+00:03:11,560 --> 00:03:15,340
+So we're going to upload these three files into our S3 bucket
+
+42
+00:03:18,600 --> 00:03:25,280
+so we just go in and select all three of those files and upload.
+
+43
+00:03:25,830 --> 00:03:28,770
+And we want to make this a public access.
+
+44
+00:03:28,800 --> 00:03:35,200
+That's going to be part of a website so next and upload.
+
+45
+00:03:35,590 --> 00:03:41,050
+So if all our files have loaded successfully we should be able to access them as though they were a
+
+46
+00:03:41,050 --> 00:03:41,950
+Web site.
+
+47
+00:03:41,980 --> 00:03:51,130
+So let's go to properties and into static web site hosting and we're going to grab this static web hosting
+
+48
+00:03:51,270 --> 00:03:58,600
+U.R.L. and that should take us straight to the index page so you can see that it's loaded the index
+
+49
+00:03:58,600 --> 00:04:05,380
+page and it has also sourced the HMO from load page or HMO because it's displaying the second message
+
+50
+00:04:05,380 --> 00:04:07,000
+down here as well.
+
+51
+00:04:07,060 --> 00:04:10,500
+So right now all of these files are located in one single bucket.
+
+52
+00:04:10,720 --> 00:04:16,150
+But we want to have our load page located in a different bucket so that we can set up the cross origin
+
+53
+00:04:16,150 --> 00:04:17,230
+resource sharing.
+
+54
+00:04:17,290 --> 00:04:25,900
+So we're going to go back in to our original S3 bucket and we're going to delete that load page because
+
+55
+00:04:25,900 --> 00:04:27,030
+we don't want to in the
+
+56
+00:04:34,190 --> 00:04:42,370
+and we're going to create a new bucket so this one is going to be my cause test bucket
+
+57
+00:04:45,240 --> 00:04:52,830
+click Next uncheck all of the public access protection and click next and then click Create bucket.
+
+58
+00:04:52,980 --> 00:05:00,210
+Then we go back into that bucket hit properties select static web site hosting.
+
+59
+00:05:00,540 --> 00:05:12,910
+Use this bucket to host the Web site index dot HMO and error to each to mail and hit save.
+
+60
+00:05:13,180 --> 00:05:21,260
+So then we want to go back into our bucket and upload our load to each terminal file
+
+61
+00:05:24,090 --> 00:05:30,810
+next public read access and upload.
+
+62
+00:05:30,900 --> 00:05:36,270
+So let's just check that we can access our load page or HD him out using the Web site and point for
+
+63
+00:05:36,270 --> 00:05:37,240
+a bucket.
+
+64
+00:05:37,290 --> 00:05:43,880
+So in order to do that we go to properties on the bucket starting web hosting and we use this end point.
+
+65
+00:05:43,890 --> 00:05:47,040
+You are out and we need to specify the name of the file
+
+66
+00:05:50,050 --> 00:05:54,780
+OK so that's your website you are all for our load page here Bill.
+
+67
+00:05:54,910 --> 00:06:01,720
+So we just want to copy that because we need to update our index to HMO to know where to find load page
+
+68
+00:06:01,720 --> 00:06:02,590
+or HD Hero.
+
+69
+00:06:02,620 --> 00:06:09,250
+So we go back to our file and replace that load page HMO with the U or L for the correct location.
+
+70
+00:06:09,250 --> 00:06:10,330
+So hopefully that's clear.
+
+71
+00:06:10,330 --> 00:06:17,950
+We have index dot HMO in one bucket and it's referencing the load page or HMO which is located in another
+
+72
+00:06:17,950 --> 00:06:25,650
+bucket and it's referencing load page via the ATP end point address save.
+
+73
+00:06:25,690 --> 00:06:29,310
+And then we go back to our original index bucket.
+
+74
+00:06:29,380 --> 00:06:30,990
+We need to get rid of this old version.
+
+75
+00:06:31,000 --> 00:06:36,220
+So we're good and I'm just going to delete fixes quicker the quickest way to get rid of the old version
+
+76
+00:06:38,980 --> 00:06:40,960
+and upload the new version
+
+77
+00:06:46,960 --> 00:06:56,170
+we need to grant public read access hit next next and upload.
+
+78
+00:06:56,360 --> 00:06:59,170
+I expect it's only going to show as that first page.
+
+79
+00:06:59,180 --> 00:07:05,240
+So it's only going to show us that index to HMO and we shouldn't be allowed to access the contents of
+
+80
+00:07:05,240 --> 00:07:09,320
+our second bucket even though that bucket is publicly accessible.
+
+81
+00:07:09,680 --> 00:07:11,300
+So let's just give this a go now.
+
+82
+00:07:11,300 --> 00:07:17,270
+So if we go to properties static web hosting and click on your static web hosting and point you are
+
+83
+00:07:17,280 --> 00:07:17,660
+well.
+
+84
+00:07:17,870 --> 00:07:23,720
+So it only allows us to access indexed or HD him so it doesn't give us actor access to the contents
+
+85
+00:07:23,720 --> 00:07:26,900
+of the second bucket because we don't have calls set up.
+
+86
+00:07:27,530 --> 00:07:35,210
+And if you're a chrome user like me you can view the browser error messages by just going to view developer
+
+87
+00:07:35,600 --> 00:07:38,110
+and hit javascript console.
+
+88
+00:07:38,210 --> 00:07:43,400
+And this is going to show us the error messages associated with this page and straight away we can see
+
+89
+00:07:43,400 --> 00:07:50,240
+that our request has been blocked by the cause policy so no access control allow origin header is present
+
+90
+00:07:50,270 --> 00:07:56,360
+in the requested resource so it's failed to load the resource and the server has responded with a status
+
+91
+00:07:56,390 --> 00:07:57,710
+of 4 0 3.
+
+92
+00:07:58,100 --> 00:08:03,140
+So that's a really easy way to see the error messages in your browser but if you're not using Chrome
+
+93
+00:08:03,230 --> 00:08:05,690
+I can show you how it looks in Safari.
+
+94
+00:08:05,690 --> 00:08:12,870
+So here is the same web page loaded into safari and we just go into develop and show javascript console.
+
+95
+00:08:13,020 --> 00:08:15,970
+And I'm just going to reload my page and there we are.
+
+96
+00:08:15,970 --> 00:08:19,820
+The error messages have appeared below and you just get a similar error message.
+
+97
+00:08:19,940 --> 00:08:25,970
+So it's not allowed by Access Control origin request cannot load our page due to access control checks
+
+98
+00:08:26,150 --> 00:08:28,460
+and it has failed to load our resource.
+
+99
+00:08:28,460 --> 00:08:33,650
+And if you're using internet explorer then just load up the developer tools and find your javascript
+
+100
+00:08:33,680 --> 00:08:37,750
+errors and you should see a really similar error in there as well.
+
+101
+00:08:37,790 --> 00:08:42,800
+So it's not letting us access the load page or HMO because we don't have cores set up.
+
+102
+00:08:42,800 --> 00:08:45,330
+So that is exactly what we're going to go and do now.
+
+103
+00:08:45,620 --> 00:08:51,710
+So in order to configure cause we need to go and find our Web site address for indexed or HD CML because
+
+104
+00:08:51,710 --> 00:08:55,580
+that is the file which is trying to access our load page.
+
+105
+00:08:55,580 --> 00:09:03,090
+So let's go into properties static web hosting and we need to copy this end point address
+
+106
+00:09:05,770 --> 00:09:14,620
+then we go back into our cores test bucket go to permissions and you'll see the course configuration
+
+107
+00:09:14,620 --> 00:09:15,480
+button there.
+
+108
+00:09:15,550 --> 00:09:17,770
+So we select that and they provide it.
+
+109
+00:09:17,770 --> 00:09:21,630
+This example calls configuration Ed to help us get started.
+
+110
+00:09:21,970 --> 00:09:27,880
+And I've also provided this sample policy as a resource in the course as well so you can just download
+
+111
+00:09:27,880 --> 00:09:30,550
+it and modify it to add your own origin.
+
+112
+00:09:30,550 --> 00:09:36,520
+So the one thing that you need to add in here is the allowed origin so where it says start.
+
+113
+00:09:37,270 --> 00:09:42,690
+Delete that star and add in your new URL hit save.
+
+114
+00:09:43,030 --> 00:09:46,080
+If you've got anything wrong in the syntax then it will tell you.
+
+115
+00:09:46,090 --> 00:09:47,320
+But we've got no errors here.
+
+116
+00:09:47,350 --> 00:09:48,070
+That's fine.
+
+117
+00:09:48,070 --> 00:09:53,170
+So that should be everything that we need to do to enable the cross origin resource sharing.
+
+118
+00:09:53,200 --> 00:09:57,500
+So let's go ahead and test it.
+
+119
+00:09:57,670 --> 00:09:58,160
+There we go.
+
+120
+00:09:58,210 --> 00:09:58,900
+And it's work.
+
+121
+00:09:58,930 --> 00:10:06,070
+So we're using the my index website or S3 Web site you are all so if it isn't working for you it might
+
+122
+00:10:06,070 --> 00:10:11,380
+be because you're using the wrong you or L you're using the address of the file in S3 but you actually
+
+123
+00:10:11,380 --> 00:10:14,700
+need to use the end point Web site you are L.
+
+124
+00:10:14,890 --> 00:10:19,890
+So you should see welcome to the index page because this page has successfully loaded cloud gurus.
+
+125
+00:10:19,900 --> 00:10:24,160
+So hopefully you're seeing you're seeing that message so cross origin resource sharing is a really good
+
+126
+00:10:24,160 --> 00:10:26,020
+way to organize your Web site.
+
+127
+00:10:26,020 --> 00:10:33,130
+So for example you could store image files in one bucket JavaScript in another bucket plain HMO in another
+
+128
+00:10:33,130 --> 00:10:39,610
+bucket and then use cross origin resource sharing to allow the resources from one bucket to access the
+
+129
+00:10:39,610 --> 00:10:44,740
+resources for another bucket by default one bucket or resource cannot access another.
+
+130
+00:10:45,400 --> 00:10:51,460
+And for security reasons if universal access were allowed that would leave your resources open to attack
+
+131
+00:10:51,940 --> 00:10:58,630
+leave you open to information theft and cause is the safe mechanism to allow controlled access between
+
+132
+00:10:58,630 --> 00:11:02,900
+one resource and another so that's the end of this lab.
+
+133
+00:11:02,910 --> 00:11:03,810
+I hope you enjoyed it.
+
+134
+00:11:03,810 --> 00:11:06,270
+And if you got time please join me in the next lecture.

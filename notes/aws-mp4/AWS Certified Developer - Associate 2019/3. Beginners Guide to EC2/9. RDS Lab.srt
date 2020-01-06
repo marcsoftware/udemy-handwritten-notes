@@ -1,0 +1,763 @@
+1
+00:00:00,440 --> 00:00:03,630
+Okay hello bloggers and welcome to this lecture.
+
+2
+00:00:03,750 --> 00:00:07,660
+This lecture we're going to be looking at Amazon's relational database service.
+
+3
+00:00:07,680 --> 00:00:09,100
+And this is a lab.
+
+4
+00:00:09,210 --> 00:00:14,100
+What we're going to do is we're going to provision a very simple little RDX instance.
+
+5
+00:00:14,340 --> 00:00:18,050
+And then what we will do is we will go in and provision a web server.
+
+6
+00:00:18,060 --> 00:00:22,870
+We're going to use a bootstrap script so we're automatically going to install things like Apache EPA
+
+7
+00:00:22,880 --> 00:00:26,130
+HP and my sequel using that bootstrap script.
+
+8
+00:00:26,130 --> 00:00:32,190
+And then what we're going to do is we are going to go in and basically configure a connection string
+
+9
+00:00:32,250 --> 00:00:37,790
+connection string is just a username a password and the address to connect to our ideas for instance.
+
+10
+00:00:37,830 --> 00:00:41,490
+And if all goes well we should be able to connect to our audience instance.
+
+11
+00:00:41,490 --> 00:00:44,760
+So this is a lab and you will need to log into the obvious console.
+
+12
+00:00:45,030 --> 00:00:47,000
+Okay so here I am in the adobe us console.
+
+13
+00:00:47,010 --> 00:00:51,690
+I'm going to go ahead and click on RDX which is under database and then what we're going to do is we're
+
+14
+00:00:51,690 --> 00:00:54,690
+going to go in and create a database.
+
+15
+00:00:54,720 --> 00:00:59,330
+So this is a new UI and you can go back to the original one if you want.
+
+16
+00:00:59,340 --> 00:01:04,230
+I wouldn't recommend that you may as well get used to the new UI in here we can see our different options.
+
+17
+00:01:04,230 --> 00:01:12,210
+So we've got a raw my sequel Maria D.B. post rescue our Oracle Microsoft sequel server and Amazon obviously
+
+18
+00:01:12,210 --> 00:01:18,180
+make the default option Aurora because they're trying to push their home product but it is an amazing
+
+19
+00:01:18,180 --> 00:01:19,720
+product and I don't blame them.
+
+20
+00:01:19,770 --> 00:01:22,970
+We're going to do my sequel and we can scroll down here in here.
+
+21
+00:01:22,980 --> 00:01:27,780
+We've got our different templates you can do choose your different versions in here and our different
+
+22
+00:01:27,780 --> 00:01:28,350
+template.
+
+23
+00:01:28,350 --> 00:01:33,450
+So this is for production use which is going to basically put it across multiple Availability Zones
+
+24
+00:01:33,770 --> 00:01:36,020
+dev test and then free tier.
+
+25
+00:01:36,030 --> 00:01:42,690
+Now if you do click on free tier notice that you can't have Aurora on free tier it's not available just
+
+26
+00:01:42,690 --> 00:01:43,380
+yet.
+
+27
+00:01:43,380 --> 00:01:45,880
+So that could be an exam question.
+
+28
+00:01:45,930 --> 00:01:52,380
+So free tier we're going to use free tell with my sequel and scroll down in here we've got our database
+
+29
+00:01:52,550 --> 00:01:54,270
+DB for instance identifier.
+
+30
+00:01:54,270 --> 00:01:58,280
+So this is the name of our RDX instance inside a W.
+
+31
+00:01:58,540 --> 00:02:02,880
+And I'm gonna be a bit lazy I'm just going to type in a cloud guru and I'm going to copy that into my
+
+32
+00:02:02,880 --> 00:02:08,910
+clipboard and I'm going to use that consistently across the different you know credentials.
+
+33
+00:02:08,910 --> 00:02:14,670
+So my master username going to say a cloud guru my master password a cloud guru master password a cloud
+
+34
+00:02:14,670 --> 00:02:21,000
+guru he can actually order generate a password if you want as well you can actually use the command
+
+35
+00:02:21,000 --> 00:02:27,690
+line using AWOL secrets manager to generate really strong passwords as well that's just something that
+
+36
+00:02:27,690 --> 00:02:36,180
+I use in everyday and then down here we've got our DB instant size so we've got DB T2 micro so I'm gonna
+
+37
+00:02:36,180 --> 00:02:43,560
+do basically the cheapest ones who T2 micro is fine for me scrolling down storage we've got orders scaling
+
+38
+00:02:44,190 --> 00:02:48,720
+you can enable or disable it I'm just going to start off with 20 gigs of storage where am I going to
+
+39
+00:02:48,720 --> 00:02:53,880
+have a really simple database on here down here we've got availability and durability because we are
+
+40
+00:02:53,880 --> 00:02:59,730
+using free tier this is all grayed out right now if you wanted to click production then this would be
+
+41
+00:02:59,940 --> 00:03:07,530
+options that you could go ahead and select down here we've got additional connectivity configuration
+
+42
+00:03:08,070 --> 00:03:13,710
+so we've got our different subnet groups in here it's using the default one you can also say whether
+
+43
+00:03:13,710 --> 00:03:20,100
+or not you want this publicly accessible I'm going to say no VPC security groups let's create a new
+
+44
+00:03:20,100 --> 00:03:26,760
+security group we'll just call this RDX SMG something like that and then we're going to scroll down
+
+45
+00:03:26,820 --> 00:03:33,630
+and we've got our availability zones in here we've got no preference additional configuration just click
+
+46
+00:03:33,660 --> 00:03:37,740
+in here and give the initial database name a cloud guru.
+
+47
+00:03:37,740 --> 00:03:43,500
+So we are going to change the database name to be a cloud group and scroll all the way down we're just
+
+48
+00:03:43,500 --> 00:03:47,640
+going to leave everything else as default we've got our maintenance windows in here.
+
+49
+00:03:47,670 --> 00:03:53,430
+You can do it a particular time in which it's going to do upgrades and in here you can see your estimated
+
+50
+00:03:53,430 --> 00:04:00,060
+monthly cost so let's go ahead and hit create database so that is now launching it can take a few minutes
+
+51
+00:04:00,060 --> 00:04:06,510
+depending on the size of the instance can take up to five to 10 minutes to actually see the instance
+
+52
+00:04:06,540 --> 00:04:11,910
+if you click on your dashboard sorry if you click on instances you'll be able to see it just click on
+
+53
+00:04:12,010 --> 00:04:18,960
+ideas you can see here that it is creating while we wait for that to create let's go back over to services
+
+54
+00:04:18,990 --> 00:04:24,810
+and we'll go over to E2 and hopefully our little instance has now been deleted yes it has and what we
+
+55
+00:04:24,810 --> 00:04:30,010
+want to do is we're going to go ahead and launch a new instance I'm going to use the amazon Linux am
+
+56
+00:04:30,060 --> 00:04:36,030
+I gonna use everything as default and then we're going to leave everything here as default the only
+
+57
+00:04:36,030 --> 00:04:41,580
+thing that we are going to change is if we click on advance details in here we're going to run a bootstrap
+
+58
+00:04:41,580 --> 00:04:48,330
+script and a boot straps scripts simply runs at Route level and it executes commands in a chronological
+
+59
+00:04:48,360 --> 00:04:53,070
+order so let's have a look at our bootstrap scripts you can download this in the resources section of
+
+60
+00:04:53,070 --> 00:04:59,190
+the course bootstrap scripts always start with the shebang shebang is just the number and then an exclamation
+
+61
+00:04:59,190 --> 00:05:02,170
+mark and then this is the path to our interpreter.
+
+62
+00:05:02,170 --> 00:05:08,550
+So this is what's going to interpret all the commands that we do after this line so on line two.
+
+63
+00:05:08,650 --> 00:05:10,770
+We've got some in store Apache.
+
+64
+00:05:10,810 --> 00:05:14,130
+We're going to install PSP going to install pitch my sequel.
+
+65
+00:05:14,140 --> 00:05:16,860
+We're going to force it to install.
+
+66
+00:05:17,080 --> 00:05:22,810
+We're also then going to update the operating system where they're going to make sure Apache switches
+
+67
+00:05:22,810 --> 00:05:27,890
+on even if our easy to instance restarts we're then going to start the Apache service.
+
+68
+00:05:27,910 --> 00:05:31,720
+So it becomes a web server as soon as that service has started.
+
+69
+00:05:31,720 --> 00:05:38,680
+We're then going to create a little HP page which is just displaying hp hp info and then we're going
+
+70
+00:05:38,680 --> 00:05:41,060
+to output this child via dub dub dub.
+
+71
+00:05:41,160 --> 00:05:47,290
+Team El directory as index stop HP where they're going to go into that directory and then we're going
+
+72
+00:05:47,290 --> 00:05:54,010
+to go and get this little file which is a connect stop BHP file and that connect top HP file will look
+
+73
+00:05:54,010 --> 00:05:54,900
+just like this.
+
+74
+00:05:54,910 --> 00:05:57,560
+So it will say yes name a cloud guru password.
+
+75
+00:05:57,580 --> 00:05:59,060
+A cloud guru hostname.
+
+76
+00:05:59,220 --> 00:06:03,910
+And we're going to get the hostname when we go back into RDX and then we've got the database name a
+
+77
+00:06:03,910 --> 00:06:04,650
+cloud guru.
+
+78
+00:06:04,930 --> 00:06:10,480
+And in here this is the actual PSP to connect in to the secret database.
+
+79
+00:06:10,480 --> 00:06:16,000
+So basically it says connected to my sequel using username and then whatever the user name is password
+
+80
+00:06:16,000 --> 00:06:19,060
+whatever the password is and the host that the hostname.
+
+81
+00:06:19,070 --> 00:06:22,270
+And that's gonna be the ideas end point which we're going to supply later.
+
+82
+00:06:22,390 --> 00:06:27,670
+And so it will either stay connected to it or it will have an error message saying unable to connect
+
+83
+00:06:27,670 --> 00:06:31,600
+to my secret database check the database name and try again.
+
+84
+00:06:31,600 --> 00:06:34,450
+So that is all that we're going to do.
+
+85
+00:06:34,450 --> 00:06:39,370
+So let's grab this bootstrap script now if you just download it and open it up in your favorite text
+
+86
+00:06:39,370 --> 00:06:45,730
+editor we'll go back over to our Web browser just going to paste it in here and then I'm going to go
+
+87
+00:06:45,730 --> 00:06:51,780
+ahead and hit next to add my storage and I'm going to leave everything as default.
+
+88
+00:06:51,780 --> 00:06:54,190
+I'm gonna go ahead and hit next to add my tags.
+
+89
+00:06:54,190 --> 00:06:59,370
+I'm not gonna add any tags can configure my security group I'm going to do it to my existing one which
+
+90
+00:06:59,370 --> 00:07:01,370
+is my web DMC currently.
+
+91
+00:07:01,460 --> 00:07:08,080
+This just allows port HDB and each tick UBS over HPV for and HPV 6.
+
+92
+00:07:08,190 --> 00:07:14,290
+Gonna go ahead and hit review and launch and I'm gonna go ahead and launch my web server and I'm gonna
+
+93
+00:07:14,290 --> 00:07:19,960
+use my existing key pair which is called My new key pair and I'm gonna go ahead and launch that.
+
+94
+00:07:20,020 --> 00:07:27,130
+So that is now launching what I would do is probably just wait for five minutes and before we connect
+
+95
+00:07:27,130 --> 00:07:33,340
+into this you can however while you're waiting just go over to your ideas instance in here and we should
+
+96
+00:07:33,340 --> 00:07:35,620
+hopefully have our ideas instance ready.
+
+97
+00:07:35,620 --> 00:07:42,400
+So if we click on instances here it is a cloud guru and click in here get a nice little summary of all
+
+98
+00:07:42,400 --> 00:07:43,660
+my instances.
+
+99
+00:07:43,720 --> 00:07:46,450
+And here is my database end point.
+
+100
+00:07:46,480 --> 00:07:48,550
+So this end point is the DNS address.
+
+101
+00:07:48,670 --> 00:07:55,150
+You're never given an IP for address for your ideas instances you're always given a DNS address and
+
+102
+00:07:55,150 --> 00:08:01,600
+Amazon managed the mapping of that IP V4 address to this DNS address here.
+
+103
+00:08:01,600 --> 00:08:06,340
+And sorry I should be a little bit more specific when I say you're never given a IPTV for I mean a public
+
+104
+00:08:06,370 --> 00:08:09,900
+IP for address for your end point.
+
+105
+00:08:09,940 --> 00:08:11,590
+So copy that into your clipboard.
+
+106
+00:08:11,590 --> 00:08:17,770
+Let's go back over to services and go over to easy to you'll know that your bootstraps script has run
+
+107
+00:08:17,770 --> 00:08:21,700
+and is ready just by visiting the IP address.
+
+108
+00:08:21,790 --> 00:08:27,640
+So if you copy this IP address and open up a new tab and hit enter that will show this page.
+
+109
+00:08:27,640 --> 00:08:32,740
+So we've got our PSP info page so our web server is definitely up and running and ready to go.
+
+110
+00:08:32,830 --> 00:08:38,650
+All our scripts have finished installing and we're now ready to go in and configure our connection string.
+
+111
+00:08:38,650 --> 00:08:43,600
+So you need to go over to terminal now and we will go in and configure the connection strings so we
+
+112
+00:08:43,600 --> 00:08:45,860
+can connect to our ideas for instance.
+
+113
+00:08:45,970 --> 00:08:46,210
+Okay.
+
+114
+00:08:46,210 --> 00:08:50,800
+So here I am in my terminal window I'm just going to type SSA easy to hyphen user at.
+
+115
+00:08:50,830 --> 00:08:56,980
+And then I'm gonna paste in I've actually pasted this in from my web browser so I'm just going to remove
+
+116
+00:08:56,980 --> 00:08:58,090
+the DDP.
+
+117
+00:08:58,150 --> 00:09:01,030
+So now I've got the public IP address and then I'm going to do minus.
+
+118
+00:09:01,040 --> 00:09:03,600
+I think it's called my new key pair.
+
+119
+00:09:03,610 --> 00:09:05,460
+And go ahead and hit enter going to hit.
+
+120
+00:09:05,470 --> 00:09:06,380
+Yes.
+
+121
+00:09:06,520 --> 00:09:07,450
+And there we go.
+
+122
+00:09:07,460 --> 00:09:13,120
+Gonna elevate my privileges to root so pseudo Sue and I'm going to clear the screen and now I'm just
+
+123
+00:09:13,120 --> 00:09:18,350
+gonna go over to my bar dub dub dub HD here metal directory and I'm going to have a look in here.
+
+124
+00:09:18,460 --> 00:09:24,490
+We should have two documents we've got our connect up PSP we've got our indexed or PSP now indexed at
+
+125
+00:09:24,490 --> 00:09:30,790
+BHP was just the pitch IP info one that we saw that we created earlier with our little bash command
+
+126
+00:09:31,060 --> 00:09:34,570
+and then we did a W get to get this connect OP BHP.
+
+127
+00:09:34,570 --> 00:09:41,680
+So what I want to do now is I want to just open up my connect dot BHP to just type in nano connect dot
+
+128
+00:09:41,740 --> 00:09:48,610
+P HP and that will open it up and you can see we've got the user name a cloud guru we've got the password
+
+129
+00:09:48,610 --> 00:09:54,610
+a cloud guru hostname and then the db name a cloud guru is the only thing we need to do is update this
+
+130
+00:09:54,610 --> 00:10:02,460
+hostname to our ideas and point I'm just going to delete this out here and then I'm just gonna go back
+
+131
+00:10:02,460 --> 00:10:07,040
+over to the console and get my ideas standpoint point case I'm back in the console.
+
+132
+00:10:07,050 --> 00:10:13,860
+Just gonna go over to services and go down to two ideas under databases and a click in there and then
+
+133
+00:10:13,860 --> 00:10:21,540
+I'm going to click on my instances a cloud guru and I'm gonna scroll down and grab my instance end point
+
+134
+00:10:21,540 --> 00:10:25,160
+which is this one here and copy that into my clipboard.
+
+135
+00:10:25,200 --> 00:10:29,240
+Now let's go back over to our terminal window.
+
+136
+00:10:29,310 --> 00:10:30,830
+It's back in the terminal window.
+
+137
+00:10:30,840 --> 00:10:32,400
+I'm going to paste that in here.
+
+138
+00:10:33,300 --> 00:10:35,090
+So that is now my hostname.
+
+139
+00:10:35,130 --> 00:10:42,330
+What I'm gonna do is control X hit a yes to exit and then we're going to call it connect up p HP.
+
+140
+00:10:42,330 --> 00:10:45,710
+Now what you want to do is go back over to your web browser.
+
+141
+00:10:45,710 --> 00:10:46,930
+So I'm back in my web browser.
+
+142
+00:10:46,940 --> 00:10:52,500
+I'm gonna open this up and instead of going to the IP address I'm going to go to forward slash connect
+
+143
+00:10:52,680 --> 00:10:54,290
+dot P HP.
+
+144
+00:10:54,300 --> 00:10:59,300
+Now what this will do is it will hang for a little bit and eventually we're going to get an error message.
+
+145
+00:10:59,340 --> 00:11:03,540
+And the reason we're going to get an error message is there's still one last little thing that we need
+
+146
+00:11:03,540 --> 00:11:04,300
+to do.
+
+147
+00:11:04,470 --> 00:11:10,350
+When we created our RDX instance we created a security group inside that RDX instance and this is a
+
+148
+00:11:10,350 --> 00:11:14,160
+separate security group to what our easy two instances in.
+
+149
+00:11:14,160 --> 00:11:20,250
+So right now we've got two different pieces of the AWOL cloud in two different security groups and of
+
+150
+00:11:20,250 --> 00:11:23,370
+course they won't be able to talk to each other by default.
+
+151
+00:11:23,370 --> 00:11:30,180
+So he will need to go over to the basically to the security group section and we're going to need to
+
+152
+00:11:30,240 --> 00:11:34,770
+allow communication from one security group to another just going to wait for this to time out so you
+
+153
+00:11:34,770 --> 00:11:35,940
+can see the error message.
+
+154
+00:11:35,940 --> 00:11:39,890
+So I'm just going to pause the video and if you are patient enough to wait here you go.
+
+155
+00:11:39,900 --> 00:11:42,090
+Says unable to connect to my sequel.
+
+156
+00:11:42,090 --> 00:11:45,000
+So let's go have a look at how we can fix this.
+
+157
+00:11:45,040 --> 00:11:51,330
+We just click back over to this tab we can go over to our we can go over to our security groups which
+
+158
+00:11:51,330 --> 00:11:52,050
+is in here.
+
+159
+00:11:52,050 --> 00:11:54,440
+So we've got our security group in here.
+
+160
+00:11:54,480 --> 00:11:59,210
+We click on this security group that will launch us over to a security group sections.
+
+161
+00:11:59,420 --> 00:12:01,080
+It's going to close this.
+
+162
+00:12:01,080 --> 00:12:03,080
+So we've got our security group in here.
+
+163
+00:12:03,180 --> 00:12:10,290
+And what we want to do is we want to go ahead and we want to go to inbound and we want.
+
+164
+00:12:10,290 --> 00:12:14,200
+I'm just going to remove this filter so we can see all our security groups.
+
+165
+00:12:14,220 --> 00:12:20,100
+So what we want to do is we want to allow an inbound Security Group 4 3 3 0 6.
+
+166
+00:12:20,110 --> 00:12:22,560
+And we want it to allow this from our web server.
+
+167
+00:12:22,590 --> 00:12:27,540
+So we're going to go and click in here and we're going to go down to my circle which is port three three
+
+168
+00:12:27,540 --> 00:12:28,540
+or six.
+
+169
+00:12:28,590 --> 00:12:35,160
+Same with Aurora and in here what we can do is if we actually start typing SMG it will start to auto
+
+170
+00:12:35,160 --> 00:12:38,700
+populate and we want to wait list our web DMZ.
+
+171
+00:12:38,700 --> 00:12:44,810
+So whichever security group that you're web server is in some mines ending in 0 6 7 and that is it.
+
+172
+00:12:44,840 --> 00:12:46,480
+I'm gonna go ahead and hit save.
+
+173
+00:12:46,560 --> 00:12:48,500
+So can now see that rule down here.
+
+174
+00:12:48,660 --> 00:12:53,750
+If we go back over to this tab and if we hit refresh There we go.
+
+175
+00:12:53,760 --> 00:13:00,240
+Connected to my circle using username a cloud grew password a cloud guru host a cloud guru and then
+
+176
+00:13:00,270 --> 00:13:06,180
+it's the actual database endpoint so we have now successfully connected to our RDX instance we've connected
+
+177
+00:13:06,180 --> 00:13:09,290
+our easy to instance to our RDX instance.
+
+178
+00:13:09,360 --> 00:13:11,360
+So that is it for this lecture guys.
+
+179
+00:13:11,670 --> 00:13:15,740
+A common exam topic will be exactly what we just troubleshoot.
+
+180
+00:13:15,840 --> 00:13:21,630
+Troubleshoot it one way you've got an ac to instance in one security group and an IED incidents and
+
+181
+00:13:21,630 --> 00:13:24,390
+another security group and something's not connecting.
+
+182
+00:13:24,390 --> 00:13:29,970
+That's because you need to open up Pt. 3 3 0 6 to the security group that the RDX instances in.
+
+183
+00:13:29,970 --> 00:13:34,560
+You need to open up that to the security group where you're easy two instances in.
+
+184
+00:13:34,560 --> 00:13:39,740
+So hopefully that makes sense you go into the security group that you have your audience instance in
+
+185
+00:13:39,750 --> 00:13:44,760
+you open up my circle and you just point a you allow this security group that you're easy to instances
+
+186
+00:13:44,760 --> 00:13:47,910
+then to talk to your yes instance.
+
+187
+00:13:47,910 --> 00:13:53,010
+So that is it for this lecture guys in the next lecture we're going to look at a combination of multi
+
+188
+00:13:53,070 --> 00:13:58,290
+easy as well as read replicas and it's going to be a mixture of theory as well as hands on practical
+
+189
+00:13:58,690 --> 00:13:59,040
+lab.
+
+190
+00:13:59,040 --> 00:14:00,960
+So if you've got the time please join me in the next lecture.
+
+191
+00:14:00,970 --> 00:14:01,370
+Thank you.

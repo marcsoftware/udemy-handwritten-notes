@@ -1,0 +1,335 @@
+1
+00:00:00,360 --> 00:00:07,380
+Like lurkers and welcome to this lecture and this lecture is all about in line managed and custom policies
+
+2
+00:00:07,650 --> 00:00:10,300
+within identity access management.
+
+3
+00:00:10,410 --> 00:00:13,260
+So let's get started now.
+
+4
+00:00:13,290 --> 00:00:19,380
+Identity access management is used to define user access permissions within AWOS and we've used.
+
+5
+00:00:19,410 --> 00:00:22,470
+I am a lot throughout this course.
+
+6
+00:00:22,620 --> 00:00:26,900
+Now there are three different types of policies available.
+
+7
+00:00:27,070 --> 00:00:31,510
+Firstly manage policies then customer manage policies.
+
+8
+00:00:31,650 --> 00:00:33,970
+And finally in line policies.
+
+9
+00:00:33,990 --> 00:00:39,930
+So let's take a look at those three different policies in a little bit more detail now.
+
+10
+00:00:39,940 --> 00:00:49,400
+A managed policy is an eye and policy which was created and administered by AWOS and they provide managed
+
+11
+00:00:49,400 --> 00:00:53,980
+policies for really common use cases based on job function.
+
+12
+00:00:53,990 --> 00:01:00,300
+So for example don't MIDP full access code commit power user.
+
+13
+00:01:00,350 --> 00:01:06,710
+Easy to read only access etc. and we've used these roads many times throughout the Lap's that we've
+
+14
+00:01:06,710 --> 00:01:14,980
+done so for example when we've created an easy to instance needs to create or query a tiny IDB table.
+
+15
+00:01:14,990 --> 00:01:22,860
+We use that Dynamo ODP full access managed policy in combination with a service role to give our easy
+
+16
+00:01:22,860 --> 00:01:31,420
+to instance access to the Dhanam IDB tables and these ws provided policies allow you to assign appropriate
+
+17
+00:01:31,420 --> 00:01:39,460
+permissions to your users groups and rows without having to write the policy yourself and the policies
+
+18
+00:01:39,460 --> 00:01:41,120
+are all written in Jason.
+
+19
+00:01:41,190 --> 00:01:43,920
+Are all fairly complex and comprehensive.
+
+20
+00:01:44,080 --> 00:01:48,730
+So it just takes away that heavy lifting of creating a policy yourself.
+
+21
+00:01:50,450 --> 00:01:57,350
+And a single managed policy can be attached to multiple users groups or rows within the same IWM accounts
+
+22
+00:01:57,800 --> 00:02:00,860
+and across different accounts.
+
+23
+00:02:00,920 --> 00:02:05,660
+But there's one important thing to know about the Mohnish policies is that you cannot change the permissions
+
+24
+00:02:05,660 --> 00:02:09,060
+defined in an AWOS managed policy.
+
+25
+00:02:09,080 --> 00:02:15,800
+Moving on to customer managed policies and a customer managed policy is a standalone policy that you
+
+26
+00:02:15,800 --> 00:02:24,610
+create and administer inside your own AWOS account you can attach this policy to multiple uses groups
+
+27
+00:02:24,700 --> 00:02:32,700
+and rows but only within your own account and to create a customer manage policy you can take a copy
+
+28
+00:02:32,700 --> 00:02:39,780
+of an existing AWOS manage policy just copy the gyse on code and customize it to fit the requirements
+
+29
+00:02:39,840 --> 00:02:41,160
+of your organization.
+
+30
+00:02:42,010 --> 00:02:48,540
+And this is recommended for use cases where existing AWOS manage policies don't quite meet the needs
+
+31
+00:02:48,540 --> 00:02:49,770
+of your environment.
+
+32
+00:02:51,430 --> 00:02:59,020
+Finally we have policies and an in line policy is an identity access management policy which is actually
+
+33
+00:02:59,020 --> 00:03:04,210
+embedded within the user group or role to which it applies.
+
+34
+00:03:04,210 --> 00:03:10,240
+And there's a strict once one relationship between the entity and the policy that means you cannot attach
+
+35
+00:03:10,300 --> 00:03:14,560
+an inline policy to multiple users groups or rows.
+
+36
+00:03:14,800 --> 00:03:21,550
+And when you delete the user group or role in which the inline policy is embedded the policy will also
+
+37
+00:03:21,550 --> 00:03:22,790
+be deleted.
+
+38
+00:03:24,120 --> 00:03:30,850
+Now in most cases AWOS recommends using managed policies over inline policies.
+
+39
+00:03:31,230 --> 00:03:37,290
+However they are useful when you want to be sure that the permissions in a policy are not inadvertently
+
+40
+00:03:37,770 --> 00:03:43,850
+assigned to another user group or role than the one for which they are intended.
+
+41
+00:03:43,860 --> 00:03:50,730
+For example if you're creating a policy which must only ever be attached to a single user group or row
+
+42
+00:03:50,940 --> 00:03:57,060
+for security or technical reasons and if you come into the WS console you can take a look at the different
+
+43
+00:03:57,300 --> 00:03:59,280
+types of policy that are available.
+
+44
+00:03:59,670 --> 00:04:06,890
+So scroll down to identity access management click on policies and you can filter based on policy type
+
+45
+00:04:07,250 --> 00:04:10,640
+and it's showing me either customer managed or AWOS manage.
+
+46
+00:04:10,640 --> 00:04:15,950
+So first let's take a look at my customer managed policies and these are the different policies that
+
+47
+00:04:15,950 --> 00:04:17,640
+I have created myself.
+
+48
+00:04:17,840 --> 00:04:24,020
+And if you go into these policies you can actually edit the policy and actually change the Jason code
+
+49
+00:04:24,110 --> 00:04:25,670
+that makes up the policy.
+
+50
+00:04:25,940 --> 00:04:27,070
+So I'm just going to click.
+
+51
+00:04:27,140 --> 00:04:35,450
+So go back to my policies and click on AWOS managed and you can see they provide lots of different managed
+
+52
+00:04:35,450 --> 00:04:38,290
+policies for various different types of access.
+
+53
+00:04:38,300 --> 00:04:45,530
+So depending on whether you need Read-Only or full access or down to administrative access and they
+
+54
+00:04:45,530 --> 00:04:49,740
+give you lots of different policies for all different types of services.
+
+55
+00:04:49,880 --> 00:04:56,150
+And the interesting thing about these policies is if I select one it's not going to let me edit it so
+
+56
+00:04:56,150 --> 00:04:58,190
+I cannot change this just on code.
+
+57
+00:04:58,190 --> 00:05:03,790
+And that's the important thing to remember about a managed policy does not give you the option to edit.
+
+58
+00:05:03,800 --> 00:05:07,860
+And in fact it says down here on the bottom right hand side it says read only.
+
+59
+00:05:07,920 --> 00:05:10,090
+So let's go back to my dashboard.
+
+60
+00:05:10,340 --> 00:05:15,290
+And I don't actually have any inline policies at the moment but let's go ahead and create one so if
+
+61
+00:05:15,290 --> 00:05:21,770
+I go to my user and because it's an in non-policy and it is associated with either a user group or role
+
+62
+00:05:22,280 --> 00:05:26,600
+you have to be in the User Group or role in order to actually create the policy.
+
+63
+00:05:26,780 --> 00:05:31,720
+So if you go into a user you will see this option here to add an non-policy.
+
+64
+00:05:31,820 --> 00:05:37,640
+So we're just going to choose a service and we're going to add a policy for Athena and I'm going to
+
+65
+00:05:37,820 --> 00:05:41,050
+add right access for Athena click on review.
+
+66
+00:05:41,120 --> 00:05:41,950
+Give it a name
+
+67
+00:05:48,370 --> 00:05:49,900
+and click on create policy.
+
+68
+00:05:50,080 --> 00:05:54,700
+And that is my in line policy and it will show here as being an in line policy.
+
+69
+00:05:54,850 --> 00:06:01,680
+And if I want to for example create a new user I'm not going to call my user ropa going to give programmatic
+
+70
+00:06:01,780 --> 00:06:08,920
+access next and I'm going to try and add that in line policy and if I try to search for that policy
+
+71
+00:06:09,070 --> 00:06:15,430
+it doesn't come up in only my customer managed policies come up a filter based on in policies.
+
+72
+00:06:15,430 --> 00:06:19,680
+I've only have the choice of either the customer managed or the WS managed.
+
+73
+00:06:19,900 --> 00:06:25,430
+So let's take a look at exam tips for the three different types of I am policy.
+
+74
+00:06:25,480 --> 00:06:33,060
+Just remember the managed policy is the AWOS managed default policy like Dynamite's be full access et.
+
+75
+00:06:33,250 --> 00:06:38,980
+The customer manage policy is one managed by you created by you and managed by you and you can apply
+
+76
+00:06:38,980 --> 00:06:44,120
+it to multiple users groups or rows and the inline policy is managed by you.
+
+77
+00:06:44,140 --> 00:06:47,550
+But it's embedded in a single user group or row.
+
+78
+00:06:47,710 --> 00:06:53,410
+And there is a one to one relationship between the line policy and the user group or row to which they
+
+79
+00:06:53,410 --> 00:06:54,360
+are embedded.
+
+80
+00:06:54,370 --> 00:07:02,070
+And finally in most cases I ws recommends using their own banish'd policies over in line policies.
+
+81
+00:07:02,260 --> 00:07:03,600
+Well that's the end of this lecture.
+
+82
+00:07:03,640 --> 00:07:05,910
+If you have any questions please let me know.
+
+83
+00:07:06,010 --> 00:07:08,480
+If not feel free to move onto the next lecture.
+
+84
+00:07:08,560 --> 00:07:08,990
+Thank you.

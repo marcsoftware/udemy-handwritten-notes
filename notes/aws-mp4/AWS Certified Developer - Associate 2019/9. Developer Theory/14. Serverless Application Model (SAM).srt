@@ -1,0 +1,131 @@
+1
+00:00:00,660 --> 00:00:06,300
+Helicopters and welcome to this lecture and this lecture is going to be about the service application
+
+2
+00:00:06,360 --> 00:00:09,510
+model and it's also called Sam.
+
+3
+00:00:09,600 --> 00:00:11,210
+So what is some.
+
+4
+00:00:11,400 --> 00:00:18,820
+Well it's an extension to cloud formation and it's used specifically to define service applications.
+
+5
+00:00:20,830 --> 00:00:25,270
+And it gives you a simplified syntax for defining these sedulous resources.
+
+6
+00:00:25,270 --> 00:00:34,570
+So for example be that API is lambda functions dynamo Debby's etc. and it also has its own command line
+
+7
+00:00:34,600 --> 00:00:36,870
+interface called the Sam say ally.
+
+8
+00:00:36,970 --> 00:00:40,270
+And that's what we use to package the deployment code.
+
+9
+00:00:40,270 --> 00:00:47,080
+Upload it to S-3 so that it can be deployed and then deploy the service applications using cloud formation
+
+10
+00:00:48,010 --> 00:00:50,700
+and with the CLID you get a couple of different commands.
+
+11
+00:00:50,710 --> 00:00:58,240
+So the first is called Sam package and this command takes a template a Jamo template as its inputs and
+
+12
+00:00:58,310 --> 00:01:06,140
+outputs some compatible templates and uploads a deployment package to an S3 bucket that you specify.
+
+13
+00:01:07,300 --> 00:01:11,060
+So that is the first command to package up your deployment packages.
+
+14
+00:01:12,290 --> 00:01:19,370
+And then the second command is some deploy and some deploy takes as input the same template that you've
+
+15
+00:01:19,370 --> 00:01:21,910
+just created in the previous command.
+
+16
+00:01:21,910 --> 00:01:25,150
+It specifies the name of your cloud formation stack.
+
+17
+00:01:25,160 --> 00:01:32,120
+So in this example the stack is going to be called my stack and then the final parameter that goes into
+
+18
+00:01:32,120 --> 00:01:35,740
+that command is this capabilities parameter.
+
+19
+00:01:35,840 --> 00:01:44,510
+And this enables cloud formation to create an I am low on your behalf to allow the function to execute.
+
+20
+00:01:44,510 --> 00:01:50,110
+Now those are the main things that you need to know and understand about some for the exam.
+
+21
+00:01:50,150 --> 00:01:52,730
+So let's take a look at some of our exam tips.
+
+22
+00:01:52,880 --> 00:01:59,450
+So you need to know that Sam is the service application model and it's an extension to cloud formation
+
+23
+00:01:59,540 --> 00:02:06,260
+and it allows you to define a provision Cephalus applications using cloud formation.
+
+24
+00:02:06,290 --> 00:02:13,580
+It has its own CLIA and its own commands to enable you to package and deploy your code.
+
+25
+00:02:13,580 --> 00:02:20,770
+So the first is some package which packages your application and uploads a deployment file to S-3 and
+
+26
+00:02:20,770 --> 00:02:27,160
+then the second one is some deploy which deploys your service applications using confirmation.
+
+27
+00:02:27,160 --> 00:02:31,890
+But the best way to learn this really is to actually see it in action and that is what we're going to
+
+28
+00:02:31,900 --> 00:02:32,830
+do next.
+
+29
+00:02:32,830 --> 00:02:37,900
+So we're going to have a really quick Sam lab where we're going to use some to deploy a small lambda
+
+30
+00:02:37,900 --> 00:02:40,960
+function using cloud formation.
+
+31
+00:02:40,960 --> 00:02:43,500
+So if you have any questions please let me know.
+
+32
+00:02:43,690 --> 00:02:46,300
+If not feel free to join me in the next lecture.
+
+33
+00:02:46,300 --> 00:02:46,670
+Thank you.

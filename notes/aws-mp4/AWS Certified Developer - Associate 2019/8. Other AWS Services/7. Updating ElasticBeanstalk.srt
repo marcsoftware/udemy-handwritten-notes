@@ -1,0 +1,595 @@
+1
+00:00:00,270 --> 00:00:03,140
+OK hello cloggers and welcome to this lecture.
+
+2
+00:00:03,300 --> 00:00:09,570
+Actually going to look at updating elastic band Stolk and this is really critical to understand going
+
+3
+00:00:09,570 --> 00:00:14,160
+into the exam because you are going to get questions on the different types of updates and you will
+
+4
+00:00:14,160 --> 00:00:17,160
+be expected to know the differences between them.
+
+5
+00:00:17,160 --> 00:00:24,360
+So what is an elastic band Stokoe abs deployment policy not to be confused with you know elastic block
+
+6
+00:00:24,360 --> 00:00:30,350
+storage so elastic beanstalks supports several options for processing deployments.
+
+7
+00:00:30,510 --> 00:00:32,400
+You have four options essentially.
+
+8
+00:00:32,400 --> 00:00:34,400
+So this is how we update our code.
+
+9
+00:00:34,410 --> 00:00:37,110
+We can do all at once we can do rolling.
+
+10
+00:00:37,200 --> 00:00:42,840
+We can do rolling with additional batch and we can do immutable and see how to configure this a little
+
+11
+00:00:42,840 --> 00:00:45,310
+bit on later on in this lecture.
+
+12
+00:00:45,510 --> 00:00:49,220
+So let's look at the differences between them all at once is pretty easy.
+
+13
+00:00:49,240 --> 00:00:56,050
+It basically all at once deployments updates and deploys the new version to all instances simultaneously.
+
+14
+00:00:56,220 --> 00:01:01,080
+All of your instances are going to be out of service while the deployment takes place.
+
+15
+00:01:01,080 --> 00:01:06,900
+So you will have downtime with an all at once deployment you will experience an outage while the deployment
+
+16
+00:01:06,900 --> 00:01:07,730
+is taking place.
+
+17
+00:01:07,740 --> 00:01:11,400
+And this is not ideal for mission critical production systems.
+
+18
+00:01:11,400 --> 00:01:17,670
+And if the update fails you will need to roll back the changes by redeploying the original version to
+
+19
+00:01:17,700 --> 00:01:18,770
+all your instances.
+
+20
+00:01:18,770 --> 00:01:21,430
+So that's an all at once deployment.
+
+21
+00:01:21,510 --> 00:01:26,220
+You probably want to do this in your test in Devon varment you definitely do not want to do this in
+
+22
+00:01:26,220 --> 00:01:31,330
+your production environment unless your business is prepared to have some downtime.
+
+23
+00:01:31,340 --> 00:01:37,320
+We then have a rolling deployment policies and this basically deploys the new version in batches so
+
+24
+00:01:37,380 --> 00:01:43,420
+each batch of instances is taken out of service while the deployment takes place and your environment
+
+25
+00:01:43,420 --> 00:01:47,620
+to capacity will be reduced by the number of instances in a batch.
+
+26
+00:01:47,730 --> 00:01:49,680
+While the deployment takes place.
+
+27
+00:01:49,710 --> 00:01:55,380
+So let's say that you've got 10 instances in your environment and you've got you know you're going to
+
+28
+00:01:55,380 --> 00:02:01,230
+have batches of two essentially those two batches will go down and you still have eight instances in
+
+29
+00:02:01,230 --> 00:02:02,010
+service.
+
+30
+00:02:02,010 --> 00:02:09,100
+Once those two instances have been patched or back up another two will go back out.
+
+31
+00:02:09,130 --> 00:02:13,700
+So you have some instances that are taken out of service.
+
+32
+00:02:13,800 --> 00:02:17,550
+So this isn't really ideal for performance sensitive systems.
+
+33
+00:02:17,550 --> 00:02:23,450
+And if the update does fail you're going to need to perform an additional rolling update to roll back
+
+34
+00:02:23,460 --> 00:02:24,700
+the changes.
+
+35
+00:02:24,770 --> 00:02:27,710
+We then have rolling with additional batch policy.
+
+36
+00:02:27,720 --> 00:02:33,990
+And this is basically it launches an additional batch of instances and it deploys the new version in
+
+37
+00:02:33,990 --> 00:02:38,790
+batches and this maintains capacity during deployment process.
+
+38
+00:02:38,850 --> 00:02:43,530
+And if the update fails you're going to need to perform an additional rolling update to rollback the
+
+39
+00:02:43,530 --> 00:02:44,430
+changes.
+
+40
+00:02:44,430 --> 00:02:50,400
+Now if you get a exam question where saying look you know it's really performance sensitive.
+
+41
+00:02:50,680 --> 00:02:57,150
+You basically cannot have any downtime and you need to maintain full capacity than you want rolling
+
+42
+00:02:57,210 --> 00:02:59,420
+with additional batch policies.
+
+43
+00:02:59,430 --> 00:03:06,780
+If you can afford downtime then you either want all at once or you could have rolling updates where
+
+44
+00:03:06,780 --> 00:03:11,010
+your system can have some instances out of service while you do the updates.
+
+45
+00:03:11,060 --> 00:03:16,710
+We then have a mutable deployment policies and this deploys a new version to a fresh group of instances
+
+46
+00:03:16,830 --> 00:03:19,270
+in their own new auto scaling group.
+
+47
+00:03:19,440 --> 00:03:24,480
+And when the new instance is passed the health checks that then move to the existing auto scanning group
+
+48
+00:03:24,810 --> 00:03:27,970
+and then finally the old instance is terminated.
+
+49
+00:03:28,020 --> 00:03:33,810
+And this maintains full capacity during the deployment process and the impact of failed update is far
+
+50
+00:03:33,810 --> 00:03:38,870
+less and the rollback process requires only terminating the new auto scanning group.
+
+51
+00:03:38,970 --> 00:03:42,930
+So this is the preferred option for mission critical production systems.
+
+52
+00:03:42,930 --> 00:03:49,020
+So do know that for differences going into your exams it is extremely important because you are going
+
+53
+00:03:49,020 --> 00:03:53,510
+to get multiple scenario questions and I'll ask you which for updates you should use.
+
+54
+00:03:53,520 --> 00:03:59,280
+OK so here I am and the console is going to go over to services and click on elastic beanstalk which
+
+55
+00:03:59,280 --> 00:04:04,470
+is under compute and here's my Hello cloggers environment that we created in the last one.
+
+56
+00:04:04,590 --> 00:04:08,680
+If I click on it it's going to load the actual environment itself.
+
+57
+00:04:08,680 --> 00:04:14,790
+If you click here though these are out different environments so we could go in and provision additional
+
+58
+00:04:14,790 --> 00:04:15,750
+environments.
+
+59
+00:04:15,750 --> 00:04:20,300
+What I'm going to do is I'm going to go in and click on application versions and you can see here.
+
+60
+00:04:20,310 --> 00:04:22,550
+Hello pluggers source.
+
+61
+00:04:22,680 --> 00:04:25,510
+And here's the source zip file.
+
+62
+00:04:25,530 --> 00:04:29,490
+This is actually saved in an S3 bucket which will have a look at it a little bit later.
+
+63
+00:04:29,730 --> 00:04:34,260
+And what I'm going to do is going to go ahead and I'm going to upload a new application.
+
+64
+00:04:34,260 --> 00:04:36,820
+We're going to call this version too.
+
+65
+00:04:36,830 --> 00:04:44,490
+So make sure you download version 2 in the resources section and the description again version 2.
+
+66
+00:04:44,820 --> 00:04:51,150
+And I'm going to go ahead and upload this application so version 2 and hit upload so that I will now
+
+67
+00:04:51,210 --> 00:04:56,850
+upload it and it's going to save it to an S3 bucket that is used by lastic things still can if you actually
+
+68
+00:04:56,850 --> 00:05:02,830
+click on services and go over to S-3 you'll be able to find your elastic Bonestell buckets and they
+
+69
+00:05:02,830 --> 00:05:04,510
+are on a per region basis.
+
+70
+00:05:04,520 --> 00:05:06,130
+My one is this one here.
+
+71
+00:05:06,190 --> 00:05:09,300
+Aced one because I've been doing this out of Northern Virginia.
+
+72
+00:05:09,440 --> 00:05:10,390
+I click in here.
+
+73
+00:05:10,390 --> 00:05:15,400
+I can actually see the uploaded files his version 1 his version 2.
+
+74
+00:05:15,490 --> 00:05:20,440
+This is the configuration for elastic bands still dot elastic beanstalk.
+
+75
+00:05:20,470 --> 00:05:26,350
+We can go ahead and leave that we will come back on to something similar to that in the advents elastic
+
+76
+00:05:26,360 --> 00:05:28,340
+band Stolpe lecture which is coming up.
+
+77
+00:05:28,390 --> 00:05:33,220
+So let's go back over to services and go back over to plastic pain Stolk.
+
+78
+00:05:33,250 --> 00:05:38,230
+And what I'm going to do is I'm going to click into my application say hello cloud jurors and click
+
+79
+00:05:38,230 --> 00:05:41,680
+on my application versions and you can see version 2 is here.
+
+80
+00:05:41,680 --> 00:05:45,880
+It's all ready to go but it hasn't been deployed to any environment.
+
+81
+00:05:46,090 --> 00:05:51,690
+So what I can what I could do before I do this I just want to show you how to change the deployments.
+
+82
+00:05:51,730 --> 00:05:57,430
+So if we click on all applications click inside our environment and go to configuration if we want to
+
+83
+00:05:57,430 --> 00:06:02,910
+change our updates or our deployments we click into rolling updates and deployments in here.
+
+84
+00:06:03,130 --> 00:06:06,630
+And this is where we can change our deployment policy.
+
+85
+00:06:06,730 --> 00:06:09,970
+Now at the moment I've only got two options all at once are immutable.
+
+86
+00:06:09,970 --> 00:06:16,420
+The reason for that is because I've only got one easy to instance if I had a fleet of two instances
+
+87
+00:06:16,420 --> 00:06:19,680
+behind an elastic load balance or I'd get more of those options.
+
+88
+00:06:19,770 --> 00:06:23,740
+I'm just going to K-8 this lead simple whether I really want to go into it because it's going to take
+
+89
+00:06:23,740 --> 00:06:29,080
+an awful lot of time and to be honest it's only with a few marks on the exam the most important thing
+
+90
+00:06:29,080 --> 00:06:35,650
+that you need to remember for your exam is the four different deployment policies and what scenarios
+
+91
+00:06:35,650 --> 00:06:36,900
+you'd use them in.
+
+92
+00:06:36,940 --> 00:06:38,510
+So let's go back over to hello.
+
+93
+00:06:38,530 --> 00:06:41,380
+Cloggers go to our application version.
+
+94
+00:06:41,380 --> 00:06:45,040
+Let's click on version 2 and I'm going to go ahead and deploy this.
+
+95
+00:06:45,040 --> 00:06:50,650
+Now this is going to cause me to have some downtime because it's all at once deployment and I'm going
+
+96
+00:06:50,650 --> 00:06:52,840
+to go ahead and hit deploy.
+
+97
+00:06:53,020 --> 00:06:58,180
+And that is now deploying my new version and I'm just going to pause the video here fact or click on
+
+98
+00:06:58,180 --> 00:07:00,270
+the events page so we can watch it happen.
+
+99
+00:07:00,430 --> 00:07:03,780
+And I'm going to pause the video and wait for this new environment to go live.
+
+100
+00:07:03,850 --> 00:07:04,090
+OK.
+
+101
+00:07:04,170 --> 00:07:05,070
+It's been a few minutes.
+
+102
+00:07:05,080 --> 00:07:07,190
+I'm going to go ahead and just hit refresh.
+
+103
+00:07:07,450 --> 00:07:08,240
+And here we go.
+
+104
+00:07:08,260 --> 00:07:14,860
+Environment Health has transitioned from info to OK application update completed 78 seconds ago and
+
+105
+00:07:14,860 --> 00:07:16,480
+took 19 seconds.
+
+106
+00:07:16,480 --> 00:07:21,580
+So we should be able to click on this and hopefully get a new version.
+
+107
+00:07:21,580 --> 00:07:23,940
+So hello cloggers this is version 2.0.
+
+108
+00:07:24,020 --> 00:07:25,660
+There's my lovely face.
+
+109
+00:07:25,660 --> 00:07:28,950
+We go back to the elastic beanstalk environment and click on here.
+
+110
+00:07:28,960 --> 00:07:31,520
+We've got our environments in here.
+
+111
+00:07:31,540 --> 00:07:37,560
+We click on application versions we can now see the version 2 has been deployed to this environment.
+
+112
+00:07:37,610 --> 00:07:43,570
+All we could do is click on version 1 go ahead and click deploy and we could then deploy that back to
+
+113
+00:07:43,630 --> 00:07:45,940
+our helo cloud juror's environment.
+
+114
+00:07:45,940 --> 00:07:50,230
+If you see an error message just saying environment not ready it's just cause you're doing it a little
+
+115
+00:07:50,230 --> 00:07:54,870
+bit too quickly just give it a couple of minutes so that we could just roll back to version 1.
+
+116
+00:07:54,880 --> 00:08:00,070
+If we decided to do that well we can also do is we can also go in here and create new environment so
+
+117
+00:08:00,070 --> 00:08:05,530
+we could actually create environment and then deploy version 1 to that environment and have version
+
+118
+00:08:05,530 --> 00:08:07,310
+2 in another environment.
+
+119
+00:08:07,330 --> 00:08:13,400
+It's entirely up to you but that's how we do versioning in side the console how we do visioning inside
+
+120
+00:08:13,410 --> 00:08:14,670
+elastic beanstalk.
+
+121
+00:08:14,710 --> 00:08:20,440
+And like I said it's a really important exam to understand for different types of updates.
+
+122
+00:08:20,440 --> 00:08:25,060
+So before we move on to the exam tips or we need to do now is go in and delete this environment.
+
+123
+00:08:25,060 --> 00:08:31,170
+All you have to do is just click on actions and go delete application and go ahead and hit delete.
+
+124
+00:08:31,300 --> 00:08:37,810
+And that will go through and delete your Basically your easy to instance as well as whatever other hits
+
+125
+00:08:37,810 --> 00:08:40,150
+elastic beanstalk has provisioned.
+
+126
+00:08:40,150 --> 00:08:41,770
+So what of my exam tips.
+
+127
+00:08:41,890 --> 00:08:44,280
+Ok so that brings us onto our exam tips.
+
+128
+00:08:44,320 --> 00:08:48,230
+So just remember the four different deployment approaches and where you would use them.
+
+129
+00:08:48,230 --> 00:08:49,760
+So it got all at once.
+
+130
+00:08:49,780 --> 00:08:53,670
+This has a service interruption while you update the entire environment at once.
+
+131
+00:08:53,690 --> 00:08:59,860
+So the one we just did to roll back you have to perform for the third the all at once upgrade.
+
+132
+00:08:59,860 --> 00:09:02,420
+So bear that in mind with go rolling.
+
+133
+00:09:02,440 --> 00:09:07,500
+This basically will reduce your capacity during deployment but you're not going to have downtime.
+
+134
+00:09:07,870 --> 00:09:14,530
+And to Roback you need to perform a further rolling update rolling with additional Bache maintains capacity.
+
+135
+00:09:14,530 --> 00:09:20,110
+So if the question is asking you how you can do this without you know while maintaining full capacity
+
+136
+00:09:20,140 --> 00:09:22,890
+you need additional Bachche and then to rollback.
+
+137
+00:09:22,900 --> 00:09:27,030
+You need to perform a further rolling update and then we have immutable.
+
+138
+00:09:27,040 --> 00:09:30,090
+And this is the preferred option for mission critical production systems.
+
+139
+00:09:30,100 --> 00:09:35,830
+It's going to create an entire new fleet of E.C to instances and apply those updates to it and it will
+
+140
+00:09:35,830 --> 00:09:42,940
+only delete and switch over to those instances once they've passed all the health checks so it allows
+
+141
+00:09:42,940 --> 00:09:45,630
+you to maintain full capacity and then to rollback.
+
+142
+00:09:45,640 --> 00:09:51,040
+You just delete the new instances and auto scaling groups so they with the mutable behind a completely
+
+143
+00:09:51,070 --> 00:09:53,110
+different auto scaling.
+
+144
+00:09:53,110 --> 00:09:53,730
+Great.
+
+145
+00:09:53,740 --> 00:09:57,680
+So just remember those four different ones going into the exam and you will do well.
+
+146
+00:09:57,730 --> 00:09:58,130
+So that's it.
+
+147
+00:09:58,150 --> 00:10:00,430
+But this lecture goes if you have any questions please let me know.
+
+148
+00:10:00,470 --> 00:10:02,230
+If not feel free to move on to the next lecture.
+
+149
+00:10:02,270 --> 00:10:02,670
+Thank you.

@@ -1,0 +1,179 @@
+1
+00:00:00,440 --> 00:00:06,980
+Help overclockers and welcome to this lecture and this lecture is all about S-3 security.
+
+2
+00:00:07,020 --> 00:00:09,420
+So it's going to be a really really quick lecture.
+
+3
+00:00:09,420 --> 00:00:16,120
+We're just going to cover off some of the main access control mechanisms that you get with S-3.
+
+4
+00:00:16,310 --> 00:00:21,730
+So the different ways that we can allow access to you as three buckets.
+
+5
+00:00:21,950 --> 00:00:24,870
+And then after this lecture we're going to go straight into a lab.
+
+6
+00:00:25,100 --> 00:00:30,170
+So we're going to show you how to actually configure some of these access control mechanisms that we've
+
+7
+00:00:30,170 --> 00:00:38,060
+been talking about now by default all newly created pockets within S-3 are private and this means that
+
+8
+00:00:38,120 --> 00:00:42,740
+only the owner of the bucket gets access to the packet and its contents.
+
+9
+00:00:42,920 --> 00:00:51,500
+So only the owner can upload new files read files delete files etc. and there is no public access by
+
+10
+00:00:51,500 --> 00:00:52,670
+default.
+
+11
+00:00:53,000 --> 00:00:58,580
+But we might want to allow other accounts to access our objects within as three buckets.
+
+12
+00:00:58,730 --> 00:01:05,400
+We might want to make our bucket publicly accessible for example or we might have a certain user or
+
+13
+00:01:05,400 --> 00:01:12,400
+a set of users a group that users for which we want to enable access to put new objects or objects within
+
+14
+00:01:12,440 --> 00:01:14,020
+our three packet.
+
+15
+00:01:14,300 --> 00:01:20,760
+And the way that we can do that is using bucket policies and bucket policies are applied at a package
+
+16
+00:01:20,840 --> 00:01:21,620
+level.
+
+17
+00:01:21,620 --> 00:01:28,410
+So this means that the permissions granted by that policy apply to all of the objects within the bucket.
+
+18
+00:01:28,670 --> 00:01:35,420
+You can't attach a bucket policy to an individual object but the bucket policies are really good for
+
+19
+00:01:35,660 --> 00:01:41,800
+those situations where you have a group of files and they all need to be accessed by the same people.
+
+20
+00:01:41,840 --> 00:01:48,150
+Now bucket policies are written in J-Zone which is the javascript object notation language.
+
+21
+00:01:48,290 --> 00:01:52,590
+So it's based on Javascript but it's pretty human readable.
+
+22
+00:01:52,610 --> 00:01:58,760
+It consists of a list of key value pairs and they actually provide a policy generates too.
+
+23
+00:01:58,880 --> 00:02:01,220
+So that means that they make it really easy for you.
+
+24
+00:02:01,220 --> 00:02:03,890
+You don't have to start writing javascript.
+
+25
+00:02:03,920 --> 00:02:08,930
+You can use this policy generator to actually build out the policies that you need.
+
+26
+00:02:09,080 --> 00:02:12,240
+And this is something that we're going to take a look at in the next lab.
+
+27
+00:02:12,320 --> 00:02:14,760
+Moving on to access control lists.
+
+28
+00:02:14,810 --> 00:02:17,500
+So these are applied at an object level.
+
+29
+00:02:17,570 --> 00:02:23,300
+That means that we can apply different permissions for different objects within a bucket so we can define
+
+30
+00:02:23,300 --> 00:02:30,840
+which accounts or groups are granted access and also the type of access so read y or full control.
+
+31
+00:02:30,950 --> 00:02:35,830
+So we can go to a different type of access to different objects within the same bucket.
+
+32
+00:02:35,870 --> 00:02:39,800
+So it really gives you that fine grained access control.
+
+33
+00:02:39,800 --> 00:02:43,730
+And this is really good for situations where you do want to have different permissions for different
+
+34
+00:02:43,790 --> 00:02:48,800
+objects for different users and groups then Access Control List is the one to use.
+
+35
+00:02:48,950 --> 00:02:54,560
+And if you want to track the different access requests that are being made to your S-3 objects you can
+
+36
+00:02:54,560 --> 00:03:00,060
+configure access logs and these are Laux which will log all the different requests made to the S3 bucket
+
+37
+00:03:00,450 --> 00:03:07,390
+every time a user makes a request to upload a file or redefine orderly to file all of those activities
+
+38
+00:03:07,390 --> 00:03:09,480
+will get logged into the access log.
+
+39
+00:03:09,620 --> 00:03:13,600
+And this low can actually be written into another S3 packet.
+
+40
+00:03:13,760 --> 00:03:18,940
+So that covers all of the main mechanisms for access control within S3.
+
+41
+00:03:19,190 --> 00:03:24,140
+And don't worry if it doesn't make too much sense right now the best way to learn it really is to start
+
+42
+00:03:24,140 --> 00:03:26,420
+configuring some of this in the console.
+
+43
+00:03:26,510 --> 00:03:28,520
+And that's exactly what we're going to do next.
+
+44
+00:03:28,520 --> 00:03:33,980
+So if you have time please join us in the next lecture and we're going to be logging into the AWOS console
+
+45
+00:03:34,010 --> 00:03:36,450
+and actually configuring some of this access control.

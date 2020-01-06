@@ -1,0 +1,147 @@
+1
+00:00:00,610 --> 00:00:07,430
+Like hookers and welcome to this lecture and this lecture is all about cloud formation nested stack.
+
+2
+00:00:07,830 --> 00:00:13,500
+Now there's a whole load of documentation related to best practices for cloud formation.
+
+3
+00:00:13,620 --> 00:00:20,850
+But the main thing that you need to be aware of for the exam is nested stacks and stacks of stocks that
+
+4
+00:00:20,850 --> 00:00:28,020
+create other stacks within cloud formation and they allow you to use your information code for common
+
+5
+00:00:28,080 --> 00:00:29,160
+use cases.
+
+6
+00:00:29,160 --> 00:00:36,080
+So for example a standard configuration for lied about on the web server or application server etc..
+
+7
+00:00:36,120 --> 00:00:42,270
+So if you have a load balancer configuration that you use again and again in your environments you can
+
+8
+00:00:42,270 --> 00:00:48,210
+create a dedicated template for a light balancer and then instead of copying and pasting the config
+
+9
+00:00:48,330 --> 00:00:53,640
+every time you want to reuse that code you can store it in its own cloud formation template and then
+
+10
+00:00:53,640 --> 00:00:57,540
+reference it from within another cloud formation template.
+
+11
+00:00:57,540 --> 00:01:00,270
+So it is a template within a template.
+
+12
+00:01:00,270 --> 00:01:06,540
+So let's take a look at the cloud formation Template structure for nested stacks and nested stacks are
+
+13
+00:01:06,540 --> 00:01:12,990
+declared within the resources section of the cloud formation template and it's going to be of type AWOS
+
+14
+00:01:13,050 --> 00:01:20,400
+cloud formation stack on the properties of the supported properties or notification i o n which you
+
+15
+00:01:20,400 --> 00:01:26,850
+can use to define an existing Asinus topic when notifications about stock events can be sent.
+
+16
+00:01:26,850 --> 00:01:33,120
+The parameter section is for parameters that you want to pass to cloud formation when the nested stack
+
+17
+00:01:33,150 --> 00:01:41,070
+is created and you can add tags as well to describe your stack and the template you RL is the most important
+
+18
+00:01:41,070 --> 00:01:42,010
+bits.
+
+19
+00:01:42,090 --> 00:01:47,730
+And this is mandatory and this is the you are l of the template which specifies the nested stack that
+
+20
+00:01:47,730 --> 00:01:53,470
+you want to create and it must be a file located in an Amazon S3 bucket.
+
+21
+00:01:53,490 --> 00:01:59,520
+And finally you can optionally include a time out in minutes and this is the length of time in minutes
+
+22
+00:01:59,520 --> 00:02:05,340
+that cloud formation will wait for the nested stack to complete and the default is that there is no
+
+23
+00:02:05,340 --> 00:02:06,170
+time out.
+
+24
+00:02:06,240 --> 00:02:08,400
+And this is completely optional.
+
+25
+00:02:08,400 --> 00:02:12,740
+So the only element that is mandatory is the template you RL.
+
+26
+00:02:12,780 --> 00:02:15,390
+So let's take a look at some of our exam tips.
+
+27
+00:02:15,390 --> 00:02:20,120
+Just remember nested stacks allow you to reuse your cloud formation code.
+
+28
+00:02:20,130 --> 00:02:23,920
+So for common use cases you don't need to copy paste.
+
+29
+00:02:23,940 --> 00:02:28,670
+You can just reference the confirmation code from within your cloud formation template.
+
+30
+00:02:28,710 --> 00:02:32,340
+They are really useful for frequently used configurations.
+
+31
+00:02:32,550 --> 00:02:38,820
+So for example for a frequently used configuration for a load balancer web server application server
+
+32
+00:02:39,150 --> 00:02:44,580
+and all you need to do is create a cloud formation template defining the resource that you want to create
+
+33
+00:02:44,670 --> 00:02:50,790
+store in S3 and then you can reference it from the resources section of any cloud formation template
+
+34
+00:02:50,880 --> 00:02:56,800
+using the stack resource type so that if everything that you need to know about it's tax for the exam
+
+35
+00:02:57,240 --> 00:02:59,420
+if you have any questions please let me know.
+
+36
+00:02:59,580 --> 00:03:01,910
+If not feel free to move on to the next lecture.
+
+37
+00:03:02,030 --> 00:03:02,490
+Thank ye.

@@ -1,0 +1,431 @@
+1
+00:00:01,020 --> 00:00:08,210
+Hello Clockers and welcome to this lecture and this lecture is all about elastic hash and elastic Cassy's
+
+2
+00:00:08,220 --> 00:00:13,710
+in-memory caching and it can sit in front of any kind of audio database.
+
+3
+00:00:13,710 --> 00:00:17,440
+And also it can be used in front of Dynamo D-B as well.
+
+4
+00:00:18,530 --> 00:00:22,210
+So let's get started.
+
+5
+00:00:22,420 --> 00:00:24,180
+So what is elastic cash.
+
+6
+00:00:24,460 --> 00:00:27,010
+Well is in-memory cash in the cloud.
+
+7
+00:00:27,070 --> 00:00:34,600
+And it's used to improve performance of web applications allowing you to retrieve information from fast
+
+8
+00:00:34,930 --> 00:00:39,420
+in memory cache rather than slower disk based databases.
+
+9
+00:00:41,640 --> 00:00:44,830
+It sits between your application and the database.
+
+10
+00:00:45,000 --> 00:00:51,030
+For example an application frequently requesting products specific information for your best selling
+
+11
+00:00:51,030 --> 00:00:52,120
+products.
+
+12
+00:00:52,590 --> 00:00:59,950
+So for the best selling products the application is frequently requesting the same information and by
+
+13
+00:00:59,950 --> 00:01:05,350
+caching that it just makes the subsequent requests for that information much much faster because they
+
+14
+00:01:05,350 --> 00:01:08,890
+don't have to go to the database and retrieve it from the disk.
+
+15
+00:01:08,920 --> 00:01:12,500
+When we get data out of the cache it's much much faster.
+
+16
+00:01:12,760 --> 00:01:19,210
+And it also takes the load of your databases and it's really good if your database is particularly read
+
+17
+00:01:19,240 --> 00:01:20,130
+heavy.
+
+18
+00:01:20,530 --> 00:01:28,210
+And also if the data is not changing very frequently so some of the benefits are that it improves performance
+
+19
+00:01:28,210 --> 00:01:38,330
+for the real heavy workloads for example social networking gaming media sharing and Kunai Porto's frequently
+
+20
+00:01:38,330 --> 00:01:45,260
+access data is stored in memory for low latency access which improves the overall performance of your
+
+21
+00:01:45,260 --> 00:01:46,260
+application.
+
+22
+00:01:47,620 --> 00:01:50,680
+And it's also really good for compute heavy workloads.
+
+23
+00:01:50,680 --> 00:01:58,040
+So for example recommendation engines because it can be used to store results of your IO intensive database
+
+24
+00:01:58,060 --> 00:02:03,700
+queries and also the output of compute intensive calculations.
+
+25
+00:02:03,700 --> 00:02:10,960
+And there were two types of elastic cash as memcached and Reddy's and memcached is really widely adopted.
+
+26
+00:02:10,960 --> 00:02:12,430
+It's multi-threaded as well.
+
+27
+00:02:12,430 --> 00:02:15,670
+So it's really good if your applications are multi-threaded.
+
+28
+00:02:15,790 --> 00:02:19,960
+However there's no multi azy capabilities so it's not clustered.
+
+29
+00:02:19,960 --> 00:02:25,960
+It's only standalone if AWOS loses that Elastica service you're going to lose everything that's stored
+
+30
+00:02:25,990 --> 00:02:27,700
+in your cash.
+
+31
+00:02:27,700 --> 00:02:33,860
+And there's also Ready's which is it's open source and it's an in memory key value store.
+
+32
+00:02:33,910 --> 00:02:40,860
+So when we say key value the key is normally the name and the value is the actual data stored.
+
+33
+00:02:41,020 --> 00:02:47,690
+It supports more complex data structures like sorted sets and lists and crucially it also supports master
+
+34
+00:02:47,710 --> 00:02:52,950
+slave replication and multi Asie across Asie redundancy.
+
+35
+00:02:52,980 --> 00:02:58,520
+So this is a better choice if you if it's really important not to lose the data that's been cached.
+
+36
+00:02:58,530 --> 00:03:05,010
+If so if elastic cache went down if they lost the cache node went down and you lose the data your application
+
+37
+00:03:05,010 --> 00:03:07,590
+loses the data stored in it in the cache.
+
+38
+00:03:07,590 --> 00:03:12,480
+If that's going to be a problem then Reddy's would be preferable because you got the Motegi cross-site
+
+39
+00:03:12,480 --> 00:03:13,510
+redundancy.
+
+40
+00:03:13,800 --> 00:03:22,990
+Now there are two caching strategies available lazy loading and right three now lazy loading it loads
+
+41
+00:03:23,010 --> 00:03:26,000
+the data into the cache only when necessary.
+
+42
+00:03:26,040 --> 00:03:32,530
+So when a request is made if the data is in the cache the cache will return the data to the application.
+
+43
+00:03:33,090 --> 00:03:39,600
+But if it's not in the cache or has expired elastic cache then returns now and then your application
+
+44
+00:03:39,600 --> 00:03:44,490
+fetches the data from the database and it writes the data received into the cache.
+
+45
+00:03:44,490 --> 00:03:47,070
+So that is going to be available next time.
+
+46
+00:03:47,070 --> 00:03:51,080
+Now the advantages of this or that are the requested data is cached.
+
+47
+00:03:51,240 --> 00:03:56,850
+So that means it avoids filling up the cache with useless data that never gets requested.
+
+48
+00:03:57,030 --> 00:04:00,290
+It also means that a node failure is not going to be fatal.
+
+49
+00:04:01,340 --> 00:04:07,490
+So if your elastic hash node fails and you bring up a new one it just means that new node is going to
+
+50
+00:04:07,490 --> 00:04:11,290
+have an empty cache and it's going to have a lot of cash misuse initially.
+
+51
+00:04:12,200 --> 00:04:17,040
+Some of the disadvantages of lazy loading are that there is a cache miss penalty.
+
+52
+00:04:17,450 --> 00:04:23,830
+So if you want to retrieve some data from a nasty cache and it's not in the cache you have a cache miss.
+
+53
+00:04:23,900 --> 00:04:25,960
+So you've made the initial request.
+
+54
+00:04:26,030 --> 00:04:29,040
+You don't have to query to the database anyway.
+
+55
+00:04:29,090 --> 00:04:33,590
+And then finally you need to write the data into the cache for next time.
+
+56
+00:04:33,590 --> 00:04:39,860
+So there is that additional The head of the initial request query to database and writing the data to
+
+57
+00:04:39,860 --> 00:04:40,890
+the cache.
+
+58
+00:04:41,270 --> 00:04:45,310
+Additionally with lazy loading the data can become stale.
+
+59
+00:04:45,470 --> 00:04:52,280
+So if data is only updated when it's a cache miss it can therefore become out of date and it doesn't
+
+60
+00:04:52,280 --> 00:04:59,650
+automatically update if data in the database changes so how do we do this day or Deiter.
+
+61
+00:04:59,870 --> 00:05:05,580
+Well within elastic cash we can add a time to live or TTL to our data.
+
+62
+00:05:05,840 --> 00:05:14,090
+And this specifies the number of seconds until the key or the data expires to avoid keeping Stylo data
+
+63
+00:05:14,180 --> 00:05:15,860
+in the cache.
+
+64
+00:05:15,860 --> 00:05:21,770
+Lazy loading will then treat an expired key as a Kashmir's and this will cause the application to go
+
+65
+00:05:21,770 --> 00:05:27,740
+and retrieve the data from the database and then subsequently write that data into the cache with a
+
+66
+00:05:27,740 --> 00:05:35,570
+new TTL and depending on how frequently your data changes it doesn't eliminate our data but it does
+
+67
+00:05:35,570 --> 00:05:36,710
+help to avoid it.
+
+68
+00:05:39,290 --> 00:05:46,730
+Now another caching strategy is called right through caching and this adds or updates data to the cache
+
+69
+00:05:46,730 --> 00:05:56,310
+when data is written to the database and the advantage of this is the data in the cache is never stale.
+
+70
+00:05:56,330 --> 00:06:02,540
+However it does involve a light penalty because every right involves a right to the cache as well as
+
+71
+00:06:02,540 --> 00:06:05,180
+a right to the database.
+
+72
+00:06:05,180 --> 00:06:11,480
+However users are generally more tolerant of additional latency when updating data than they are of
+
+73
+00:06:11,480 --> 00:06:12,550
+when retrieving it.
+
+74
+00:06:12,710 --> 00:06:17,380
+So maybe we could say that right penalty is not such a big disadvantage.
+
+75
+00:06:18,650 --> 00:06:25,970
+If a node files on a new one is spun up data is missing until added or updated in the database.
+
+76
+00:06:26,000 --> 00:06:33,570
+Although we can mitigate that by implementing lazy loading as well in conjunction with write three.
+
+77
+00:06:33,850 --> 00:06:40,690
+However one of the main disadvantages of the write three strategy is that you end up with wasted resources.
+
+78
+00:06:40,690 --> 00:06:44,600
+If most of your data is never read.
+
+79
+00:06:44,880 --> 00:06:51,300
+So if you have a database where a few records or a few items in your database are very frequently accessed
+
+80
+00:06:51,670 --> 00:06:56,420
+and then most of the vast majority of the data in your database is hardly ever read.
+
+81
+00:06:56,790 --> 00:07:00,440
+It wouldn't make sense to use the right through caching strategy.
+
+82
+00:07:01,460 --> 00:07:07,690
+And you might be wondering what is the difference between DACs and elastic hash because they both provide
+
+83
+00:07:07,720 --> 00:07:11,410
+in memory caching both the supported vidanta might be.
+
+84
+00:07:12,070 --> 00:07:17,040
+But just remember that Dax is the one that is optimized for only for use with doyenne MIDP.
+
+85
+00:07:17,080 --> 00:07:24,180
+It was specifically developed just for IDB undocks only supports the right through caching strategy.
+
+86
+00:07:24,190 --> 00:07:29,190
+It doesn't let you use any other caching strategy like lazy loading for example.
+
+87
+00:07:29,290 --> 00:07:35,800
+So if your application is using dynamo IDB and it needs to use an in memory cache and you need to use
+
+88
+00:07:35,860 --> 00:07:41,800
+lazy loading you can't use Dyaks and in that instance you would select elastic cache.
+
+89
+00:07:41,920 --> 00:07:48,550
+But generally speaking fits on the Mighty Ducks is the one to use an elastic cache is the one to use
+
+90
+00:07:48,640 --> 00:07:50,170
+for Adhya.
+
+91
+00:07:51,040 --> 00:07:54,350
+So what the elastic cache exam tips.
+
+92
+00:07:54,640 --> 00:07:57,900
+Well just remember it's an in-memory cache.
+
+93
+00:07:57,970 --> 00:08:01,700
+It sits between your application and database.
+
+94
+00:08:01,810 --> 00:08:04,460
+It uses two different caching strategies.
+
+95
+00:08:04,540 --> 00:08:11,180
+We have lazy loading and right three lazy loading only caches the data when it's requested and an elastic
+
+96
+00:08:11,180 --> 00:08:16,680
+cast node failure is not nice or you just get lots of cash misses with lazy loading.
+
+97
+00:08:16,740 --> 00:08:18,550
+There is a cache missed penalty.
+
+98
+00:08:18,550 --> 00:08:24,180
+So your initial request query database and writing to the cache with lazy loading.
+
+99
+00:08:24,430 --> 00:08:29,500
+And you could avoid it stale data by implementing a time to live on your data.
+
+100
+00:08:30,940 --> 00:08:36,720
+The right three strategy bytes data into the cache whenever there's a change to the database that data
+
+101
+00:08:36,720 --> 00:08:38,320
+is never style.
+
+102
+00:08:38,410 --> 00:08:44,940
+However there's a right penalty because each write involves or writes to the cache and an elastic hash
+
+103
+00:08:44,940 --> 00:08:50,760
+known failure means that the data is going to be missing until added or updated in the database.
+
+104
+00:08:50,760 --> 00:08:52,700
+And you've got wasted resources.
+
+105
+00:08:52,710 --> 00:08:58,910
+Unfortunately if most of your data is never used so that is the end of this lecture.
+
+106
+00:08:59,250 --> 00:09:01,540
+If you have any questions please let me know.
+
+107
+00:09:01,680 --> 00:09:04,220
+If not feel free to move on to the next lecture.
+
+108
+00:09:04,320 --> 00:09:04,770
+Thank you.
